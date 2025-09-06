@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useTagsStore } from '@/stores'
-import { ErrorMessage, Field, useForm, Form as VeeForm } from 'vee-validate'
-import { onMounted, ref } from 'vue'
+import type { Tag } from '@/types/Tag'
+import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
+import { onMounted, ref, watch } from 'vue'
 import * as yup from 'yup'
 
 const props = defineProps({
@@ -20,12 +21,13 @@ const schema = yup.object({
 })
 
 const store = useTagsStore()
-const onSubmit = async (values) => {
+const onSubmit = async (values: Tag) => {
   if (isEdit.value) {
     await store.updateTag(props.tag.id, values)
   } else {
     await store.createTag(values)
   }
+  emit('tagSaved')
   hideModal()
 }
 
@@ -36,6 +38,16 @@ const hideModal = () => {
 const showModal = () => {
   modalInstance.show()
 }
+
+const emit = defineEmits(['tagSaved'])
+
+watch(
+  () => props.tag,
+  (newTag) => {
+    isEdit.value = !!newTag
+  },
+  { immediate: true },
+)
 
 onMounted(() => {
   if (modalEl.value) {
@@ -50,7 +62,16 @@ defineExpose({ showModal })
   <div class="modal fade" id="tagModal" tabindex="-1" aria-hidden="true" ref="modalEl">
     <div class="modal-dialog">
       <div class="modal-content">
-        <VeeForm @submit="onSubmit" :validation-schema="schema">
+        <VeeForm
+          :validation-schema="schema"
+          :initial-values="{
+            name: props.tag?.name ?? '',
+            description: props.tag?.description ?? '',
+            visible: props.tag?.visible ?? true,
+          }"
+          :key="props.tag?.id ?? 'new'"
+          @submit="onSubmit"
+        >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un tag</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>

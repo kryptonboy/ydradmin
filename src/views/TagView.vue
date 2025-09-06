@@ -184,5 +184,5 @@ filterTags()
       </tr>
     </tbody>
   </table>
-  <TagModal ref="tagModalRef" :tag="selectedTag" />
+  <TagModal ref="tagModalRef" :tag="selectedTag" @tag-saved="filterTags" />
 </template>
