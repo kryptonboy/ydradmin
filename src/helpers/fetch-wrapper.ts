@@ -45,7 +45,8 @@ export function createFetchWrapper(authState: AuthState) {
       console.log('Kryptou debug encore', url, headers, requestOptions, body)
 
       if (body) {
-        ;(requestOptions.headers as Record<string, string>)['Content-Type'] = 'application/ld+json'
+        ;(requestOptions.headers as Record<string, string>)['Content-Type'] =
+          'PATCH' === method ? 'application/merge-patch+json' : 'application/ld+json'
         requestOptions.body = JSON.stringify(body)
       }
 
