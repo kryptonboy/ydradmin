@@ -26,6 +26,13 @@ export const useTagsStore = defineStore('tags', {
       const fetchWrapper = createFetchWrapper({ token, logout })
       this.loading = true
       this.error = null
+      this.pagination = {
+        totalItems: 0,
+        firstPage: null,
+        previousPage: null,
+        nextPage: null,
+        lastPage: null,
+      }
 
       try {
         const data = await fetchWrapper.get(

@@ -6,9 +6,10 @@ import type { Sort } from '@/types/Api'
 import * as yup from 'yup'
 import TagModal from './modals/TagModal.vue'
 import type { Tag } from '@/types/Tag'
+import Paginator from '@/components/Paginator.vue'
 
 const tagsStore = useTagsStore()
-const { items: tags, loading } = storeToRefs(tagsStore)
+const { items: tags, loading, pagination } = storeToRefs(tagsStore)
 
 const tagModalRef = ref<InstanceType<typeof TagModal> | null>(null)
 const selectedTag = ref<Tag | null>(null)
@@ -47,6 +48,7 @@ function setSort(field: 'id' | 'name') {
     sort.value.sortBy = field
     sort.value.sortDir = 'asc'
   }
+  filterTags()
 }
 
 function getSortIcon() {
@@ -61,8 +63,9 @@ function resetFilter() {
   filterTags()
 }
 
-function filterTags() {
-  tagsStore.filter(filters, sort.value, currentPage.value)
+function applyFilters() {
+  currentPage.value = 1
+  filterTags()
 }
 
 function openTagModal(tag: Tag | null = null) {
@@ -72,6 +75,25 @@ function openTagModal(tag: Tag | null = null) {
   }
 }
 
+function changePage(newPage: number) {
+  currentPage.value = newPage
+  filterTags()
+}
+
+function filterTags() {
+  tagsStore.filter(filters, sort.value, currentPage.value)
+}
+
+const nbFilters = computed(() => {
+  let nbFilters = 0
+
+  for (const filterValue of Object.values(filters)) {
+    if (null !== filterValue) nbFilters++
+  }
+
+  return nbFilters
+})
+
 filterTags()
 </script>
 
@@ -80,13 +102,18 @@ filterTags()
     <h2>Tags</h2>
     <div>
       <button
-        class="btn btn-secondary me-md-2"
+        class="btn btn-secondary me-md-2 position-relative"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#filterCollapse"
       >
         <font-awesome-icon :icon="['fa', 'filter']" />
         Filtrer
+        <span
+          v-if="nbFilters > 0"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          >{{ nbFilters }}</span
+        >
       </button>
       <button class="btn btn-primary" @click="openTagModal()">
         <font-awesome-icon :icon="['fa', 'plus']" />
@@ -127,11 +154,11 @@ filterTags()
         </select>
       </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">
-        <button class="btn btn-secondary w-100" @click="resetFilter()">
+        <button class="btn btn-secondary w-100" @click="resetFilter">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
           Réinitialiser
         </button>
-        <button class="btn btn-primary w-100" @click="filterTags()">
+        <button class="btn btn-primary w-100" @click="applyFilters">
           <font-awesome-icon :icon="['fa', 'check']" />
           Valider
         </button>
@@ -143,12 +170,12 @@ filterTags()
       <tr>
         <th scope="col" @click="setSort('id')" role="button">
           #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
+          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon" />
           <font-awesome-icon v-if="sort.sortBy !== 'id'" :icon="['fa', 'sort']" />
         </th>
         <th scope="col" @click="setSort('name')" role="button">
           Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
+          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon" />
           <font-awesome-icon v-if="sort.sortBy !== 'name'" :icon="['fa', 'sort']" />
         </th>
         <th scope="col">Description</th>
@@ -183,6 +210,17 @@ filterTags()
         </td>
       </tr>
     </tbody>
+    <tfoot v-if="pagination.totalItems > 50">
+      <tr>
+        <td colspan="4" class="text-center pt-3 pb-0">
+          <Paginator
+            :pagination="pagination"
+            :current-page="currentPage"
+            @page-changed="changePage"
+          />
+        </td>
+      </tr>
+    </tfoot>
   </table>
   <TagModal ref="tagModalRef" :tag="selectedTag" @tag-saved="filterTags" />
 </template>

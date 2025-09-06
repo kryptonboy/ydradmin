@@ -27,7 +27,7 @@ const isExternalLink = computed(() => {
       @click="navigate"
       :class="isActive ? activeClass : inactiveClass"
     >
-      <slot />
+      <slot></slot>
     </a>
   </router-link>
 </template>
