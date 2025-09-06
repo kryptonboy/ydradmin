@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import TagModal from './modals/TagModal.vue'
 import type { Tag } from '@/types/Tag'
 import Paginator from '@/components/Paginator.vue'
+import BooleanToIcon from '@/components/BooleanToIcon.vue'
 
 const tagsStore = useTagsStore()
 const { items: tags, loading, pagination } = storeToRefs(tagsStore)
@@ -179,6 +180,7 @@ filterTags()
           <font-awesome-icon v-if="sort.sortBy !== 'name'" :icon="['fa', 'sort']" />
         </th>
         <th scope="col">Description</th>
+        <th scope="col">Visible</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -187,6 +189,7 @@ filterTags()
         <td>{{ tag.id }}</td>
         <td>{{ tag.name }}</td>
         <td>{{ tag.description }}</td>
+        <td><BooleanToIcon :field="tag.visible" /></td>
         <td>
           <button class="btn btn-primary" @click="openTagModal(tag)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
@@ -196,14 +199,14 @@ filterTags()
     </tbody>
     <tbody v-if="!loading && !tags.length">
       <tr>
-        <td colspan="4">
+        <td colspan="5">
           <em>Aucun tag</em>
         </td>
       </tr>
     </tbody>
     <tbody v-if="loading">
       <tr>
-        <td colspan="4" class="text-center align-middle">
+        <td colspan="5" class="text-center align-middle">
           <div class="spinner-border spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -212,7 +215,7 @@ filterTags()
     </tbody>
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
-        <td colspan="4" class="text-center pt-3 pb-0">
+        <td colspan="5" class="text-center pt-3 pb-0">
           <Paginator
             :pagination="pagination"
             :current-page="currentPage"
