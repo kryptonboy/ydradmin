@@ -6,7 +6,7 @@ import { computed } from 'vue'
 const authStore = useAuthStore()
 const route = useRoute()
 
-const isCardManagementDropdownActive = computed(() => route.path.startsWith('/tag'))
+const isCardManagementDropdownActive = computed(() => route.path.startsWith('/card_management'))
 </script>
 
 <template>
@@ -41,7 +41,28 @@ const isCardManagementDropdownActive = computed(() => route.path.startsWith('/ta
             >
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="cardManagementDropdown">
               <li>
-                <AppLink to="/tag" class="dropdown-item" activeClass="active">Tags</AppLink>
+                <AppLink to="/card_management/extension" class="dropdown-item" activeClass="active">
+                  Extensions
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/card_management/extension_type"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Types d'extension
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/card_management/tag" class="dropdown-item" activeClass="active">
+                  Tags
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/card_management/country" class="dropdown-item" activeClass="active">
+                  Pays
+                </AppLink>
               </li>
             </ul>
           </li>

@@ -1,7 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores'
-import { HomeView, LoginView } from '@/views'
-import TagView from '@/views/TagView.vue'
+import {
+  CountryView,
+  ExtensionTypeView,
+  ExtensionView,
+  HomeView,
+  LoginView,
+  TagView,
+} from '@/views'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,7 +15,10 @@ export const router = createRouter({
   routes: [
     { path: '/', component: HomeView },
     { path: '/login', component: LoginView },
-    { path: '/tag', component: TagView },
+    { path: '/card_management/tag', component: TagView },
+    { path: '/card_management/extension', component: ExtensionView },
+    { path: '/card_management/extension_type', component: ExtensionTypeView },
+    { path: '/card_management/country', component: CountryView },
   ],
 })
 

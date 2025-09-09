@@ -1,4 +1,4 @@
-import type { AuthState } from '@/types/AuthState'
+import type { AuthState } from '@/types/states/AuthState'
 
 export function createFetchWrapper(authState: AuthState) {
   const { token, logout } = authState
@@ -6,8 +6,6 @@ export function createFetchWrapper(authState: AuthState) {
   function authHeader(url: string): Record<string, string> {
     const isLoggedIn = !!token
     const isApiUrl = url.startsWith(import.meta.env.VITE_API_URL)
-
-    console.log('Kryptou debug', isLoggedIn, isApiUrl)
 
     if (isLoggedIn && isApiUrl) {
       return { Authorization: `Bearer ${token}` }
@@ -42,11 +40,10 @@ export function createFetchWrapper(authState: AuthState) {
         headers,
       }
 
-      console.log('Kryptou debug encore', url, headers, requestOptions, body)
-
       if (body) {
         ;(requestOptions.headers as Record<string, string>)['Content-Type'] =
           'PATCH' === method ? 'application/merge-patch+json' : 'application/ld+json'
+        ;(requestOptions.headers as Record<string, string>)['accept'] = 'application/ld+json'
         requestOptions.body = JSON.stringify(body)
       }
 

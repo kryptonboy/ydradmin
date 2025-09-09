@@ -9,9 +9,12 @@ export const useUsersStore = defineStore('users', {
     users: {},
   }),
   actions: {
-    async getAll() {
+    _getFetchWrapper() {
       const { token, logout } = useAuthStore()
-      const fetchWrapper = createFetchWrapper({ token, logout })
+      return createFetchWrapper({ token, logout })
+    },
+    async getAll() {
+      const fetchWrapper = this._getFetchWrapper()
       this.users = { loading: true }
       fetchWrapper
         .get(baseUrl)

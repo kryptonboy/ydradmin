@@ -1,3 +1,6 @@
+export { default as CountryView } from './CountryView.vue'
+export { default as ExtensionTypeView } from './ExtensionTypeView.vue'
+export { default as ExtensionView } from './ExtensionView.vue'
 export { default as HomeView } from './HomeView.vue'
 export { default as LoginView } from './LoginView.vue'
 export { default as TagView } from './TagView.vue'

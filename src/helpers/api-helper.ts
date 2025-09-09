@@ -1,5 +1,5 @@
 import type { Filters, PaginatedApiResponse, Sort } from '@/types/Api'
-import type { Pagination } from '@/types/Pagination'
+import type { Pagination } from '@/types/states/Pagination'
 
 export function buildApiPlatformQuery(filters: Filters, sort: Sort, page: number): string {
   const params = new URLSearchParams()
@@ -30,4 +30,26 @@ export function hydratePaginatedState<T>(
   state.pagination.previousPage = data.view?.previous ?? null
   state.pagination.nextPage = data.view?.next ?? null
   state.pagination.lastPage = data.view?.last ?? null
+}
+
+export function toApiPayload<T extends Record<string, any>>(form: T): Record<string, any> {
+  const payload: Record<string, any> = {}
+
+  for (const key in form) {
+    const value = form[key]
+    if (value && typeof value === 'object' && '@id' in value) {
+      // Gestion ToOne
+      payload[key] = value['@id']
+    } else if (
+      Array.isArray(value) &&
+      value.every((v: any) => typeof v === 'object' && '@id' in v)
+    ) {
+      // Gestion ToMany
+      payload[key] = value.map((v: any) => v['@id'])
+    } else {
+      payload[key] = value
+    }
+  }
+
+  return payload
 }

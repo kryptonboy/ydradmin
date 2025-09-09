@@ -3,9 +3,8 @@ import { storeToRefs } from 'pinia'
 import { useTagsStore } from '@/stores'
 import { computed, reactive, ref } from 'vue'
 import type { Sort } from '@/types/Api'
-import * as yup from 'yup'
 import TagModal from './modals/TagModal.vue'
-import type { Tag } from '@/types/Tag'
+import type { Tag } from '@/types/models/Tag'
 import Paginator from '@/components/Paginator.vue'
 import BooleanToIcon from '@/components/BooleanToIcon.vue'
 
@@ -14,7 +13,6 @@ const { items: tags, loading, pagination } = storeToRefs(tagsStore)
 
 const tagModalRef = ref<InstanceType<typeof TagModal> | null>(null)
 const selectedTag = ref<Tag | null>(null)
-const showModal = ref(false)
 
 const currentPage = ref<number>(1)
 
@@ -113,8 +111,9 @@ filterTags()
         <span
           v-if="nbFilters > 0"
           class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-          >{{ nbFilters }}</span
         >
+          {{ nbFilters }}
+        </span>
       </button>
       <button class="btn btn-primary" @click="openTagModal()">
         <font-awesome-icon :icon="['fa', 'plus']" />
@@ -161,7 +160,7 @@ filterTags()
         </button>
         <button class="btn btn-primary w-100" @click="applyFilters">
           <font-awesome-icon :icon="['fa', 'check']" />
-          Valider
+          Appliquer
         </button>
       </div>
     </div>
@@ -171,20 +170,29 @@ filterTags()
       <tr>
         <th scope="col" @click="setSort('id')" role="button">
           #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon" />
-          <font-awesome-icon v-if="sort.sortBy !== 'id'" :icon="['fa', 'sort']" />
+          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
+          <font-awesome-icon v-else :icon="['fa', 'sort']" />
         </th>
         <th scope="col" @click="setSort('name')" role="button">
           Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon" />
-          <font-awesome-icon v-if="sort.sortBy !== 'name'" :icon="['fa', 'sort']" />
+          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
+          <font-awesome-icon v-else :icon="['fa', 'sort']" />
         </th>
         <th scope="col">Description</th>
         <th scope="col">Visible</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody v-if="!loading && tags.length">
+    <tbody v-if="loading">
+      <tr>
+        <td colspan="5" class="text-center align-middle">
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tbody v-else-if="tags.length">
       <tr v-for="tag in tags" :key="tag.id">
         <td>{{ tag.id }}</td>
         <td>{{ tag.name }}</td>
@@ -197,19 +205,10 @@ filterTags()
         </td>
       </tr>
     </tbody>
-    <tbody v-if="!loading && !tags.length">
+    <tbody v-else>
       <tr>
         <td colspan="5">
           <em>Aucun tag</em>
-        </td>
-      </tr>
-    </tbody>
-    <tbody v-if="loading">
-      <tr>
-        <td colspan="5" class="text-center align-middle">
-          <div class="spinner-border spinner-border-sm" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
         </td>
       </tr>
     </tbody>

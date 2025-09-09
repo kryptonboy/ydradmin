@@ -1,8 +1,8 @@
+import type { Extension } from '../models/Extension'
 import type { Pagination } from './Pagination'
-import type { Tag } from './Tag'
 
-export interface TagsState {
-  items: Tag[]
+export interface ExtensionsState {
+  items: Extension[]
   loading: boolean
   error: string | null
   pagination: Pagination

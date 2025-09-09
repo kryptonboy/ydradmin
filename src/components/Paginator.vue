@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Pagination } from '@/types/Pagination'
+import type { Pagination } from '@/types/states/Pagination'
 import { computed } from 'vue'
 
 const emit = defineEmits(['pageChanged'])

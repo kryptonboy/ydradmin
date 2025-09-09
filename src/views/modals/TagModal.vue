@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTagsStore } from '@/stores'
-import type { Tag } from '@/types/Tag'
+import type { Tag } from '@/types/models/Tag'
 import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
 import { onMounted, ref, watch } from 'vue'
 import * as yup from 'yup'
