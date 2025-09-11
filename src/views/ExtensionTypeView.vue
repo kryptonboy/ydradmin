@@ -107,7 +107,7 @@ filterExtensionTypes()
       <div class="col-3">
         <label for="extension_type_name" class="form-label">Nom</label>
         <input
-          type="string"
+          type="text"
           class="form-control"
           name="extension_type_name"
           id="extension_type_name"

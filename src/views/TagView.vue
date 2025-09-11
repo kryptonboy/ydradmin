@@ -126,7 +126,7 @@ filterTags()
       <div class="col-3">
         <label for="tag_name" class="form-label">Nom</label>
         <input
-          type="string"
+          type="text"
           class="form-control"
           name="tag_name"
           id="tag_name"
@@ -137,7 +137,7 @@ filterTags()
       <div class="col-3">
         <label for="tag_description" class="form-label">Description</label>
         <input
-          type="string"
+          type="text"
           class="form-control"
           name="tag_description"
           id="tag_description"

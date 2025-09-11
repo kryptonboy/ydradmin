@@ -56,7 +56,7 @@ const onSubmit = async (values: Extension) => {
     await store.createExtension(processValues(values))
   }
   emit('extensionSaved')
-  if (addOther.value === true) {
+  if (addOther.value === true && !isEdit.value) {
     resetForm()
   } else {
     hideModal()

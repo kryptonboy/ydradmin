@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores'
 import {
+  CardSubTypeView,
+  CardTypeView,
   CountryView,
   ExtensionTypeView,
   ExtensionView,
@@ -14,11 +16,13 @@ export const router = createRouter({
   linkActiveClass: 'active',
   routes: [
     { path: '/', component: HomeView },
-    { path: '/login', component: LoginView },
-    { path: '/card_management/tag', component: TagView },
+    { path: '/card_management/card_sub_type', component: CardSubTypeView },
+    { path: '/card_management/card_type', component: CardTypeView },
+    { path: '/card_management/country', component: CountryView },
     { path: '/card_management/extension', component: ExtensionView },
     { path: '/card_management/extension_type', component: ExtensionTypeView },
-    { path: '/card_management/country', component: CountryView },
+    { path: '/card_management/tag', component: TagView },
+    { path: '/login', component: LoginView },
   ],
 })
 

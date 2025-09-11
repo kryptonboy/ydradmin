@@ -33,7 +33,11 @@ export function createFetchWrapper(authState: AuthState) {
   }
 
   function request(method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH') {
-    return async <T = any>(url: string, body?: unknown): Promise<T> => {
+    return async <T = any>(
+      url: string,
+      body?: unknown,
+      isFormData: boolean = false,
+    ): Promise<T> => {
       const headers: HeadersInit = authHeader(url)
       const requestOptions: RequestInit = {
         method,
@@ -41,10 +45,14 @@ export function createFetchWrapper(authState: AuthState) {
       }
 
       if (body) {
-        ;(requestOptions.headers as Record<string, string>)['Content-Type'] =
-          'PATCH' === method ? 'application/merge-patch+json' : 'application/ld+json'
-        ;(requestOptions.headers as Record<string, string>)['accept'] = 'application/ld+json'
-        requestOptions.body = JSON.stringify(body)
+        if (isFormData) {
+          requestOptions.body = body as FormData
+        } else {
+          ;(requestOptions.headers as Record<string, string>)['Content-Type'] =
+            'PATCH' === method ? 'application/merge-patch+json' : 'application/ld+json'
+          ;(requestOptions.headers as Record<string, string>)['accept'] = 'application/ld+json'
+          requestOptions.body = JSON.stringify(body)
+        }
       }
 
       const response = await fetch(url, requestOptions)
@@ -58,5 +66,17 @@ export function createFetchWrapper(authState: AuthState) {
     put: request('PUT'),
     delete: request('DELETE'),
     patch: request('PATCH'),
+    upload: async <T = any>(url: string, formData: FormData): Promise<T> => {
+      const headers: HeadersInit = {
+        ...authHeader(url),
+      }
+      const response = await fetch(url, {
+        method: 'POST',
+        headers,
+        body: formData,
+      })
+
+      return handleResponse<T>(response)
+    },
   }
 }

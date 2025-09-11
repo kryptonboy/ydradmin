@@ -1,0 +1,70 @@
+tr.trap td:not(.actions) {
+  background-color: #8c0a6d;
+  color: white;
+}
+
+tr.spell td:not(.actions) {
+  background-color: #0f7f5e;
+  color: white;
+}
+
+tr.normal-monster td:not(.actions) {
+  background-color: #ab9046;
+  color: black;
+}
+
+tr.effect-monster td:not(.actions) {
+  background-color: #b06a4d;
+  color: black;
+}
+
+tr.fusion-monster td:not(.actions) {
+  background-color: orchid;
+  color: black;
+}
+
+tr.ritual-monster td:not(.actions) {
+  background-color: #1767b0;
+  color: white;
+}
+
+tr.link-monster td:not(.actions) {
+  background-color: royalblue;
+  color: white;
+  background-image: url('/img/hexagone.png');
+}
+
+tr.synchro-monster td:not(.actions) {
+  background-color: #dbd7d3;
+  color: black;
+}
+
+tr.xyz-monster td:not(.actions) {
+  background-color: #2d2f33;
+  color: white;
+}
+
+tr.pendulum-normal-monster td:not(.actions) {
+  background-image: linear-gradient(to bottom, #ab9046 30%, #0f7f5e 70%);
+  color: black;
+}
+
+tr.pendulum-effect-monster td:not(.actions) {
+  background-image: linear-gradient(to bottom, #b06a4d 30%, #0f7f5e 70%);
+  color: black;
+}
+
+tr.pendulum-fusion-monster td:not(.actions) {
+  background-image: linear-gradient(to bottom, orchid 30%, #0f7f5e 70%);
+  color: black;
+}
+
+tr.pendulum-synchro-monster td:not(.actions) {
+  background-image: linear-gradient(to bottom, #dbd7d3 30%, #0f7f5e 70%);
+  color: black;
+}
+
+tr.pendulum-xyz-monster td:not(.actions) {
+  background-image: linear-gradient(to bottom, #2d2f33 30%, #0f7f5e 70%);
+  color: white;
+}

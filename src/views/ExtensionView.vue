@@ -3,7 +3,7 @@ import { useExtensionsStore } from '@/stores/extensions.store'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, reactive, ref } from 'vue'
 import ExtensionModal from './modals/ExtensionModal.vue'
-import { Extension } from '@/types/models/Extension'
+import type { Extension } from '@/types/models/Extension'
 import type { ExtensionType } from '@/types/models/ExtensionType'
 import type { Country } from '@/types/models/Country'
 import type { Filters, Sort } from '@/types/Api'
@@ -147,7 +147,7 @@ filterExtensions()
       <div class="col-3">
         <label for="extension_name" class="form-label">Nom</label>
         <input
-          type="string"
+          type="text"
           class="form-control"
           name="extension_name"
           id="extension_name"

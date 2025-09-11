@@ -1,3 +1,5 @@
+export { default as CardSubTypeView } from './CardSubTypeView.vue'
+export { default as CardTypeView } from './CardTypeView.vue'
 export { default as CountryView } from './CountryView.vue'
 export { default as ExtensionTypeView } from './ExtensionTypeView.vue'
 export { default as ExtensionView } from './ExtensionView.vue'

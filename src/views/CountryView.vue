@@ -108,7 +108,7 @@ filterCountries()
       <div class="col-3">
         <label for="country_name" class="form-label">Nom</label>
         <input
-          type="string"
+          type="text"
           class="form-control"
           name="country_name"
           id="country_name"

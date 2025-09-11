@@ -46,6 +46,20 @@ const isCardManagementDropdownActive = computed(() => route.path.startsWith('/ca
                 </AppLink>
               </li>
               <li>
+                <AppLink to="/card_management/card_type" class="dropdown-item" activeClass="active">
+                  Types de carte
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/card_management/card_sub_type"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Sous-Types de carte
+                </AppLink>
+              </li>
+              <li>
                 <AppLink
                   to="/card_management/extension_type"
                   class="dropdown-item"

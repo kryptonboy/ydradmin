@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Multiselect from 'vue-multiselect'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+import './assets/main.css'
 import * as bootstrap from 'bootstrap'
 import CountryFlag from 'vue-country-flag-next'
 
