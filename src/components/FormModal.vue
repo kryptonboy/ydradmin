@@ -20,8 +20,10 @@ defineProps<{
   disabled?: boolean
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   submit: [values: Record<string, unknown>, ctx: SubmissionContext]
+  /** Le formulaire vient d'être vidé : réinitialiser l'état externe (uploads, etc.) */
+  reset: []
 }>()
 
 const modalEl = useTemplateRef<HTMLElement>('modalEl')
@@ -39,15 +41,20 @@ function show() {
   modalInstance?.show()
 }
 
+function reset() {
+  form.value?.resetForm()
+  emit('reset')
+}
+
 function hide() {
   modalInstance?.hide()
-  form.value?.resetForm()
+  reset()
 }
 
 /** À appeler après un enregistrement réussi : vide le formulaire ou ferme la modale. */
 function finish(isEdit: boolean) {
   if (addOther.value && !isEdit) {
-    form.value?.resetForm()
+    reset()
   } else {
     hide()
   }
@@ -66,7 +73,7 @@ defineExpose({ show, hide, finish })
           :initial-values="initialValues"
           :key="formKey"
           v-slot="slotProps"
-          @submit="(values, ctx) => $emit('submit', values, ctx)"
+          @submit="(values, ctx) => emit('submit', values, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} {{ title }}</h5>

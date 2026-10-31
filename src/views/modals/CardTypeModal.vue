@@ -1,39 +1,36 @@
 <script setup lang="ts">
-import { useSubmit } from '@/composables/useSubmit'
-import type { SubmissionContext } from 'vee-validate'
 import FileUploader from '@/components/FileUploader.vue'
-import { useCardTypesStore } from '@/stores/card_types.store'
-import type { CardType } from '@/types/models/CardType'
-import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
-import type { FormContext } from 'vee-validate'
-import { onMounted, ref, watch } from 'vue'
+import FormModal from '@/components/FormModal.vue'
+import { useSubmit } from '@/composables/useSubmit'
+import { useCardTypesStore } from '@/stores'
+import type { CardTypeForm } from '@/types/forms/CardTypeForm'
+import type { SubmissionContext } from 'vee-validate'
+import { ErrorMessage, Field } from 'vee-validate'
+import { computed, ref, useTemplateRef } from 'vue'
 import * as yup from 'yup'
 
 const props = defineProps({
   cardType: { type: Object, default: null },
 })
 
-const modalEl = ref(null)
-let modalInstance: bootstrap.Modal | null = null
+const emit = defineEmits(['cardTypeSaved'])
 
-const isEdit = ref(false)
-const addOther = ref(false)
+const modal = useTemplateRef<InstanceType<typeof FormModal>>('modal')
+const iconUploader = useTemplateRef<InstanceType<typeof FileUploader>>('iconUploader')
+const store = useCardTypesStore()
+const { submitError, submit } = useSubmit()
+
 const iconId = ref<string | null>(null)
 const isUploadingIcon = ref(false)
-
-const formRef = ref<FormContext<CardType> | null>(null)
+const isEdit = computed(() => !!props.cardType)
 
 const schema = yup.object({
   name: yup.string().required('Nom requis'),
   position: yup.number().required('Position requise'),
 })
 
-const store = useCardTypesStore()
-const { submitError, submit } = useSubmit()
-
-const onSubmit = async (values: CardType, { setErrors }: SubmissionContext) => {
-  const payload: CardType = { ...values }
-
+const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
+  const payload = { ...values } as unknown as CardTypeForm
   if (iconId.value) {
     payload.icon = iconId.value
   }
@@ -47,111 +44,52 @@ const onSubmit = async (values: CardType, { setErrors }: SubmissionContext) => {
   }, setErrors)
   if (!saved) return
   emit('cardTypeSaved')
-  if (addOther.value === true && !isEdit.value) {
-    resetForm()
-  } else {
-    hideModal()
-  }
+  modal.value?.finish(isEdit.value)
 }
 
-const resetForm = () => {
-  if (formRef.value) {
-    formRef.value.resetForm({
-      values: {
-        name: '',
-        position: 0,
-      },
-    })
-  }
-}
-
-const hideModal = () => {
-  modalInstance?.hide()
+function onReset() {
   submitError.value = null
-  resetForm()
+  iconId.value = null
+  iconUploader.value?.clearFile()
 }
 
-const showModal = () => {
-  modalInstance?.show()
-}
-
-const emit = defineEmits(['cardTypeSaved'])
-
-watch(
-  () => props.cardType,
-  (newCardType) => {
-    isEdit.value = !!newCardType
-  },
-  { immediate: true },
-)
-
-onMounted(() => {
-  if (modalEl.value) {
-    modalInstance = new bootstrap.Modal(modalEl.value)
-  }
-})
-
-defineExpose({ showModal })
+defineExpose({ showModal: () => modal.value?.show() })
 </script>
 
 <template>
-  <div class="modal fade" id="cardTypeModal" tabindex="-1" aria-hidden="true" ref="modalEl">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <VeeForm
-          ref="formRef"
-          :validation-schema="schema"
-          :initial-values="{
-            name: props.cardType?.name ?? '',
-            position: props.cardType?.position ?? 0,
-          }"
-          :key="props.cardType?.id ?? 'new'"
-          @submit="(values, ctx) => onSubmit(values as CardType, ctx)"
-        >
-          <div class="modal-header">
-            <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un type de carte</h5>
-            <button type="button" class="btn-close" @click="hideModal"></button>
-          </div>
-          <div class="modal-body">
-            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
-            <div class="mb-3">
-              <label class="form-label">Nom</label>
-              <Field name="name" type="text" class="form-control" />
-              <ErrorMessage name="name" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Position</label>
-              <Field name="position" type="number" class="form-control" />
-              <ErrorMessage name="position" class="text-danger small" />
-            </div>
-            <FileUploader
-              v-model="iconId"
-              v-model:uploading="isUploadingIcon"
-              label="Icône"
-              context="card_type"
-            />
-          </div>
-          <div class="modal-footer">
-            <div class="form-check form-switch" v-if="!isEdit">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="addOtherSwitch"
-                v-model="addOther"
-              />
-              <label class="form-check-label" for="addOtherSwitch">Ajouter un autre type</label>
-            </div>
-            <button type="button" class="btn btn-secondary" @click="hideModal">
-              <font-awesome-icon :icon="['fa', 'xmark']" />
-              Annuler
-            </button>
-            <button type="submit" class="btn btn-primary" :disabled="isUploadingIcon">
-              <font-awesome-icon :icon="['fa', 'floppy-disk']" />
-              {{ isEdit ? 'Modifier' : 'Créer' }}
-            </button>
-          </div>
-        </VeeForm>
-      </div>
+  <FormModal
+    ref="modal"
+    id="cardTypeModal"
+    title="d'un type de carte"
+    add-other-label="Ajouter un autre type"
+    :is-edit="isEdit"
+    :schema="schema"
+    :initial-values="{
+      name: props.cardType?.name ?? '',
+      position: props.cardType?.position ?? 0,
+    }"
+    :form-key="props.cardType?.id ?? 'new'"
+    :submit-error="submitError"
+    :disabled="isUploadingIcon"
+    @submit="onSubmit"
+    @reset="onReset"
+  >
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <Field name="name" type="text" class="form-control" />
+      <ErrorMessage name="name" class="text-danger small" />
     </div>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">Position</label>
+      <Field name="position" type="number" class="form-control" />
+      <ErrorMessage name="position" class="text-danger small" />
+    </div>
+    <FileUploader
+      ref="iconUploader"
+      v-model="iconId"
+      v-model:uploading="isUploadingIcon"
+      label="Icône"
+      context="card_type"
+    />
+  </FormModal>
 </template>

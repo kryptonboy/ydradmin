@@ -59,6 +59,7 @@ defineExpose({ showModal: () => modal.value?.show() })
     :form-key="props.rarity?.id ?? 'new'"
     :submit-error="submitError"
     @submit="onSubmit"
+    @reset="submitError = null"
   >
     <div class="mb-3">
       <label class="form-label">Nom</label>
