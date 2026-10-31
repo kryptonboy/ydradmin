@@ -1,5 +1,3 @@
-export interface TagForm {
-  name: string
-  description: string | null
-  visible: boolean
-}
+import type { TagInput } from '../api-types'
+
+export type TagForm = TagInput

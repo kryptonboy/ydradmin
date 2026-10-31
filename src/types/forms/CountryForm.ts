@@ -1,5 +1,3 @@
-export interface CountryForm {
-  name: string
-  code: string
-  position: number
-}
+import type { CountryInput } from '../api-types'
+
+export type CountryForm = CountryInput

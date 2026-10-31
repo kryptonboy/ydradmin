@@ -1,3 +1,3 @@
-export interface CardGroupForm {
-  name: string
-}
+import type { CardGroupInput } from '../api-types'
+
+export type CardGroupForm = CardGroupInput

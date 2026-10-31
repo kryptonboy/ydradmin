@@ -83,7 +83,7 @@ async function fetchTags(query: string) {
 async function createTag(newTagName: string) {
   tagLoading.value = true
   try {
-    const newTag: TagForm = { name: newTagName, description: null, visible: false }
+    const newTag: TagForm = { name: newTagName, description: '', visible: false }
     const createdTag = await tagsStore.createTag(newTag)
     if (createdTag) {
       if (!tags.value.find((t) => t.id === createdTag.id)) {

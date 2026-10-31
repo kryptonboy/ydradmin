@@ -1,4 +1,3 @@
-export interface MonsterAttributeForm {
-  name: string
-  icon?: string
-}
+import type { MonsterAttributeInput } from '../api-types'
+
+export type MonsterAttributeForm = MonsterAttributeInput

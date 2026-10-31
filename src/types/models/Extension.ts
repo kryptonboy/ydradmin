@@ -6,7 +6,7 @@ export interface Extension {
   id: number
   name: string
   reference: string
-  releaseDate?: Date
+  releaseDate?: string | null
   cardsCount: number
   extensionType: ExtensionType
   country: Country

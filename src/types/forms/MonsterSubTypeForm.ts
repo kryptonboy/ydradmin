@@ -1,3 +1,3 @@
-export interface MonsterSubTypeForm {
-  name: string
-}
+import type { MonsterSubTypeInput } from '../api-types'
+
+export type MonsterSubTypeForm = MonsterSubTypeInput

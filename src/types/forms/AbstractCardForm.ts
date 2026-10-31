@@ -1,15 +1,7 @@
-export interface AbstractCardForm {
-  name: string
-  level?: number
-  atk?: number
-  def?: number
-  bluePendulum?: number
-  redPendulum?: number
-  cardSubType: string
-  cardGroup?: string
-  monsterAttribute?: string
-  monsterSubType?: string
-  monsterType?: string
+import type { AbstractCardInput } from '../api-types'
+
+// TODO: monsterEffects et tags sont envoyés mais ignorés par l'API (absents de AbstractCardInput côté backend)
+export type AbstractCardForm = AbstractCardInput & {
   monsterEffects: string[]
   tags: string[]
 }

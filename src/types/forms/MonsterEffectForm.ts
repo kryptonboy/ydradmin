@@ -1,4 +1,3 @@
-export interface MonsterEffectForm {
-  name: string
-  description: string
-}
+import type { MonsterEffectInput } from '../api-types'
+
+export type MonsterEffectForm = MonsterEffectInput

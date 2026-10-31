@@ -1,5 +1,3 @@
-export interface CardTypeForm {
-  name: string
-  position: number
-  icon?: string
-}
+import type { CardTypeInput } from '../api-types'
+
+export type CardTypeForm = CardTypeInput

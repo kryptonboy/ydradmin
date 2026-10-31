@@ -1,7 +1,3 @@
-export interface CardSubTypeForm {
-  name: string
-  position: number
-  cssClass: string
-  cardType: string
-  icon?: string
-}
+import type { CardSubTypeInput } from '../api-types'
+
+export type CardSubTypeForm = CardSubTypeInput

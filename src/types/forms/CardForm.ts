@@ -1,13 +1,3 @@
-export interface CardForm {
-  name: string
-  description?: string
-  reference: string
-  code?: string
-  image?: string
-  bbCodeDescription?: string
-  pendulumDescription?: string
-  bbCodePendulumDescription?: string
-  abstractCard: string
-  extension: string
-  rarities: string[]
-}
+import type { CardInput } from '../api-types'
+
+export type CardForm = CardInput

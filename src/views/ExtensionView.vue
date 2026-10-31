@@ -101,7 +101,7 @@ const nbFilters = computed(() => {
   return nbFilters
 })
 
-function formatDate(date: Date | undefined | null) {
+function formatDate(date: string | Date | undefined | null) {
   if (!date) return ''
   return new Date(date).toLocaleDateString('fr-FR', {
     day: '2-digit',

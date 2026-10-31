@@ -2,6 +2,7 @@
 import { useCountriesStore, useExtensionTypesStore } from '@/stores'
 import { useExtensionsStore } from '@/stores/extensions.store'
 import type { Country } from '@/types/models/Country'
+import type { ExtensionForm } from '@/types/forms/ExtensionForm'
 import type { Extension } from '@/types/models/Extension'
 import type { ExtensionType } from '@/types/models/ExtensionType'
 import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
@@ -38,12 +39,11 @@ const schema = yup.object({
 
 const store = useExtensionsStore()
 
-function processValues(values: Extension) {
+function processValues(values: Extension): ExtensionForm {
   return {
-    id: values.id,
     name: values.name,
     reference: values.reference,
-    releaseDate: values.releaseDate,
+    releaseDate: values.releaseDate ? new Date(values.releaseDate).toISOString() : null,
     cardsCount: values.cardsCount,
     extensionType: values.extensionType['@id'],
     country: values.country['@id'],
@@ -90,7 +90,7 @@ const showModal = () => {
 
 const emit = defineEmits(['extensionSaved'])
 
-const formatDateForInput = (date: Date | undefined | null) => {
+const formatDateForInput = (date: string | Date | undefined | null) => {
   if (!date) return null
   return new Date(date).toISOString().split('T')[0]
 }

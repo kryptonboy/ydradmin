@@ -1,8 +1,3 @@
-export interface ExtensionForm {
-  name: string
-  reference: string
-  releaseDate?: Date
-  cardsCount: number
-  extensionType: string
-  country: string
-}
+import type { ExtensionInput } from '../api-types'
+
+export type ExtensionForm = ExtensionInput
