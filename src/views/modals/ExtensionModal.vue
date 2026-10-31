@@ -100,29 +100,30 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="onReset"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="extensionModal-name">Nom</label>
+      <Field name="name" id="extensionModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Référence</label>
-      <Field name="reference" type="text" class="form-control" />
+      <label class="form-label" for="extensionModal-reference">Référence</label>
+      <Field name="reference" id="extensionModal-reference" type="text" class="form-control" />
       <ErrorMessage name="reference" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Date de release</label>
-      <Field name="releaseDate" type="date" class="form-control" />
+      <label class="form-label" for="extensionModal-releaseDate">Date de release</label>
+      <Field name="releaseDate" id="extensionModal-releaseDate" type="date" class="form-control" />
       <ErrorMessage name="releaseDate" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Nombre de cartes</label>
-      <Field name="cardsCount" type="number" class="form-control" />
+      <label class="form-label" for="extensionModal-cardsCount">Nombre de cartes</label>
+      <Field name="cardsCount" id="extensionModal-cardsCount" type="number" class="form-control" />
       <ErrorMessage name="cardsCount" class="text-danger small" />
     </div>
     <div class="mb-3">
       <Field name="extensionType" v-slot="{ field }">
-        <label class="form-label">Type d'extension</label>
+        <label class="form-label" for="extensionModal-extensionType">Type d'extension</label>
         <multi-select
+          id="extensionModal-extensionType"
           v-model="field.value"
           :options="extensionTypes"
           label="name"
@@ -135,8 +136,9 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="country" v-slot="{ field }">
-        <label class="form-label">Pays</label>
+        <label class="form-label" for="extensionModal-country">Pays</label>
         <multi-select
+          id="extensionModal-country"
           v-model="field.value"
           :options="countries"
           label="name"

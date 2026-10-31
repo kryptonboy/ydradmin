@@ -71,8 +71,8 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="onReset"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="monsterAttributeModal-name">Nom</label>
+      <Field name="name" id="monsterAttributeModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <FileUploader

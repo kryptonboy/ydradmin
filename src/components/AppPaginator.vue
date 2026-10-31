@@ -79,16 +79,17 @@ const paginationArray = computed(() =>
     <ul class="pagination justify-content-center" v-if="paginationArray.length">
       <li v-for="page of paginationArray" class="page-item" :key="page.text">
         <span v-if="page.isEllipsis" class="page-link disabled">{{ page.text }}</span>
-        <a
+        <button
+          type="button"
           class="page-link"
-          @click="changePage(page.pageNumber as number)"
           v-else-if="!page.isCurrent"
-          role="button"
-          >{{ page.text }}</a
+          @click="changePage(page.pageNumber as number)"
         >
-        <p class="page-link active" v-else>
+          {{ page.text }}
+        </button>
+        <span class="page-link active" aria-current="page" v-else>
           <strong>{{ page.text }}</strong>
-        </p>
+        </span>
       </li>
     </ul>
   </nav>

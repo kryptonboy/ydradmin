@@ -60,13 +60,19 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="submitError = null"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="monsterEffectModal-name">Nom</label>
+      <Field name="name" id="monsterEffectModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Description</label>
-      <Field name="description" as="textarea" rows="3" class="form-control" />
+      <label class="form-label" for="monsterEffectModal-description">Description</label>
+      <Field
+        name="description"
+        id="monsterEffectModal-description"
+        as="textarea"
+        rows="3"
+        class="form-control"
+      />
       <ErrorMessage name="description" class="text-danger small" />
     </div>
   </FormModal>

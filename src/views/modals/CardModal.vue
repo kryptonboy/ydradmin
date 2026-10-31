@@ -172,8 +172,8 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="onReset"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="cardModal-name">Nom</label>
+      <Field name="name" id="cardModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <FileUploader
@@ -184,39 +184,66 @@ defineExpose({ showModal: () => modal.value?.show() })
       context="card"
     />
     <div class="mb-3">
-      <label class="form-label">Référence</label>
-      <Field name="reference" type="text" class="form-control" />
+      <label class="form-label" for="cardModal-reference">Référence</label>
+      <Field name="reference" id="cardModal-reference" type="text" class="form-control" />
       <ErrorMessage name="reference" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Code</label>
-      <Field name="code" type="text" class="form-control" />
+      <label class="form-label" for="cardModal-code">Code</label>
+      <Field name="code" id="cardModal-code" type="text" class="form-control" />
       <ErrorMessage name="code" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Description</label>
-      <Field name="description" as="textarea" rows="3" class="form-control" />
+      <label class="form-label" for="cardModal-description">Description</label>
+      <Field
+        name="description"
+        id="cardModal-description"
+        as="textarea"
+        rows="3"
+        class="form-control"
+      />
       <ErrorMessage name="description" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">BBCode Description</label>
-      <Field name="bbCodeDescription" as="textarea" rows="3" class="form-control" />
+      <label class="form-label" for="cardModal-bbCodeDescription">BBCode Description</label>
+      <Field
+        name="bbCodeDescription"
+        id="cardModal-bbCodeDescription"
+        as="textarea"
+        rows="3"
+        class="form-control"
+      />
       <ErrorMessage name="bbCodeDescription" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Description Pendulum</label>
-      <Field name="pendulumDescription" as="textarea" rows="3" class="form-control" />
+      <label class="form-label" for="cardModal-pendulumDescription">Description Pendulum</label>
+      <Field
+        name="pendulumDescription"
+        id="cardModal-pendulumDescription"
+        as="textarea"
+        rows="3"
+        class="form-control"
+      />
       <ErrorMessage name="pendulumDescription" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">BBCode Description Pendulum</label>
-      <Field name="bbCodePendulumDescription" as="textarea" rows="3" class="form-control" />
+      <label class="form-label" for="cardModal-bbCodePendulumDescription"
+        >BBCode Description Pendulum</label
+      >
+      <Field
+        name="bbCodePendulumDescription"
+        id="cardModal-bbCodePendulumDescription"
+        as="textarea"
+        rows="3"
+        class="form-control"
+      />
       <ErrorMessage name="bbCodePendulumDescription" class="text-danger small" />
     </div>
     <div class="mb-3">
       <Field name="abstractCard" v-slot="{ field }">
-        <label class="form-label">Carte abstraite</label>
+        <label class="form-label" for="cardModal-abstractCard">Carte abstraite</label>
         <multi-select
+          id="cardModal-abstractCard"
           v-model="field.value"
           :options="abstractCards"
           :searchable="true"
@@ -241,8 +268,9 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="extension" v-slot="{ field }">
-        <label class="form-label">Extension</label>
+        <label class="form-label" for="cardModal-extension">Extension</label>
         <multi-select
+          id="cardModal-extension"
           v-model="field.value"
           :options="extensions"
           :searchable="true"
@@ -260,8 +288,9 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="rarities" v-slot="{ field }">
-        <label class="form-label">Raretés</label>
+        <label class="form-label" for="cardModal-rarities">Raretés</label>
         <multi-select
+          id="cardModal-rarities"
           v-model="field.value"
           :options="rarities"
           :multiple="true"

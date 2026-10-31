@@ -64,18 +64,18 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="submitError = null"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="countryModal-name">Nom</label>
+      <Field name="name" id="countryModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Code Alpha-3</label>
-      <Field name="code" type="text" class="form-control" />
+      <label class="form-label" for="countryModal-code">Code Alpha-3</label>
+      <Field name="code" id="countryModal-code" type="text" class="form-control" />
       <ErrorMessage name="code" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Position</label>
-      <Field name="position" type="number" class="form-control" />
+      <label class="form-label" for="countryModal-position">Position</label>
+      <Field name="position" id="countryModal-position" type="number" class="form-control" />
       <ErrorMessage name="position" class="text-danger small" />
     </div>
   </FormModal>

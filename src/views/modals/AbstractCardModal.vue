@@ -217,39 +217,50 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="onReset"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="abstractCardModal-name">Nom</label>
+      <Field name="name" id="abstractCardModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Niveau / Rang / Lien</label>
-      <Field name="level" type="number" class="form-control" />
+      <label class="form-label" for="abstractCardModal-level">Niveau / Rang / Lien</label>
+      <Field name="level" id="abstractCardModal-level" type="number" class="form-control" />
       <ErrorMessage name="level" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Atk</label>
-      <Field name="atk" type="number" class="form-control" />
+      <label class="form-label" for="abstractCardModal-atk">Atk</label>
+      <Field name="atk" id="abstractCardModal-atk" type="number" class="form-control" />
       <ErrorMessage name="atk" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Def</label>
-      <Field name="def" type="number" class="form-control" />
+      <label class="form-label" for="abstractCardModal-def">Def</label>
+      <Field name="def" id="abstractCardModal-def" type="number" class="form-control" />
       <ErrorMessage name="def" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Pendulum Bleu</label>
-      <Field name="bluePendulum" type="number" class="form-control" />
+      <label class="form-label" for="abstractCardModal-bluePendulum">Pendulum Bleu</label>
+      <Field
+        name="bluePendulum"
+        id="abstractCardModal-bluePendulum"
+        type="number"
+        class="form-control"
+      />
       <ErrorMessage name="bluePendulum" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Pendulum Rouge</label>
-      <Field name="redPendulum" type="number" class="form-control" />
+      <label class="form-label" for="abstractCardModal-redPendulum">Pendulum Rouge</label>
+      <Field
+        name="redPendulum"
+        id="abstractCardModal-redPendulum"
+        type="number"
+        class="form-control"
+      />
       <ErrorMessage name="redPendulum" class="text-danger small" />
     </div>
     <div class="mb-3">
       <Field name="cardSubType" v-slot="{ field }">
-        <label class="form-label">Sous-Type de carte</label>
+        <label class="form-label" for="abstractCardModal-cardSubType">Sous-Type de carte</label>
         <multi-select
+          id="abstractCardModal-cardSubType"
           v-model="field.value"
           :options="cardSubTypes"
           label="name"
@@ -262,8 +273,9 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="cardGroup" v-slot="{ field }">
-        <label class="form-label">Groupe de cartes</label>
+        <label class="form-label" for="abstractCardModal-cardGroup">Groupe de cartes</label>
         <multi-select
+          id="abstractCardModal-cardGroup"
           v-model="field.value"
           :options="cardGroups"
           :searchable="true"
@@ -281,8 +293,11 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="monsterAttribute" v-slot="{ field }">
-        <label class="form-label">Attribut de monstre</label>
+        <label class="form-label" for="abstractCardModal-monsterAttribute"
+          >Attribut de monstre</label
+        >
         <multi-select
+          id="abstractCardModal-monsterAttribute"
           v-model="field.value"
           :options="monsterAttributes"
           label="name"
@@ -295,8 +310,11 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="monsterSubType" v-slot="{ field }">
-        <label class="form-label">Sous-Type de monstre</label>
+        <label class="form-label" for="abstractCardModal-monsterSubType"
+          >Sous-Type de monstre</label
+        >
         <multi-select
+          id="abstractCardModal-monsterSubType"
           v-model="field.value"
           :options="monsterSubTypes"
           label="name"
@@ -309,8 +327,9 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="monsterType" v-slot="{ field }">
-        <label class="form-label">Type de monstre</label>
+        <label class="form-label" for="abstractCardModal-monsterType">Type de monstre</label>
         <multi-select
+          id="abstractCardModal-monsterType"
           v-model="field.value"
           :options="monsterTypes"
           label="name"
@@ -323,8 +342,9 @@ defineExpose({ showModal: () => modal.value?.show() })
     </div>
     <div class="mb-3">
       <Field name="tags" v-slot="{ field }">
-        <label class="form-label">Tags</label>
+        <label class="form-label" for="abstractCardModal-tags">Tags</label>
         <multi-select
+          id="abstractCardModal-tags"
           v-model="field.value"
           :options="tags"
           multiple

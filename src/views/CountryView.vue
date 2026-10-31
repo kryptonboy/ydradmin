@@ -5,6 +5,7 @@ import { useListView } from '@/composables/useListView'
 import { useCountriesStore } from '@/stores'
 import type { Country } from '@/types/models/Country'
 import { ref } from 'vue'
+import CountryFlag from 'vue-country-flag-next'
 import CountryModal from './modals/CountryModal.vue'
 
 const countryModalRef = ref<InstanceType<typeof CountryModal> | null>(null)

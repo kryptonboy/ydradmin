@@ -96,24 +96,25 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="onReset"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="cardSubTypeModal-name">Nom</label>
+      <Field name="name" id="cardSubTypeModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Classe CSS</label>
-      <Field name="cssClass" type="text" class="form-control" />
+      <label class="form-label" for="cardSubTypeModal-cssClass">Classe CSS</label>
+      <Field name="cssClass" id="cardSubTypeModal-cssClass" type="text" class="form-control" />
       <ErrorMessage name="cssClass" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Position</label>
-      <Field name="position" type="number" class="form-control" />
+      <label class="form-label" for="cardSubTypeModal-position">Position</label>
+      <Field name="position" id="cardSubTypeModal-position" type="number" class="form-control" />
       <ErrorMessage name="position" class="text-danger small" />
     </div>
     <div class="mb-3">
       <Field name="cardType" v-slot="{ field }">
-        <label class="form-label">Type de carte</label>
+        <label class="form-label" for="cardSubTypeModal-cardType">Type de carte</label>
         <multi-select
+          id="cardSubTypeModal-cardType"
           v-model="field.value"
           :options="cardTypes"
           label="name"

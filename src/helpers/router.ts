@@ -1,44 +1,48 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores'
-import {
-  AbstractCardView,
-  CardGroupView,
-  CardSubTypeView,
-  CardTypeView,
-  CountryView,
-  ExtensionTypeView,
-  ExtensionView,
-  HomeView,
-  LoginView,
-  MonsterAttributeView,
-  MonsterSubTypeView,
-  MosnterEffectView,
-  RarityView,
-  TagView,
-} from '@/views'
-import MonsterTypeView from '@/views/MonsterTypeView.vue'
-import CardView from '@/views/CardView.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'active',
   routes: [
-    { path: '/', component: HomeView },
-    { path: '/card_management/abstract_card', component: AbstractCardView },
-    { path: '/card_management/card', component: CardView },
-    { path: '/card_management/card_group', component: CardGroupView },
-    { path: '/card_management/card_sub_type', component: CardSubTypeView },
-    { path: '/card_management/card_type', component: CardTypeView },
-    { path: '/card_management/country', component: CountryView },
-    { path: '/card_management/extension', component: ExtensionView },
-    { path: '/card_management/extension_type', component: ExtensionTypeView },
-    { path: '/card_management/monster_attribute', component: MonsterAttributeView },
-    { path: '/card_management/monster_effect', component: MosnterEffectView },
-    { path: '/card_management/monster_sub_type', component: MonsterSubTypeView },
-    { path: '/card_management/monster_type', component: MonsterTypeView },
-    { path: '/card_management/rarity', component: RarityView },
-    { path: '/card_management/tag', component: TagView },
-    { path: '/login', component: LoginView },
+    { path: '/', component: () => import('@/views/HomeView.vue') },
+    {
+      path: '/card_management/abstract_card',
+      component: () => import('@/views/AbstractCardView.vue'),
+    },
+    { path: '/card_management/card', component: () => import('@/views/CardView.vue') },
+    { path: '/card_management/card_group', component: () => import('@/views/CardGroupView.vue') },
+    {
+      path: '/card_management/card_sub_type',
+      component: () => import('@/views/CardSubTypeView.vue'),
+    },
+    { path: '/card_management/card_type', component: () => import('@/views/CardTypeView.vue') },
+    { path: '/card_management/country', component: () => import('@/views/CountryView.vue') },
+    { path: '/card_management/extension', component: () => import('@/views/ExtensionView.vue') },
+    {
+      path: '/card_management/extension_type',
+      component: () => import('@/views/ExtensionTypeView.vue'),
+    },
+    {
+      path: '/card_management/monster_attribute',
+      component: () => import('@/views/MonsterAttributeView.vue'),
+    },
+    {
+      path: '/card_management/monster_effect',
+      component: () => import('@/views/MonsterEffectView.vue'),
+    },
+    {
+      path: '/card_management/monster_sub_type',
+      component: () => import('@/views/MonsterSubTypeView.vue'),
+    },
+    {
+      path: '/card_management/monster_type',
+      component: () => import('@/views/MonsterTypeView.vue'),
+    },
+    { path: '/card_management/rarity', component: () => import('@/views/RarityView.vue') },
+    { path: '/card_management/tag', component: () => import('@/views/TagView.vue') },
+    { path: '/login', component: () => import('@/views/LoginView.vue') },
+    { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],
 })
 

@@ -61,13 +61,19 @@ defineExpose({ showModal: () => modal.value?.show() })
     @reset="submitError = null"
   >
     <div class="mb-3">
-      <label class="form-label">Nom</label>
-      <Field name="name" type="text" class="form-control" />
+      <label class="form-label" for="tagModal-name">Nom</label>
+      <Field name="name" id="tagModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Description</label>
-      <Field name="description" as="textarea" rows="3" class="form-control" />
+      <label class="form-label" for="tagModal-description">Description</label>
+      <Field
+        name="description"
+        id="tagModal-description"
+        as="textarea"
+        rows="3"
+        class="form-control"
+      />
       <ErrorMessage name="description" class="text-danger small" />
     </div>
     <div class="form-check">
