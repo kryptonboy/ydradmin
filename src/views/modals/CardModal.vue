@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FormModal from '@/components/FormModal.vue'
 import { useSubmit } from '@/composables/useSubmit'
 import type { SubmissionContext } from 'vee-validate'
 import { useExtensionsStore } from '@/stores'
@@ -9,9 +10,8 @@ import type { AbstractCard } from '@/types/models/AbstractCard'
 import type { Card } from '@/types/models/Card'
 import type { Extension } from '@/types/models/Extension'
 import type { Rarity } from '@/types/models/Rarity'
-import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
-import type { FormContext } from 'vee-validate'
-import { onMounted, ref, watch } from 'vue'
+import { ErrorMessage, Field } from 'vee-validate'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import * as yup from 'yup'
 import AbstractCardModal from './AbstractCardModal.vue'
 import FileUploader from '@/components/FileUploader.vue'
@@ -21,17 +21,10 @@ const props = defineProps({
   card: { type: Object, default: null },
 })
 
-const modalEl = ref(null)
-let modalInstance: bootstrap.Modal | null = null
-
-const isEdit = ref(false)
-const addOther = ref(false)
 const imageId = ref<string | null>(null)
 const isUploadingImage = ref(false)
 
 const abstractCardModalRef = ref<InstanceType<typeof AbstractCardModal> | null>(null)
-
-const formRef = ref<FormContext<Card> | null>(null)
 
 const store = useCardsStore()
 const abstractCardsStore = useAbstractCardsStore()
@@ -102,10 +95,19 @@ function processValues(values: Card): CardForm {
   }
 }
 
+const modal = useTemplateRef<InstanceType<typeof FormModal>>('modal')
+const imageUploader = useTemplateRef<InstanceType<typeof FileUploader>>('imageUploader')
 const { submitError, submit } = useSubmit()
+const isEdit = computed(() => !!props.card)
 
-const onSubmit = async (values: Card, { setErrors }: SubmissionContext) => {
-  const payload: CardForm = processValues({ ...values })
+function onReset() {
+  imageId.value = null
+  imageUploader.value?.clearFile()
+  submitError.value = null
+}
+
+const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
+  const payload: CardForm = processValues(values as unknown as Card)
 
   if (imageId.value) {
     payload.image = imageId.value
@@ -120,56 +122,12 @@ const onSubmit = async (values: Card, { setErrors }: SubmissionContext) => {
   }, setErrors)
   if (!saved) return
   emit('cardSaved')
-  if (addOther.value === true && !isEdit.value) {
-    resetForm()
-  } else {
-    hideModal()
-  }
-}
-
-const resetForm = () => {
-  if (formRef.value) {
-    formRef.value.resetForm({
-      values: {
-        name: '',
-        reference: '',
-        code: undefined,
-        description: undefined,
-        bbCodeDescription: undefined,
-        pendulumDescription: undefined,
-        bbCodePendulumDescription: undefined,
-        abstractCard: undefined,
-        extension: undefined,
-        rarities: [],
-      },
-    })
-  }
-}
-
-const hideModal = () => {
-  modalInstance?.hide()
-  submitError.value = null
-  resetForm()
-}
-
-const showModal = () => {
-  modalInstance?.show()
+  modal.value?.finish(isEdit.value)
 }
 
 const emit = defineEmits(['cardSaved'])
 
-watch(
-  () => props.card,
-  (newCard) => {
-    isEdit.value = !!newCard
-  },
-  { immediate: true },
-)
-
 onMounted(async () => {
-  if (modalEl.value) {
-    modalInstance = new bootstrap.Modal(modalEl.value)
-  }
   rarities.value = await raritiesStore.fetchAll()
 })
 
@@ -181,167 +139,142 @@ function newAbstractCard() {
 
 function abstractCardCreated(createdAbstractCard: AbstractCard) {
   abstractCards.value.push(createdAbstractCard)
-  formRef.value?.setFieldValue('abstractCard', createdAbstractCard)
+  modal.value?.setFieldValue('abstractCard', createdAbstractCard)
 }
 
-defineExpose({ showModal })
+defineExpose({ showModal: () => modal.value?.show() })
 </script>
 
 <template>
-  <div class="modal fade" id="cardModal" tabindex="-1" aria-hidden="true" ref="modalEl">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <VeeForm
-          ref="formRef"
-          :validation-schema="schema"
-          :initial-values="{
-            name: props.card?.name ?? '',
-            description: props.card?.description ?? undefined,
-            reference: props.card?.reference ?? '',
-            code: props.card?.code ?? undefined,
-            bbCodeDescription: props.card?.bbCodeDescription ?? undefined,
-            pendulumDescription: props.card?.pendulumDescription ?? undefined,
-            bbCodePendulumDescription: props.card?.bbCodePendulumDescription ?? undefined,
-            abstractCard: props.card?.abstractCard ?? undefined,
-            extension: props.card?.extension ?? undefined,
-            rarities: props.card?.rarities ?? [],
-          }"
-          :key="props.card?.id ?? 'new'"
-          @submit="(values, ctx) => onSubmit(values as Card, ctx)"
-        >
-          <div class="modal-header">
-            <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une carte</h5>
-            <button type="button" class="btn-close" @click="hideModal"></button>
-          </div>
-          <div class="modal-body">
-            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
-            <div class="mb-3">
-              <label class="form-label">Nom</label>
-              <Field name="name" type="text" class="form-control" />
-              <ErrorMessage name="name" class="text-danger small" />
-            </div>
-            <FileUploader
-              v-model="imageId"
-              v-model:uploading="isUploadingImage"
-              label="Image"
-              context="card"
-            />
-            <div class="mb-3">
-              <label class="form-label">Référence</label>
-              <Field name="reference" type="text" class="form-control" />
-              <ErrorMessage name="reference" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Code</label>
-              <Field name="code" type="text" class="form-control" />
-              <ErrorMessage name="code" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Description</label>
-              <Field name="description" as="textarea" rows="3" class="form-control" />
-              <ErrorMessage name="description" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">BBCode Description</label>
-              <Field name="bbCodeDescription" as="textarea" rows="3" class="form-control" />
-              <ErrorMessage name="bbCodeDescription" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Description Pendulum</label>
-              <Field name="pendulumDescription" as="textarea" rows="3" class="form-control" />
-              <ErrorMessage name="pendulumDescription" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">BBCode Description Pendulum</label>
-              <Field name="bbCodePendulumDescription" as="textarea" rows="3" class="form-control" />
-              <ErrorMessage name="bbCodePendulumDescription" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="abstractCard" v-slot="{ field }">
-                <label class="form-label">Carte abstraite</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="abstractCards"
-                  :searchable="true"
-                  :loading="abstractCardsLoading"
-                  :internal-search="false"
-                  :close-on-select="true"
-                  placeholder="Choisir une carte abstraite"
-                  label="name"
-                  track-by="id"
-                  @search-change="fetchAbstractCards"
-                  @update:model-value="field.onChange"
-                >
-                  <template #noResult>
-                    <button type="button" class="btn btn-secondary" @click="newAbstractCard">
-                      <font-awesome-icon :icon="['fa', 'plus']" />
-                      Créer une carte abstraite
-                    </button>
-                  </template>
-                </multi-select>
-              </Field>
-              <ErrorMessage name="abstractCard" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="extension" v-slot="{ field }">
-                <label class="form-label">Extension</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="extensions"
-                  :searchable="true"
-                  :loading="extensionsLoading"
-                  :internal-search="false"
-                  :close-on-select="true"
-                  placeholder="Choisir une extension"
-                  label="name"
-                  track-by="id"
-                  @search-change="fetchExtensions"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="extension" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="rarities" v-slot="{ field }">
-                <label class="form-label">Raretés</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="rarities"
-                  :multiple="true"
-                  :taggable="false"
-                  placeholder="Choisissez une oue plusieurs raretés"
-                  label="name"
-                  track-by="id"
-                  @update:model-value="field.onChange"
-                />
-                <ErrorMessage name="rarities" class="text-danger small" />
-              </Field>
-            </div>
-            <pre>{{ JSON.stringify(formRef?.values, null, 2) }}</pre>
-          </div>
-          <div class="modal-footer">
-            <div class="form-check form-switch" v-if="!isEdit">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="addOtherSwitch"
-                v-model="addOther"
-              />
-              <label class="form-check-label" for="addOtherSwitch">Ajouter une autre carte</label>
-            </div>
-            <button type="button" class="btn btn-secondary" @click="hideModal">
-              <font-awesome-icon :icon="['fa', 'xmark']" />
-              Annuler
-            </button>
-            <button type="submit" class="btn btn-primary" :disabled="isUploadingImage">
-              <font-awesome-icon :icon="['fa', 'floppy-disk']" />
-              {{ isEdit ? 'Modifier' : 'Créer' }}
-            </button>
-          </div>
-        </VeeForm>
-      </div>
+  <FormModal
+    ref="modal"
+    id="cardModal"
+    title="d'une carte"
+    add-other-label="Ajouter une autre carte"
+    :is-edit="isEdit"
+    :schema="schema"
+    :initial-values="{
+      name: props.card?.name ?? '',
+      description: props.card?.description ?? undefined,
+      reference: props.card?.reference ?? '',
+      code: props.card?.code ?? undefined,
+      bbCodeDescription: props.card?.bbCodeDescription ?? undefined,
+      pendulumDescription: props.card?.pendulumDescription ?? undefined,
+      bbCodePendulumDescription: props.card?.bbCodePendulumDescription ?? undefined,
+      abstractCard: props.card?.abstractCard ?? undefined,
+      extension: props.card?.extension ?? undefined,
+      rarities: props.card?.rarities ?? [],
+    }"
+    :form-key="props.card?.id ?? 'new'"
+    :submit-error="submitError"
+    :disabled="isUploadingImage"
+    @submit="onSubmit"
+    @reset="onReset"
+  >
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <Field name="name" type="text" class="form-control" />
+      <ErrorMessage name="name" class="text-danger small" />
     </div>
-  </div>
+    <FileUploader
+      ref="imageUploader"
+      v-model="imageId"
+      v-model:uploading="isUploadingImage"
+      label="Image"
+      context="card"
+    />
+    <div class="mb-3">
+      <label class="form-label">Référence</label>
+      <Field name="reference" type="text" class="form-control" />
+      <ErrorMessage name="reference" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Code</label>
+      <Field name="code" type="text" class="form-control" />
+      <ErrorMessage name="code" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <Field name="description" as="textarea" rows="3" class="form-control" />
+      <ErrorMessage name="description" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">BBCode Description</label>
+      <Field name="bbCodeDescription" as="textarea" rows="3" class="form-control" />
+      <ErrorMessage name="bbCodeDescription" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description Pendulum</label>
+      <Field name="pendulumDescription" as="textarea" rows="3" class="form-control" />
+      <ErrorMessage name="pendulumDescription" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">BBCode Description Pendulum</label>
+      <Field name="bbCodePendulumDescription" as="textarea" rows="3" class="form-control" />
+      <ErrorMessage name="bbCodePendulumDescription" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="abstractCard" v-slot="{ field }">
+        <label class="form-label">Carte abstraite</label>
+        <multi-select
+          v-model="field.value"
+          :options="abstractCards"
+          :searchable="true"
+          :loading="abstractCardsLoading"
+          :internal-search="false"
+          :close-on-select="true"
+          placeholder="Choisir une carte abstraite"
+          label="name"
+          track-by="id"
+          @search-change="fetchAbstractCards"
+          @update:model-value="field.onChange"
+        >
+          <template #noResult>
+            <button type="button" class="btn btn-secondary" @click="newAbstractCard">
+              <font-awesome-icon :icon="['fa', 'plus']" />
+              Créer une carte abstraite
+            </button>
+          </template>
+        </multi-select>
+      </Field>
+      <ErrorMessage name="abstractCard" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="extension" v-slot="{ field }">
+        <label class="form-label">Extension</label>
+        <multi-select
+          v-model="field.value"
+          :options="extensions"
+          :searchable="true"
+          :loading="extensionsLoading"
+          :internal-search="false"
+          :close-on-select="true"
+          placeholder="Choisir une extension"
+          label="name"
+          track-by="id"
+          @search-change="fetchExtensions"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="extension" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="rarities" v-slot="{ field }">
+        <label class="form-label">Raretés</label>
+        <multi-select
+          v-model="field.value"
+          :options="rarities"
+          :multiple="true"
+          :taggable="false"
+          placeholder="Choisissez une oue plusieurs raretés"
+          label="name"
+          track-by="id"
+          @update:model-value="field.onChange"
+        />
+        <ErrorMessage name="rarities" class="text-danger small" />
+      </Field>
+    </div>
+  </FormModal>
 
   <AbstractCardModal
     ref="abstractCardModalRef"

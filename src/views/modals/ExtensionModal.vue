@@ -1,34 +1,31 @@
 <script setup lang="ts">
+import FormModal from '@/components/FormModal.vue'
 import { useSubmit } from '@/composables/useSubmit'
-import type { SubmissionContext } from 'vee-validate'
-import { useCountriesStore, useExtensionTypesStore } from '@/stores'
-import { useExtensionsStore } from '@/stores/extensions.store'
-import type { Country } from '@/types/models/Country'
+import { useCountriesStore, useExtensionsStore, useExtensionTypesStore } from '@/stores'
 import type { ExtensionForm } from '@/types/forms/ExtensionForm'
+import type { Country } from '@/types/models/Country'
 import type { Extension } from '@/types/models/Extension'
 import type { ExtensionType } from '@/types/models/ExtensionType'
-import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
-import type { FormContext } from 'vee-validate'
-import { onMounted, ref, watch } from 'vue'
+import type { SubmissionContext } from 'vee-validate'
+import { ErrorMessage, Field } from 'vee-validate'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import * as yup from 'yup'
 
 const props = defineProps({
   extension: { type: Object, default: null },
 })
 
-const modalEl = ref(null)
-let modalInstance: bootstrap.Modal | null = null
+const emit = defineEmits(['extensionSaved'])
 
-const isEdit = ref(false)
-const addOther = ref(false)
-
+const modal = useTemplateRef<InstanceType<typeof FormModal>>('modal')
+const store = useExtensionsStore()
 const countriesStore = useCountriesStore()
-const extentionTypesStore = useExtensionTypesStore()
+const extensionTypesStore = useExtensionTypesStore()
+const { submitError, submit } = useSubmit()
 
 const countries = ref<Country[]>([])
 const extensionTypes = ref<ExtensionType[]>([])
-
-const formRef = ref<FormContext<Extension> | null>(null)
+const isEdit = computed(() => !!props.extension)
 
 const schema = yup.object({
   name: yup.string().required('Nom requis'),
@@ -39,9 +36,7 @@ const schema = yup.object({
   country: yup.object({ id: yup.string().required() }).nullable().required(),
 })
 
-const store = useExtensionsStore()
-
-function processValues(values: Extension): ExtensionForm {
+function toForm(values: Extension): ExtensionForm {
   return {
     name: values.name,
     reference: values.reference,
@@ -52,172 +47,105 @@ function processValues(values: Extension): ExtensionForm {
   }
 }
 
-const { submitError, submit } = useSubmit()
-
-const onSubmit = async (values: Extension, { setErrors }: SubmissionContext) => {
-  const saved = await submit(async () => {
-    if (isEdit.value) {
-      await store.update(props.extension.id, processValues(values))
-    } else {
-      await store.create(processValues(values))
-    }
-  }, setErrors)
-  if (!saved) return
-  emit('extensionSaved')
-  if (addOther.value === true && !isEdit.value) {
-    resetForm()
-  } else {
-    hideModal()
-  }
-}
-
-const resetForm = () => {
-  if (formRef.value) {
-    formRef.value.resetForm({
-      values: {
-        name: '',
-        reference: '',
-        releaseDate: undefined,
-        cardsCount: 0,
-        extensionType: undefined,
-        country: undefined,
-      },
-    })
-  }
-}
-
-const hideModal = () => {
-  modalInstance?.hide()
-  submitError.value = null
-  resetForm()
-}
-
-const showModal = () => {
-  modalInstance?.show()
-}
-
-const emit = defineEmits(['extensionSaved'])
-
 const formatDateForInput = (date: string | Date | undefined | null) => {
   if (!date) return null
   return new Date(date).toISOString().split('T')[0]
 }
 
-watch(
-  () => props.extension,
-  (newExtension) => {
-    isEdit.value = !!newExtension
-  },
-  { immediate: true },
-)
+const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
+  const payload = toForm(values as unknown as Extension)
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.update(props.extension.id, payload)
+    } else {
+      await store.create(payload)
+    }
+  }, setErrors)
+  if (!saved) return
+  emit('extensionSaved')
+  modal.value?.finish(isEdit.value)
+}
+
+function onReset() {
+  submitError.value = null
+}
 
 onMounted(async () => {
-  if (modalEl.value) {
-    modalInstance = new bootstrap.Modal(modalEl.value)
-  }
   countries.value = await countriesStore.fetchAll()
-  extensionTypes.value = await extentionTypesStore.fetchAll()
+  extensionTypes.value = await extensionTypesStore.fetchAll()
 })
 
-defineExpose({ showModal })
+defineExpose({ showModal: () => modal.value?.show() })
 </script>
 
 <template>
-  <div class="modal fade" id="extensionModal" tabindex="-1" aria-hidden="true" ref="modalEl">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <VeeForm
-          ref="formRef"
-          :validation-schema="schema"
-          :initial-values="{
-            name: props.extension?.name ?? '',
-            reference: props.extension?.reference ?? '',
-            releaseDate: formatDateForInput(props.extension?.releaseDate ?? null),
-            cardsCount: props.extension?.cardsCount ?? 0,
-            extensionType: props.extension?.extensionType ?? null,
-            country: props.extension?.country ?? null,
-          }"
-          :key="props.extension?.id ?? 'new'"
-          @submit="(values, ctx) => onSubmit(values as Extension, ctx)"
-        >
-          <div class="modal-header">
-            <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une extension</h5>
-            <button type="button" class="btn-close" @click="hideModal"></button>
-          </div>
-          <div class="modal-body">
-            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
-            <div class="mb-3">
-              <label class="form-label">Nom</label>
-              <Field name="name" type="text" class="form-control" />
-              <ErrorMessage name="name" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Référence</label>
-              <Field name="reference" type="text" class="form-control" />
-              <ErrorMessage name="reference" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Date de release</label>
-              <Field name="releaseDate" type="date" class="form-control" />
-              <ErrorMessage name="releaseDate" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Nombre de cartes</label>
-              <Field name="cardsCount" type="number" class="form-control" />
-              <ErrorMessage name="cardsCount" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="extensionType" v-slot="{ field }">
-                <label class="form-label">Type d'extension</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="extensionTypes"
-                  label="name"
-                  track-by="id"
-                  placeholder="Choisir un type d'extension"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="extensionType" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="country" v-slot="{ field }">
-                <label class="form-label">Pays</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="countries"
-                  label="name"
-                  track-by="id"
-                  placeholder="Choisissez un pays"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="country" class="text-danger small" />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="form-check form-switch" v-if="!isEdit">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="addOtherSwitch"
-                v-model="addOther"
-              />
-              <label class="form-check-label" for="addOtherSwitch"
-                >Ajouter une autre extension</label
-              >
-            </div>
-            <button type="button" class="btn btn-secondary" @click="hideModal">
-              <font-awesome-icon :icon="['fa', 'xmark']" />
-              Annuler
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <font-awesome-icon :icon="['fa', 'floppy-disk']" />
-              {{ isEdit ? 'Modifier' : 'Créer' }}
-            </button>
-          </div>
-        </VeeForm>
-      </div>
+  <FormModal
+    ref="modal"
+    id="extensionModal"
+    title="d'une extension"
+    add-other-label="Ajouter une autre extension"
+    :is-edit="isEdit"
+    :schema="schema"
+    :initial-values="{
+      name: props.extension?.name ?? '',
+      reference: props.extension?.reference ?? '',
+      releaseDate: formatDateForInput(props.extension?.releaseDate ?? null),
+      cardsCount: props.extension?.cardsCount ?? 0,
+      extensionType: props.extension?.extensionType ?? null,
+      country: props.extension?.country ?? null,
+    }"
+    :form-key="props.extension?.id ?? 'new'"
+    :submit-error="submitError"
+    @submit="onSubmit"
+    @reset="onReset"
+  >
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <Field name="name" type="text" class="form-control" />
+      <ErrorMessage name="name" class="text-danger small" />
     </div>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">Référence</label>
+      <Field name="reference" type="text" class="form-control" />
+      <ErrorMessage name="reference" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Date de release</label>
+      <Field name="releaseDate" type="date" class="form-control" />
+      <ErrorMessage name="releaseDate" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Nombre de cartes</label>
+      <Field name="cardsCount" type="number" class="form-control" />
+      <ErrorMessage name="cardsCount" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="extensionType" v-slot="{ field }">
+        <label class="form-label">Type d'extension</label>
+        <multi-select
+          v-model="field.value"
+          :options="extensionTypes"
+          label="name"
+          track-by="id"
+          placeholder="Choisir un type d'extension"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="extensionType" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="country" v-slot="{ field }">
+        <label class="form-label">Pays</label>
+        <multi-select
+          v-model="field.value"
+          :options="countries"
+          label="name"
+          track-by="id"
+          placeholder="Choisissez un pays"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="country" class="text-danger small" />
+    </div>
+  </FormModal>
 </template>

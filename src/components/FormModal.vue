@@ -60,7 +60,11 @@ function finish(isEdit: boolean) {
   }
 }
 
-defineExpose({ show, hide, finish })
+function setFieldValue(name: string, value: unknown) {
+  form.value?.setFieldValue(name, value)
+}
+
+defineExpose({ show, hide, finish, setFieldValue })
 </script>
 
 <template>

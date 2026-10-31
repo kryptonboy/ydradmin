@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FormModal from '@/components/FormModal.vue'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useSubmit } from '@/composables/useSubmit'
 import type { SubmissionContext } from 'vee-validate'
@@ -19,20 +20,13 @@ import type { MonsterEffect } from '@/types/models/MonsterEffect'
 import type { MonsterSubType } from '@/types/models/MonsterSubType'
 import type { MonsterType } from '@/types/models/MonsterType'
 import type { Tag } from '@/types/models/Tag'
-import { Field, ErrorMessage, Form as VeeForm } from 'vee-validate'
-import type { FormContext } from 'vee-validate'
-import { onMounted, ref, watch } from 'vue'
+import { ErrorMessage, Field } from 'vee-validate'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import * as yup from 'yup'
 
 const props = defineProps({
   abstractCard: { type: Object, default: null },
 })
-
-const modalEl = ref(null)
-let modalInstance: bootstrap.Modal | null = null
-
-const isEdit = ref(false)
-const addOther = ref(false)
 
 // Stores
 const cardSubTypesStore = useCardSubTypesStore()
@@ -101,8 +95,6 @@ async function createTag(newTagName: string) {
   }
 }
 
-const formRef = ref<FormContext<AbstractCard> | null>(null)
-
 const idSchema = yup.mixed<string | number>().required()
 const schema = yup.object({
   name: yup.string().required('Nom requis'),
@@ -159,10 +151,16 @@ function processValues(values: AbstractCard): AbstractCardForm {
   return result
 }
 
+const modal = useTemplateRef<InstanceType<typeof FormModal>>('modal')
 const { submitError, submit } = useSubmit()
+const isEdit = computed(() => !!props.abstractCard)
 
-const onSubmit = async (values: AbstractCard, { setErrors }: SubmissionContext) => {
-  const payload: AbstractCardForm = processValues({ ...values })
+function onReset() {
+  submitError.value = null
+}
+
+const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
+  const payload: AbstractCardForm = processValues(values as unknown as AbstractCard)
 
   let abstractCard: AbstractCard | null = null
   const saved = await submit(async () => {
@@ -174,59 +172,12 @@ const onSubmit = async (values: AbstractCard, { setErrors }: SubmissionContext) 
   }, setErrors)
   if (!saved) return
   emit('abstractCardSaved', abstractCard)
-  if (addOther.value === true && !isEdit.value) {
-    resetForm()
-  } else {
-    hideModal()
-  }
-}
-
-const resetForm = () => {
-  if (formRef.value) {
-    formRef.value.resetForm({
-      values: {
-        name: '',
-        level: undefined,
-        atk: undefined,
-        def: undefined,
-        bluePendulum: undefined,
-        redPendulum: undefined,
-        cardSubType: undefined,
-        cardGroup: undefined,
-        monsterAttribute: undefined,
-        monsterSubType: undefined,
-        monsterType: undefined,
-        monsterEffects: [],
-        tags: [],
-      },
-    })
-  }
-}
-
-const hideModal = () => {
-  modalInstance?.hide()
-  submitError.value = null
-  resetForm()
-}
-
-const showModal = () => {
-  modalInstance?.show()
+  modal.value?.finish(isEdit.value)
 }
 
 const emit = defineEmits(['abstractCardSaved'])
 
-watch(
-  () => props.abstractCard,
-  (newAbstractCard) => {
-    isEdit.value = !!newAbstractCard
-  },
-  { immediate: true },
-)
-
 onMounted(async () => {
-  if (modalEl.value) {
-    modalInstance = new bootstrap.Modal(modalEl.value)
-  }
   cardSubTypes.value = await cardSubTypesStore.fetchAll()
   monsterAttributes.value = await monsterAttributesStore.fetchAll()
   monsterSubTypes.value = await monsterSubTypesStore.fetchAll()
@@ -234,189 +185,160 @@ onMounted(async () => {
   monsterEffects.value = await monsterEffectsStore.fetchAll()
 })
 
-defineExpose({ showModal })
+defineExpose({ showModal: () => modal.value?.show() })
 </script>
 
 <template>
-  <div class="modal fade" id="abstractCardModal" tabindex="-1" aria-hidden="true" ref="modalEl">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <VeeForm
-          ref="formRef"
-          :validation-schema="schema"
-          :initial-values="{
-            name: props.abstractCard?.name ?? '',
-            level: props.abstractCard?.level ?? undefined,
-            atk: props.abstractCard?.atk ?? undefined,
-            def: props.abstractCard?.def ?? undefined,
-            bluePendulum: props.abstractCard?.bluePendulum ?? undefined,
-            redPendulum: props.abstractCard?.redPendulum ?? undefined,
-            cardSubType: props.abstractCard?.cardSubType ?? undefined,
-            cardGroup: props.abstractCard?.cardGroup ?? undefined,
-            monsterAttribute: props.abstractCard?.monsterAttribute ?? undefined,
-            monsterSubType: props.abstractCard?.monsterSubType ?? undefined,
-            monsterType: props.abstractCard?.monsterType ?? undefined,
-            monsterEffects: props.abstractCard?.monsterEffects ?? [],
-            tags: props.abstractCard?.tags ?? [],
-          }"
-          :key="props.abstractCard?.id ?? 'new'"
-          @submit="(values, ctx) => onSubmit(values as AbstractCard, ctx)"
-        >
-          <div class="modal-header">
-            <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une carte abstraite</h5>
-            <button type="button" class="btn-close" @click="hideModal"></button>
-          </div>
-          <div class="modal-body">
-            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
-            <div class="mb-3">
-              <label class="form-label">Nom</label>
-              <Field name="name" type="text" class="form-control" />
-              <ErrorMessage name="name" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Niveau / Rang / Lien</label>
-              <Field name="level" type="number" class="form-control" />
-              <ErrorMessage name="level" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Atk</label>
-              <Field name="atk" type="number" class="form-control" />
-              <ErrorMessage name="atk" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Def</label>
-              <Field name="def" type="number" class="form-control" />
-              <ErrorMessage name="def" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Pendulum Bleu</label>
-              <Field name="bluePendulum" type="number" class="form-control" />
-              <ErrorMessage name="bluePendulum" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Pendulum Rouge</label>
-              <Field name="redPendulum" type="number" class="form-control" />
-              <ErrorMessage name="redPendulum" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="cardSubType" v-slot="{ field }">
-                <label class="form-label">Sous-Type de carte</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="cardSubTypes"
-                  label="name"
-                  track-by="id"
-                  placeholder="Choisir un sous-type de carte"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="cardSubType" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="cardGroup" v-slot="{ field }">
-                <label class="form-label">Groupe de cartes</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="cardGroups"
-                  :searchable="true"
-                  :loading="cardGroupLoading"
-                  :internal-search="false"
-                  :close-on-select="true"
-                  placeholder="Choisir un groupe de cartes"
-                  label="name"
-                  track-by="id"
-                  @search-change="fetchCardGroups"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="cardGroup" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="monsterAttribute" v-slot="{ field }">
-                <label class="form-label">Attribut de monstre</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="monsterAttributes"
-                  label="name"
-                  track-by="id"
-                  placeholder="Choisir un attribut de monstre"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="monsterAttribute" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="monsterSubType" v-slot="{ field }">
-                <label class="form-label">Sous-Type de monstre</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="monsterSubTypes"
-                  label="name"
-                  track-by="id"
-                  placeholder="Choisir un sous-type de monstre"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="monsterSubType" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="monsterType" v-slot="{ field }">
-                <label class="form-label">Type de monstre</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="monsterTypes"
-                  label="name"
-                  track-by="id"
-                  placeholder="Choisir un type de monstre"
-                  @update:model-value="field.onChange"
-                />
-              </Field>
-              <ErrorMessage name="monsterType" class="text-danger small" />
-            </div>
-            <div class="mb-3">
-              <Field name="tags" v-slot="{ field }">
-                <label class="form-label">Tags</label>
-                <multi-select
-                  v-model="field.value"
-                  :options="tags"
-                  multiple
-                  :taggable="true"
-                  :loading="tagLoading"
-                  :internal-search="false"
-                  placeholder="Choisissez un ou plusieurs tags"
-                  label="name"
-                  track-by="id"
-                  @tag="createTag"
-                  @search-change="fetchTags"
-                />
-              </Field>
-              <ErrorMessage name="tags" class="text-danger small" />
-            </div>
-            <pre>{{ JSON.stringify(formRef?.values, null, 2) }}</pre>
-          </div>
-          <div class="modal-footer">
-            <div class="form-check form-switch" v-if="!isEdit">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="addOtherSwitch"
-                v-model="addOther"
-              />
-              <label class="form-check-label" for="addOtherSwitch">
-                Ajouter une autre carte abstraite
-              </label>
-            </div>
-            <button type="button" class="btn btn-secondary" @click="hideModal">
-              <font-awesome-icon :icon="['fa', 'xmark']" />
-              Annuler
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <font-awesome-icon :icon="['fa', 'floppy-disk']" />
-              {{ isEdit ? 'Modifier' : 'Créer' }}
-            </button>
-          </div>
-        </VeeForm>
-      </div>
+  <FormModal
+    ref="modal"
+    id="abstractCardModal"
+    title="d'une carte abstraite"
+    add-other-label="Ajouter une autre carte abstraite"
+    :is-edit="isEdit"
+    :schema="schema"
+    :initial-values="{
+      name: props.abstractCard?.name ?? '',
+      level: props.abstractCard?.level ?? undefined,
+      atk: props.abstractCard?.atk ?? undefined,
+      def: props.abstractCard?.def ?? undefined,
+      bluePendulum: props.abstractCard?.bluePendulum ?? undefined,
+      redPendulum: props.abstractCard?.redPendulum ?? undefined,
+      cardSubType: props.abstractCard?.cardSubType ?? undefined,
+      cardGroup: props.abstractCard?.cardGroup ?? undefined,
+      monsterAttribute: props.abstractCard?.monsterAttribute ?? undefined,
+      monsterSubType: props.abstractCard?.monsterSubType ?? undefined,
+      monsterType: props.abstractCard?.monsterType ?? undefined,
+      monsterEffects: props.abstractCard?.monsterEffects ?? [],
+      tags: props.abstractCard?.tags ?? [],
+    }"
+    :form-key="props.abstractCard?.id ?? 'new'"
+    :submit-error="submitError"
+    @submit="onSubmit"
+    @reset="onReset"
+  >
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <Field name="name" type="text" class="form-control" />
+      <ErrorMessage name="name" class="text-danger small" />
     </div>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">Niveau / Rang / Lien</label>
+      <Field name="level" type="number" class="form-control" />
+      <ErrorMessage name="level" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Atk</label>
+      <Field name="atk" type="number" class="form-control" />
+      <ErrorMessage name="atk" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Def</label>
+      <Field name="def" type="number" class="form-control" />
+      <ErrorMessage name="def" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Pendulum Bleu</label>
+      <Field name="bluePendulum" type="number" class="form-control" />
+      <ErrorMessage name="bluePendulum" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Pendulum Rouge</label>
+      <Field name="redPendulum" type="number" class="form-control" />
+      <ErrorMessage name="redPendulum" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="cardSubType" v-slot="{ field }">
+        <label class="form-label">Sous-Type de carte</label>
+        <multi-select
+          v-model="field.value"
+          :options="cardSubTypes"
+          label="name"
+          track-by="id"
+          placeholder="Choisir un sous-type de carte"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="cardSubType" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="cardGroup" v-slot="{ field }">
+        <label class="form-label">Groupe de cartes</label>
+        <multi-select
+          v-model="field.value"
+          :options="cardGroups"
+          :searchable="true"
+          :loading="cardGroupLoading"
+          :internal-search="false"
+          :close-on-select="true"
+          placeholder="Choisir un groupe de cartes"
+          label="name"
+          track-by="id"
+          @search-change="fetchCardGroups"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="cardGroup" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="monsterAttribute" v-slot="{ field }">
+        <label class="form-label">Attribut de monstre</label>
+        <multi-select
+          v-model="field.value"
+          :options="monsterAttributes"
+          label="name"
+          track-by="id"
+          placeholder="Choisir un attribut de monstre"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="monsterAttribute" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="monsterSubType" v-slot="{ field }">
+        <label class="form-label">Sous-Type de monstre</label>
+        <multi-select
+          v-model="field.value"
+          :options="monsterSubTypes"
+          label="name"
+          track-by="id"
+          placeholder="Choisir un sous-type de monstre"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="monsterSubType" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="monsterType" v-slot="{ field }">
+        <label class="form-label">Type de monstre</label>
+        <multi-select
+          v-model="field.value"
+          :options="monsterTypes"
+          label="name"
+          track-by="id"
+          placeholder="Choisir un type de monstre"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="monsterType" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="tags" v-slot="{ field }">
+        <label class="form-label">Tags</label>
+        <multi-select
+          v-model="field.value"
+          :options="tags"
+          multiple
+          :taggable="true"
+          :loading="tagLoading"
+          :internal-search="false"
+          placeholder="Choisissez un ou plusieurs tags"
+          label="name"
+          track-by="id"
+          @tag="createTag"
+          @search-change="fetchTags"
+        />
+      </Field>
+      <ErrorMessage name="tags" class="text-danger small" />
+    </div>
+  </FormModal>
 </template>
