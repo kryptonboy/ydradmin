@@ -9,7 +9,7 @@ export interface Card {
   description?: string
   reference: string
   code?: string
-  image?: string
+  image?: { '@id': string; id?: number; contentUrl?: string | null } | null
   bbCodeDescription?: string
   pendulumDescription?: string
   bbCodePendulumDescription?: string
