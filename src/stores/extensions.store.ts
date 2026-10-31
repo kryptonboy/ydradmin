@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
 import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
 import type { ExtensionForm } from '@/types/forms/ExtensionForm'
+import type { Extension } from '@/types/models/Extension'
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/extensions`
 
@@ -63,6 +64,19 @@ export const useExtensionsStore = defineStore('extensions', {
         await fetchWrapper.patch(`${baseUrl}/${id}`, extension)
       } catch (err) {
         console.error("Erreur lors de la mise à jour de l'extension", err)
+      }
+    },
+    async autocomplete(name: string | null): Promise<Extension[]> {
+      if (null === name) {
+        return []
+      }
+      const fetchWrapper = this._getFetchWrapper()
+      try {
+        const data = await fetchWrapper.get(`${baseUrl}?name=${name}`)
+        return data.member ?? []
+      } catch (err) {
+        console.error('Erreur lors de la récupération de la liste des extensions:', err)
+        return []
       }
     },
   },

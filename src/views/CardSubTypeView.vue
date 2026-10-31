@@ -209,14 +209,14 @@ filterCardSubTypes()
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="5">
+        <td colspan="5" class="text-center align-middle">
           <em>Aucun sous-type de carte</em>
         </td>
       </tr>
     </tbody>
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
-        <td colspan="5" class="text-center pt-3 pb_0">
+        <td colspan="5" class="text-center pt-3 pb-0">
           <Paginator
             :pagination="pagination"
             :current-page="currentPage"

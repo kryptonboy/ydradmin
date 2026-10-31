@@ -4,6 +4,7 @@ import { useAuthStore } from './auth.store'
 import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { CardSubTypeForm } from '@/types/forms/CardSubTypeForm'
+import type { CardSubType } from '@/types/models/CardSubType'
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/card_sub_types`
 
@@ -49,10 +50,10 @@ export const useCardSubTypesStore = defineStore('card_sub_types', {
         this.loading = false
       }
     },
-    async createCardSubType(CardSubType: CardSubTypeForm) {
+    async createCardSubType(cardSubType: CardSubTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
       try {
-        await fetchWrapper.post(baseUrl, CardSubType)
+        await fetchWrapper.post(baseUrl, cardSubType)
       } catch (err) {
         console.error('Erreur lors de la création du sous-type de carte:', err)
       }
@@ -62,7 +63,17 @@ export const useCardSubTypesStore = defineStore('card_sub_types', {
       try {
         await fetchWrapper.patch(`${baseUrl}/${id}`, cardSubType)
       } catch (err) {
-        console.error('Erreur lors de la mise à jour du sous-type de carte', err)
+        console.error('Erreur lors de la mise à jour du sous-type de carte:', err)
+      }
+    },
+    async fetchAll(): Promise<CardSubType[]> {
+      const fetchWrapper = this._getFetchWrapper()
+      try {
+        const data = await fetchWrapper.get(baseUrl)
+        return data.member ?? []
+      } catch (err) {
+        console.error('Erreur lors de la récupération de la liste des sous-types de cartes:', err)
+        return []
       }
     },
   },

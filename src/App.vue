@@ -41,8 +41,32 @@ const isCardManagementDropdownActive = computed(() => route.path.startsWith('/ca
             >
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="cardManagementDropdown">
               <li>
+                <AppLink to="/card_management/card" class="dropdown-item" activeClass="active">
+                  Cartes
+                </AppLink>
+                <AppLink
+                  to="/card_management/abstract_card"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Cartes abstraites
+                </AppLink>
+                <AppLink
+                  to="/card_management/card_group"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Groupes de cartes
+                </AppLink>
+              </li>
+              <li>
                 <AppLink to="/card_management/extension" class="dropdown-item" activeClass="active">
                   Extensions
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/card_management/rarity" class="dropdown-item" activeClass="active">
+                  Raretés
                 </AppLink>
               </li>
               <li>
@@ -57,6 +81,42 @@ const isCardManagementDropdownActive = computed(() => route.path.startsWith('/ca
                   activeClass="active"
                 >
                   Sous-Types de carte
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/card_management/monster_attribute"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Attributs de monstre
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/card_management/monster_type"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Types de monstre
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/card_management/monster_sub_type"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Sous-Types de monstre
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/card_management/monster_effect"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Effets de monstre
                 </AppLink>
               </li>
               <li>

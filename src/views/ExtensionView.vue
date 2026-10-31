@@ -51,6 +51,7 @@ function resetFilters() {
   filters.name = null
   filters.extensionType = []
   filters.country = null
+  currentPage.value = 1
   filterExtensions()
 }
 

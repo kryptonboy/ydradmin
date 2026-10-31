@@ -180,9 +180,9 @@ defineExpose({ showModal })
                 id="addOtherSwitch"
                 v-model="addOther"
               />
-              <label class="form-check-label" for="addOtherSwitch"
-                >Ajouter un autre sous-type</label
-              >
+              <label class="form-check-label" for="addOtherSwitch">
+                Ajouter un autre sous-type
+              </label>
             </div>
             <button type="button" class="btn btn-secondary" @click="hideModal">
               <font-awesome-icon :icon="['fa', 'xmark']" />

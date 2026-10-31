@@ -72,7 +72,7 @@ export const useCardTypesStore = defineStore('card_types', {
         const data = await fetchWrapper.get(baseUrl)
         return data.member ?? []
       } catch (err) {
-        console.error('Erreur lors de la récupération de la liste des types de cartes', err)
+        console.error('Erreur lors de la récupération de la liste des types de cartes:', err)
         return []
       }
     },
