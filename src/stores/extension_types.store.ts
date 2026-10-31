@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { ExtensionTypesState } from '@/types/states/ExtensionTypesState'
 import type { Filters, Sort } from '@/types/Api'
 import type { ExtensionTypeForm } from '@/types/forms/ExtensionTypeForm'
@@ -23,8 +28,7 @@ export const useExtensionTypesStore = defineStore('extension_types', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useExtensionTypesStore = defineStore('extension_types', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useExtensionTypesStore = defineStore('extension_types', {
     },
     async createExtensionType(extensionType: ExtensionTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, extensionType)
-      } catch (err) {
-        console.error("Erreur lors de la création du type d'extension:", err)
-      }
+      await fetchWrapper.post(baseUrl, extensionType)
     },
     async updateExtensionType(id: number, extensionType: ExtensionTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, extensionType)
-      } catch (err) {
-        console.error("Erreur lors de la mise à jour du type d'extension:", err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, extensionType)
     },
     async fetchAll(): Promise<ExtensionType[]> {
       const fetchWrapper = this._getFetchWrapper()

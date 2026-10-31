@@ -4,10 +4,15 @@ import { computed } from 'vue'
 
 const emit = defineEmits(['pageChanged'])
 
-const props = defineProps<{
-  pagination: Pagination
-  currentPage: number
-}>()
+const props = withDefaults(
+  defineProps<{
+    pagination: Pagination
+    currentPage: number
+    /** Nombre d'éléments par page (api_platform.defaults.pagination_items_per_page) */
+    perPage?: number
+  }>(),
+  { perPage: 50 },
+)
 
 const changePage = (numPage: number) => {
   emit('pageChanged', numPage)
@@ -20,13 +25,9 @@ type PageItem = {
   isEllipsis?: boolean
 }
 
-function buildPagination(
-  currentPage: number,
-  totalItems: number,
-  perPage: number = 50,
-): PageItem[] {
+function buildPagination(currentPage: number, totalItems: number, perPage: number): PageItem[] {
   const nbPages: number = Math.ceil(totalItems / perPage)
-  if (nbPages === 1) return []
+  if (nbPages <= 1) return []
 
   const visibleRange: number = 2
   const pages: PageItem[] = []
@@ -69,7 +70,7 @@ function buildPagination(
 }
 
 const paginationArray = computed(() =>
-  buildPagination(props.currentPage, props.pagination.totalItems),
+  buildPagination(props.currentPage, props.pagination.totalItems, props.perPage),
 )
 </script>
 

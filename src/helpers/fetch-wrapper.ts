@@ -1,9 +1,9 @@
 import type { AuthState } from '@/types/states/AuthState'
+import { createApiError } from './api-error'
 
 export function createFetchWrapper(authState: AuthState) {
-  const { token, logout } = authState
-
   function authHeader(url: string): Record<string, string> {
+    const token = authState.token
     const isLoggedIn = !!token
     const isApiUrl = url.startsWith(import.meta.env.VITE_API_URL)
 
@@ -23,11 +23,11 @@ export function createFetchWrapper(authState: AuthState) {
     } catch {}
 
     if (!response.ok) {
-      if ([401, 403].includes(response.status) && token) {
-        logout()
+      // 401 = session expirée ; 403 = droits insuffisants (la session reste valide)
+      if (response.status === 401 && authState.token) {
+        authState.logout()
       }
-      const error = (data as { message?: string } | null)?.message || response.statusText
-      return Promise.reject(error)
+      return Promise.reject(createApiError(data, response.status, response.statusText))
     }
     return data as T
   }

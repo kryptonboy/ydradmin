@@ -1,5 +1,10 @@
 import { defineStore } from 'pinia'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { TagsState } from '@/types/states/TagsState'
 import type { TagForm } from '@/types/forms/TagForm'
@@ -23,8 +28,7 @@ export const useTagsStore = defineStore('tags', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,29 +48,20 @@ export const useTagsStore = defineStore('tags', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
       }
     },
-    async createTag(tag: TagForm): Promise<Tag | null> {
+    async createTag(tag: TagForm): Promise<Tag> {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        const createdTag = await fetchWrapper.post(baseUrl, tag)
-        return createdTag
-      } catch (err) {
-        console.error('Erreur lors de la création du tag:', err)
-        return null
-      }
+      const createdTag = await fetchWrapper.post(baseUrl, tag)
+      return createdTag
     },
     async updateTag(id: number, tag: TagForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, tag)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour du tag:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, tag)
     },
     async autocomplete(name: string | null): Promise<Tag[]> {
       if (null === name) {
@@ -74,7 +69,7 @@ export const useTagsStore = defineStore('tags', {
       }
       const fetchWrapper = this._getFetchWrapper()
       try {
-        const data = await fetchWrapper.get(`${baseUrl}?name=${name}`)
+        const data = await fetchWrapper.get(`${baseUrl}?name=${encodeURIComponent(name)}`)
         return data.member ?? []
       } catch (err) {
         console.error('Erreur lors de la récupération de la liste des tags:', err)

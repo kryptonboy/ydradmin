@@ -1,7 +1,12 @@
 import type { CardsState } from '@/types/states/CardsState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { CardForm } from '@/types/forms/CardForm'
 import type { Card } from '@/types/models/Card'
@@ -23,8 +28,7 @@ export const useCardsStore = defineStore('cards', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useCardsStore = defineStore('cards', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useCardsStore = defineStore('cards', {
     },
     async createCard(card: CardForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, card)
-      } catch (err) {
-        console.error('Erreur lors de la création de la carte:', err)
-      }
+      await fetchWrapper.post(baseUrl, card)
     },
     async updateCard(id: number, card: CardForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, card)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour de la carte:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, card)
     },
     async autocomplete(name: string | null): Promise<Card[]> {
       if (null === name) {
@@ -72,7 +68,7 @@ export const useCardsStore = defineStore('cards', {
       }
       const fetchWrapper = this._getFetchWrapper()
       try {
-        const data = await fetchWrapper.get(`${baseUrl}?name=${name}`)
+        const data = await fetchWrapper.get(`${baseUrl}?name=${encodeURIComponent(name)}`)
         return data.member ?? []
       } catch (err) {
         console.error('Erreur lors de la récupération de la liste des cartes:', err)

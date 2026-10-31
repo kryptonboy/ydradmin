@@ -15,19 +15,20 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     async login(username: string, password: string) {
-      const { token, logout } = this
-      const fetchWrapper = createFetchWrapper({ token, logout })
+      const fetchWrapper = createFetchWrapper(this)
 
       this.isChecking = true
-      const { token: newToken } = await fetchWrapper.post<{ token: string }>(
-        `${baseUrl}/login_check`,
-        {
+      try {
+        const { token } = await fetchWrapper.post<{ token: string }>(`${baseUrl}/login_check`, {
           username,
           password,
-        },
-      )
-      this.token = newToken
-      localStorage.setItem('token', newToken)
+        })
+        this.token = token
+        localStorage.setItem('token', token)
+      } catch (error) {
+        this.isChecking = false
+        throw error
+      }
       await this.checkToken()
       router.push(this.returnUrl || '/')
     },
@@ -41,14 +42,12 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     async checkToken() {
-      const { token, logout } = this
-      const fetchWrapper = createFetchWrapper({ token, logout })
+      const fetchWrapper = createFetchWrapper(this)
       this.isChecking = true
       try {
         const user = await fetchWrapper.get<User>(`${baseUrl}/me`)
         this.user = user
-      } catch (error) {
-        console.log(error)
+      } catch {
         this.user = null
         this.token = null
         localStorage.removeItem('token')

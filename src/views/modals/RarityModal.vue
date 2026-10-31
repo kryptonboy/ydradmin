@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import { useRaritiesStore } from '@/stores/rarities.store'
 import type { Rarity } from '@/types/models/Rarity'
 import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
@@ -25,12 +27,17 @@ const schema = yup.object({
 })
 
 const store = useRaritiesStore()
-const onSubmit = async (values: Rarity) => {
-  if (isEdit.value) {
-    await store.updateRarity(props.rarity.id, values)
-  } else {
-    await store.createRarity(values)
-  }
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: Rarity, { setErrors }: SubmissionContext) => {
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateRarity(props.rarity.id, values)
+    } else {
+      await store.createRarity(values)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('raritySaved')
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -53,6 +60,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -92,13 +100,14 @@ defineExpose({ showModal })
             position: props.rarity?.position ?? 0,
           }"
           :key="props.rarity?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as Rarity)"
+          @submit="(values, ctx) => onSubmit(values as Rarity, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une rareté</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

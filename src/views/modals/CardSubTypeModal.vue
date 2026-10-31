@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import FileUploader from '@/components/FileUploader.vue'
 import { useCardSubTypesStore } from '@/stores/card_sub_types.store'
 import { useCardTypesStore } from '@/stores/card_types.store'
@@ -47,18 +49,23 @@ function processValues(values: CardSubType) {
   }
 }
 
-const onSubmit = async (values: CardSubType) => {
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: CardSubType, { setErrors }: SubmissionContext) => {
   const payload: CardSubTypeForm = processValues({ ...values })
 
   if (iconId.value) {
     payload.icon = iconId.value
   }
 
-  if (isEdit.value) {
-    await store.updateCardSubType(props.cardSubType.id, payload)
-  } else {
-    await store.createCardSubType(payload)
-  }
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateCardSubType(props.cardSubType.id, payload)
+    } else {
+      await store.createCardSubType(payload)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('cardSubTypeSaved')
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -85,6 +92,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -126,7 +134,7 @@ defineExpose({ showModal })
             cardType: props.cardSubType?.cardType ?? null,
           }"
           :key="props.cardSubType?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as CardSubType)"
+          @submit="(values, ctx) => onSubmit(values as CardSubType, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">
@@ -135,6 +143,7 @@ defineExpose({ showModal })
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

@@ -2,7 +2,12 @@ import type { Filters, Sort } from '@/types/Api'
 import type { ExtensionsState } from '@/types/states/ExtensionsState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { ExtensionForm } from '@/types/forms/ExtensionForm'
 import type { Extension } from '@/types/models/Extension'
 
@@ -23,8 +28,7 @@ export const useExtensionsStore = defineStore('extensions', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useExtensionsStore = defineStore('extensions', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useExtensionsStore = defineStore('extensions', {
     },
     async createExtension(extension: ExtensionForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, extension)
-      } catch (err) {
-        console.error("Erreur lors de la création de l'extension:", err)
-      }
+      await fetchWrapper.post(baseUrl, extension)
     },
     async updateExtension(id: number, extension: ExtensionForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, extension)
-      } catch (err) {
-        console.error("Erreur lors de la mise à jour de l'extension", err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, extension)
     },
     async autocomplete(name: string | null): Promise<Extension[]> {
       if (null === name) {
@@ -72,7 +68,7 @@ export const useExtensionsStore = defineStore('extensions', {
       }
       const fetchWrapper = this._getFetchWrapper()
       try {
-        const data = await fetchWrapper.get(`${baseUrl}?name=${name}`)
+        const data = await fetchWrapper.get(`${baseUrl}?name=${encodeURIComponent(name)}`)
         return data.member ?? []
       } catch (err) {
         console.error('Erreur lors de la récupération de la liste des extensions:', err)

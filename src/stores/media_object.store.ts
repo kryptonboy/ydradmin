@@ -7,8 +7,7 @@ const baseUrl = `${import.meta.env.VITE_API_URL}/media_objects`
 export const useMediaObjectsStore = defineStore('media_objects', {
   actions: {
     async uploadFile(file: File, context: string): Promise<string> {
-      const { token, logout } = useAuthStore()
-      const fetchWrapper = createFetchWrapper({ token, logout })
+      const fetchWrapper = createFetchWrapper(useAuthStore())
       const formData = new FormData()
       formData.append('file', file)
       formData.append('context', context)

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import { useCountriesStore, useExtensionTypesStore } from '@/stores'
 import { useExtensionsStore } from '@/stores/extensions.store'
 import type { Country } from '@/types/models/Country'
@@ -50,12 +52,17 @@ function processValues(values: Extension): ExtensionForm {
   }
 }
 
-const onSubmit = async (values: Extension) => {
-  if (isEdit.value) {
-    await store.updateExtension(props.extension.id, processValues(values))
-  } else {
-    await store.createExtension(processValues(values))
-  }
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: Extension, { setErrors }: SubmissionContext) => {
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateExtension(props.extension.id, processValues(values))
+    } else {
+      await store.createExtension(processValues(values))
+    }
+  }, setErrors)
+  if (!saved) return
   emit('extensionSaved')
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -81,6 +88,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -130,13 +138,14 @@ defineExpose({ showModal })
             country: props.extension?.country ?? null,
           }"
           :key="props.extension?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as Extension)"
+          @submit="(values, ctx) => onSubmit(values as Extension, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une extension</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

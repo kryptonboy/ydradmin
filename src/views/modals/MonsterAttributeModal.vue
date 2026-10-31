@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import FileUploader from '@/components/FileUploader.vue'
 import { useMonsterAttributesStore } from '@/stores/monster_attributes.store'
 import type { MonsterAttribute } from '@/types/models/MonsterAttribute'
@@ -26,18 +28,23 @@ const schema = yup.object({
 })
 
 const store = useMonsterAttributesStore()
-const onSubmit = async (values: MonsterAttribute) => {
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: MonsterAttribute, { setErrors }: SubmissionContext) => {
   const payload: MonsterAttribute = { ...values }
 
   if (iconId.value) {
     payload.icon = iconId.value
   }
 
-  if (isEdit.value) {
-    await store.updateMonsterAttribute(props.monsterAttribute.id, payload)
-  } else {
-    await store.createMonsterAttribute(payload)
-  }
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateMonsterAttribute(props.monsterAttribute.id, payload)
+    } else {
+      await store.createMonsterAttribute(payload)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('monsterAttributeSaved')
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -58,6 +65,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -93,7 +101,7 @@ defineExpose({ showModal })
           :validation-schema="schema"
           :initial-values="{ name: props.monsterAttribute?.name ?? '' }"
           :key="props.monsterAttribute?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as MonsterAttribute)"
+          @submit="(values, ctx) => onSubmit(values as MonsterAttribute, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">
@@ -102,6 +110,7 @@ defineExpose({ showModal })
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

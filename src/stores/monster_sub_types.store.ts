@@ -1,7 +1,12 @@
 import type { MonsterSubTypesState } from '@/types/states/MonsterSubTypesState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { MonsterSubTypeForm } from '@/types/forms/MonsterSubTypeForm'
 import type { MonsterSubType } from '@/types/models/MonsterSubType'
@@ -23,8 +28,7 @@ export const useMonsterSubTypesStore = defineStore('monster_sub_types', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useMonsterSubTypesStore = defineStore('monster_sub_types', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useMonsterSubTypesStore = defineStore('monster_sub_types', {
     },
     async createMonsterSubType(monsterSubType: MonsterSubTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, monsterSubType)
-      } catch (err) {
-        console.error('Erreur lors de la création du sous-type de monstre:', err)
-      }
+      await fetchWrapper.post(baseUrl, monsterSubType)
     },
     async updateMonsterSubType(id: number, monsterSubType: MonsterSubTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, monsterSubType)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour du sous-type de monstre:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, monsterSubType)
     },
     async fetchAll(): Promise<MonsterSubType[]> {
       const fetchWrapper = this._getFetchWrapper()

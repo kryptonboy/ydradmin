@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useMediaObjectsStore } from '@/stores/media_object.store'
+import { getErrorMessage } from '@/helpers/api-error'
 import { ref } from 'vue'
 
 const props = defineProps<{
@@ -17,6 +18,7 @@ const emit = defineEmits<{
 const mediaObjectsStore = useMediaObjectsStore()
 const isUploading = ref(false)
 const isUploaded = ref(false)
+const uploadError = ref<string | null>(null)
 
 async function handleFileChange(event: Event) {
   const input = event.target as HTMLInputElement
@@ -24,13 +26,14 @@ async function handleFileChange(event: Event) {
   if (!file) return
 
   isUploading.value = true
+  uploadError.value = null
   emit('update:uploading', true)
   try {
     const media = await mediaObjectsStore.uploadFile(file, props.context)
     isUploaded.value = true
     emit('update:modelValue', media)
   } catch (err) {
-    console.error('Erreur upload', err)
+    uploadError.value = getErrorMessage(err)
     emit('update:modelValue', null)
   } finally {
     isUploading.value = false
@@ -40,6 +43,7 @@ async function handleFileChange(event: Event) {
 
 function clearFile() {
   isUploaded.value = false
+  uploadError.value = null
   emit('update:uploading', false)
   emit('update:modelValue', null)
 }
@@ -60,5 +64,6 @@ defineExpose({ clearFile })
         <font-awesome-icon :icon="['fas', 'spinner']" spin />
       </span>
     </div>
+    <div v-if="uploadError" class="text-danger small mt-1">{{ uploadError }}</div>
   </div>
 </template>

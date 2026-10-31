@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { getErrorMessage } from '@/helpers/api-error'
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import { useCardSubTypesStore, useTagsStore } from '@/stores'
 import { useAbstractCardsStore } from '@/stores/abstract_cards.store'
 import { useCardGroupsStore } from '@/stores/card_groups.store'
@@ -91,6 +94,8 @@ async function createTag(newTagName: string) {
       }
       return createdTag
     }
+  } catch (err) {
+    submitError.value = getErrorMessage(err)
   } finally {
     tagLoading.value = false
   }
@@ -154,15 +159,20 @@ function processValues(values: AbstractCard): AbstractCardForm {
   return result
 }
 
-const onSubmit = async (values: AbstractCard) => {
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: AbstractCard, { setErrors }: SubmissionContext) => {
   const payload: AbstractCardForm = processValues({ ...values })
 
   let abstractCard: AbstractCard | null = null
-  if (isEdit.value) {
-    abstractCard = await store.updateAbstractCard(props.abstractCard.id, payload)
-  } else {
-    abstractCard = await store.createAbstractCard(payload)
-  }
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      abstractCard = await store.updateAbstractCard(props.abstractCard.id, payload)
+    } else {
+      abstractCard = await store.createAbstractCard(payload)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('abstractCardSaved', abstractCard)
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -195,6 +205,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -249,13 +260,14 @@ defineExpose({ showModal })
             tags: props.abstractCard?.tags ?? [],
           }"
           :key="props.abstractCard?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as AbstractCard)"
+          @submit="(values, ctx) => onSubmit(values as AbstractCard, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une carte abstraite</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

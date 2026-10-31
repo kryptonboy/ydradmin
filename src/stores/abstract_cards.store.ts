@@ -1,7 +1,12 @@
 import type { AbstractCardsState } from '@/types/states/AbstractCardsState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { AbstractCardForm } from '@/types/forms/AbstractCardForm'
 import type { AbstractCard } from '@/types/models/AbstractCard'
@@ -23,8 +28,7 @@ export const useAbstractCardsStore = defineStore('abstract_cards', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,32 +48,19 @@ export const useAbstractCardsStore = defineStore('abstract_cards', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
       }
     },
-    async createAbstractCard(abstractCard: AbstractCardForm): Promise<AbstractCard | null> {
+    async createAbstractCard(abstractCard: AbstractCardForm): Promise<AbstractCard> {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        return await fetchWrapper.post(baseUrl, abstractCard)
-      } catch (err) {
-        console.error('Erreur lors de la création de la carte abstraite:', err)
-        return null
-      }
+      return await fetchWrapper.post(baseUrl, abstractCard)
     },
-    async updateAbstractCard(
-      id: number,
-      abstractCard: AbstractCardForm,
-    ): Promise<AbstractCard | null> {
+    async updateAbstractCard(id: number, abstractCard: AbstractCardForm): Promise<AbstractCard> {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        return await fetchWrapper.patch(`${baseUrl}/${id}`, abstractCard)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour de la carte abstraite:', err)
-        return null
-      }
+      return await fetchWrapper.patch(`${baseUrl}/${id}`, abstractCard)
     },
     async autocomplete(name: string | null): Promise<AbstractCard[]> {
       if (null === name) {
@@ -77,7 +68,7 @@ export const useAbstractCardsStore = defineStore('abstract_cards', {
       }
       const fetchWrapper = this._getFetchWrapper()
       try {
-        const data = await fetchWrapper.get(`${baseUrl}?name=${name}`)
+        const data = await fetchWrapper.get(`${baseUrl}?name=${encodeURIComponent(name)}`)
         return data.member ?? []
       } catch (err) {
         console.error('Erreur lors de la récupération de la liste des cartes abstraites:', err)

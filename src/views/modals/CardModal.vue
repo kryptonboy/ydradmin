@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import { useExtensionsStore } from '@/stores'
 import { useAbstractCardsStore } from '@/stores/abstract_cards.store'
 import { useCardsStore } from '@/stores/cards.store'
@@ -100,18 +102,23 @@ function processValues(values: Card): CardForm {
   }
 }
 
-const onSubmit = async (values: Card) => {
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: Card, { setErrors }: SubmissionContext) => {
   const payload: CardForm = processValues({ ...values })
 
   if (imageId.value) {
     payload.image = imageId.value
   }
 
-  if (isEdit.value) {
-    await store.updateCard(props.card.id, payload)
-  } else {
-    await store.createCard(payload)
-  }
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateCard(props.card.id, payload)
+    } else {
+      await store.createCard(payload)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('cardSaved')
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -141,6 +148,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -199,13 +207,14 @@ defineExpose({ showModal })
             rarities: props.card?.rarities ?? [],
           }"
           :key="props.card?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as Card)"
+          @submit="(values, ctx) => onSubmit(values as Card, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une carte</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />
@@ -324,7 +333,7 @@ defineExpose({ showModal })
               <font-awesome-icon :icon="['fa', 'xmark']" />
               Annuler
             </button>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" :disabled="isUploadingImage">
               <font-awesome-icon :icon="['fa', 'floppy-disk']" />
               {{ isEdit ? 'Modifier' : 'Créer' }}
             </button>

@@ -1,7 +1,12 @@
 import type { MonsterTypesState } from '@/types/states/MonsterTypesState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { MonsterTypeForm } from '@/types/forms/MonsterTypeForm'
 import type { MonsterType } from '@/types/models/MonsterType'
@@ -23,8 +28,7 @@ export const useMonsterTypesStore = defineStore('monster_types', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useMonsterTypesStore = defineStore('monster_types', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useMonsterTypesStore = defineStore('monster_types', {
     },
     async createMonsterType(monsterType: MonsterTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, monsterType)
-      } catch (err) {
-        console.error('Erreur lors de la création du type de monstre:', err)
-      }
+      await fetchWrapper.post(baseUrl, monsterType)
     },
     async updateMonsterType(id: number, monsterType: MonsterTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, monsterType)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour du type de mosntre:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, monsterType)
     },
     async fetchAll(): Promise<MonsterType[]> {
       const fetchWrapper = this._getFetchWrapper()

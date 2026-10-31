@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import type { ExtensionType } from '@/types/models/ExtensionType'
 import { onMounted, ref, watch } from 'vue'
 import * as yup from 'yup'
@@ -20,18 +22,24 @@ const schema = yup.object({
 })
 
 const store = useExtensionTypesStore()
-const onSubmit = async (values: ExtensionType) => {
-  if (isEdit.value) {
-    await store.updateExtensionType(props.extensionType.id, values)
-  } else {
-    await store.createExtensionType(values)
-  }
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: ExtensionType, { setErrors }: SubmissionContext) => {
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateExtensionType(props.extensionType.id, values)
+    } else {
+      await store.createExtensionType(values)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('extensionTypeSaved')
   hideModal()
 }
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
 }
 
 const showModal = () => {
@@ -68,13 +76,14 @@ defineExpose({ showModal })
             position: props.extensionType?.position ?? 1,
           }"
           :key="props.extensionType?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as ExtensionType)"
+          @submit="(values, ctx) => onSubmit(values as ExtensionType, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un type d'extension</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

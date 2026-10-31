@@ -2,7 +2,12 @@ import type { Filters, Sort } from '@/types/Api'
 import type { CountriesState } from '@/types/states/CountriesState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { CountryForm } from '@/types/forms/CountryForm'
 import type { Country } from '@/types/models/Country'
 
@@ -23,8 +28,7 @@ export const useCountriesStore = defineStore('countries', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useCountriesStore = defineStore('countries', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useCountriesStore = defineStore('countries', {
     },
     async createCountry(country: CountryForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, country)
-      } catch (err) {
-        console.error('Erreur lors de la création du pays:', err)
-      }
+      await fetchWrapper.post(baseUrl, country)
     },
     async updateCountry(id: number, country: CountryForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, country)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour du pays:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, country)
     },
     async fetchAll(): Promise<Country[]> {
       const fetchWrapper = this._getFetchWrapper()

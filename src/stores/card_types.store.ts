@@ -1,7 +1,12 @@
 import type { CardTypesState } from '@/types/states/CardTypesState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { CardTypeForm } from '@/types/forms/CardTypeForm'
 import type { CardType } from '@/types/models/CardType'
@@ -23,8 +28,7 @@ export const useCardTypesStore = defineStore('card_types', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useCardTypesStore = defineStore('card_types', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useCardTypesStore = defineStore('card_types', {
     },
     async createCardType(cardType: CardTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, cardType)
-      } catch (err) {
-        console.error('Erreur lors de la création du type de carte:', err)
-      }
+      await fetchWrapper.post(baseUrl, cardType)
     },
     async updateCardType(id: number, cardType: CardTypeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, cardType)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour du type de carte:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, cardType)
     },
     async fetchAll(): Promise<CardType[]> {
       const fetchWrapper = this._getFetchWrapper()

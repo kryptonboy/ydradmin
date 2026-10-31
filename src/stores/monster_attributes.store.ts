@@ -1,7 +1,12 @@
 import type { MonsterAttributesState } from '@/types/states/MonsterAttributesState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { MonsterAttributeForm } from '@/types/forms/MonsterAttributeForm'
 import type { MonsterAttribute } from '@/types/models/MonsterAttribute'
@@ -23,8 +28,7 @@ export const useMonsterAttributesStore = defineStore('monster_attributes', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useMonsterAttributesStore = defineStore('monster_attributes', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useMonsterAttributesStore = defineStore('monster_attributes', {
     },
     async createMonsterAttribute(monsterAttribute: MonsterAttributeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, monsterAttribute)
-      } catch (err) {
-        console.error("Erreur lors de la création de l'attribut de monstre:", err)
-      }
+      await fetchWrapper.post(baseUrl, monsterAttribute)
     },
     async updateMonsterAttribute(id: number, monsterAttribute: MonsterAttributeForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, monsterAttribute)
-      } catch (err) {
-        console.error("Erreur lors de la mise à jour de l'attribut de monstre:", err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, monsterAttribute)
     },
     async fetchAll(): Promise<MonsterAttribute[]> {
       const fetchWrapper = this._getFetchWrapper()

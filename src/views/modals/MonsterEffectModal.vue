@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import { useMonsterEffectsStore } from '@/stores/monster_effects.store'
 import type { MonsterEffect } from '@/types/models/MonsterEffect'
 import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
@@ -24,12 +26,17 @@ const schema = yup.object({
 })
 
 const store = useMonsterEffectsStore()
-const onSubmit = async (values: MonsterEffect) => {
-  if (isEdit.value) {
-    await store.updateMonsterEffect(props.monsterEffect.id, values)
-  } else {
-    await store.createMonsterEffect(values)
-  }
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: MonsterEffect, { setErrors }: SubmissionContext) => {
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateMonsterEffect(props.monsterEffect.id, values)
+    } else {
+      await store.createMonsterEffect(values)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('monsterEffectSaved')
   if (addOther.value === true && !isEdit.value) {
     resetForm()
@@ -51,6 +58,7 @@ const resetForm = () => {
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
   resetForm()
 }
 
@@ -89,13 +97,14 @@ defineExpose({ showModal })
             description: props.monsterEffect?.description ?? '',
           }"
           :key="props.monsterEffect?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as MonsterEffect)"
+          @submit="(values, ctx) => onSubmit(values as MonsterEffect, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un effet de monstre</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

@@ -2,6 +2,7 @@
 import { Form, Field } from 'vee-validate'
 import * as Yup from 'yup'
 import type { SubmissionContext } from 'vee-validate'
+import { getErrorMessage } from '@/helpers'
 import { useAuthStore } from '@/stores'
 
 const schema = Yup.object().shape({
@@ -13,7 +14,9 @@ function onSubmit(values: Record<string, string>, { setErrors }: SubmissionConte
   const authStore = useAuthStore()
   const { username, password } = values
 
-  return authStore.login(username, password).catch((error) => setErrors({ apiError: error }))
+  return authStore
+    .login(username, password)
+    .catch((error) => setErrors({ apiError: getErrorMessage(error) }))
 }
 </script>
 

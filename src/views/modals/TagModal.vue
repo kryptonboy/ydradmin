@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSubmit } from '@/composables/useSubmit'
+import type { SubmissionContext } from 'vee-validate'
 import { useTagsStore } from '@/stores'
 import type { Tag } from '@/types/models/Tag'
 import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
@@ -21,18 +23,24 @@ const schema = yup.object({
 })
 
 const store = useTagsStore()
-const onSubmit = async (values: Tag) => {
-  if (isEdit.value) {
-    await store.updateTag(props.tag.id, values)
-  } else {
-    await store.createTag(values)
-  }
+const { submitError, submit } = useSubmit()
+
+const onSubmit = async (values: Tag, { setErrors }: SubmissionContext) => {
+  const saved = await submit(async () => {
+    if (isEdit.value) {
+      await store.updateTag(props.tag.id, values)
+    } else {
+      await store.createTag(values)
+    }
+  }, setErrors)
+  if (!saved) return
   emit('tagSaved')
   hideModal()
 }
 
 const hideModal = () => {
   modalInstance?.hide()
+  submitError.value = null
 }
 
 const showModal = () => {
@@ -70,13 +78,14 @@ defineExpose({ showModal })
             visible: props.tag?.visible ?? true,
           }"
           :key="props.tag?.id ?? 'new'"
-          @submit="(values) => onSubmit(values as Tag)"
+          @submit="(values, ctx) => onSubmit(values as Tag, ctx)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un tag</h5>
             <button type="button" class="btn-close" @click="hideModal"></button>
           </div>
           <div class="modal-body">
+            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
             <div class="mb-3">
               <label class="form-label">Nom</label>
               <Field name="name" type="text" class="form-control" />

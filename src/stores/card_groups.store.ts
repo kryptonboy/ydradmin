@@ -1,7 +1,12 @@
 import type { CardGroupsState } from '@/types/states/CardGroupsState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
-import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'
+import {
+  buildApiPlatformQuery,
+  createFetchWrapper,
+  hydratePaginatedState,
+  getErrorMessage,
+} from '@/helpers'
 import type { Filters, Sort } from '@/types/Api'
 import type { CardGroupForm } from '@/types/forms/CardGroupForm'
 import type { CardGroup } from '@/types/models/CardGroup'
@@ -23,8 +28,7 @@ export const useCardGroupsStore = defineStore('card_groups', {
   }),
   actions: {
     _getFetchWrapper() {
-      const { token, logout } = useAuthStore()
-      return createFetchWrapper({ token, logout })
+      return createFetchWrapper(useAuthStore())
     },
     async filter(filters: Filters, sort: Sort, page: number) {
       const fetchWrapper = this._getFetchWrapper()
@@ -44,7 +48,7 @@ export const useCardGroupsStore = defineStore('card_groups', {
         )
         hydratePaginatedState(this, data)
       } catch (err) {
-        this.error = err?.toString() ?? 'Erreur inconnue'
+        this.error = getErrorMessage(err)
         this.items = []
       } finally {
         this.loading = false
@@ -52,19 +56,11 @@ export const useCardGroupsStore = defineStore('card_groups', {
     },
     async createCardGroup(cardGroup: CardGroupForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.post(baseUrl, cardGroup)
-      } catch (err) {
-        console.error('Erreur lors de la création du groupe de cartes:', err)
-      }
+      await fetchWrapper.post(baseUrl, cardGroup)
     },
     async updateCardGroup(id: number, cardGroup: CardGroupForm) {
       const fetchWrapper = this._getFetchWrapper()
-      try {
-        await fetchWrapper.patch(`${baseUrl}/${id}`, cardGroup)
-      } catch (err) {
-        console.error('Erreur lors de la mise à jour du groupe de cartes:', err)
-      }
+      await fetchWrapper.patch(`${baseUrl}/${id}`, cardGroup)
     },
     async autocomplete(name: string | null): Promise<CardGroup[]> {
       if (null === name) {
@@ -72,7 +68,7 @@ export const useCardGroupsStore = defineStore('card_groups', {
       }
       const fetchWrapper = this._getFetchWrapper()
       try {
-        const data = await fetchWrapper.get(`${baseUrl}?name=${name}`)
+        const data = await fetchWrapper.get(`${baseUrl}?name=${encodeURIComponent(name)}`)
         return data.member ?? []
       } catch (err) {
         console.error('Erreur lors de la récupération de la liste des groupes de cartes:', err)
