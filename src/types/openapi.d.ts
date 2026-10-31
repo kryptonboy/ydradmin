@@ -916,6 +916,10 @@ export interface components {
             monsterAttribute?: string | null;
             monsterSubType?: string | null;
             monsterType?: string | null;
+            /** @description IRIs of the monster effects; null leaves them untouched, an empty list removes them all. */
+            monsterEffects?: string[] | null;
+            /** @description IRIs of the tags; null leaves them untouched, an empty list removes them all. */
+            tags?: string[] | null;
         };
         "AbstractCard.AbstractCardInput.jsonMergePatch": {
             name?: string;
@@ -929,6 +933,10 @@ export interface components {
             monsterAttribute?: string | null;
             monsterSubType?: string | null;
             monsterType?: string | null;
+            /** @description IRIs of the monster effects; null leaves them untouched, an empty list removes them all. */
+            monsterEffects?: string[] | null;
+            /** @description IRIs of the tags; null leaves them untouched, an empty list removes them all. */
+            tags?: string[] | null;
         };
         "AbstractCard.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
@@ -945,7 +953,7 @@ export interface components {
             monsterEffects?: components["schemas"]["MonsterEffect.jsonld-abstract_card.read_entity.read"][];
             rulings?: components["schemas"]["Ruling.jsonld-abstract_card.read_entity.read"][];
             tags?: components["schemas"]["Tag.jsonld-abstract_card.read_entity.read"][];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "AbstractCard.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
@@ -959,7 +967,7 @@ export interface components {
             monsterAttribute?: components["schemas"]["MonsterAttribute.jsonld-card.read_entity.read"] | null;
             monsterSubType?: components["schemas"]["MonsterSubType.jsonld-card.read_entity.read"] | null;
             monsterType?: components["schemas"]["MonsterType.jsonld-card.read_entity.read"] | null;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "AbstractCard.multipart-abstract_card.read_entity.read": {
             name?: string;
@@ -976,7 +984,7 @@ export interface components {
             monsterEffects?: components["schemas"]["MonsterEffect.multipart-abstract_card.read_entity.read"][];
             rulings?: components["schemas"]["Ruling.multipart-abstract_card.read_entity.read"][];
             tags?: components["schemas"]["Tag.multipart-abstract_card.read_entity.read"][];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "AbstractCard.multipart-card.read_entity.read": {
             name?: string;
@@ -990,7 +998,7 @@ export interface components {
             monsterAttribute?: components["schemas"]["MonsterAttribute.multipart-card.read_entity.read"] | null;
             monsterSubType?: components["schemas"]["MonsterSubType.multipart-card.read_entity.read"] | null;
             monsterType?: components["schemas"]["MonsterType.multipart-card.read_entity.read"] | null;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Card-card.write": {
             name: string;
@@ -1047,26 +1055,28 @@ export interface components {
             description?: string | null;
             reference: string;
             code?: string | null;
+            image?: components["schemas"]["MediaObject.jsonld-card.read_entity.read"] | null;
             bbCodeDescription?: string | null;
             pendulumDescription?: string | null;
             bbCodePendulumDescription?: string | null;
             abstractCard: components["schemas"]["AbstractCard.jsonld-card.read_entity.read"];
             extension: components["schemas"]["Extension.jsonld-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.jsonld-card.read_entity.read"][];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Card.multipart-card.read_entity.read": {
             name: string;
             description?: string | null;
             reference: string;
             code?: string | null;
+            image?: components["schemas"]["MediaObject.multipart-card.read_entity.read"] | null;
             bbCodeDescription?: string | null;
             pendulumDescription?: string | null;
             bbCodePendulumDescription?: string | null;
             abstractCard: components["schemas"]["AbstractCard.multipart-card.read_entity.read"];
             extension: components["schemas"]["Extension.multipart-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.multipart-card.read_entity.read"][];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardGroup-card_group.write": {
             name: string;
@@ -1076,27 +1086,27 @@ export interface components {
         };
         "CardGroup.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardGroup.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardGroup.jsonld-card_group.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardGroup.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardGroup.multipart-card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardGroup.multipart-card_group.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardSubType-card_sub_type.write": {
             name: string;
@@ -1132,39 +1142,39 @@ export interface components {
             name: string;
             cssClass?: string | null;
             cardType: components["schemas"]["CardType.jsonld-abstract_card.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardSubType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             cssClass?: string | null;
             cardType: components["schemas"]["CardType.jsonld-card.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardSubType.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             cssClass?: string | null;
             position: number;
             cardType: components["schemas"]["CardType.jsonld-card_sub_type.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardSubType.multipart-abstract_card.read_entity.read": {
             name: string;
             cssClass?: string | null;
             cardType: components["schemas"]["CardType.multipart-abstract_card.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardSubType.multipart-card.read_entity.read": {
             name: string;
             cssClass?: string | null;
             cardType: components["schemas"]["CardType.multipart-card.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardSubType.multipart-card_sub_type.read_entity.read": {
             name: string;
             cssClass?: string | null;
             position: number;
             cardType: components["schemas"]["CardType.multipart-card_sub_type.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType-card_type.write": {
             name: string;
@@ -1188,37 +1198,37 @@ export interface components {
         };
         "CardType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.jsonld-card_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             /** @default 0 */
             position: number;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.multipart-card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.multipart-card_sub_type.read_entity.read": {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "CardType.multipart-card_type.read_entity.read": {
             name: string;
             /** @default 0 */
             position: number;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         /** @description Unprocessable entity */
         ConstraintViolation: {
@@ -1281,21 +1291,21 @@ export interface components {
             code: string;
             position: number;
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Country.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Country.multipart-country.read_entity.read": {
             code: string;
             position: number;
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Country.multipart-extension.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         /** @description A representation of common errors. */
         Error: {
@@ -1365,7 +1375,7 @@ export interface components {
             country?: string;
         };
         "Extension.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Extension.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -1375,10 +1385,10 @@ export interface components {
             cardsCount: number;
             extensionType: components["schemas"]["ExtensionType.jsonld-extension.read_entity.read"];
             country: components["schemas"]["Country.jsonld-extension.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Extension.multipart-card.read_entity.read": {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Extension.multipart-extension.read_entity.read": {
             name: string;
@@ -1388,7 +1398,7 @@ export interface components {
             cardsCount: number;
             extensionType: components["schemas"]["ExtensionType.multipart-extension.read_entity.read"];
             country: components["schemas"]["Country.multipart-extension.read_entity.read"];
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "ExtensionType-extension_type.write": {
             name: string;
@@ -1402,24 +1412,24 @@ export interface components {
         };
         "ExtensionType.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "ExtensionType.jsonld-extension_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             /** @default 0 */
             position: number;
-            readonly id?: number | string;
+            readonly id?: number;
             readonly extensionsCount?: number;
         };
         "ExtensionType.multipart-extension.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "ExtensionType.multipart-extension_type.read_entity.read": {
             name: string;
             /** @default 0 */
             position: number;
-            readonly id?: number | string;
+            readonly id?: number;
             readonly extensionsCount?: number;
         };
         GameFormat: {
@@ -1428,7 +1438,7 @@ export interface components {
             description: string;
             extensions?: string[];
             restrictions?: string[];
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1440,7 +1450,7 @@ export interface components {
             description?: string;
             extensions?: string[];
             restrictions?: string[];
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1452,7 +1462,7 @@ export interface components {
             description: string;
             extensions?: string[];
             restrictions?: string[];
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1464,7 +1474,7 @@ export interface components {
             description: string;
             extensions?: string[];
             restrictions?: string[];
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1520,13 +1530,21 @@ export interface components {
             "@id": string;
             "@type": string;
         };
+        "MediaObject.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-media_object.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             filePath?: string | null;
             fileSize?: number | null;
             /** @enum {string|null} */
             context: "actuality" | "astrological_sign" | "card" | "card_sub_type" | "card_type" | "character" | "extension" | "file_type" | "monster_attribute" | "movie" | "smiley" | "content_bloc_attachment" | "content_bloc_carousel_image" | "content_bloc_image" | null;
             readonly contentUrl?: string | null;
-            readonly id?: number | string;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-card.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
         };
         "MonsterAttribute-monster_attribute.write": {
             name: string;
@@ -1546,27 +1564,27 @@ export interface components {
         };
         "MonsterAttribute.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterAttribute.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterAttribute.jsonld-monster_attribute.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterAttribute.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterAttribute.multipart-card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterAttribute.multipart-monster_attribute.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterEffect-monster_effect.write": {
             name: string;
@@ -1578,21 +1596,21 @@ export interface components {
         };
         "MonsterEffect.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterEffect.jsonld-monster_effect.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             description: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterEffect.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterEffect.multipart-monster_effect.read_entity.read": {
             name: string;
             description: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterSubType-monster_sub_type.write": {
             name: string;
@@ -1602,27 +1620,27 @@ export interface components {
         };
         "MonsterSubType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterSubType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterSubType.jsonld-monster_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterSubType.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterSubType.multipart-card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterSubType.multipart-monster_sub_type.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterType-monster_type.write": {
             name: string;
@@ -1632,27 +1650,27 @@ export interface components {
         };
         "MonsterType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterType.jsonld-monster_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterType.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterType.multipart-card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "MonsterType.multipart-monster_type.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Rarity-rarity.write": {
             name: string;
@@ -1667,24 +1685,24 @@ export interface components {
             position: number;
         };
         "Rarity.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Rarity.jsonld-rarity.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             description?: string | null;
             /** @default 0 */
             position: number;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Rarity.multipart-card.read_entity.read": {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Rarity.multipart-rarity.read_entity.read": {
             name: string;
             description?: string | null;
             /** @default 0 */
             position: number;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         Restriction: {
             /**
@@ -1699,7 +1717,7 @@ export interface components {
             gameFormat: string;
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1718,7 +1736,7 @@ export interface components {
             gameFormat?: string;
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber?: number;
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1737,7 +1755,7 @@ export interface components {
             gameFormat: string;
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
@@ -1756,17 +1774,17 @@ export interface components {
             gameFormat: string;
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
-            readonly id?: number | string;
+            readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
             /** Format: date-time */
             updatedAt?: string;
         };
         "Ruling.jsonld-abstract_card.read_entity.read": {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Ruling.multipart-abstract_card.read_entity.read": {
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Tag-tag.write": {
             name: string;
@@ -1782,25 +1800,25 @@ export interface components {
         };
         "Tag.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Tag.jsonld-tag.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             description: string;
             /** @default true */
             visible: boolean;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Tag.multipart-abstract_card.read_entity.read": {
             name: string;
-            readonly id?: number | string;
+            readonly id?: number;
         };
         "Tag.multipart-tag.read_entity.read": {
             name: string;
             description: string;
             /** @default true */
             visible: boolean;
-            readonly id?: number | string;
+            readonly id?: number;
         };
     };
     responses: never;
