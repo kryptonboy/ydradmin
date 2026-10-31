@@ -224,5 +224,5 @@ filterTags()
       </tr>
     </tfoot>
   </table>
-  <TagModal ref="tagModalRef" :tag="selectedTag" @tag-saved="filterTags" />
+  <TagModal ref="tagModalRef" :tag="selectedTag ?? undefined" @tag-saved="filterTags" />
 </template>

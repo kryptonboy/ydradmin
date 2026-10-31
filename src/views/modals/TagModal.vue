@@ -32,11 +32,11 @@ const onSubmit = async (values: Tag) => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['tagSaved'])
@@ -70,7 +70,7 @@ defineExpose({ showModal })
             visible: props.tag?.visible ?? true,
           }"
           :key="props.tag?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as Tag)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un tag</h5>

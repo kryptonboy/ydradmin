@@ -35,11 +35,11 @@ const onSubmit = async (values: Country) => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['countrySaved'])
@@ -72,8 +72,8 @@ defineExpose({ showModal })
             code: props.country?.code ?? '',
             position: props.country?.position ?? 1,
           }"
-          :key="props.tag?.id ?? 'new'"
-          @submit="onSubmit"
+          :key="props.country?.id ?? 'new'"
+          @submit="(values) => onSubmit(values as Country)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un pays</h5>

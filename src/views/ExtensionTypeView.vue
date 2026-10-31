@@ -196,7 +196,7 @@ filterExtensionTypes()
   </table>
   <ExtensionTypeModal
     ref="extensionTypeModalRef"
-    :extension-type="selectedExtensionType"
+    :extension-type="selectedExtensionType ?? undefined"
     @extension-type-saved="filterExtensionTypes"
   />
 </template>

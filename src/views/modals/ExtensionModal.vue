@@ -4,7 +4,8 @@ import { useExtensionsStore } from '@/stores/extensions.store'
 import type { Country } from '@/types/models/Country'
 import type { Extension } from '@/types/models/Extension'
 import type { ExtensionType } from '@/types/models/ExtensionType'
-import { ErrorMessage, Field, FormContext, Form as VeeForm } from 'vee-validate'
+import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
+import type { FormContext } from 'vee-validate'
 import { onMounted, ref, watch } from 'vue'
 import * as yup from 'yup'
 
@@ -79,12 +80,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['extensionSaved'])
@@ -129,7 +130,7 @@ defineExpose({ showModal })
             country: props.extension?.country ?? null,
           }"
           :key="props.extension?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as Extension)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une extension</h5>

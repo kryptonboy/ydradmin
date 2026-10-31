@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useMediaObjectsStore } from '@/stores/media_object.store'
-import { icon } from '@fortawesome/fontawesome-svg-core'
 import { ref } from 'vue'
 
 const props = defineProps<{

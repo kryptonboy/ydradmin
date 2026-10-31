@@ -182,7 +182,7 @@ function processFilters(): Filters {
 
 function filterCards() {
   const processedFilters = processFilters()
-  cardsStore.filter(processFilters, sort.value, currentPage.value)
+  cardsStore.filter(processedFilters, sort.value, currentPage.value)
 }
 
 const nbFilters = computed(() => {
@@ -519,5 +519,5 @@ filterCards()
       </tr>
     </tfoot>
   </table>
-  <CardModal ref="cardModalRef" :card="selectedCard" @card-saved="filterCards" />
+  <CardModal ref="cardModalRef" :card="selectedCard ?? undefined" @card-saved="filterCards" />
 </template>

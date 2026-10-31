@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { createFetchWrapper, router } from '@/helpers'
-import type { AuthStateData } from '@/types/AuthStateData'
+import type { AuthStateData } from '@/types/states/AuthStateData'
 import type { User } from '@/types/User'
 
 const baseUrl = `${import.meta.env.VITE_API_URL}`

@@ -191,7 +191,7 @@ filterMonsterAttributes()
   </table>
   <MonsterAttributeModal
     ref="monsterAttributeModalRef"
-    :monster-attribute="selectedMonsterAttribute"
+    :monster-attribute="selectedMonsterAttribute ?? undefined"
     @monster-attribute-saved="filterMonsterAttributes"
   />
 </template>

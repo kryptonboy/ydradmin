@@ -1,3 +1,4 @@
+import type { CardsState } from '@/types/states/CardsState'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth.store'
 import { buildApiPlatformQuery, createFetchWrapper, hydratePaginatedState } from '@/helpers'

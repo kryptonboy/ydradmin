@@ -454,7 +454,7 @@ filterAbstractCards()
   </table>
   <AbstractCardModal
     ref="abstractCardModalRef"
-    :abstract-card="selectedAbstractCard"
+    :abstract-card="selectedAbstractCard ?? undefined"
     @abstract-card-saved="filterAbstractCards"
   />
 </template>

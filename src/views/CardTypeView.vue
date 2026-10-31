@@ -190,7 +190,7 @@ filterCardTypes()
   </table>
   <CardTypeModal
     ref="cardTypeModalRef"
-    :card-type="selectedCardType"
+    :card-type="selectedCardType ?? undefined"
     @card-type-saved="filterCardTypes"
   />
 </template>

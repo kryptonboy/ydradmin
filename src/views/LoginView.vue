@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Form, Field } from 'vee-validate'
 import * as Yup from 'yup'
+import type { SubmissionContext } from 'vee-validate'
 import { useAuthStore } from '@/stores'
 
 const schema = Yup.object().shape({
@@ -8,7 +9,7 @@ const schema = Yup.object().shape({
   password: Yup.string().required('Password is required'),
 })
 
-function onSubmit(values, { setErrors }) {
+function onSubmit(values: Record<string, string>, { setErrors }: SubmissionContext) {
   const authStore = useAuthStore()
   const { username, password } = values
 

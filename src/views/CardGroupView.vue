@@ -190,7 +190,7 @@ filterCardGroups()
   </table>
   <CardGroupModal
     ref="cardGroupModalRef"
-    :card-group="selectedCardGroup"
+    :card-group="selectedCardGroup ?? undefined"
     @card-group-saved="filterCardGroups"
   />
 </template>

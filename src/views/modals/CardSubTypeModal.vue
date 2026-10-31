@@ -4,7 +4,7 @@ import { useCardSubTypesStore } from '@/stores/card_sub_types.store'
 import { useCardTypesStore } from '@/stores/card_types.store'
 import type { CardSubTypeForm } from '@/types/forms/CardSubTypeForm'
 import type { CardSubType } from '@/types/models/CardSubType'
-import { CardType } from '@/types/models/CardType'
+import type { CardType } from '@/types/models/CardType'
 import { Field, ErrorMessage, Form as VeeForm } from 'vee-validate'
 import type { FormContext } from 'vee-validate'
 import { onMounted, ref, watch } from 'vue'
@@ -84,12 +84,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['cardSubTypeSaved'])
@@ -126,7 +126,7 @@ defineExpose({ showModal })
             cardType: props.cardSubType?.cardType ?? null,
           }"
           :key="props.cardSubType?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as CardSubType)"
         >
           <div class="modal-header">
             <h5 class="modal-title">

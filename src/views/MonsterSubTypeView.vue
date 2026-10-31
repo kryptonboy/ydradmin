@@ -191,7 +191,7 @@ filterMonsterSubTypes()
   </table>
   <MonsterSubTypeModal
     ref="monsterSubTypeModalRef"
-    :monster-sub-type="selectedMonsterSubType"
+    :monster-sub-type="selectedMonsterSubType ?? undefined"
     @monster-sub-type-saved="filterMonsterSubTypes"
   />
 </template>

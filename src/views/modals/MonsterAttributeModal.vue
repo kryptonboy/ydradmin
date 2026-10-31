@@ -57,12 +57,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['monsterAttributeSaved'])
@@ -93,7 +93,7 @@ defineExpose({ showModal })
           :validation-schema="schema"
           :initial-values="{ name: props.monsterAttribute?.name ?? '' }"
           :key="props.monsterAttribute?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as MonsterAttribute)"
         >
           <div class="modal-header">
             <h5 class="modal-title">

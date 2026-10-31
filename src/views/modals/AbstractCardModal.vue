@@ -194,12 +194,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['abstractCardSaved'])
@@ -249,7 +249,7 @@ defineExpose({ showModal })
             tags: props.abstractCard?.tags ?? [],
           }"
           :key="props.abstractCard?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as AbstractCard)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une carte abstraite</h5>

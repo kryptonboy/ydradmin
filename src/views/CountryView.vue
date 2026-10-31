@@ -194,5 +194,5 @@ filterCountries()
       </tr>
     </tfoot>
   </table>
-  <CountryModal ref="countryModalRef" :country="selectedCountry" @country-saved="filterCountries" />
+  <CountryModal ref="countryModalRef" :country="selectedCountry ?? undefined" @country-saved="filterCountries" />
 </template>

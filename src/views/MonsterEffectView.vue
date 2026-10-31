@@ -202,7 +202,7 @@ filterMonsterEffects()
   </table>
   <MonsterEffectModal
     ref="monsterEffectModalRef"
-    :monster-effect="selectedMonsterEffect"
+    :monster-effect="selectedMonsterEffect ?? undefined"
     @monster-effect-saved="filterMonsterEffects"
   />
 </template>

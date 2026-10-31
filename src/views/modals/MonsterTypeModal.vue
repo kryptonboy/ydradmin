@@ -48,12 +48,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['monsterTypeSaved'])
@@ -84,7 +84,7 @@ defineExpose({ showModal })
           :validation-schema="schema"
           :initial-values="{ name: props.monsterType?.name ?? '' }"
           :key="props.monsterType?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as MonsterType)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un type de monstre</h5>

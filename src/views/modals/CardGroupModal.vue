@@ -48,12 +48,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['cardGroupSaved'])
@@ -84,7 +84,7 @@ defineExpose({ showModal })
           :validation-schema="schema"
           :initial-values="{ name: props.cardGroup?.name ?? '' }"
           :key="props.cardGroup?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as CardGroup)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un groupe de cartes</h5>

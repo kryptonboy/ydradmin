@@ -31,11 +31,11 @@ const onSubmit = async (values: ExtensionType) => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['extensionTypeSaved'])
@@ -68,7 +68,7 @@ defineExpose({ showModal })
             position: props.extensionType?.position ?? 1,
           }"
           :key="props.extensionType?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as ExtensionType)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un type d'extension</h5>

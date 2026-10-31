@@ -260,7 +260,7 @@ filterExtensions()
   </table>
   <ExtensionModal
     ref="extensionModalRef"
-    :extension="selectedExtension"
+    :extension="selectedExtension ?? undefined"
     @extension-saved="filterExtensions"
   />
 </template>

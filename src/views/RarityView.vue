@@ -193,5 +193,5 @@ filterRarities()
       </tr>
     </tfoot>
   </table>
-  <RarityModal ref="rarityModalRef" :rarity="selectedRarity" @rarity-saved="filterRarities" />
+  <RarityModal ref="rarityModalRef" :rarity="selectedRarity ?? undefined" @rarity-saved="filterRarities" />
 </template>

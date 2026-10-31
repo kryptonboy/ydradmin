@@ -59,12 +59,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['cardTypeSaved'])
@@ -98,7 +98,7 @@ defineExpose({ showModal })
             position: props.cardType?.position ?? 0,
           }"
           :key="props.cardType?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as CardType)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un type de carte</h5>

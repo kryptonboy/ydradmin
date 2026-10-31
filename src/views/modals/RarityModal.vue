@@ -52,12 +52,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['raritySaved'])
@@ -92,7 +92,7 @@ defineExpose({ showModal })
             position: props.rarity?.position ?? 0,
           }"
           :key="props.rarity?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as Rarity)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'une rareté</h5>

@@ -50,12 +50,12 @@ const resetForm = () => {
 }
 
 const hideModal = () => {
-  modalInstance.hide()
+  modalInstance?.hide()
   resetForm()
 }
 
 const showModal = () => {
-  modalInstance.show()
+  modalInstance?.show()
 }
 
 const emit = defineEmits(['monsterEffectSaved'])
@@ -89,7 +89,7 @@ defineExpose({ showModal })
             description: props.monsterEffect?.description ?? '',
           }"
           :key="props.monsterEffect?.id ?? 'new'"
-          @submit="onSubmit"
+          @submit="(values) => onSubmit(values as MonsterEffect)"
         >
           <div class="modal-header">
             <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un effet de monstre</h5>

@@ -228,7 +228,7 @@ filterCardSubTypes()
   </table>
   <CardSubTypeModal
     ref="cardSubTypeModalRef"
-    :card-sub-type="selectedCardSubType"
+    :card-sub-type="selectedCardSubType ?? undefined"
     @card-sub-type-saved="filterCardSubTypes"
   />
 </template>

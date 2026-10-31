@@ -80,7 +80,7 @@ const paginationArray = computed(() =>
         <span v-if="page.isEllipsis" class="page-link disabled">{{ page.text }}</span>
         <a
           class="page-link"
-          @click="changePage(page.pageNumber)"
+          @click="changePage(page.pageNumber as number)"
           v-else-if="!page.isCurrent"
           role="button"
           >{{ page.text }}</a
