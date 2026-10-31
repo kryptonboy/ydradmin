@@ -1,132 +1,63 @@
 <script setup lang="ts">
+import FormModal from '@/components/FormModal.vue'
 import { useSubmit } from '@/composables/useSubmit'
-import type { SubmissionContext } from 'vee-validate'
-import { useCardGroupsStore } from '@/stores/card_groups.store'
+import { useCardGroupsStore } from '@/stores'
 import type { CardGroup } from '@/types/models/CardGroup'
-import { ErrorMessage, Field, Form as VeeForm } from 'vee-validate'
-import type { FormContext } from 'vee-validate'
-import { onMounted, ref, watch } from 'vue'
+import type { SubmissionContext } from 'vee-validate'
+import { ErrorMessage, Field } from 'vee-validate'
+import { computed, useTemplateRef } from 'vue'
 import * as yup from 'yup'
 
 const props = defineProps({
   cardGroup: { type: Object, default: null },
 })
 
-const modalEl = ref(null)
-let modalInstance: bootstrap.Modal | null = null
+const emit = defineEmits(['cardGroupSaved'])
 
-const isEdit = ref(false)
-const addOther = ref(false)
+const modal = useTemplateRef<InstanceType<typeof FormModal>>('modal')
+const store = useCardGroupsStore()
+const { submitError, submit } = useSubmit()
 
-const formRef = ref<FormContext<CardGroup> | null>(null)
+const isEdit = computed(() => !!props.cardGroup)
 
 const schema = yup.object({
   name: yup.string().required('Nom requis'),
 })
 
-const store = useCardGroupsStore()
-const { submitError, submit } = useSubmit()
-
-const onSubmit = async (values: CardGroup, { setErrors }: SubmissionContext) => {
+const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
+  const cardGroupValues = values as unknown as CardGroup
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.update(props.cardGroup.id, values)
+      await store.update(props.cardGroup.id, cardGroupValues)
     } else {
-      await store.create(values)
+      await store.create(cardGroupValues)
     }
   }, setErrors)
   if (!saved) return
   emit('cardGroupSaved')
-  if (addOther.value === true && !isEdit.value) {
-    resetForm()
-  } else {
-    hideModal()
-  }
+  modal.value?.finish(isEdit.value)
 }
 
-const resetForm = () => {
-  if (formRef.value) {
-    formRef.value.resetForm({
-      values: {
-        name: '',
-      },
-    })
-  }
-}
-
-const hideModal = () => {
-  modalInstance?.hide()
-  submitError.value = null
-  resetForm()
-}
-
-const showModal = () => {
-  modalInstance?.show()
-}
-
-const emit = defineEmits(['cardGroupSaved'])
-
-watch(
-  () => props.cardGroup,
-  (newCardGroup) => {
-    isEdit.value = !!newCardGroup
-  },
-  { immediate: true },
-)
-
-onMounted(() => {
-  if (modalEl.value) {
-    modalInstance = new bootstrap.Modal(modalEl.value)
-  }
-})
-
-defineExpose({ showModal })
+defineExpose({ showModal: () => modal.value?.show() })
 </script>
 
 <template>
-  <div class="modal fade" id="cardGroupModal" tabindex="-1" aria-hidden="true" ref="modalEl">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <VeeForm
-          ref="formRef"
-          :validation-schema="schema"
-          :initial-values="{ name: props.cardGroup?.name ?? '' }"
-          :key="props.cardGroup?.id ?? 'new'"
-          @submit="(values, ctx) => onSubmit(values as CardGroup, ctx)"
-        >
-          <div class="modal-header">
-            <h5 class="modal-title">{{ isEdit ? 'Edition' : 'Création' }} d'un groupe de cartes</h5>
-            <button type="button" class="btn-close" @click="hideModal"></button>
-          </div>
-          <div class="modal-body">
-            <div v-if="submitError" class="alert alert-danger" role="alert">{{ submitError }}</div>
-            <div class="mb-3">
-              <label class="form-label">Nom</label>
-              <Field name="name" type="text" class="form-control" />
-              <ErrorMessage name="name" class="text-danger small" />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <div class="form-check form-switch" v-if="!isEdit">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="addOtherSwitch"
-                v-model="addOther"
-              />
-              <label class="form-check-label" for="addOtherSwitch"> Ajouter un autre groupe </label>
-            </div>
-            <button type="button" class="btn btn-secondary" @click="hideModal">
-              <font-awesome-icon :icon="['fa', 'xmark']" />
-              Annuler
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <font-awesome-icon :icon="['fa', 'floppy-disk']" />
-              {{ isEdit ? 'Modifier' : 'Créer' }}
-            </button>
-          </div>
-        </VeeForm>
-      </div>
+  <FormModal
+    ref="modal"
+    id="cardGroupModal"
+    title="d'un groupe de cartes"
+    add-other-label="Ajouter un autre groupe"
+    :is-edit="isEdit"
+    :schema="schema"
+    :initial-values="{ name: props.cardGroup?.name ?? '' }"
+    :form-key="props.cardGroup?.id ?? 'new'"
+    :submit-error="submitError"
+    @submit="onSubmit"
+  >
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <Field name="name" type="text" class="form-control" />
+      <ErrorMessage name="name" class="text-danger small" />
     </div>
-  </div>
+  </FormModal>
 </template>
