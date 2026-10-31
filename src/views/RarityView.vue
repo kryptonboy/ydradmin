@@ -1,53 +1,34 @@
 <script setup lang="ts">
-import { useRaritiesStore } from '@/stores/rarities.store'
-import { storeToRefs } from 'pinia'
-import { computed, reactive, ref } from 'vue'
-import RarityModal from './modals/RarityModal.vue'
-import type { Rarity } from '@/types/models/Rarity'
-import type { Sort } from '@/types/Api'
 import AppPaginator from '@/components/AppPaginator.vue'
-
-const raritiesStore = useRaritiesStore()
-const { items: rarities, loading, pagination } = storeToRefs(raritiesStore)
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
+import { useRaritiesStore } from '@/stores'
+import type { Rarity } from '@/types/models/Rarity'
+import { ref } from 'vue'
+import RarityModal from './modals/RarityModal.vue'
 
 const rarityModalRef = ref<InstanceType<typeof RarityModal> | null>(null)
 const selectedRarity = ref<Rarity | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
+const {
+  items: rarities,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterRarities,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useRaritiesStore(), {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-})
-
-function setSort(field: 'id' | 'name' | 'position') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterRarities()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  currentPage.value = 1
-  filterRarities()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterRarities()
-}
 
 function openRarityModal(rarity: Rarity | null = null) {
   selectedRarity.value = rarity
@@ -55,31 +36,6 @@ function openRarityModal(rarity: Rarity | null = null) {
     rarityModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterRarities()
-}
-
-function filterRarities() {
-  raritiesStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (Array.isArray(filterValue)) {
-      if (filterValue.length > 0) nbFilters++
-      continue
-    }
-    if (filterValue !== null) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterRarities()
 </script>
 
 <template>
@@ -135,21 +91,9 @@ filterRarities()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('position')" role="button">
-          Position
-          <font-awesome-icon v-if="sort.sortBy === 'position'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
+        <SortableHeader field="position" :sort="sort" @sort="setSort">Position</SortableHeader>
         <th scope="col">Actions</th>
       </tr>
     </thead>

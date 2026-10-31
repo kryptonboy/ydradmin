@@ -1,30 +1,36 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useTagsStore } from '@/stores'
-import { computed, reactive, ref } from 'vue'
-import type { Sort } from '@/types/Api'
-import TagModal from './modals/TagModal.vue'
-import type { Tag } from '@/types/models/Tag'
 import AppPaginator from '@/components/AppPaginator.vue'
+import SortableHeader from '@/components/SortableHeader.vue'
 import BooleanToIcon from '@/components/BooleanToIcon.vue'
-
-const tagsStore = useTagsStore()
-const { items: tags, loading, pagination } = storeToRefs(tagsStore)
+import { useListView } from '@/composables/useListView'
+import { useTagsStore } from '@/stores'
+import type { Tag } from '@/types/models/Tag'
+import { computed, ref } from 'vue'
+import TagModal from './modals/TagModal.vue'
 
 const tagModalRef = ref<InstanceType<typeof TagModal> | null>(null)
 const selectedTag = ref<Tag | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'id',
-  sortDir: 'asc',
-})
-
-const filters = reactive({
-  name: null as string | null,
-  description: null as string | null,
-  visible: null as boolean | null,
+const {
+  items: tags,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterTags,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useTagsStore(), {
+  sort: { sortBy: 'id', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+    description: null as string | null,
+    visible: null as boolean | null,
+  }),
 })
 
 const visibleFilter = computed({
@@ -40,60 +46,12 @@ const visibleFilter = computed({
   },
 })
 
-function setSort(field: 'id' | 'name') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterTags()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilter() {
-  filters.name = null
-  filters.description = null
-  filters.visible = null
-  currentPage.value = 1
-  filterTags()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterTags()
-}
-
 function openTagModal(tag: Tag | null = null) {
   selectedTag.value = tag
   if (null !== tagModalRef.value) {
     tagModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterTags()
-}
-
-function filterTags() {
-  tagsStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterTags()
 </script>
 
 <template>
@@ -154,7 +112,7 @@ filterTags()
         </select>
       </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">
-        <button class="btn btn-secondary w-100" @click="resetFilter">
+        <button class="btn btn-secondary w-100" @click="resetFilters">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
           Réinitialiser
         </button>
@@ -168,16 +126,8 @@ filterTags()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <th scope="col">Description</th>
         <th scope="col">Visible</th>
         <th scope="col">Actions</th>

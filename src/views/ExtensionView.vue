@@ -1,78 +1,34 @@
 <script setup lang="ts">
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
 import { useExtensionsStore } from '@/stores/extensions.store'
-import { storeToRefs } from 'pinia'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import ExtensionModal from './modals/ExtensionModal.vue'
 import type { Extension } from '@/types/models/Extension'
 import type { ExtensionType } from '@/types/models/ExtensionType'
 import type { Country } from '@/types/models/Country'
-import type { Filters, Sort } from '@/types/Api'
+import type { Filters } from '@/types/Api'
 import { useCountriesStore, useExtensionTypesStore } from '@/stores'
 import AppPaginator from '@/components/AppPaginator.vue'
 
 const extensionsStore = useExtensionsStore()
 const extensionTypesStore = useExtensionTypesStore()
 const countriesStore = useCountriesStore()
-const { items: extensions, loading, pagination } = storeToRefs(extensionsStore)
 
 const extensionModalRef = ref<InstanceType<typeof ExtensionModal> | null>(null)
 const selectedExtension = ref<Extension | null>(null)
 
-const currentPage = ref<number>(1)
 const extensionTypes = ref<ExtensionType[]>([])
 const countries = ref<Country[]>([])
 
-const sort = ref<Sort>({
-  sortBy: 'releaseDate',
-  sortDir: 'asc',
-})
-
-const filters = reactive({
+const createFilters = () => ({
   name: null as string | null,
   extensionType: [] as ExtensionType[],
   country: null as Country | null,
 })
+type ListFilters = ReturnType<typeof createFilters>
 
-function setSort(field: 'id' | 'name' | 'releaseDate') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterExtensions()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  filters.extensionType = []
-  filters.country = null
-  currentPage.value = 1
-  filterExtensions()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterExtensions()
-}
-
-function openExtensionModal(extension: Extension | null = null) {
-  selectedExtension.value = extension
-  if (null !== extensionModalRef.value) {
-    extensionModalRef.value.showModal()
-  }
-}
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterExtensions()
-}
-
-function processFilters(): Filters {
+function toQuery(filters: ListFilters): Filters {
   return {
     name: filters.name,
     extensionType: filters.extensionType.map((ext) => ext.id),
@@ -80,26 +36,31 @@ function processFilters(): Filters {
   }
 }
 
-function filterExtensions() {
-  const processedFilters = processFilters()
-  extensionsStore.filter(processedFilters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (Array.isArray(filterValue)) {
-      if (filterValue.length > 0) {
-        nbFilters++
-      }
-      continue
-    }
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
+const {
+  items: extensions,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterExtensions,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(extensionsStore, {
+  sort: { sortBy: 'releaseDate', sortDir: 'asc' },
+  createFilters,
+  toQuery,
 })
+
+function openExtensionModal(extension: Extension | null = null) {
+  selectedExtension.value = extension
+  if (null !== extensionModalRef.value) {
+    extensionModalRef.value.showModal()
+  }
+}
 
 function formatDate(date: string | Date | undefined | null) {
   if (!date) return ''
@@ -192,23 +153,13 @@ filterExtensions()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <th scope="col">Référence</th>
         <th scope="col">Nb de cartes</th>
-        <th scope="col" @click="setSort('releaseDate')" role="button">
-          Date de release
-          <font-awesome-icon v-if="sort.sortBy === 'releaseDate'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="releaseDate" :sort="sort" @sort="setSort"
+          >Date de release</SortableHeader
+        >
         <th scope="col">Type d'extension</th>
         <th scope="col">Pays</th>
         <th scope="col">Actions</th>

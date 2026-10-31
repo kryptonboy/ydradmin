@@ -1,52 +1,34 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { computed, reactive, ref } from 'vue'
-import type { ExtensionType } from '@/types/models/ExtensionType'
-import ExtensionTypeModal from './modals/ExtensionTypeModal.vue'
-import type { Sort } from '@/types/Api'
+import AppPaginator from '@/components/AppPaginator.vue'
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
 import { useExtensionTypesStore } from '@/stores'
-
-const extensionTypesStore = useExtensionTypesStore()
-const { items: extensionTypes, loading, pagination } = storeToRefs(extensionTypesStore)
+import type { ExtensionType } from '@/types/models/ExtensionType'
+import { ref } from 'vue'
+import ExtensionTypeModal from './modals/ExtensionTypeModal.vue'
 
 const extensionTypeModalRef = ref<InstanceType<typeof ExtensionTypeModal> | null>(null)
 const selectedExtensionType = ref<ExtensionType | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'position',
-  sortDir: 'asc',
+const {
+  items: extensionTypes,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterExtensionTypes,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useExtensionTypesStore(), {
+  sort: { sortBy: 'position', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-})
-
-function setSort(field: 'id' | 'name' | 'position' | 'extensionsCount') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterExtensionTypes()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilter() {
-  filters.name = null
-  currentPage.value = 1
-  filterExtensionTypes()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterExtensionTypes()
-}
 
 function openExtensionTypeModal(extensionType: ExtensionType | null = null) {
   selectedExtensionType.value = extensionType
@@ -54,27 +36,6 @@ function openExtensionTypeModal(extensionType: ExtensionType | null = null) {
     extensionTypeModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterExtensionTypes()
-}
-
-function filterExtensionTypes() {
-  extensionTypesStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterExtensionTypes()
 </script>
 
 <template>
@@ -116,7 +77,7 @@ filterExtensionTypes()
         />
       </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">
-        <button class="btn btn-secondary w-100" @click="resetFilter">
+        <button class="btn btn-secondary w-100" @click="resetFilters">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
           Réinitialiser
         </button>
@@ -130,26 +91,12 @@ filterExtensionTypes()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('position')" role="button">
-          Ordre
-          <font-awesome-icon v-if="sort.sortBy === 'position'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('extensionsCount')" role="button">
-          Nombre d'extensions
-          <font-awesome-icon v-if="sort.sortBy === 'extensionsCount'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
+        <SortableHeader field="position" :sort="sort" @sort="setSort">Ordre</SortableHeader>
+        <SortableHeader field="extensionsCount" :sort="sort" @sort="setSort"
+          >Nombre d'extensions</SortableHeader
+        >
         <th scope="col">Actions</th>
       </tr>
     </thead>

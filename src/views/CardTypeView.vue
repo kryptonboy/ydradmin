@@ -1,52 +1,34 @@
 <script setup lang="ts">
-import { useCardTypesStore } from '@/stores/card_types.store'
-import { storeToRefs } from 'pinia'
-import { computed, reactive, ref } from 'vue'
-import CardTypeModal from './modals/CardTypeModal.vue'
-import type { CardType } from '@/types/models/CardType'
-import type { Sort } from '@/types/Api'
 import AppPaginator from '@/components/AppPaginator.vue'
-
-const cardTypesStore = useCardTypesStore()
-const { items: cardTypes, loading, pagination } = storeToRefs(cardTypesStore)
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
+import { useCardTypesStore } from '@/stores'
+import type { CardType } from '@/types/models/CardType'
+import { ref } from 'vue'
+import CardTypeModal from './modals/CardTypeModal.vue'
 
 const cardTypeModalRef = ref<InstanceType<typeof CardTypeModal> | null>(null)
 const selectedCardType = ref<CardType | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
+const {
+  items: cardTypes,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterCardTypes,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useCardTypesStore(), {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-})
-
-function setSort(field: 'id' | 'name' | 'position') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterCardTypes()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  filterCardTypes()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterCardTypes()
-}
 
 function openCardTypeModal(cardType: CardType | null = null) {
   selectedCardType.value = cardType
@@ -54,27 +36,6 @@ function openCardTypeModal(cardType: CardType | null = null) {
     cardTypeModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterCardTypes()
-}
-
-function filterCardTypes() {
-  cardTypesStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterCardTypes()
 </script>
 
 <template>
@@ -130,21 +91,9 @@ filterCardTypes()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('position')" role="button">
-          Position
-          <font-awesome-icon v-if="sort.sortBy === 'position'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
+        <SortableHeader field="position" :sort="sort" @sort="setSort">Position</SortableHeader>
         <th scope="col">Actions</th>
       </tr>
     </thead>

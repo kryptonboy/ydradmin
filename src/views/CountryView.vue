@@ -1,53 +1,34 @@
 <script setup lang="ts">
-import { useCountriesStore } from '@/stores'
-import { storeToRefs } from 'pinia'
-import { computed, reactive, ref } from 'vue'
-import CountryModal from './modals/CountryModal.vue'
-import type { Country } from '@/types/models/Country'
-import type { Sort } from '@/types/Api'
 import AppPaginator from '@/components/AppPaginator.vue'
-
-const countriesStore = useCountriesStore()
-const { items: countries, loading, pagination } = storeToRefs(countriesStore)
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
+import { useCountriesStore } from '@/stores'
+import type { Country } from '@/types/models/Country'
+import { ref } from 'vue'
+import CountryModal from './modals/CountryModal.vue'
 
 const countryModalRef = ref<InstanceType<typeof CountryModal> | null>(null)
 const selectedCountry = ref<Country | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
+const {
+  items: countries,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterCountries,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useCountriesStore(), {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-})
-
-function setSort(field: 'id' | 'name' | 'position') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterCountries()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilter() {
-  filters.name = null
-  currentPage.value = 1
-  filterCountries()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterCountries()
-}
 
 function openCountryModal(country: Country | null = null) {
   selectedCountry.value = country
@@ -55,27 +36,6 @@ function openCountryModal(country: Country | null = null) {
     countryModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterCountries()
-}
-
-function filterCountries() {
-  countriesStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterCountries()
 </script>
 
 <template>
@@ -117,7 +77,7 @@ filterCountries()
         />
       </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">
-        <button class="btn btn-secondary w-100" @click="resetFilter">
+        <button class="btn btn-secondary w-100" @click="resetFilters">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
           Réinitialiser
         </button>
@@ -131,21 +91,9 @@ filterCountries()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('position')" role="button">
-          Position
-          <font-awesome-icon v-if="sort.sortBy === 'position'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
+        <SortableHeader field="position" :sort="sort" @sort="setSort">Position</SortableHeader>
         <th scope="col">Actions</th>
       </tr>
     </thead>

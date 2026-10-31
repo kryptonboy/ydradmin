@@ -1,52 +1,34 @@
 <script setup lang="ts">
-import { useCardGroupsStore } from '@/stores/card_groups.store'
-import { storeToRefs } from 'pinia'
-import { computed, reactive, ref } from 'vue'
-import CardGroupModal from './modals/CardGroupModal.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
+import { useCardGroupsStore } from '@/stores'
 import type { CardGroup } from '@/types/models/CardGroup'
-import type { Sort } from '@/types/Api'
-
-const cardGroupsStore = useCardGroupsStore()
-const { items: cardGroups, loading, pagination } = storeToRefs(cardGroupsStore)
+import { ref } from 'vue'
+import CardGroupModal from './modals/CardGroupModal.vue'
 
 const cardGroupModalRef = ref<InstanceType<typeof CardGroupModal> | null>(null)
 const selectedCardGroup = ref<CardGroup | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
+const {
+  items: cardGroups,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterCardGroups,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useCardGroupsStore(), {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-})
-
-function setSort(field: 'id' | 'name') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterCardGroups()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  currentPage.value = 1
-  filterCardGroups()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterCardGroups()
-}
 
 function openCardGroupModal(cardGroup: CardGroup | null = null) {
   selectedCardGroup.value = cardGroup
@@ -54,33 +36,6 @@ function openCardGroupModal(cardGroup: CardGroup | null = null) {
     cardGroupModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterCardGroups()
-}
-
-function filterCardGroups() {
-  cardGroupsStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (Array.isArray(filterValue)) {
-      if (filterValue.length > 0) {
-        nbFilters++
-      }
-      continue
-    }
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterCardGroups()
 </script>
 
 <template>
@@ -136,16 +91,8 @@ filterCardGroups()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <th scope="col">Actions</th>
       </tr>
     </thead>

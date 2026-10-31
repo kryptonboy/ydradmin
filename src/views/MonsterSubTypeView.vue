@@ -1,53 +1,34 @@
 <script setup lang="ts">
-import { useMonsterSubTypesStore } from '@/stores/monster_sub_types.store'
-import { storeToRefs } from 'pinia'
-import { computed, reactive, ref } from 'vue'
-import MonsterSubTypeModal from './modals/MonsterSubTypeModal.vue'
-import type { MonsterSubType } from '@/types/models/MonsterSubType'
-import type { Sort } from '@/types/Api'
 import AppPaginator from '@/components/AppPaginator.vue'
-
-const monsterSubTypesStore = useMonsterSubTypesStore()
-const { items: monsterSubTypes, loading, pagination } = storeToRefs(monsterSubTypesStore)
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
+import { useMonsterSubTypesStore } from '@/stores'
+import type { MonsterSubType } from '@/types/models/MonsterSubType'
+import { ref } from 'vue'
+import MonsterSubTypeModal from './modals/MonsterSubTypeModal.vue'
 
 const monsterSubTypeModalRef = ref<InstanceType<typeof MonsterSubTypeModal> | null>(null)
 const selectedMonsterSubType = ref<MonsterSubType | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
+const {
+  items: monsterSubTypes,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterMonsterSubTypes,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useMonsterSubTypesStore(), {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-})
-
-function setSort(field: 'id' | 'name') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterMonsterSubTypes()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  currentPage.value = 1
-  filterMonsterSubTypes()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterMonsterSubTypes()
-}
 
 function openMonsterSubTypeModal(monsterSubType: MonsterSubType | null = null) {
   selectedMonsterSubType.value = monsterSubType
@@ -55,33 +36,6 @@ function openMonsterSubTypeModal(monsterSubType: MonsterSubType | null = null) {
     monsterSubTypeModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterMonsterSubTypes()
-}
-
-function filterMonsterSubTypes() {
-  monsterSubTypesStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (Array.isArray(filterValue)) {
-      if (filterValue.length > 0) {
-        nbFilters++
-      }
-      continue
-    }
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterMonsterSubTypes()
 </script>
 
 <template>
@@ -137,16 +91,8 @@ filterMonsterSubTypes()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <th scope="col">Actions</th>
       </tr>
     </thead>

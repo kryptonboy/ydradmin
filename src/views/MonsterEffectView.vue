@@ -1,55 +1,35 @@
 <script setup lang="ts">
-import { useMonsterEffectsStore } from '@/stores/monster_effects.store'
-import { storeToRefs } from 'pinia'
-import MonsterEffectModal from './modals/MonsterEffectModal.vue'
-import type { MonsterEffect } from '@/types/models/MonsterEffect'
-import { computed, reactive, ref } from 'vue'
-import type { Sort } from '@/types/Api'
 import AppPaginator from '@/components/AppPaginator.vue'
-
-const monsterEffectsStore = useMonsterEffectsStore()
-const { items: monsterEffects, loading, pagination } = storeToRefs(monsterEffectsStore)
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
+import { useMonsterEffectsStore } from '@/stores'
+import type { MonsterEffect } from '@/types/models/MonsterEffect'
+import { ref } from 'vue'
+import MonsterEffectModal from './modals/MonsterEffectModal.vue'
 
 const monsterEffectModalRef = ref<InstanceType<typeof MonsterEffectModal> | null>(null)
 const selectedMonsterEffect = ref<MonsterEffect | null>(null)
 
-const currentPage = ref<number>(1)
-
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
+const {
+  items: monsterEffects,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterMonsterEffects,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(useMonsterEffectsStore(), {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters: () => ({
+    name: null as string | null,
+    description: null as string | null,
+  }),
 })
-
-const filters = reactive({
-  name: null as string | null,
-  description: null as string | null,
-})
-
-function setSort(field: 'id' | 'name') {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterMonsterEffects()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  filters.description = null
-  currentPage.value = 1
-  filterMonsterEffects()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterMonsterEffects()
-}
 
 function openMonsterEffectModal(monsterEffect: MonsterEffect | null = null) {
   selectedMonsterEffect.value = monsterEffect
@@ -57,31 +37,6 @@ function openMonsterEffectModal(monsterEffect: MonsterEffect | null = null) {
     monsterEffectModalRef.value.showModal()
   }
 }
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterMonsterEffects()
-}
-
-function filterMonsterEffects() {
-  monsterEffectsStore.filter(filters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (Array.isArray(filterValue)) {
-      if (filterValue.length > 0) nbFilters++
-      continue
-    }
-    if (filterValue !== null) nbFilters++
-  }
-
-  return nbFilters
-})
-
-filterMonsterEffects()
 </script>
 
 <template>
@@ -148,16 +103,8 @@ filterMonsterEffects()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <th scope="col">Actions</th>
       </tr>
     </thead>

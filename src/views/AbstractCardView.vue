@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SortableHeader from '@/components/SortableHeader.vue'
+import { useListView } from '@/composables/useListView'
 import {
   useAbstractCardsStore,
   useCardGroupsStore,
@@ -10,8 +12,7 @@ import {
   useMonsterTypesStore,
   useTagsStore,
 } from '@/stores'
-import { storeToRefs } from 'pinia'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import AbstractCardModal from './modals/AbstractCardModal.vue'
 import type { AbstractCard } from '@/types/models/AbstractCard'
 import type { CardSubType } from '@/types/models/CardSubType'
@@ -22,7 +23,7 @@ import type { MonsterSubType } from '@/types/models/MonsterSubType'
 import type { MonsterType } from '@/types/models/MonsterType'
 import type { MonsterEffect } from '@/types/models/MonsterEffect'
 import type { Tag } from '@/types/models/Tag'
-import type { Filters, Sort } from '@/types/Api'
+import type { Filters } from '@/types/Api'
 import AppPaginator from '@/components/AppPaginator.vue'
 import CardProperties from '@/components/CardProperties.vue'
 import { getFullyQualifiedCssClass } from '@/helpers/card'
@@ -37,12 +38,9 @@ const monsterTypesStore = useMonsterTypesStore()
 const monsterEffectsStore = useMonsterEffectsStore()
 const tagsStore = useTagsStore()
 
-const { items: abstractCards, loading, pagination } = storeToRefs(abstractCardsStore)
-
 const abstractCardModalRef = ref<InstanceType<typeof AbstractCardModal> | null>(null)
 const selectedAbstractCard = ref<AbstractCard | null>(null)
 
-const currentPage = ref<number>(1)
 const cardSubTypes = ref<CardSubType[]>([])
 const cardTypes = ref<CardType[]>([])
 const cardGroups = ref<CardGroup[]>([])
@@ -83,12 +81,7 @@ async function fetchTags(query: string) {
   }
 }
 
-const sort = ref<Sort>({
-  sortBy: 'name',
-  sortDir: 'asc',
-})
-
-const filters = reactive({
+const createFilters = () => ({
   name: null as string | null,
   cardSubType: [] as CardSubType[],
   'cardSubType.cardType': [] as CardType[],
@@ -99,63 +92,9 @@ const filters = reactive({
   monsterEffects: [] as MonsterEffect[],
   tags: [] as Tag[],
 })
+type ListFilters = ReturnType<typeof createFilters>
 
-function setSort(
-  field:
-    | 'id'
-    | 'name'
-    | 'cardSubType.name'
-    | 'cardSubType.cardType.name'
-    | 'cardGroup.name'
-    | 'monsterAttribute.name'
-    | 'monsterSubType.name'
-    | 'monsterType.name',
-) {
-  if (field === sort.value.sortBy) {
-    sort.value.sortDir = sort.value.sortDir === 'asc' ? 'desc' : 'asc'
-  } else {
-    sort.value.sortBy = field
-    sort.value.sortDir = 'asc'
-  }
-  filterAbstractCards()
-}
-
-function getSortIcon() {
-  return sort.value.sortDir === 'asc' ? ['fa', 'sort-up'] : ['fa', 'sort-down']
-}
-
-function resetFilters() {
-  filters.name = null
-  filters.cardSubType = []
-  filters['cardSubType.cardType'] = []
-  filters.cardGroup = []
-  filters.monsterAttribute = []
-  filters.monsterSubType = []
-  filters.monsterType = []
-  filters.monsterEffects = []
-  filters.tags = []
-  currentPage.value = 1
-  filterAbstractCards()
-}
-
-function applyFilters() {
-  currentPage.value = 1
-  filterAbstractCards()
-}
-
-function openAbstractCardModal(abstractCard: AbstractCard | null = null) {
-  selectedAbstractCard.value = abstractCard
-  if (null !== abstractCardModalRef.value) {
-    abstractCardModalRef.value.showModal()
-  }
-}
-
-function changePage(newPage: number) {
-  currentPage.value = newPage
-  filterAbstractCards()
-}
-
-function processFilters(): Filters {
+function toQuery(filters: ListFilters): Filters {
   return {
     name: filters.name,
     cardSubType: filters.cardSubType.map((cst) => cst.id),
@@ -169,26 +108,31 @@ function processFilters(): Filters {
   }
 }
 
-function filterAbstractCards() {
-  const processedFilters = processFilters()
-  abstractCardsStore.filter(processedFilters, sort.value, currentPage.value)
-}
-
-const nbFilters = computed(() => {
-  let nbFilters = 0
-
-  for (const filterValue of Object.values(filters)) {
-    if (Array.isArray(filterValue)) {
-      if (filterValue.length > 0) {
-        nbFilters++
-      }
-      continue
-    }
-    if (null !== filterValue) nbFilters++
-  }
-
-  return nbFilters
+const {
+  items: abstractCards,
+  loading,
+  pagination,
+  currentPage,
+  sort,
+  filters,
+  nbFilters,
+  reload: filterAbstractCards,
+  setSort,
+  applyFilters,
+  resetFilters,
+  changePage,
+} = useListView(abstractCardsStore, {
+  sort: { sortBy: 'name', sortDir: 'asc' },
+  createFilters,
+  toQuery,
 })
+
+function openAbstractCardModal(abstractCard: AbstractCard | null = null) {
+  selectedAbstractCard.value = abstractCard
+  if (null !== abstractCardModalRef.value) {
+    abstractCardModalRef.value.showModal()
+  }
+}
 
 onMounted(async () => {
   cardSubTypes.value = await cardSubTypesStore.fetchAll()
@@ -353,50 +297,27 @@ filterAbstractCards()
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" @click="setSort('id')" role="button">
-          #
-          <font-awesome-icon v-if="sort.sortBy === 'id'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('name')" role="button">
-          Nom
-          <font-awesome-icon v-if="sort.sortBy === 'name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
+        <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <th scope="col">Propriétés</th>
-        <th scope="col" @click="setSort('cardSubType.name')" role="button">
-          Sous-Type de carte
-          <font-awesome-icon v-if="sort.sortBy === 'cardSubType.name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('cardSubType.cardType.name')" role="button">
-          Type de carte
-          <font-awesome-icon
-            v-if="sort.sortBy === 'cardSubType.cardType.name'"
-            :icon="getSortIcon()"
-          />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('cardGroup.name')" role="button">
-          Groupe de cartes
-          <font-awesome-icon v-if="sort.sortBy === 'cardGroup.name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('monsterAttribute.name')" role="button">
-          Attribut de monstre
-          <font-awesome-icon v-if="sort.sortBy === 'monsterAttribute.name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('monsterSubType.name')" role="button">
-          Sous-Type de monstre
-          <font-awesome-icon v-if="sort.sortBy === 'monsterSubType.name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
-        <th scope="col" @click="setSort('monsterType.name')" role="button">
-          Type de monstre
-          <font-awesome-icon v-if="sort.sortBy === 'monsterType.name'" :icon="getSortIcon()" />
-          <font-awesome-icon v-else :icon="['fa', 'sort']" />
-        </th>
+        <SortableHeader field="cardSubType.name" :sort="sort" @sort="setSort"
+          >Sous-Type de carte</SortableHeader
+        >
+        <SortableHeader field="cardSubType.cardType.name" :sort="sort" @sort="setSort"
+          >Type de carte</SortableHeader
+        >
+        <SortableHeader field="cardGroup.name" :sort="sort" @sort="setSort"
+          >Groupe de cartes</SortableHeader
+        >
+        <SortableHeader field="monsterAttribute.name" :sort="sort" @sort="setSort"
+          >Attribut de monstre</SortableHeader
+        >
+        <SortableHeader field="monsterSubType.name" :sort="sort" @sort="setSort"
+          >Sous-Type de monstre</SortableHeader
+        >
+        <SortableHeader field="monsterType.name" :sort="sort" @sort="setSort"
+          >Type de monstre</SortableHeader
+        >
         <th scope="col">Actions</th>
       </tr>
     </thead>
