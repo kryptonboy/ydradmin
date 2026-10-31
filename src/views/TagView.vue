@@ -5,7 +5,7 @@ import { computed, reactive, ref } from 'vue'
 import type { Sort } from '@/types/Api'
 import TagModal from './modals/TagModal.vue'
 import type { Tag } from '@/types/models/Tag'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 import BooleanToIcon from '@/components/BooleanToIcon.vue'
 
 const tagsStore = useTagsStore()
@@ -215,7 +215,7 @@ filterTags()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="5" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

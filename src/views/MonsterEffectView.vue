@@ -5,7 +5,7 @@ import MonsterEffectModal from './modals/MonsterEffectModal.vue'
 import type { MonsterEffect } from '@/types/models/MonsterEffect'
 import { computed, reactive, ref } from 'vue'
 import type { Sort } from '@/types/Api'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const monsterEffectsStore = useMonsterEffectsStore()
 const { items: monsterEffects, loading, pagination } = storeToRefs(monsterEffectsStore)
@@ -191,7 +191,7 @@ filterMonsterEffects()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="4" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

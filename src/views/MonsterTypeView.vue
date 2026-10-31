@@ -5,7 +5,7 @@ import { computed, reactive, ref } from 'vue'
 import MonsterTypeModal from './modals/MonsterTypeModal.vue'
 import type { MonsterType } from '@/types/models/MonsterType'
 import type { Sort } from '@/types/Api'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const monsterTypesStore = useMonsterTypesStore()
 const { items: monsterTypes, loading, pagination } = storeToRefs(monsterTypesStore)
@@ -180,7 +180,7 @@ filterMonsterTypes()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="3" class="text-center pt-3 pn-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

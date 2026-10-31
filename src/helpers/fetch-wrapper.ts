@@ -26,13 +26,14 @@ export function createFetchWrapper(authState: AuthState) {
       if ([401, 403].includes(response.status) && token) {
         logout()
       }
-      const error = (data && (data as any).message) || response.statusText
+      const error = (data as { message?: string } | null)?.message || response.statusText
       return Promise.reject(error)
     }
     return data as T
   }
 
   function request(method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH') {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return async <T = any>(
       url: string,
       body?: unknown,
@@ -66,6 +67,7 @@ export function createFetchWrapper(authState: AuthState) {
     put: request('PUT'),
     delete: request('DELETE'),
     patch: request('PATCH'),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     upload: async <T = any>(url: string, formData: FormData): Promise<T> => {
       const headers: HeadersInit = {
         ...authHeader(url),

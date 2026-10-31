@@ -8,7 +8,7 @@ import type { ExtensionType } from '@/types/models/ExtensionType'
 import type { Country } from '@/types/models/Country'
 import type { Filters, Sort } from '@/types/Api'
 import { useCountriesStore, useExtensionTypesStore } from '@/stores'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const extensionsStore = useExtensionsStore()
 const extensionTypesStore = useExtensionTypesStore()
@@ -249,7 +249,7 @@ filterExtensions()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="8" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

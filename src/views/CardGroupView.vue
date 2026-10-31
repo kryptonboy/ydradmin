@@ -179,7 +179,7 @@ filterCardGroups()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="3" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

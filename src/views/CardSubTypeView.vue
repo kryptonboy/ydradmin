@@ -7,7 +7,7 @@ import type { CardSubType } from '@/types/models/CardSubType'
 import type { Filters, Sort } from '@/types/Api'
 import type { CardType } from '@/types/models/CardType'
 import { useCardTypesStore } from '@/stores/card_types.store'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const cardSubTypesStore = useCardSubTypesStore()
 const cardTypesStore = useCardTypesStore()
@@ -217,7 +217,7 @@ filterCardSubTypes()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="5" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

@@ -5,7 +5,7 @@ import { computed, reactive, ref } from 'vue'
 import CountryModal from './modals/CountryModal.vue'
 import type { Country } from '@/types/models/Country'
 import type { Sort } from '@/types/Api'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const countriesStore = useCountriesStore()
 const { items: countries, loading, pagination } = storeToRefs(countriesStore)
@@ -185,7 +185,7 @@ filterCountries()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="4" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"
@@ -194,5 +194,9 @@ filterCountries()
       </tr>
     </tfoot>
   </table>
-  <CountryModal ref="countryModalRef" :country="selectedCountry ?? undefined" @country-saved="filterCountries" />
+  <CountryModal
+    ref="countryModalRef"
+    :country="selectedCountry ?? undefined"
+    @country-saved="filterCountries"
+  />
 </template>

@@ -23,7 +23,7 @@ import type { MonsterType } from '@/types/models/MonsterType'
 import type { MonsterEffect } from '@/types/models/MonsterEffect'
 import type { Tag } from '@/types/models/Tag'
 import type { Filters, Sort } from '@/types/Api'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 import CardProperties from '@/components/CardProperties.vue'
 import { getFullyQualifiedCssClass } from '@/helpers/card'
 
@@ -443,7 +443,7 @@ filterAbstractCards()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="10" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"

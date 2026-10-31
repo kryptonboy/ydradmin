@@ -5,7 +5,7 @@ import { computed, reactive, ref } from 'vue'
 import RarityModal from './modals/RarityModal.vue'
 import type { Rarity } from '@/types/models/Rarity'
 import type { Sort } from '@/types/Api'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const raritiesStore = useRaritiesStore()
 const { items: rarities, loading, pagination } = storeToRefs(raritiesStore)
@@ -184,7 +184,7 @@ filterRarities()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="4" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"
@@ -193,5 +193,9 @@ filterRarities()
       </tr>
     </tfoot>
   </table>
-  <RarityModal ref="rarityModalRef" :rarity="selectedRarity ?? undefined" @rarity-saved="filterRarities" />
+  <RarityModal
+    ref="rarityModalRef"
+    :rarity="selectedRarity ?? undefined"
+    @rarity-saved="filterRarities"
+  />
 </template>

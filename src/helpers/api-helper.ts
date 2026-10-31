@@ -5,7 +5,7 @@ export function buildApiPlatformQuery(filters: Filters, sort: Sort, page: number
   const params = new URLSearchParams()
 
   Object.entries(filters)
-    .filter(([_, value]) => value !== null && value !== undefined)
+    .filter(([, value]) => value !== null && value !== undefined)
     .forEach(([key, value]) => {
       if (Array.isArray(value)) {
         value.forEach((v) => params.append(`${key}[]`, String(v)))
@@ -32,20 +32,22 @@ export function hydratePaginatedState<T>(
   state.pagination.lastPage = data.view?.last ?? null
 }
 
-export function toApiPayload<T extends Record<string, any>>(form: T): Record<string, any> {
-  const payload: Record<string, any> = {}
+type IriObject = { '@id': string }
 
-  for (const key in form) {
-    const value = form[key]
-    if (value && typeof value === 'object' && '@id' in value) {
+function isIriObject(value: unknown): value is IriObject {
+  return typeof value === 'object' && value !== null && '@id' in value
+}
+
+export function toApiPayload<T extends object>(form: T): Record<string, unknown> {
+  const payload: Record<string, unknown> = {}
+
+  for (const [key, value] of Object.entries(form)) {
+    if (isIriObject(value)) {
       // Gestion ToOne
       payload[key] = value['@id']
-    } else if (
-      Array.isArray(value) &&
-      value.every((v: any) => typeof v === 'object' && '@id' in v)
-    ) {
+    } else if (Array.isArray(value) && value.length > 0 && value.every(isIriObject)) {
       // Gestion ToMany
-      payload[key] = value.map((v: any) => v['@id'])
+      payload[key] = value.map((v) => v['@id'])
     } else {
       payload[key] = value
     }

@@ -25,7 +25,7 @@ import type { Sort, Filters } from '@/types/Api'
 import type { Tag } from '@/types/models/Tag'
 import { getFullyQualifiedCssClass } from '@/helpers/card'
 import CardProperties from '@/components/CardProperties.vue'
-import Paginator from '@/components/Paginator.vue'
+import AppPaginator from '@/components/AppPaginator.vue'
 
 const cardsStore = useCardsStore()
 const cardSubTypesStore = useCardSubTypesStore()
@@ -510,7 +510,7 @@ filterCards()
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
         <td colspan="11" class="text-center pt-3 pb-0">
-          <Paginator
+          <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
             @page-changed="changePage"
