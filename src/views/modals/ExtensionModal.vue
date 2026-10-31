@@ -57,9 +57,9 @@ const { submitError, submit } = useSubmit()
 const onSubmit = async (values: Extension, { setErrors }: SubmissionContext) => {
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.updateExtension(props.extension.id, processValues(values))
+      await store.update(props.extension.id, processValues(values))
     } else {
-      await store.createExtension(processValues(values))
+      await store.create(processValues(values))
     }
   }, setErrors)
   if (!saved) return

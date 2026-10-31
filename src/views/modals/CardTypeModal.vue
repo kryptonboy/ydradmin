@@ -40,9 +40,9 @@ const onSubmit = async (values: CardType, { setErrors }: SubmissionContext) => {
 
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.updateCardType(props.cardType.id, payload)
+      await store.update(props.cardType.id, payload)
     } else {
-      await store.createCardType(payload)
+      await store.create(payload)
     }
   }, setErrors)
   if (!saved) return

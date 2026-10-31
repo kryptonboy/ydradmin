@@ -1,76 +1,8 @@
-import type { CardTypesState } from '@/types/states/CardTypesState'
-import { defineStore } from 'pinia'
-import { useAuthStore } from './auth.store'
-import {
-  buildApiPlatformQuery,
-  createFetchWrapper,
-  hydratePaginatedState,
-  getErrorMessage,
-} from '@/helpers'
-import type { Filters, Sort } from '@/types/Api'
 import type { CardTypeForm } from '@/types/forms/CardTypeForm'
 import type { CardType } from '@/types/models/CardType'
+import { createResourceStore } from './create-resource-store'
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/card_types`
-
-export const useCardTypesStore = defineStore('card_types', {
-  state: (): CardTypesState => ({
-    items: [],
-    loading: false,
-    error: null,
-    pagination: {
-      totalItems: 0,
-      firstPage: null,
-      previousPage: null,
-      nextPage: null,
-      lastPage: null,
-    },
-  }),
-  actions: {
-    _getFetchWrapper() {
-      return createFetchWrapper(useAuthStore())
-    },
-    async filter(filters: Filters, sort: Sort, page: number) {
-      const fetchWrapper = this._getFetchWrapper()
-      this.loading = true
-      this.error = null
-      this.pagination = {
-        totalItems: 0,
-        firstPage: null,
-        previousPage: null,
-        nextPage: null,
-        lastPage: null,
-      }
-
-      try {
-        const data = await fetchWrapper.get(
-          `${baseUrl}?${buildApiPlatformQuery(filters, sort, page)}`,
-        )
-        hydratePaginatedState(this, data)
-      } catch (err) {
-        this.error = getErrorMessage(err)
-        this.items = []
-      } finally {
-        this.loading = false
-      }
-    },
-    async createCardType(cardType: CardTypeForm) {
-      const fetchWrapper = this._getFetchWrapper()
-      await fetchWrapper.post(baseUrl, cardType)
-    },
-    async updateCardType(id: number, cardType: CardTypeForm) {
-      const fetchWrapper = this._getFetchWrapper()
-      await fetchWrapper.patch(`${baseUrl}/${id}`, cardType)
-    },
-    async fetchAll(): Promise<CardType[]> {
-      const fetchWrapper = this._getFetchWrapper()
-      try {
-        const data = await fetchWrapper.get(baseUrl)
-        return data.member ?? []
-      } catch (err) {
-        console.error('Erreur lors de la récupération de la liste des types de cartes:', err)
-        return []
-      }
-    },
-  },
-})
+export const useCardTypesStore = createResourceStore<CardType, CardTypeForm>(
+  'card_types',
+  'card_types',
+)

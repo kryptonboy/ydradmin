@@ -32,9 +32,9 @@ const { submitError, submit } = useSubmit()
 const onSubmit = async (values: Rarity, { setErrors }: SubmissionContext) => {
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.updateRarity(props.rarity.id, values)
+      await store.update(props.rarity.id, values)
     } else {
-      await store.createRarity(values)
+      await store.create(values)
     }
   }, setErrors)
   if (!saved) return

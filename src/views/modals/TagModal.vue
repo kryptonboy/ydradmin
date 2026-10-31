@@ -28,9 +28,9 @@ const { submitError, submit } = useSubmit()
 const onSubmit = async (values: Tag, { setErrors }: SubmissionContext) => {
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.updateTag(props.tag.id, values)
+      await store.update(props.tag.id, values)
     } else {
-      await store.createTag(values)
+      await store.create(values)
     }
   }, setErrors)
   if (!saved) return

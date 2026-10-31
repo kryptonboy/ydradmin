@@ -87,7 +87,7 @@ async function createTag(newTagName: string) {
   tagLoading.value = true
   try {
     const newTag: TagForm = { name: newTagName, description: '', visible: false }
-    const createdTag = await tagsStore.createTag(newTag)
+    const createdTag = await tagsStore.create(newTag)
     if (createdTag) {
       if (!tags.value.find((t) => t.id === createdTag.id)) {
         tags.value.push(createdTag)
@@ -167,9 +167,9 @@ const onSubmit = async (values: AbstractCard, { setErrors }: SubmissionContext) 
   let abstractCard: AbstractCard | null = null
   const saved = await submit(async () => {
     if (isEdit.value) {
-      abstractCard = await store.updateAbstractCard(props.abstractCard.id, payload)
+      abstractCard = await store.update(props.abstractCard.id, payload)
     } else {
-      abstractCard = await store.createAbstractCard(payload)
+      abstractCard = await store.create(payload)
     }
   }, setErrors)
   if (!saved) return

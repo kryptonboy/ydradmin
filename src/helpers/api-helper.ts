@@ -1,5 +1,4 @@
-import type { Filters, PaginatedApiResponse, Sort } from '@/types/Api'
-import type { Pagination } from '@/types/states/Pagination'
+import type { Filters, Sort } from '@/types/Api'
 
 export function buildApiPlatformQuery(filters: Filters, sort: Sort, page: number): string {
   const params = new URLSearchParams()
@@ -18,18 +17,6 @@ export function buildApiPlatformQuery(filters: Filters, sort: Sort, page: number
   params.set('page', page.toString())
 
   return params.toString()
-}
-
-export function hydratePaginatedState<T>(
-  state: { items: T[]; pagination: Pagination },
-  data: PaginatedApiResponse<T>,
-) {
-  state.items = data.member ?? []
-  state.pagination.totalItems = data.totalItems ?? state.items.length
-  state.pagination.firstPage = data.view?.first ?? null
-  state.pagination.previousPage = data.view?.previous ?? null
-  state.pagination.nextPage = data.view?.next ?? null
-  state.pagination.lastPage = data.view?.last ?? null
 }
 
 type IriObject = { '@id': string }

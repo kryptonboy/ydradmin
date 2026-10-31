@@ -31,9 +31,9 @@ const { submitError, submit } = useSubmit()
 const onSubmit = async (values: Country, { setErrors }: SubmissionContext) => {
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.updateCountry(props.country.id, values)
+      await store.update(props.country.id, values)
     } else {
-      await store.createCountry(values)
+      await store.create(values)
     }
   }, setErrors)
   if (!saved) return

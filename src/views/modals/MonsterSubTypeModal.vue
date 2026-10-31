@@ -30,9 +30,9 @@ const { submitError, submit } = useSubmit()
 const onSubmit = async (values: MonsterSubType, { setErrors }: SubmissionContext) => {
   const saved = await submit(async () => {
     if (isEdit.value) {
-      await store.updateMonsterSubType(props.monsterSubType.id, values)
+      await store.update(props.monsterSubType.id, values)
     } else {
-      await store.createMonsterSubType(values)
+      await store.create(values)
     }
   }, setErrors)
   if (!saved) return
