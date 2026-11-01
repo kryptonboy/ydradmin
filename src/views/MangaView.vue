@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppLink from '@/components/AppLink.vue'
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
@@ -133,6 +134,9 @@ function openModal(manga: Manga | null = null) {
           <button class="btn btn-primary" aria-label="Modifier" @click="openModal(manga)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
           </button>
+          <AppLink :to="`/anime_manga/manga/${manga.id}`" class="btn btn-outline-primary ms-1">
+            Personnages
+          </AppLink>
           <button
             class="btn btn-outline-danger ms-1"
             :disabled="!!manga.chapters?.length"

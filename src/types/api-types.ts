@@ -86,3 +86,9 @@ export type ApiRestriction = Schemas['Restriction.jsonld-restriction.read_entity
 
 export type MovieInput = Schemas['Movie-movie.write']
 export type MovieCharacterInput = Schemas['MovieCharacter-movie_character.write']
+
+export type MangaCharacterInput = Schemas['MangaCharacter-manga_character.write']
+export type ArcCharacterInput = Schemas['ArcCharacter-arc_character.write']
+export type ApiMangaCharacter =
+  Schemas['MangaCharacter.jsonld-manga_character.read_entity.read_label']
+export type ApiArcCharacter = Schemas['ArcCharacter.jsonld-arc_character.read_entity.read_label']
