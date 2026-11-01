@@ -61,3 +61,6 @@ export type ApiManga = Schemas['Manga.jsonld-manga.read_entity.read']
 export type ApiSeason = Schemas['Season.jsonld-season.read_entity.read']
 export type ApiArc = Schemas['Arc.jsonld-arc.read_entity.read']
 export type ApiArcSeason = Schemas['ArcSeason.jsonld-arc_season.read_entity.read']
+
+export type CharacterInput = Schemas['Character-character.write']
+export type ApiCharacter = Schemas['Character.jsonld-character.read_entity.read']
