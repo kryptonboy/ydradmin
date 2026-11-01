@@ -23,6 +23,13 @@ describe('routes avec identifiant numérique', () => {
     expect(matchedPath('/anime_manga/anime/3')).toBe('/anime_manga/anime/:id(\\d+)')
   })
 
+  it('reconnaît les pages de modification des épisodes et des chapitres', () => {
+    expect(matchedPath('/anime_manga/episode/7')).toBe('/anime_manga/episode/:id(\\d+)')
+    expect(matchedPath('/anime_manga/chapter/7')).toBe('/anime_manga/chapter/:id(\\d+)')
+    expect(matchedPath('/anime_manga/episode/new')).toBe('/anime_manga/episode/new')
+    expect(matchedPath('/anime_manga/chapter/new')).toBe('/anime_manga/chapter/new')
+  })
+
   it('refuse un identifiant non numérique', () => {
     expect(matchedPath('/anime_manga/anime/abc')).toBe('/:pathMatch(.*)*')
     expect(matchedPath('/content/actuality/abc')).toBe('/:pathMatch(.*)*')

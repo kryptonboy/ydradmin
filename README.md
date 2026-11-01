@@ -46,6 +46,12 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Les blocs reçoivent un `uid` côté éditeur (clé du glisser-déposer) retiré par `toApiBlocks`, qui omet aussi les champs vides : l'API refuse les champs inconnus.
 - Les erreurs 422 (`blocks[2].children[0].content`) sont rattachées au bloc fautif.
 
+## Animés et mangas
+
+- Pages sous `/anime_manga` : animés (et leur page « Structure » : saisons, arcs, liens arc/saison), mangas, épisodes, chapitres, personnages, genres, signes astrologiques. Le contrat est décrit dans `../newkryproject/docs/anime-manga.md`.
+- Épisodes et chapitres réutilisent l'éditeur de blocs des actualités (`useBlockContent`) et ont un état brouillon (`visible: false`). Leurs personnages se gèrent avec `AppearanceEditor` (`/api/episode_characters`, `/api/chapter_characters`) ; la liste des cartes avec compteur vient de `GET /api/{ressource}/{id}/cards` (hors OpenAPI, typée à la main dans `types/models/Appearance.ts`).
+- Les relations sont lues sous la forme `{ @id, id }` seulement : les libellés (nom de l'animé, arc, saison...) sont reconstruits côté admin à partir de listes chargées.
+
 ## Sécurité
 
 - Le JWT est conservé dans `localStorage` (clé `token`) : il est lisible par tout script de la page en cas de faille XSS. Ne jamais utiliser `v-html` avec du contenu venant de l'API (le BBCode des cartes doit être converti puis assaini avant affichage).
