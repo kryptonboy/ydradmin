@@ -4,6 +4,7 @@ import type { MonsterAttribute } from './MonsterAttribute'
 import type { MonsterEffect } from './MonsterEffect'
 import type { MonsterSubType } from './MonsterSubType'
 import type { MonsterType } from './MonsterType'
+import type { NamedRef } from './Ref'
 import type { Tag } from './Tag'
 
 export interface AbstractCard {
@@ -22,4 +23,6 @@ export interface AbstractCard {
   monsterType?: MonsterType
   monsterEffects: MonsterEffect[]
   tags: Tag[]
+  /** Rulings de la carte, lus avec leur nom */
+  rulings?: NamedRef[]
 }

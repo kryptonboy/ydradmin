@@ -30,6 +30,7 @@ import type {
   ApiMonsterSubType,
   ApiMonsterType,
   ApiRarity,
+  ApiRuling,
   ApiTag,
   ApiVideoGameSupport,
 } from './api-types'
@@ -59,6 +60,7 @@ import type { MonsterEffect } from './models/MonsterEffect'
 import type { MonsterSubType } from './models/MonsterSubType'
 import type { MonsterType } from './models/MonsterType'
 import type { Rarity } from './models/Rarity'
+import type { Ruling } from './models/Ruling'
 import type { Tag } from './models/Tag'
 import type { VideoGameSupport } from './models/VideoGameSupport'
 
@@ -99,6 +101,7 @@ export type ModelChecks = [
   Assert<Conforms<MonsterSubType, ApiMonsterSubType>>,
   Assert<Conforms<MonsterType, ApiMonsterType>>,
   Assert<Conforms<Rarity, ApiRarity>>,
+  Assert<Conforms<Ruling, ApiRuling>>,
   Assert<Conforms<Tag, ApiTag>>,
   Assert<Conforms<VideoGameSupport, ApiVideoGameSupport>>,
 ]
