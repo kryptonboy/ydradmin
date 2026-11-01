@@ -37,6 +37,12 @@ describe('routes avec identifiant numérique', () => {
     expect(matchedPath('/video_game/game/abc')).toBe('/:pathMatch(.*)*')
   })
 
+  it('reconnaît les pages des films', () => {
+    expect(matchedPath('/anime_manga/movie/6')).toBe('/anime_manga/movie/:id(\\d+)')
+    expect(matchedPath('/anime_manga/movie/new')).toBe('/anime_manga/movie/new')
+    expect(matchedPath('/anime_manga/movie/abc')).toBe('/:pathMatch(.*)*')
+  })
+
   it('refuse un identifiant non numérique', () => {
     expect(matchedPath('/anime_manga/anime/abc')).toBe('/:pathMatch(.*)*')
     expect(matchedPath('/content/actuality/abc')).toBe('/:pathMatch(.*)*')

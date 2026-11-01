@@ -50,6 +50,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 
 - Pages sous `/anime_manga` : animés (et leur page « Structure » : saisons, arcs, liens arc/saison), mangas, épisodes, chapitres, personnages, genres, signes astrologiques. Le contrat est décrit dans `../newkryproject/docs/anime-manga.md`.
 - Épisodes et chapitres réutilisent l'éditeur de blocs des actualités (`useBlockContent`) et ont un état brouillon (`visible: false`). Leurs personnages se gèrent avec `AppearanceEditor` (`/api/episode_characters`, `/api/chapter_characters`) ; la liste des cartes avec compteur vient de `GET /api/{ressource}/{id}/cards` (hors OpenAPI, typée à la main dans `types/models/Appearance.ts`).
+- Films (`/anime_manga/movie`, `../newkryproject/docs/movies.md`) : même modèle que les épisodes (blocs, brouillon, personnages et cartes via `AppearanceEditor kind="movie"`), avec en plus jaquette et image du titre, personnage principal et position.
 - Les relations sont lues sous la forme `{ @id, id }` seulement : les libellés (nom de l'animé, arc, saison...) sont reconstruits côté admin à partir de listes chargées.
 
 ## Catalogue

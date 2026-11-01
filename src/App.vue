@@ -222,6 +222,11 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
                 </AppLink>
               </li>
               <li>
+                <AppLink to="/anime_manga/movie" class="dropdown-item" activeClass="active">
+                  Films
+                </AppLink>
+              </li>
+              <li>
                 <AppLink to="/anime_manga/character" class="dropdown-item" activeClass="active">
                   Personnages
                 </AppLink>

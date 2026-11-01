@@ -7837,7 +7837,7 @@
                         "description": "Unknown resource, or hidden from the visitor."
                     }
                 },
-                "summary": "Cards used in les \u00e9pisodes et chapitres d'un personnage, with how many times",
+                "summary": "Cards used in les \u00e9pisodes, chapitres et films d'un personnage, with how many times",
                 "description": "Hidden episodes and chapters only count for administrators.",
                 "parameters": [
                     {
@@ -7916,6 +7916,45 @@
                     }
                 },
                 "summary": "Cards used in tous les chapitres d'un manga, with how many times",
+                "description": "Hidden episodes and chapters only count for administrators.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Identifier of the resource.",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            }
+        },
+        "/api/movies/{id}/cards": {
+            "get": {
+                "operationId": "getCardUsageMovies",
+                "tags": [
+                    "CardUsage"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cards used, each listed once, most used first.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CardUsageList"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unknown resource, or hidden from the visitor."
+                    }
+                },
+                "summary": "Cards used in un film, with how many times",
                 "description": "Hidden episodes and chapters only count for administrators.",
                 "parameters": [
                     {
@@ -17305,6 +17344,1369 @@
                 }
             }
         },
+        "/api/movies": {
+            "get": {
+                "operationId": "api_movies_get_collection",
+                "tags": [
+                    "Movie"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "Movie.jsonld-movie.list_entity.read_label collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Movie.jsonld-movie.list_entity.read_label"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Movie.multipart-movie.list_entity.read_label"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Movie resources.",
+                "description": "Retrieves the collection of Movie resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Movie title",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "title[]",
+                        "in": "query",
+                        "description": "Movie title",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Movie search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "search[]",
+                        "in": "query",
+                        "description": "Movie search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "description": "Movie slug",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "slug[]",
+                        "in": "query",
+                        "description": "Movie slug",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "character",
+                        "in": "query",
+                        "description": "Movie character",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "character[]",
+                        "in": "query",
+                        "description": "Movie character",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard",
+                        "in": "query",
+                        "description": "Movie abstractCard",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard[]",
+                        "in": "query",
+                        "description": "Movie abstractCard",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "visible",
+                        "in": "query",
+                        "description": "Movie visible",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "visible[]",
+                        "in": "query",
+                        "description": "Movie visible",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Movie order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Movie order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[title]",
+                        "in": "query",
+                        "description": "Movie order[title]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[title][]",
+                        "in": "query",
+                        "description": "Movie order[title]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[usReleaseDate]",
+                        "in": "query",
+                        "description": "Movie order[usReleaseDate]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[usReleaseDate][]",
+                        "in": "query",
+                        "description": "Movie order[usReleaseDate]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[japanReleaseDate]",
+                        "in": "query",
+                        "description": "Movie order[japanReleaseDate]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[japanReleaseDate][]",
+                        "in": "query",
+                        "description": "Movie order[japanReleaseDate]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[europeReleaseDate]",
+                        "in": "query",
+                        "description": "Movie order[europeReleaseDate]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[europeReleaseDate][]",
+                        "in": "query",
+                        "description": "Movie order[europeReleaseDate]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_movies_post",
+                "tags": [
+                    "Movie"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Movie resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a Movie resource.",
+                "description": "Creates a Movie resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new Movie resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Movie-movie.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Movie-movie.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/movies/{id}": {
+            "get": {
+                "operationId": "api_movies_id_get",
+                "tags": [
+                    "Movie"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a Movie resource.",
+                "description": "Retrieves a Movie resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Movie identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_movies_id_delete",
+                "tags": [
+                    "Movie"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Movie resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the Movie resource.",
+                "description": "Removes the Movie resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Movie identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_movies_id_patch",
+                "tags": [
+                    "Movie"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the Movie resource.",
+                "description": "Updates the Movie resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Movie identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated Movie resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Movie-movie.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/movie_characters": {
+            "get": {
+                "operationId": "api_movie_characters_get_collection",
+                "tags": [
+                    "MovieCharacter"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "MovieCharacter collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of MovieCharacter resources.",
+                "description": "Retrieves the collection of MovieCharacter resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "movie",
+                        "in": "query",
+                        "description": "MovieCharacter movie",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "movie[]",
+                        "in": "query",
+                        "description": "MovieCharacter movie",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "character",
+                        "in": "query",
+                        "description": "MovieCharacter character",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "character[]",
+                        "in": "query",
+                        "description": "MovieCharacter character",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "MovieCharacter order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "MovieCharacter order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[position]",
+                        "in": "query",
+                        "description": "MovieCharacter order[position]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[position][]",
+                        "in": "query",
+                        "description": "MovieCharacter order[position]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_movie_characters_post",
+                "tags": [
+                    "MovieCharacter"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "MovieCharacter resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a MovieCharacter resource.",
+                "description": "Creates a MovieCharacter resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new MovieCharacter resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MovieCharacter-movie_character.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MovieCharacter-movie_character.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/movie_characters/{id}": {
+            "get": {
+                "operationId": "api_movie_characters_id_get",
+                "tags": [
+                    "MovieCharacter"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "MovieCharacter resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a MovieCharacter resource.",
+                "description": "Retrieves a MovieCharacter resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "MovieCharacter identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_movie_characters_id_delete",
+                "tags": [
+                    "MovieCharacter"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "MovieCharacter resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the MovieCharacter resource.",
+                "description": "Removes the MovieCharacter resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "MovieCharacter identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_movie_characters_id_patch",
+                "tags": [
+                    "MovieCharacter"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "MovieCharacter resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the MovieCharacter resource.",
+                "description": "Updates the MovieCharacter resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "MovieCharacter identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated MovieCharacter resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MovieCharacter-movie_character.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "/api/rarities": {
             "get": {
                 "operationId": "api_rarities_get_collection",
@@ -21915,6 +23317,44 @@
                     }
                 ]
             },
+            "AbstractCard.jsonld-movie.list_movie.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "AbstractCard.jsonld-movie_character.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "AbstractCard.multipart-abstract_card.read_entity.read": {
                 "type": "object",
                 "properties": {
@@ -22126,6 +23566,30 @@
                 }
             },
             "AbstractCard.multipart-episode_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "AbstractCard.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -25824,6 +27288,78 @@
                     }
                 ]
             },
+            "Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "photo": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Character.jsonld-movie_character.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "photo": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Character.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": {
                 "allOf": [
                     {
@@ -26108,6 +27644,64 @@
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/MediaObject.multipart-episode_character.read_appearance.read_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Character.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "photo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Character.multipart-movie_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "photo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-movie_character.read_appearance.read_entity.read_label"
                             },
                             {
                                 "type": "null"
@@ -28865,6 +30459,84 @@
                     }
                 ]
             },
+            "MediaObject.jsonld-movie.list_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": {
                 "allOf": [
                     {
@@ -29146,6 +30818,63 @@
                 }
             },
             "MediaObject.multipart-monster_attribute.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-movie.list_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
                     "contentUrl": {
@@ -29765,6 +31494,816 @@
                         "readOnly": true
                     }
                 }
+            },
+            "Movie-movie.write": {
+                "type": "object",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "description": "Short summary in plain text; the complete one is in the blocks.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "visible": {
+                        "description": "A draft (false) is only visible to administrators.",
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "usReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "japanReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "europeReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "coverImage": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "titleImage": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
+            },
+            "Movie-movie.write.jsonMergePatch": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "description": "Short summary in plain text; the complete one is in the blocks.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "visible": {
+                        "description": "A draft (false) is only visible to administrators.",
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "usReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "japanReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "europeReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "coverImage": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "titleImage": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
+            },
+            "Movie.jsonld-movie.list_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "title"
+                        ],
+                        "properties": {
+                            "title": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "synopsis": {
+                                "description": "Short summary in plain text; the complete one is in the blocks.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "visible": {
+                                "description": "A draft (false) is only visible to administrators.",
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "japaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "romanizedJapaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "usReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "japanReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "europeReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "coverImage": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-movie.list_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "titleImage": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-movie.list_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "title"
+                        ],
+                        "properties": {
+                            "title": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "synopsis": {
+                                "description": "Short summary in plain text; the complete one is in the blocks.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "visible": {
+                                "description": "A draft (false) is only visible to administrators.",
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "japaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "romanizedJapaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "usReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "japanReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "europeReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "coverImage": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "titleImage": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "characters": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "description": "List of content blocks, see docs/content-blocks.md."
+                            }
+                        }
+                    }
+                ]
+            },
+            "Movie.jsonld-movie_character.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "title"
+                        ],
+                        "properties": {
+                            "title": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Movie.multipart-movie.list_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "description": "Short summary in plain text; the complete one is in the blocks.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "visible": {
+                        "description": "A draft (false) is only visible to administrators.",
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "usReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "japanReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "europeReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "coverImage": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-movie.list_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "titleImage": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-movie.list_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "description": "Short summary in plain text; the complete one is in the blocks.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "visible": {
+                        "description": "A draft (false) is only visible to administrators.",
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "usReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "japanReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "europeReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "coverImage": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "titleImage": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "characters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                        }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
+            },
+            "Movie.multipart-movie_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MovieCharacter-movie_character.write": {
+                "type": "object",
+                "description": "A character appearing in a film, with the cards he or she uses in it.",
+                "properties": {
+                    "mainCharacter": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "position": {
+                        "minimum": 0,
+                        "description": "Order of appearance in the film's list of characters.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "movie": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "character": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "cards": {
+                        "description": "The cards the character uses in the film, each listed once.",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference",
+                            "example": "https://example.com/"
+                        }
+                    }
+                },
+                "required": [
+                    "movie",
+                    "character"
+                ]
+            },
+            "MovieCharacter-movie_character.write.jsonMergePatch": {
+                "type": "object",
+                "description": "A character appearing in a film, with the cards he or she uses in it.",
+                "properties": {
+                    "mainCharacter": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "position": {
+                        "minimum": 0,
+                        "description": "Order of appearance in the film's list of characters.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "movie": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "character": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "cards": {
+                        "description": "The cards the character uses in the film, each listed once.",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference",
+                            "example": "https://example.com/"
+                        }
+                    }
+                }
+            },
+            "MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "mainCharacter": {
+                                "default": false,
+                                "type": "boolean"
+                            },
+                            "position": {
+                                "minimum": 0,
+                                "description": "Order of appearance in the film's list of characters.",
+                                "default": 0,
+                                "type": "integer"
+                            },
+                            "character": {
+                                "$ref": "#/components/schemas/Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "cards": {
+                                "description": "The cards the character uses in the film, each listed once.",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/AbstractCard.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        },
+                        "required": [
+                            "character"
+                        ]
+                    }
+                ]
+            },
+            "MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "mainCharacter": {
+                                "default": false,
+                                "type": "boolean"
+                            },
+                            "position": {
+                                "minimum": 0,
+                                "description": "Order of appearance in the film's list of characters.",
+                                "default": 0,
+                                "type": "integer"
+                            },
+                            "movie": {
+                                "$ref": "#/components/schemas/Movie.jsonld-movie_character.read_appearance.read_entity.read_label"
+                            },
+                            "character": {
+                                "$ref": "#/components/schemas/Character.jsonld-movie_character.read_appearance.read_entity.read_label"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "cards": {
+                                "description": "The cards the character uses in the film, each listed once.",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/AbstractCard.jsonld-movie_character.read_appearance.read_entity.read_label"
+                                }
+                            }
+                        },
+                        "required": [
+                            "movie",
+                            "character"
+                        ]
+                    }
+                ],
+                "description": "A character appearing in a film, with the cards he or she uses in it."
+            },
+            "MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "mainCharacter": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "position": {
+                        "minimum": 0,
+                        "description": "Order of appearance in the film's list of characters.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "character": {
+                        "$ref": "#/components/schemas/Character.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "cards": {
+                        "description": "The cards the character uses in the film, each listed once.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AbstractCard.multipart-movie.list_movie.read_appearance.read_entity.read_label"
+                        }
+                    }
+                },
+                "required": [
+                    "character"
+                ]
+            },
+            "MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "description": "A character appearing in a film, with the cards he or she uses in it.",
+                "properties": {
+                    "mainCharacter": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "position": {
+                        "minimum": 0,
+                        "description": "Order of appearance in the film's list of characters.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "movie": {
+                        "$ref": "#/components/schemas/Movie.multipart-movie_character.read_appearance.read_entity.read_label"
+                    },
+                    "character": {
+                        "$ref": "#/components/schemas/Character.multipart-movie_character.read_appearance.read_entity.read_label"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "cards": {
+                        "description": "The cards the character uses in the film, each listed once.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label"
+                        }
+                    }
+                },
+                "required": [
+                    "movie",
+                    "character"
+                ]
             },
             "Rarity-rarity.write": {
                 "type": "object",
@@ -31228,6 +33767,14 @@
         {
             "name": "MonsterType",
             "description": "Resource 'MonsterType' operations."
+        },
+        {
+            "name": "Movie",
+            "description": "Resource 'Movie' operations."
+        },
+        {
+            "name": "MovieCharacter",
+            "description": "A character appearing in a film, with the cards he or she uses in it."
         },
         {
             "name": "Rarity",
