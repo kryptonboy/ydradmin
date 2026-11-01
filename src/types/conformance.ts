@@ -21,6 +21,8 @@ import type {
   ApiCountry,
   ApiExtension,
   ApiExtensionType,
+  ApiGameFormat,
+  ApiRestriction,
   ApiMonsterAttribute,
   ApiMonsterEffect,
   ApiMonsterSubType,
@@ -46,6 +48,8 @@ import type { CardType } from './models/CardType'
 import type { Country } from './models/Country'
 import type { Extension } from './models/Extension'
 import type { ExtensionType } from './models/ExtensionType'
+import type { GameFormat } from './models/GameFormat'
+import type { Restriction } from './models/Restriction'
 import type { MonsterAttribute } from './models/MonsterAttribute'
 import type { MonsterEffect } from './models/MonsterEffect'
 import type { MonsterSubType } from './models/MonsterSubType'
@@ -82,6 +86,8 @@ export type ModelChecks = [
   Assert<Conforms<Country, ApiCountry>>,
   Assert<Conforms<Extension, ApiExtension>>,
   Assert<Conforms<ExtensionType, ApiExtensionType>>,
+  Assert<Conforms<GameFormat, ApiGameFormat>>,
+  Assert<Conforms<Restriction, ApiRestriction>>,
   Assert<Conforms<MonsterAttribute, ApiMonsterAttribute>>,
   Assert<Conforms<MonsterEffect, ApiMonsterEffect>>,
   Assert<Conforms<MonsterSubType, ApiMonsterSubType>>,

@@ -52,6 +52,12 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Épisodes et chapitres réutilisent l'éditeur de blocs des actualités (`useBlockContent`) et ont un état brouillon (`visible: false`). Leurs personnages se gèrent avec `AppearanceEditor` (`/api/episode_characters`, `/api/chapter_characters`) ; la liste des cartes avec compteur vient de `GET /api/{ressource}/{id}/cards` (hors OpenAPI, typée à la main dans `types/models/Appearance.ts`).
 - Les relations sont lues sous la forme `{ @id, id }` seulement : les libellés (nom de l'animé, arc, saison...) sont reconstruits côté admin à partir de listes chargées.
 
+## Catalogue
+
+- Chaque page du catalogue (`/card_management`) a une modale de création/modification et un bouton de suppression (`useRemoveAction`) : si l'élément est encore référencé, l'API répond 409 et son message est affiché tel quel.
+- Formats de jeu et restrictions (nombre d'exemplaires d'un groupe de cartes dans un format : 0, 1 ou 2) : `/card_management/game_format` et `/card_management/restriction`. Le lien extensions ↔ formats n'est pas géré (l'API ne l'expose pas en écriture).
+- Les icônes (types et sous-types de carte, extensions, attributs de monstre, signes) sont lues avec leur `contentUrl` : `MediaThumb` affiche l'icône actuelle dans les modales.
+
 ## Jeux vidéo
 
 - Pages sous `/video_game` : jeux (liste filtrable, création/édition) et supports. Le contrat est décrit dans `../newkryproject/docs/video-games.md`.

@@ -41,6 +41,11 @@ export const router = createRouter({
     },
     { path: '/card_management/rarity', component: () => import('@/views/RarityView.vue') },
     { path: '/card_management/tag', component: () => import('@/views/TagView.vue') },
+    { path: '/card_management/game_format', component: () => import('@/views/GameFormatView.vue') },
+    {
+      path: '/card_management/restriction',
+      component: () => import('@/views/RestrictionView.vue'),
+    },
     { path: '/content/actuality', component: () => import('@/views/ActualityView.vue') },
     { path: '/content/actuality/new', component: () => import('@/views/ActualityEditView.vue') },
     {
