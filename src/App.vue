@@ -192,6 +192,16 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
                   Catégories d'actualités
                 </AppLink>
               </li>
+              <li>
+                <AppLink to="/content/actuality_comment" class="dropdown-item" activeClass="active">
+                  Commentaires
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/content/smiley" class="dropdown-item" activeClass="active">
+                  Smileys
+                </AppLink>
+              </li>
             </ul>
           </li>
           <li class="nav-item dropdown">

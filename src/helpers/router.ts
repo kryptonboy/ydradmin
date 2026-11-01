@@ -57,6 +57,11 @@ export const router = createRouter({
       path: '/content/actuality_category',
       component: () => import('@/views/ActualityCategoryView.vue'),
     },
+    {
+      path: '/content/actuality_comment',
+      component: () => import('@/views/ActualityCommentView.vue'),
+    },
+    { path: '/content/smiley', component: () => import('@/views/SmileyView.vue') },
     { path: '/anime_manga/anime', component: () => import('@/views/AnimeView.vue') },
     { path: '/anime_manga/manga', component: () => import('@/views/MangaView.vue') },
     { path: '/anime_manga/gender', component: () => import('@/views/GenderView.vue') },

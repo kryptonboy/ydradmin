@@ -32,6 +32,8 @@ import type {
   ApiRarity,
   ApiRuling,
   ApiTag,
+  ApiSmiley,
+  ApiActualityComment,
   ApiVideoGameSupport,
 } from './api-types'
 import type { AbstractCard } from './models/AbstractCard'
@@ -62,6 +64,8 @@ import type { MonsterType } from './models/MonsterType'
 import type { Rarity } from './models/Rarity'
 import type { Ruling } from './models/Ruling'
 import type { Tag } from './models/Tag'
+import type { Smiley } from './models/Smiley'
+import type { ActualityComment } from './models/ActualityComment'
 import type { VideoGameSupport } from './models/VideoGameSupport'
 
 // '@context' et '@type' (Hydra) sont toujours renvoyés mais inutilisés par l'admin
@@ -103,5 +107,7 @@ export type ModelChecks = [
   Assert<Conforms<Rarity, ApiRarity>>,
   Assert<Conforms<Ruling, ApiRuling>>,
   Assert<Conforms<Tag, ApiTag>>,
+  Assert<Conforms<Smiley, ApiSmiley>>,
+  Assert<Conforms<ActualityComment, ApiActualityComment>>,
   Assert<Conforms<VideoGameSupport, ApiVideoGameSupport>>,
 ]

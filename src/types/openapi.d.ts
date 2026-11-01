@@ -160,6 +160,54 @@ export interface paths {
         patch: operations["api_actuality_categories_id_patch"];
         trace?: never;
     };
+    "/api/actuality_comments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of ActualityComment resources.
+         * @description Retrieves the collection of ActualityComment resources.
+         */
+        get: operations["api_actuality_comments_get_collection"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/actuality_comments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ActualityComment resource.
+         * @description Retrieves a ActualityComment resource.
+         */
+        get: operations["api_actuality_comments_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the ActualityComment resource.
+         * @description Removes the ActualityComment resource.
+         */
+        delete: operations["api_actuality_comments_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the ActualityComment resource.
+         * @description Updates the ActualityComment resource.
+         */
+        patch: operations["api_actuality_comments_id_patch"];
+        trace?: never;
+    };
     "/api/animes": {
         parameters: {
             query?: never;
@@ -1956,6 +2004,58 @@ export interface paths {
         patch: operations["api_seasons_id_patch"];
         trace?: never;
     };
+    "/api/smileys": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Smiley resources.
+         * @description Retrieves the collection of Smiley resources.
+         */
+        get: operations["api_smileys_get_collection"];
+        put?: never;
+        /**
+         * Creates a Smiley resource.
+         * @description Creates a Smiley resource.
+         */
+        post: operations["api_smileys_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/smileys/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Smiley resource.
+         * @description Retrieves a Smiley resource.
+         */
+        get: operations["api_smileys_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Smiley resource.
+         * @description Removes the Smiley resource.
+         */
+        delete: operations["api_smileys_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Smiley resource.
+         * @description Updates the Smiley resource.
+         */
+        patch: operations["api_smileys_id_patch"];
+        trace?: never;
+    };
     "/api/tags": {
         parameters: {
             query?: never;
@@ -2410,6 +2510,9 @@ export interface components {
             actualityCategory?: components["schemas"]["ActualityCategory.jsonld-actuality.list_entity.read"] | null;
             readonly id?: number;
         };
+        "Actuality.jsonld-actuality_comment.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
         "Actuality.multipart-actuality.list_actuality.read_entity.read": {
             title: string;
             slug?: string;
@@ -2444,6 +2547,9 @@ export interface components {
              */
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.multipart-actuality.list_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Actuality.multipart-actuality_comment.read_entity.read": {
             readonly id?: number;
         };
         "ActualityCategory-actuality_category.write": {
@@ -2489,6 +2595,44 @@ export interface components {
             /** @default true */
             active: boolean;
             readonly id?: number;
+        };
+        /**
+         * @description A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself
+         *     is never exposed), and a "hidden" flag. Administrators only.
+         */
+        "ActualityComment-actuality_comment.write.jsonMergePatch": {
+            content?: string;
+            hidden?: boolean;
+        };
+        /**
+         * @description A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself
+         *     is never exposed), and a "hidden" flag. Administrators only.
+         */
+        "ActualityComment.jsonld-actuality_comment.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            actuality?: components["schemas"]["Actuality.jsonld-actuality_comment.read_entity.read"];
+            readonly id?: number;
+            readonly actualityTitle?: string;
+            content: string;
+            /** @description Username of the author: the account itself is not exposed. */
+            readonly author?: string;
+            hidden?: boolean;
+            /** Format: date-time */
+            readonly postedAt?: string | null;
+        };
+        /**
+         * @description A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself
+         *     is never exposed), and a "hidden" flag. Administrators only.
+         */
+        "ActualityComment.multipart-actuality_comment.read_entity.read": {
+            actuality?: components["schemas"]["Actuality.multipart-actuality_comment.read_entity.read"];
+            readonly id?: number;
+            readonly actualityTitle?: string;
+            content: string;
+            /** @description Username of the author: the account itself is not exposed. */
+            readonly author?: string;
+            hidden?: boolean;
+            /** Format: date-time */
+            readonly postedAt?: string | null;
         };
         "Anime-anime.write": {
             name: string;
@@ -4328,6 +4472,10 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-smiley.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -4401,6 +4549,10 @@ export interface components {
             readonly id?: number;
         };
         "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-smiley.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -4984,6 +5136,36 @@ export interface components {
             seasonNumber?: number | null;
             synopsis?: string | null;
             anime: components["schemas"]["Anime.multipart-season.read_entity.read_label"];
+            readonly id?: number;
+        };
+        "Smiley-smiley.write": {
+            /** @description The text typed in a comment to get the image, e.g. ":)" or ":dragon:". */
+            code: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            image?: string | null;
+        };
+        "Smiley-smiley.write.jsonMergePatch": {
+            /** @description The text typed in a comment to get the image, e.g. ":)" or ":dragon:". */
+            code?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            image?: string | null;
+        };
+        "Smiley.jsonld-smiley.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description The text typed in a comment to get the image, e.g. ":)" or ":dragon:". */
+            code: string;
+            image?: components["schemas"]["MediaObject.jsonld-smiley.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Smiley.multipart-smiley.read_entity.read": {
+            /** @description The text typed in a comment to get the image, e.g. ":)" or ":dragon:". */
+            code: string;
+            image?: components["schemas"]["MediaObject.multipart-smiley.read_entity.read"] | null;
             readonly id?: number;
         };
         "Tag-tag.write": {
@@ -6016,6 +6198,229 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"];
                     "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_actuality_comments_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description ActualityComment actuality */
+                actuality?: string;
+                /** @description ActualityComment actuality */
+                "actuality[]"?: string[];
+                /** @description ActualityComment hidden */
+                hidden?: string;
+                /** @description ActualityComment hidden */
+                "hidden[]"?: string[];
+                /** @description ActualityComment author */
+                author?: string;
+                /** @description ActualityComment author */
+                "author[]"?: string[];
+                /** @description ActualityComment search */
+                search?: string;
+                /** @description ActualityComment search */
+                "search[]"?: string[];
+                /** @description ActualityComment order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description ActualityComment order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description ActualityComment order[createdAt] */
+                "order[createdAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description ActualityComment order[createdAt] */
+                "order[createdAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityComment collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["ActualityComment.jsonld-actuality_comment.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["ActualityComment.multipart-actuality_comment.read_entity.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actuality_comments_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityComment identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityComment resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityComment.jsonld-actuality_comment.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ActualityComment.multipart-actuality_comment.read_entity.read"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actuality_comments_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityComment identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityComment resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actuality_comments_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityComment identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated ActualityComment resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["ActualityComment-actuality_comment.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description ActualityComment resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityComment.jsonld-actuality_comment.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ActualityComment.multipart-actuality_comment.read_entity.read"];
                 };
             };
             /** @description Invalid input */
@@ -14429,6 +14834,255 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Season.jsonld-season.read_entity.read_label"];
                     "multipart/form-data": components["schemas"]["Season.multipart-season.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_smileys_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Smiley code */
+                code?: string;
+                /** @description Smiley code */
+                "code[]"?: string[];
+                /** @description Smiley order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Smiley order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Smiley order[code] */
+                "order[code]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Smiley order[code] */
+                "order[code][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Smiley collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Smiley.jsonld-smiley.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Smiley.multipart-smiley.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_smileys_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Smiley resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Smiley-smiley.write"];
+                "multipart/form-data": components["schemas"]["Smiley-smiley.write"];
+            };
+        };
+        responses: {
+            /** @description Smiley resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Smiley.jsonld-smiley.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Smiley.multipart-smiley.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_smileys_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Smiley identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Smiley resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Smiley.jsonld-smiley.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Smiley.multipart-smiley.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_smileys_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Smiley identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Smiley resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_smileys_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Smiley identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Smiley resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Smiley-smiley.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Smiley resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Smiley.jsonld-smiley.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Smiley.multipart-smiley.read_entity.read"];
                 };
             };
             /** @description Invalid input */

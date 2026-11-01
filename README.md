@@ -46,6 +46,8 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Les blocs reçoivent un `uid` côté éditeur (clé du glisser-déposer) retiré par `toApiBlocks`, qui omet aussi les champs vides : l'API refuse les champs inconnus.
 - Les erreurs 422 (`blocks[2].children[0].content`) sont rattachées au bloc fautif.
 - Le bloc « Liens externes » (`links`, 1 à 50 liens avec titre, adresse, type libre et description) remplace les médias externes : il est utilisable dans tous les contenus en blocs. Les animés, mangas et personnages n'ont pas de contenu en blocs et donc pas de liens.
+- Modération des commentaires : `/content/actuality_comment` (ressource `actuality_comments`, administrateurs uniquement). Pas de création ; on peut modifier le texte, masquer/ré-afficher (`hidden`) et supprimer. L'auteur n'est qu'un pseudo (le compte utilisateur n'est pas exposé). Supprimer une actualité qui a des commentaires renvoie un 409 : supprimer les commentaires d'abord.
+- Smileys : `/content/smiley`. Un code unique de 10 caractères maximum (ex. `:)`) et une image facultative, utilisable par un seul smiley (422 sinon). Supprimer un smiley ne supprime pas le fichier.
 
 ## Animés et mangas
 

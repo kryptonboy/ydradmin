@@ -2391,6 +2391,565 @@
                 }
             }
         },
+        "/api/actuality_comments": {
+            "get": {
+                "operationId": "api_actuality_comments_get_collection",
+                "tags": [
+                    "ActualityComment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityComment collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "ActualityComment.jsonld-actuality_comment.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ActualityComment.jsonld-actuality_comment.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ActualityComment.multipart-actuality_comment.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves the collection of ActualityComment resources.",
+                "description": "Retrieves the collection of ActualityComment resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "actuality",
+                        "in": "query",
+                        "description": "ActualityComment actuality",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "actuality[]",
+                        "in": "query",
+                        "description": "ActualityComment actuality",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "hidden",
+                        "in": "query",
+                        "description": "ActualityComment hidden",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "hidden[]",
+                        "in": "query",
+                        "description": "ActualityComment hidden",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "ActualityComment author",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "author[]",
+                        "in": "query",
+                        "description": "ActualityComment author",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "ActualityComment search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "search[]",
+                        "in": "query",
+                        "description": "ActualityComment search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "ActualityComment order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "ActualityComment order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[createdAt]",
+                        "in": "query",
+                        "description": "ActualityComment order[createdAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[createdAt][]",
+                        "in": "query",
+                        "description": "ActualityComment order[createdAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            }
+        },
+        "/api/actuality_comments/{id}": {
+            "get": {
+                "operationId": "api_actuality_comments_id_get",
+                "tags": [
+                    "ActualityComment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityComment resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityComment.jsonld-actuality_comment.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityComment.multipart-actuality_comment.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a ActualityComment resource.",
+                "description": "Retrieves a ActualityComment resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActualityComment identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_actuality_comments_id_delete",
+                "tags": [
+                    "ActualityComment"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "ActualityComment resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the ActualityComment resource.",
+                "description": "Removes the ActualityComment resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActualityComment identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_actuality_comments_id_patch",
+                "tags": [
+                    "ActualityComment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityComment resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityComment.jsonld-actuality_comment.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityComment.multipart-actuality_comment.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the ActualityComment resource.",
+                "description": "Updates the ActualityComment resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActualityComment identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated ActualityComment resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualityComment-actuality_comment.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "/api/animes": {
             "get": {
                 "operationId": "api_animes_get_collection",
@@ -22361,6 +22920,548 @@
                 }
             }
         },
+        "/api/smileys": {
+            "get": {
+                "operationId": "api_smileys_get_collection",
+                "tags": [
+                    "Smiley"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Smiley collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "Smiley.jsonld-smiley.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Smiley.jsonld-smiley.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Smiley.multipart-smiley.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Smiley resources.",
+                "description": "Retrieves the collection of Smiley resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Smiley code",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "code[]",
+                        "in": "query",
+                        "description": "Smiley code",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Smiley order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Smiley order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[code]",
+                        "in": "query",
+                        "description": "Smiley order[code]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[code][]",
+                        "in": "query",
+                        "description": "Smiley order[code]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_smileys_post",
+                "tags": [
+                    "Smiley"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Smiley resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Smiley.jsonld-smiley.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Smiley.multipart-smiley.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a Smiley resource.",
+                "description": "Creates a Smiley resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new Smiley resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Smiley-smiley.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Smiley-smiley.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/smileys/{id}": {
+            "get": {
+                "operationId": "api_smileys_id_get",
+                "tags": [
+                    "Smiley"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Smiley resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Smiley.jsonld-smiley.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Smiley.multipart-smiley.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a Smiley resource.",
+                "description": "Retrieves a Smiley resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Smiley identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_smileys_id_delete",
+                "tags": [
+                    "Smiley"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Smiley resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the Smiley resource.",
+                "description": "Removes the Smiley resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Smiley identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_smileys_id_patch",
+                "tags": [
+                    "Smiley"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Smiley resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Smiley.jsonld-smiley.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Smiley.multipart-smiley.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the Smiley resource.",
+                "description": "Updates the Smiley resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Smiley identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated Smiley resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Smiley-smiley.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "/api/tags": {
             "get": {
                 "operationId": "api_tags_get_collection",
@@ -25727,6 +26828,22 @@
                     }
                 ]
             },
+            "Actuality.jsonld-actuality_comment.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Actuality.multipart-actuality.list_actuality.read_entity.read": {
                 "type": "object",
                 "required": [
@@ -25846,6 +26963,15 @@
                             }
                         ]
                     },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Actuality.multipart-actuality_comment.read_entity.read": {
+                "type": "object",
+                "properties": {
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -26023,6 +27149,103 @@
                         "readOnly": true
                     }
                 }
+            },
+            "ActualityComment-actuality_comment.write.jsonMergePatch": {
+                "type": "object",
+                "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only.",
+                "properties": {
+                    "content": {
+                        "type": "string"
+                    },
+                    "hidden": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ActualityComment.jsonld-actuality_comment.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "actuality": {
+                                "$ref": "#/components/schemas/Actuality.jsonld-actuality_comment.read_entity.read"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "actualityTitle": {
+                                "readOnly": true,
+                                "type": "string"
+                            },
+                            "content": {
+                                "type": "string"
+                            },
+                            "author": {
+                                "readOnly": true,
+                                "description": "Username of the author: the account itself is not exposed.",
+                                "type": "string"
+                            },
+                            "hidden": {
+                                "type": "boolean"
+                            },
+                            "postedAt": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            }
+                        },
+                        "required": [
+                            "content"
+                        ]
+                    }
+                ],
+                "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only."
+            },
+            "ActualityComment.multipart-actuality_comment.read_entity.read": {
+                "type": "object",
+                "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only.",
+                "properties": {
+                    "actuality": {
+                        "$ref": "#/components/schemas/Actuality.multipart-actuality_comment.read_entity.read"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "actualityTitle": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "readOnly": true,
+                        "description": "Username of the author: the account itself is not exposed.",
+                        "type": "string"
+                    },
+                    "hidden": {
+                        "type": "boolean"
+                    },
+                    "postedAt": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "content"
+                ]
             },
             "Anime-anime.write": {
                 "type": "object",
@@ -33571,6 +34794,32 @@
                     }
                 ]
             },
+            "MediaObject.jsonld-smiley.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": {
                 "allOf": [
                     {
@@ -33928,6 +35177,25 @@
                 }
             },
             "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-smiley.read_entity.read": {
                 "type": "object",
                 "properties": {
                     "contentUrl": {
@@ -36070,6 +37338,106 @@
                     "anime"
                 ]
             },
+            "Smiley-smiley.write": {
+                "type": "object",
+                "required": [
+                    "code"
+                ],
+                "properties": {
+                    "code": {
+                        "maxLength": 10,
+                        "description": "The text typed in a comment to get the image, e.g. \":)\" or \":dragon:\".",
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    }
+                }
+            },
+            "Smiley-smiley.write.jsonMergePatch": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "maxLength": 10,
+                        "description": "The text typed in a comment to get the image, e.g. \":)\" or \":dragon:\".",
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    }
+                }
+            },
+            "Smiley.jsonld-smiley.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "code"
+                        ],
+                        "properties": {
+                            "code": {
+                                "maxLength": 10,
+                                "description": "The text typed in a comment to get the image, e.g. \":)\" or \":dragon:\".",
+                                "type": "string"
+                            },
+                            "image": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-smiley.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Smiley.multipart-smiley.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "code"
+                ],
+                "properties": {
+                    "code": {
+                        "maxLength": 10,
+                        "description": "The text typed in a comment to get the image, e.g. \":)\" or \":dragon:\".",
+                        "type": "string"
+                    },
+                    "image": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-smiley.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
             "Tag-tag.write": {
                 "type": "object",
                 "required": [
@@ -36905,6 +38273,10 @@
             "description": "Resource 'ActualityCategory' operations."
         },
         {
+            "name": "ActualityComment",
+            "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only."
+        },
+        {
             "name": "Anime",
             "description": "Resource 'Anime' operations."
         },
@@ -37031,6 +38403,10 @@
         {
             "name": "Season",
             "description": "Resource 'Season' operations."
+        },
+        {
+            "name": "Smiley",
+            "description": "Resource 'Smiley' operations."
         },
         {
             "name": "Tag",

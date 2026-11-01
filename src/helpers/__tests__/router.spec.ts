@@ -53,6 +53,11 @@ describe('routes avec identifiant numérique', () => {
     expect(matchedPath('/anime_manga/character')).toBe('/anime_manga/character')
   })
 
+  it('reconnaît les pages de modération et des smileys', () => {
+    expect(matchedPath('/content/actuality_comment')).toBe('/content/actuality_comment')
+    expect(matchedPath('/content/smiley')).toBe('/content/smiley')
+  })
+
   it('refuse un identifiant non numérique', () => {
     expect(matchedPath('/anime_manga/anime/abc')).toBe('/:pathMatch(.*)*')
     expect(matchedPath('/content/actuality/abc')).toBe('/:pathMatch(.*)*')
