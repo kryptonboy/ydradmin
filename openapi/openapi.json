@@ -264,6 +264,99 @@
                         "explode": true
                     },
                     {
+                        "name": "monsterEffects",
+                        "in": "query",
+                        "description": "AbstractCard monsterEffects",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "monsterEffects[]",
+                        "in": "query",
+                        "description": "AbstractCard monsterEffects",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "tags",
+                        "in": "query",
+                        "description": "AbstractCard tags",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "tags[]",
+                        "in": "query",
+                        "description": "AbstractCard tags",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "AbstractCard order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "AbstractCard order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "order[name]",
                         "in": "query",
                         "description": "AbstractCard order[name]",
@@ -4676,6 +4769,33 @@
                         "explode": true
                     },
                     {
+                        "name": "reference",
+                        "in": "query",
+                        "description": "Card reference",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "reference[]",
+                        "in": "query",
+                        "description": "Card reference",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "description",
                         "in": "query",
                         "description": "Card description",
@@ -4772,6 +4892,87 @@
                         "name": "abstractCard.cardSubType.cardType[]",
                         "in": "query",
                         "description": "Card abstractCard.cardSubType.cardType",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard.cardGroup",
+                        "in": "query",
+                        "description": "Card abstractCard.cardGroup",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard.cardGroup[]",
+                        "in": "query",
+                        "description": "Card abstractCard.cardGroup",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard.monsterEffects",
+                        "in": "query",
+                        "description": "Card abstractCard.monsterEffects",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard.monsterEffects[]",
+                        "in": "query",
+                        "description": "Card abstractCard.monsterEffects",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard.tags",
+                        "in": "query",
+                        "description": "Card abstractCard.tags",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard.tags[]",
+                        "in": "query",
+                        "description": "Card abstractCard.tags",
                         "required": false,
                         "deprecated": false,
                         "schema": {
@@ -5079,6 +5280,357 @@
                         },
                         "style": "form",
                         "explode": false
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Card order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Card order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name]",
+                        "in": "query",
+                        "description": "Card order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name][]",
+                        "in": "query",
+                        "description": "Card order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[reference]",
+                        "in": "query",
+                        "description": "Card order[reference]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[reference][]",
+                        "in": "query",
+                        "description": "Card order[reference]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.cardSubType.name]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.cardSubType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.cardSubType.name][]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.cardSubType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.cardSubType.cardType.name]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.cardSubType.cardType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.cardSubType.cardType.name][]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.cardSubType.cardType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.cardGroup.name]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.cardGroup.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.cardGroup.name][]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.cardGroup.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.monsterAttribute.name]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.monsterAttribute.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.monsterAttribute.name][]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.monsterAttribute.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.monsterSubType.name]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.monsterSubType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.monsterSubType.name][]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.monsterSubType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.monsterType.name]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.monsterType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[abstractCard.monsterType.name][]",
+                        "in": "query",
+                        "description": "Card order[abstractCard.monsterType.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
                     }
                 ]
             },
@@ -9326,6 +9878,150 @@
                         },
                         "style": "form",
                         "explode": true
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Country name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "name[]",
+                        "in": "query",
+                        "description": "Country name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Country order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Country order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name]",
+                        "in": "query",
+                        "description": "Country order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name][]",
+                        "in": "query",
+                        "description": "Country order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[position]",
+                        "in": "query",
+                        "description": "Country order[position]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[position][]",
+                        "in": "query",
+                        "description": "Country order[position]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
                     }
                 ]
             },
@@ -11919,6 +12615,22 @@
                         "explode": true
                     },
                     {
+                        "name": "order[extensionsCount]",
+                        "in": "query",
+                        "description": "Sort by the number of extensions",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
                         "name": "order[id]",
                         "in": "query",
                         "description": "ExtensionType order[id]",
@@ -12423,7 +13135,7 @@
                             "application/ld+json": {
                                 "schema": {
                                     "type": "object",
-                                    "description": "GameFormat.jsonld collection.",
+                                    "description": "GameFormat.jsonld-game_format.read_entity.read_label collection.",
                                     "allOf": [
                                         {
                                             "$ref": "#/components/schemas/HydraCollectionBaseSchema"
@@ -12437,7 +13149,7 @@
                                                 "member": {
                                                     "type": "array",
                                                     "items": {
-                                                        "$ref": "#/components/schemas/GameFormat.jsonld"
+                                                        "$ref": "#/components/schemas/GameFormat.jsonld-game_format.read_entity.read_label"
                                                     }
                                                 }
                                             }
@@ -12449,7 +13161,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/GameFormat.multipart"
+                                        "$ref": "#/components/schemas/GameFormat.multipart-game_format.read_entity.read_label"
                                     }
                                 }
                             }
@@ -12471,6 +13183,111 @@
                         },
                         "style": "form",
                         "explode": true
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "GameFormat name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "name[]",
+                        "in": "query",
+                        "description": "GameFormat name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "GameFormat order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "GameFormat order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name]",
+                        "in": "query",
+                        "description": "GameFormat order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name][]",
+                        "in": "query",
+                        "description": "GameFormat order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
                     }
                 ]
             },
@@ -12485,12 +13302,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GameFormat.jsonld"
+                                    "$ref": "#/components/schemas/GameFormat.jsonld-game_format.read_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GameFormat.multipart"
+                                    "$ref": "#/components/schemas/GameFormat.multipart-game_format.read_entity.read_label"
                                 }
                             }
                         },
@@ -12568,12 +13385,12 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/GameFormat"
+                                "$ref": "#/components/schemas/GameFormat-game_format.write"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/GameFormat"
+                                "$ref": "#/components/schemas/GameFormat-game_format.write"
                             }
                         }
                     },
@@ -12593,12 +13410,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GameFormat.jsonld"
+                                    "$ref": "#/components/schemas/GameFormat.jsonld-game_format.read_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GameFormat.multipart"
+                                    "$ref": "#/components/schemas/GameFormat.multipart-game_format.read_entity.read_label"
                                 }
                             }
                         }
@@ -12722,12 +13539,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GameFormat.jsonld"
+                                    "$ref": "#/components/schemas/GameFormat.jsonld-game_format.read_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GameFormat.multipart"
+                                    "$ref": "#/components/schemas/GameFormat.multipart-game_format.read_entity.read_label"
                                 }
                             }
                         },
@@ -12839,7 +13656,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/GameFormat.jsonMergePatch"
+                                "$ref": "#/components/schemas/GameFormat-game_format.write.jsonMergePatch"
                             }
                         }
                     },
@@ -17082,7 +17899,7 @@
                             "application/ld+json": {
                                 "schema": {
                                     "type": "object",
-                                    "description": "Restriction.jsonld collection.",
+                                    "description": "Restriction.jsonld-restriction.read_entity.read_label collection.",
                                     "allOf": [
                                         {
                                             "$ref": "#/components/schemas/HydraCollectionBaseSchema"
@@ -17096,7 +17913,7 @@
                                                 "member": {
                                                     "type": "array",
                                                     "items": {
-                                                        "$ref": "#/components/schemas/Restriction.jsonld"
+                                                        "$ref": "#/components/schemas/Restriction.jsonld-restriction.read_entity.read_label"
                                                     }
                                                 }
                                             }
@@ -17108,7 +17925,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Restriction.multipart"
+                                        "$ref": "#/components/schemas/Restriction.multipart-restriction.read_entity.read_label"
                                     }
                                 }
                             }
@@ -17130,6 +17947,243 @@
                         },
                         "style": "form",
                         "explode": true
+                    },
+                    {
+                        "name": "cardGroup",
+                        "in": "query",
+                        "description": "Restriction cardGroup",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "cardGroup[]",
+                        "in": "query",
+                        "description": "Restriction cardGroup",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "gameFormat",
+                        "in": "query",
+                        "description": "Restriction gameFormat",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "gameFormat[]",
+                        "in": "query",
+                        "description": "Restriction gameFormat",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "limitNumber",
+                        "in": "query",
+                        "description": "Restriction limitNumber",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "limitNumber[]",
+                        "in": "query",
+                        "description": "Restriction limitNumber",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Restriction order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Restriction order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[limitNumber]",
+                        "in": "query",
+                        "description": "Restriction order[limitNumber]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[limitNumber][]",
+                        "in": "query",
+                        "description": "Restriction order[limitNumber]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[cardGroup.name]",
+                        "in": "query",
+                        "description": "Restriction order[cardGroup.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[cardGroup.name][]",
+                        "in": "query",
+                        "description": "Restriction order[cardGroup.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[gameFormat.name]",
+                        "in": "query",
+                        "description": "Restriction order[gameFormat.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[gameFormat.name][]",
+                        "in": "query",
+                        "description": "Restriction order[gameFormat.name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
                     }
                 ]
             },
@@ -17144,12 +18198,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Restriction.jsonld"
+                                    "$ref": "#/components/schemas/Restriction.jsonld-restriction.read_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Restriction.multipart"
+                                    "$ref": "#/components/schemas/Restriction.multipart-restriction.read_entity.read_label"
                                 }
                             }
                         },
@@ -17227,12 +18281,12 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Restriction"
+                                "$ref": "#/components/schemas/Restriction-restriction.write"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Restriction"
+                                "$ref": "#/components/schemas/Restriction-restriction.write"
                             }
                         }
                     },
@@ -17252,12 +18306,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Restriction.jsonld"
+                                    "$ref": "#/components/schemas/Restriction.jsonld-restriction.read_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Restriction.multipart"
+                                    "$ref": "#/components/schemas/Restriction.multipart-restriction.read_entity.read_label"
                                 }
                             }
                         }
@@ -17381,12 +18435,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Restriction.jsonld"
+                                    "$ref": "#/components/schemas/Restriction.jsonld-restriction.read_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Restriction.multipart"
+                                    "$ref": "#/components/schemas/Restriction.multipart-restriction.read_entity.read_label"
                                 }
                             }
                         },
@@ -17498,7 +18552,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Restriction.jsonMergePatch"
+                                "$ref": "#/components/schemas/Restriction-restriction.write.jsonMergePatch"
                             }
                         }
                     },
@@ -23073,6 +24127,29 @@
                     }
                 ]
             },
+            "CardGroup.jsonld-restriction.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "CardGroup.multipart-abstract_card.read_entity.read": {
                 "type": "object",
                 "required": [
@@ -23106,6 +24183,22 @@
                 }
             },
             "CardGroup.multipart-card_group.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "CardGroup.multipart-restriction.read_entity.read_label": {
                 "type": "object",
                 "required": [
                     "name"
@@ -23277,6 +24370,16 @@
                                 "maxLength": 255,
                                 "type": "string"
                             },
+                            "icon": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-card_sub_type.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
                             "cssClass": {
                                 "maxLength": 255,
                                 "type": [
@@ -23364,6 +24467,16 @@
                     "name": {
                         "maxLength": 255,
                         "type": "string"
+                    },
+                    "icon": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-card_sub_type.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cssClass": {
                         "maxLength": 255,
@@ -23509,6 +24622,16 @@
                                 "maxLength": 255,
                                 "type": "string"
                             },
+                            "icon": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-card_type.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
                             "position": {
                                 "minimum": 0,
                                 "default": 0,
@@ -23572,6 +24695,16 @@
                     "name": {
                         "maxLength": 255,
                         "type": "string"
+                    },
+                    "icon": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-card_type.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "position": {
                         "minimum": 0,
@@ -26179,6 +27312,14 @@
                         ],
                         "format": "date-time"
                     },
+                    "icon": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
                     "cardsCount": {
                         "minimum": 0,
                         "type": "integer"
@@ -26212,6 +27353,14 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "icon": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
                     },
                     "cardsCount": {
                         "minimum": 0,
@@ -26275,6 +27424,16 @@
                                 ],
                                 "format": "date-time"
                             },
+                            "icon": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-extension.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
                             "cardsCount": {
                                 "minimum": 0,
                                 "type": "integer"
@@ -26285,6 +27444,22 @@
                             "country": {
                                 "$ref": "#/components/schemas/Country.jsonld-extension.read_entity.read"
                             },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Extension.jsonld-game_format.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -26327,6 +27502,16 @@
                         ],
                         "format": "date-time"
                     },
+                    "icon": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-extension.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "cardsCount": {
                         "minimum": 0,
                         "type": "integer"
@@ -26337,6 +27522,15 @@
                     "country": {
                         "$ref": "#/components/schemas/Country.multipart-extension.read_entity.read"
                     },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Extension.multipart-game_format.read_entity.read_label": {
+                "type": "object",
+                "properties": {
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -26470,7 +27664,7 @@
                     }
                 }
             },
-            "GameFormat": {
+            "GameFormat-game_format.write": {
                 "type": "object",
                 "required": [
                     "name",
@@ -26481,86 +27675,24 @@
                         "maxLength": 255,
                         "type": "string"
                     },
-                    "slug": {
-                        "type": "string"
-                    },
                     "description": {
                         "type": "string"
-                    },
-                    "extensions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    },
-                    "restrictions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    },
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
                     }
                 }
             },
-            "GameFormat.jsonMergePatch": {
+            "GameFormat-game_format.write.jsonMergePatch": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "maxLength": 255,
                         "type": "string"
                     },
-                    "slug": {
-                        "type": "string"
-                    },
                     "description": {
                         "type": "string"
-                    },
-                    "extensions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    },
-                    "restrictions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    },
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
                     }
                 }
             },
-            "GameFormat.jsonld": {
+            "GameFormat.jsonld-game_format.read_entity.read_label": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/HydraItemBaseSchema"
@@ -26583,38 +27715,44 @@
                                 "type": "string"
                             },
                             "extensions": {
+                                "description": "Read only: the extensions are linked from Extension.gameFormats.",
                                 "type": "array",
                                 "items": {
-                                    "type": "string",
-                                    "format": "iri-reference",
-                                    "example": "https://example.com/"
-                                }
-                            },
-                            "restrictions": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "format": "iri-reference",
-                                    "example": "https://example.com/"
+                                    "$ref": "#/components/schemas/Extension.jsonld-game_format.read_entity.read_label"
                                 }
                             },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
-                            },
-                            "createdAt": {
-                                "type": "string",
-                                "format": "date-time"
-                            },
-                            "updatedAt": {
-                                "type": "string",
-                                "format": "date-time"
                             }
                         }
                     }
                 ]
             },
-            "GameFormat.multipart": {
+            "GameFormat.jsonld-restriction.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "GameFormat.multipart-game_format.read_entity.read_label": {
                 "type": "object",
                 "required": [
                     "name",
@@ -26632,32 +27770,31 @@
                         "type": "string"
                     },
                     "extensions": {
+                        "description": "Read only: the extensions are linked from Extension.gameFormats.",
                         "type": "array",
                         "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    },
-                    "restrictions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
+                            "$ref": "#/components/schemas/Extension.multipart-game_format.read_entity.read_label"
                         }
                     },
                     "id": {
                         "type": "integer",
                         "readOnly": true
+                    }
+                }
+            },
+            "GameFormat.multipart-restriction.read_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
                     },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
                     }
                 }
             },
@@ -27337,6 +28474,58 @@
                     }
                 ]
             },
+            "MediaObject.jsonld-card_sub_type.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "MediaObject.jsonld-card_type.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": {
                 "allOf": [
                     {
@@ -27467,6 +28656,32 @@
                     }
                 ]
             },
+            "MediaObject.jsonld-extension.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-media_object.read_entity.read": {
                 "allOf": [
                     {
@@ -27530,6 +28745,32 @@
                         "required": [
                             "context"
                         ]
+                    }
+                ]
+            },
+            "MediaObject.jsonld-monster_attribute.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
                     }
                 ]
             },
@@ -27661,6 +28902,44 @@
                     }
                 }
             },
+            "MediaObject.multipart-card_sub_type.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-card_type.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
             "MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
@@ -27738,6 +29017,44 @@
                 }
             },
             "MediaObject.multipart-episode_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-extension.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-monster_attribute.read_entity.read": {
                 "type": "object",
                 "properties": {
                     "contentUrl": {
@@ -27892,6 +29209,16 @@
                                 "maxLength": 255,
                                 "type": "string"
                             },
+                            "icon": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-monster_attribute.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -27941,6 +29268,16 @@
                     "name": {
                         "maxLength": 255,
                         "type": "string"
+                    },
+                    "icon": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-monster_attribute.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -28467,7 +29804,7 @@
                     }
                 }
             },
-            "Restriction": {
+            "Restriction-restriction.write": {
                 "type": "object",
                 "required": [
                     "cardGroup",
@@ -28490,22 +29827,10 @@
                         "maximum": 2,
                         "description": "Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited.",
                         "type": "integer"
-                    },
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
                     }
                 }
             },
-            "Restriction.jsonMergePatch": {
+            "Restriction-restriction.write.jsonMergePatch": {
                 "type": "object",
                 "properties": {
                     "cardGroup": {
@@ -28523,22 +29848,10 @@
                         "maximum": 2,
                         "description": "Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited.",
                         "type": "integer"
-                    },
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
                     }
                 }
             },
-            "Restriction.jsonld": {
+            "Restriction.jsonld-restriction.read_entity.read_label": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/HydraItemBaseSchema"
@@ -28552,14 +29865,10 @@
                         ],
                         "properties": {
                             "cardGroup": {
-                                "type": "string",
-                                "format": "iri-reference",
-                                "example": "https://example.com/"
+                                "$ref": "#/components/schemas/CardGroup.jsonld-restriction.read_entity.read_label"
                             },
                             "gameFormat": {
-                                "type": "string",
-                                "format": "iri-reference",
-                                "example": "https://example.com/"
+                                "$ref": "#/components/schemas/GameFormat.jsonld-restriction.read_entity.read_label"
                             },
                             "limitNumber": {
                                 "minimum": 0,
@@ -28570,20 +29879,12 @@
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
-                            },
-                            "createdAt": {
-                                "type": "string",
-                                "format": "date-time"
-                            },
-                            "updatedAt": {
-                                "type": "string",
-                                "format": "date-time"
                             }
                         }
                     }
                 ]
             },
-            "Restriction.multipart": {
+            "Restriction.multipart-restriction.read_entity.read_label": {
                 "type": "object",
                 "required": [
                     "cardGroup",
@@ -28592,14 +29893,10 @@
                 ],
                 "properties": {
                     "cardGroup": {
-                        "type": "string",
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
+                        "$ref": "#/components/schemas/CardGroup.multipart-restriction.read_entity.read_label"
                     },
                     "gameFormat": {
-                        "type": "string",
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
+                        "$ref": "#/components/schemas/GameFormat.multipart-restriction.read_entity.read_label"
                     },
                     "limitNumber": {
                         "minimum": 0,
@@ -28610,14 +29907,6 @@
                     "id": {
                         "type": "integer",
                         "readOnly": true
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
                     }
                 }
             },

@@ -30,3 +30,8 @@ export interface ChapterRef extends Ref {
 export interface VideoGameRef extends Ref {
   title: string
 }
+
+/** Média lu avec l'URL de son contenu (chemin relatif au domaine de l'API). */
+export interface MediaLink extends Ref {
+  contentUrl?: string | null
+}

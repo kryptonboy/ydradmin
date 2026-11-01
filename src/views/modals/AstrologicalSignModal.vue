@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import MediaThumb from '@/components/MediaThumb.vue'
 import { useSubmit } from '@/composables/useSubmit'
 import { useAstrologicalSignsStore } from '@/stores'
 import type { AstrologicalSignForm } from '@/types/forms/AstrologicalSignForm'
@@ -140,6 +141,7 @@ defineExpose({ showModal: () => modal.value?.show() })
         <ErrorMessage name="endMonth" class="text-danger small" />
       </div>
     </div>
+    <MediaThumb v-if="!iconId" :media="props.sign?.icon" alt="Icône actuelle" />
     <FileUploader
       ref="iconUploader"
       v-model="iconId"
