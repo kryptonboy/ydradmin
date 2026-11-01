@@ -624,7 +624,7 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Cards used in les épisodes et chapitres d'un personnage, with how many times
+         * Cards used in les épisodes, chapitres et films d'un personnage, with how many times
          * @description Hidden episodes and chapters only count for administrators.
          */
         get: operations["getCardUsageCharacters"];
@@ -668,6 +668,26 @@ export interface paths {
          * @description Hidden episodes and chapters only count for administrators.
          */
         get: operations["getCardUsageMangas"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/movies/{id}/cards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Cards used in un film, with how many times
+         * @description Hidden episodes and chapters only count for administrators.
+         */
+        get: operations["getCardUsageMovies"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1520,6 +1540,110 @@ export interface paths {
         patch: operations["api_monster_types_id_patch"];
         trace?: never;
     };
+    "/api/movies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Movie resources.
+         * @description Retrieves the collection of Movie resources.
+         */
+        get: operations["api_movies_get_collection"];
+        put?: never;
+        /**
+         * Creates a Movie resource.
+         * @description Creates a Movie resource.
+         */
+        post: operations["api_movies_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/movies/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Movie resource.
+         * @description Retrieves a Movie resource.
+         */
+        get: operations["api_movies_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Movie resource.
+         * @description Removes the Movie resource.
+         */
+        delete: operations["api_movies_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Movie resource.
+         * @description Updates the Movie resource.
+         */
+        patch: operations["api_movies_id_patch"];
+        trace?: never;
+    };
+    "/api/movie_characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of MovieCharacter resources.
+         * @description Retrieves the collection of MovieCharacter resources.
+         */
+        get: operations["api_movie_characters_get_collection"];
+        put?: never;
+        /**
+         * Creates a MovieCharacter resource.
+         * @description Creates a MovieCharacter resource.
+         */
+        post: operations["api_movie_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/movie_characters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a MovieCharacter resource.
+         * @description Retrieves a MovieCharacter resource.
+         */
+        get: operations["api_movie_characters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the MovieCharacter resource.
+         * @description Removes the MovieCharacter resource.
+         */
+        delete: operations["api_movie_characters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the MovieCharacter resource.
+         * @description Updates the MovieCharacter resource.
+         */
+        patch: operations["api_movie_characters_id_patch"];
+        trace?: never;
+    };
     "/api/rarities": {
         parameters: {
             query?: never;
@@ -1969,6 +2093,14 @@ export interface components {
             name?: string;
             readonly id?: number;
         };
+        "AbstractCard.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
         "AbstractCard.multipart-abstract_card.read_entity.read": {
             name?: string;
             level?: number | null;
@@ -2013,6 +2145,14 @@ export interface components {
             readonly id?: number;
         };
         "AbstractCard.multipart-episode_character.read_appearance.read_entity.read_label": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
         };
@@ -2972,6 +3112,18 @@ export interface components {
             photo?: components["schemas"]["MediaObject.jsonld-episode_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
         };
+        "Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Character.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label"] | null;
+            readonly id?: number;
+        };
         "Character.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
@@ -3024,6 +3176,18 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-episode_character.read_appearance.read_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-movie_character.read_appearance.read_entity.read_label": {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.multipart-movie_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
         };
         "Character.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
@@ -3700,6 +3864,18 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-movie.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -3757,6 +3933,18 @@ export interface components {
             readonly id?: number;
         };
         "MediaObject.multipart-monster_attribute.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-movie.list_entity.read_label": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -3895,6 +4083,268 @@ export interface components {
         "MonsterType.multipart-monster_type.read_entity.read": {
             name: string;
             readonly id?: number;
+        };
+        "Movie-movie.write": {
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            coverImage?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            titleImage?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Movie-movie.write.jsonMergePatch": {
+            title?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            coverImage?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            titleImage?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Movie.jsonld-movie.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            coverImage?: components["schemas"]["MediaObject.jsonld-movie.list_entity.read_label"] | null;
+            titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            coverImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            characters?: components["schemas"]["MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Movie.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            readonly id?: number;
+        };
+        "Movie.multipart-movie.list_entity.read_label": {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            coverImage?: components["schemas"]["MediaObject.multipart-movie.list_entity.read_label"] | null;
+            titleImage?: components["schemas"]["MediaObject.multipart-movie.list_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            coverImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            titleImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            characters?: components["schemas"]["MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Movie.multipart-movie_character.read_appearance.read_entity.read_label": {
+            title: string;
+            readonly id?: number;
+        };
+        /** @description A character appearing in a film, with the cards he or she uses in it. */
+        "MovieCharacter-movie_character.write": {
+            /** @default false */
+            mainCharacter: boolean;
+            /**
+             * @description Order of appearance in the film's list of characters.
+             * @default 0
+             */
+            position: number;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            movie: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character: string;
+            /** @description The cards the character uses in the film, each listed once. */
+            cards?: string[];
+        };
+        /** @description A character appearing in a film, with the cards he or she uses in it. */
+        "MovieCharacter-movie_character.write.jsonMergePatch": {
+            /** @default false */
+            mainCharacter: boolean;
+            /**
+             * @description Order of appearance in the film's list of characters.
+             * @default 0
+             */
+            position: number;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            movie?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character?: string;
+            /** @description The cards the character uses in the film, each listed once. */
+            cards?: string[];
+        };
+        "MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default false */
+            mainCharacter: boolean;
+            /**
+             * @description Order of appearance in the film's list of characters.
+             * @default 0
+             */
+            position: number;
+            character: components["schemas"]["Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label"];
+            readonly id?: number;
+            /** @description The cards the character uses in the film, each listed once. */
+            cards?: components["schemas"]["AbstractCard.jsonld-movie.list_movie.read_appearance.read_entity.read_label"][];
+        };
+        /** @description A character appearing in a film, with the cards he or she uses in it. */
+        "MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default false */
+            mainCharacter: boolean;
+            /**
+             * @description Order of appearance in the film's list of characters.
+             * @default 0
+             */
+            position: number;
+            movie: components["schemas"]["Movie.jsonld-movie_character.read_appearance.read_entity.read_label"];
+            character: components["schemas"]["Character.jsonld-movie_character.read_appearance.read_entity.read_label"];
+            readonly id?: number;
+            /** @description The cards the character uses in the film, each listed once. */
+            cards?: components["schemas"]["AbstractCard.jsonld-movie_character.read_appearance.read_entity.read_label"][];
+        };
+        "MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+            /** @default false */
+            mainCharacter: boolean;
+            /**
+             * @description Order of appearance in the film's list of characters.
+             * @default 0
+             */
+            position: number;
+            character: components["schemas"]["Character.multipart-movie.list_movie.read_appearance.read_entity.read_label"];
+            readonly id?: number;
+            /** @description The cards the character uses in the film, each listed once. */
+            cards?: components["schemas"]["AbstractCard.multipart-movie.list_movie.read_appearance.read_entity.read_label"][];
+        };
+        /** @description A character appearing in a film, with the cards he or she uses in it. */
+        "MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label": {
+            /** @default false */
+            mainCharacter: boolean;
+            /**
+             * @description Order of appearance in the film's list of characters.
+             * @default 0
+             */
+            position: number;
+            movie: components["schemas"]["Movie.multipart-movie_character.read_appearance.read_entity.read_label"];
+            character: components["schemas"]["Character.multipart-movie_character.read_appearance.read_entity.read_label"];
+            readonly id?: number;
+            /** @description The cards the character uses in the film, each listed once. */
+            cards?: components["schemas"]["AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label"][];
         };
         "Rarity-rarity.write": {
             name: string;
@@ -7365,6 +7815,36 @@ export interface operations {
         };
     };
     getCardUsageMangas: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Identifier of the resource. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Cards used, each listed once, most used first. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardUsageList"];
+                };
+            };
+            /** @description Unknown resource, or hidden from the visitor. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    getCardUsageMovies: {
         parameters: {
             query?: never;
             header?: never;
@@ -11367,6 +11847,540 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["MonsterType.jsonld-monster_type.read_entity.read"];
                     "multipart/form-data": components["schemas"]["MonsterType.multipart-monster_type.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_movies_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Movie title */
+                title?: string;
+                /** @description Movie title */
+                "title[]"?: string[];
+                /** @description Movie search */
+                search?: string;
+                /** @description Movie search */
+                "search[]"?: string[];
+                /** @description Movie slug */
+                slug?: string;
+                /** @description Movie slug */
+                "slug[]"?: string[];
+                /** @description Movie character */
+                character?: string;
+                /** @description Movie character */
+                "character[]"?: string[];
+                /** @description Movie abstractCard */
+                abstractCard?: string;
+                /** @description Movie abstractCard */
+                "abstractCard[]"?: string[];
+                /** @description Movie visible */
+                visible?: string;
+                /** @description Movie visible */
+                "visible[]"?: string[];
+                /** @description Movie order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Movie order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Movie order[title] */
+                "order[title]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Movie order[title] */
+                "order[title][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Movie order[usReleaseDate] */
+                "order[usReleaseDate]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Movie order[usReleaseDate] */
+                "order[usReleaseDate][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Movie order[japanReleaseDate] */
+                "order[japanReleaseDate]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Movie order[japanReleaseDate] */
+                "order[japanReleaseDate][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Movie order[europeReleaseDate] */
+                "order[europeReleaseDate]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Movie order[europeReleaseDate] */
+                "order[europeReleaseDate][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Movie collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Movie.jsonld-movie.list_entity.read_label"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Movie.multipart-movie.list_entity.read_label"][];
+                };
+            };
+        };
+    };
+    api_movies_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Movie resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Movie-movie.write"];
+                "multipart/form-data": components["schemas"]["Movie-movie.write"];
+            };
+        };
+        responses: {
+            /** @description Movie resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_movies_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Movie identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Movie resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_movies_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Movie identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Movie resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_movies_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Movie identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Movie resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Movie-movie.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Movie resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_movie_characters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description MovieCharacter movie */
+                movie?: string;
+                /** @description MovieCharacter movie */
+                "movie[]"?: string[];
+                /** @description MovieCharacter character */
+                character?: string;
+                /** @description MovieCharacter character */
+                "character[]"?: string[];
+                /** @description MovieCharacter order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description MovieCharacter order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description MovieCharacter order[position] */
+                "order[position]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description MovieCharacter order[position] */
+                "order[position][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description MovieCharacter collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"][];
+                    };
+                    "multipart/form-data": components["schemas"]["MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"][];
+                };
+            };
+        };
+    };
+    api_movie_characters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new MovieCharacter resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["MovieCharacter-movie_character.write"];
+                "multipart/form-data": components["schemas"]["MovieCharacter-movie_character.write"];
+            };
+        };
+        responses: {
+            /** @description MovieCharacter resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_movie_characters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MovieCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description MovieCharacter resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_movie_characters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MovieCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description MovieCharacter resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_movie_characters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MovieCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated MovieCharacter resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["MovieCharacter-movie_character.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description MovieCharacter resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["MovieCharacter.jsonld-movie_character.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["MovieCharacter.multipart-movie_character.read_appearance.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */

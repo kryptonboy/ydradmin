@@ -87,6 +87,12 @@ export const router = createRouter({
       component: () => import('@/views/VideoGameEditView.vue'),
     },
     { path: '/video_game/support', component: () => import('@/views/VideoGameSupportView.vue') },
+    { path: '/anime_manga/movie', component: () => import('@/views/MovieView.vue') },
+    { path: '/anime_manga/movie/new', component: () => import('@/views/MovieEditView.vue') },
+    {
+      path: String.raw`/anime_manga/movie/:id(\d+)`,
+      component: () => import('@/views/MovieEditView.vue'),
+    },
     { path: '/login', component: () => import('@/views/LoginView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],

@@ -12,6 +12,9 @@ export interface Appearance {
     photo?: { contentUrl?: string | null } | null
   }
   cards?: { '@id'?: string; id: number; name?: string }[]
+  /** Films uniquement : personnage principal et ordre d'apparition */
+  mainCharacter?: boolean
+  position?: number
 }
 
 /** Carte listée une seule fois, avec son nombre d'apparitions (`GET /{ressource}/{id}/cards`). */

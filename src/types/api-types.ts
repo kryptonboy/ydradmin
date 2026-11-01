@@ -83,3 +83,6 @@ export type GameFormatInput = Schemas['GameFormat-game_format.write']
 export type RestrictionInput = Schemas['Restriction-restriction.write']
 export type ApiGameFormat = Schemas['GameFormat.jsonld-game_format.read_entity.read_label']
 export type ApiRestriction = Schemas['Restriction.jsonld-restriction.read_entity.read_label']
+
+export type MovieInput = Schemas['Movie-movie.write']
+export type MovieCharacterInput = Schemas['MovieCharacter-movie_character.write']
