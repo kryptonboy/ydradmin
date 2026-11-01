@@ -43,6 +43,11 @@ describe('routes avec identifiant numérique', () => {
     expect(matchedPath('/anime_manga/movie/abc')).toBe('/:pathMatch(.*)*')
   })
 
+  it("reconnaît la page des personnages d'un manga", () => {
+    expect(matchedPath('/anime_manga/manga/2')).toBe('/anime_manga/manga/:id(\\d+)')
+    expect(matchedPath('/anime_manga/manga/abc')).toBe('/:pathMatch(.*)*')
+  })
+
   it('refuse un identifiant non numérique', () => {
     expect(matchedPath('/anime_manga/anime/abc')).toBe('/:pathMatch(.*)*')
     expect(matchedPath('/content/actuality/abc')).toBe('/:pathMatch(.*)*')

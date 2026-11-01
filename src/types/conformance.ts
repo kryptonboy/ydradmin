@@ -6,6 +6,8 @@
 import type {
   ApiAbstractCard,
   ApiAnime,
+  ApiArcCharacter,
+  ApiMangaCharacter,
   ApiArc,
   ApiArcSeason,
   ApiAstrologicalSign,
@@ -33,6 +35,8 @@ import type {
 } from './api-types'
 import type { AbstractCard } from './models/AbstractCard'
 import type { Anime } from './models/Anime'
+import type { ArcCharacter } from './models/ArcCharacter'
+import type { MangaCharacter } from './models/MangaCharacter'
 import type { Arc } from './models/Arc'
 import type { ArcSeason } from './models/ArcSeason'
 import type { AstrologicalSign } from './models/AstrologicalSign'
@@ -73,6 +77,8 @@ export type ModelChecks = [
   Assert<Conforms<AbstractCard, ApiAbstractCard>>,
   Assert<Conforms<Character, ApiCharacter>>,
   Assert<Conforms<Anime, ApiAnime>>,
+  Assert<Conforms<ArcCharacter, ApiArcCharacter>>,
+  Assert<Conforms<MangaCharacter, ApiMangaCharacter>>,
   Assert<Conforms<Arc, ApiArc>>,
   Assert<Conforms<ArcSeason, ApiArcSeason>>,
   Assert<Conforms<AstrologicalSign, ApiAstrologicalSign>>,

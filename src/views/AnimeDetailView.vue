@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
+import LinkedCharacters from '@/components/content/LinkedCharacters.vue'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useAnimesStore, useArcSeasonsStore, useArcsStore, useSeasonsStore } from '@/stores'
 import type { Anime } from '@/types/models/Anime'
@@ -32,6 +33,8 @@ const seasonModal = ref<InstanceType<typeof SeasonModal> | null>(null)
 const arcModal = ref<InstanceType<typeof ArcModal> | null>(null)
 const selectedSeason = ref<Season | null>(null)
 const selectedArc = ref<Arc | null>(null)
+// Arc dont le panneau « Personnages » est déplié (un seul à la fois)
+const charactersArcId = ref<number | null>(null)
 
 const newLinkArc = ref('')
 const newLinkSeason = ref('')
@@ -204,33 +207,47 @@ watch(animeId, load, { immediate: true })
           </tr>
         </thead>
         <tbody v-if="arcs.length">
-          <tr v-for="arc in arcs" :key="arc.id">
-            <td>{{ arc.position }}</td>
-            <td>{{ arc.name }}</td>
-            <td class="text-truncate" style="max-width: 32rem">{{ arc.synopsis }}</td>
-            <td>
-              <button
-                class="btn btn-primary btn-sm"
-                aria-label="Modifier l'arc"
-                @click="openArc(arc)"
-              >
-                <font-awesome-icon :icon="['fa', 'pencil']" />
-              </button>
-              <button
-                class="btn btn-outline-danger btn-sm ms-1"
-                :disabled="isArcLinked(arc)"
-                :title="
-                  isArcLinked(arc)
-                    ? 'Supprimer les liens arc/saison avant de supprimer cet arc'
-                    : 'Supprimer'
-                "
-                aria-label="Supprimer l'arc"
-                @click="removeArc(arc)"
-              >
-                <font-awesome-icon :icon="['fa', 'trash']" />
-              </button>
-            </td>
-          </tr>
+          <template v-for="arc in arcs" :key="arc.id">
+            <tr>
+              <td>{{ arc.position }}</td>
+              <td>{{ arc.name }}</td>
+              <td class="text-truncate" style="max-width: 32rem">{{ arc.synopsis }}</td>
+              <td>
+                <button
+                  class="btn btn-primary btn-sm"
+                  aria-label="Modifier l'arc"
+                  @click="openArc(arc)"
+                >
+                  <font-awesome-icon :icon="['fa', 'pencil']" />
+                </button>
+                <button
+                  class="btn btn-outline-primary btn-sm ms-1"
+                  :aria-expanded="charactersArcId === arc.id"
+                  @click="charactersArcId = charactersArcId === arc.id ? null : arc.id"
+                >
+                  Personnages
+                </button>
+                <button
+                  class="btn btn-outline-danger btn-sm ms-1"
+                  :disabled="isArcLinked(arc)"
+                  :title="
+                    isArcLinked(arc)
+                      ? 'Supprimer les liens arc/saison avant de supprimer cet arc'
+                      : 'Supprimer'
+                  "
+                  aria-label="Supprimer l'arc"
+                  @click="removeArc(arc)"
+                >
+                  <font-awesome-icon :icon="['fa', 'trash']" />
+                </button>
+              </td>
+            </tr>
+            <tr v-if="charactersArcId === arc.id">
+              <td colspan="4" class="bg-light">
+                <LinkedCharacters kind="arc" :parent-id="arc.id" :parent-iri="arc['@id']" />
+              </td>
+            </tr>
+          </template>
         </tbody>
         <tbody v-else>
           <tr>

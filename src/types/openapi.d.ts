@@ -264,6 +264,58 @@ export interface paths {
         patch: operations["api_arcs_id_patch"];
         trace?: never;
     };
+    "/api/arc_characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of ArcCharacter resources.
+         * @description Retrieves the collection of ArcCharacter resources.
+         */
+        get: operations["api_arc_characters_get_collection"];
+        put?: never;
+        /**
+         * Creates a ArcCharacter resource.
+         * @description Creates a ArcCharacter resource.
+         */
+        post: operations["api_arc_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/arc_characters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ArcCharacter resource.
+         * @description Retrieves a ArcCharacter resource.
+         */
+        get: operations["api_arc_characters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the ArcCharacter resource.
+         * @description Removes the ArcCharacter resource.
+         */
+        delete: operations["api_arc_characters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the ArcCharacter resource.
+         * @description Updates the ArcCharacter resource.
+         */
+        patch: operations["api_arc_characters_id_patch"];
+        trace?: never;
+    };
     "/api/arc_seasons": {
         parameters: {
             query?: never;
@@ -1286,6 +1338,58 @@ export interface paths {
          * @description Updates the Manga resource.
          */
         patch: operations["api_mangas_id_patch"];
+        trace?: never;
+    };
+    "/api/manga_characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of MangaCharacter resources.
+         * @description Retrieves the collection of MangaCharacter resources.
+         */
+        get: operations["api_manga_characters_get_collection"];
+        put?: never;
+        /**
+         * Creates a MangaCharacter resource.
+         * @description Creates a MangaCharacter resource.
+         */
+        post: operations["api_manga_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/manga_characters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a MangaCharacter resource.
+         * @description Retrieves a MangaCharacter resource.
+         */
+        get: operations["api_manga_characters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the MangaCharacter resource.
+         * @description Removes the MangaCharacter resource.
+         */
+        delete: operations["api_manga_characters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the MangaCharacter resource.
+         * @description Updates the MangaCharacter resource.
+         */
+        patch: operations["api_manga_characters_id_patch"];
         trace?: never;
     };
     "/api/media_objects": {
@@ -2442,6 +2546,10 @@ export interface components {
             anime: components["schemas"]["Anime.jsonld-arc.read_entity.read_label"];
             readonly id?: number;
         };
+        "Arc.jsonld-arc_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Arc.jsonld-arc_season.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
@@ -2466,6 +2574,10 @@ export interface components {
             anime: components["schemas"]["Anime.multipart-arc.read_entity.read_label"];
             readonly id?: number;
         };
+        "Arc.multipart-arc_character.read_entity.read_label": {
+            name: string;
+            readonly id?: number;
+        };
         "Arc.multipart-arc_season.read_entity.read_label": {
             name: string;
             readonly id?: number;
@@ -2476,6 +2588,44 @@ export interface components {
         };
         "Arc.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             name: string;
+            readonly id?: number;
+        };
+        /** @description A character appearing in an arc of an anime. */
+        "ArcCharacter-arc_character.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            arc: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character: string;
+        };
+        /** @description A character appearing in an arc of an anime. */
+        "ArcCharacter-arc_character.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            arc?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character?: string;
+        };
+        /** @description A character appearing in an arc of an anime. */
+        "ArcCharacter.jsonld-arc_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            arc: components["schemas"]["Arc.jsonld-arc_character.read_entity.read_label"];
+            character: components["schemas"]["Character.jsonld-arc_character.read_entity.read_label"];
+            readonly id?: number;
+        };
+        /** @description A character appearing in an arc of an anime. */
+        "ArcCharacter.multipart-arc_character.read_entity.read_label": {
+            arc: components["schemas"]["Arc.multipart-arc_character.read_entity.read_label"];
+            character: components["schemas"]["Character.multipart-arc_character.read_entity.read_label"];
             readonly id?: number;
         };
         "ArcSeason-arc_season.write": {
@@ -3070,6 +3220,10 @@ export interface components {
              */
             banner?: string | null;
         };
+        "Character.jsonld-arc_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Character.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
@@ -3112,6 +3266,10 @@ export interface components {
             photo?: components["schemas"]["MediaObject.jsonld-episode_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
         };
+        "Character.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
@@ -3134,6 +3292,10 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-video_game_character.read_appearance.read_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-arc_character.read_entity.read_label": {
+            name: string;
             readonly id?: number;
         };
         "Character.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
@@ -3176,6 +3338,10 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-episode_character.read_appearance.read_entity.read_label"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-manga_character.read_entity.read_label": {
+            name: string;
             readonly id?: number;
         };
         "Character.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
@@ -3781,6 +3947,10 @@ export interface components {
             chapters?: components["schemas"]["Chapter.jsonld-manga.read_entity.read_label"][];
             readonly id?: number;
         };
+        "Manga.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Manga.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             name: string;
             readonly id?: number;
@@ -3802,6 +3972,64 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.multipart-manga.read_entity.read_label"][];
+            readonly id?: number;
+        };
+        "Manga.multipart-manga_character.read_entity.read_label": {
+            name: string;
+            readonly id?: number;
+        };
+        /** @description A character of a manga; the main characters come first. */
+        "MangaCharacter-manga_character.write": {
+            /** @default false */
+            mainCharacter: boolean;
+            /** @default 0 */
+            position: number;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            manga: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character: string;
+        };
+        /** @description A character of a manga; the main characters come first. */
+        "MangaCharacter-manga_character.write.jsonMergePatch": {
+            /** @default false */
+            mainCharacter: boolean;
+            /** @default 0 */
+            position: number;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            manga?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character?: string;
+        };
+        /** @description A character of a manga; the main characters come first. */
+        "MangaCharacter.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default false */
+            mainCharacter: boolean;
+            /** @default 0 */
+            position: number;
+            manga: components["schemas"]["Manga.jsonld-manga_character.read_entity.read_label"];
+            character: components["schemas"]["Character.jsonld-manga_character.read_entity.read_label"];
+            readonly id?: number;
+        };
+        /** @description A character of a manga; the main characters come first. */
+        "MangaCharacter.multipart-manga_character.read_entity.read_label": {
+            /** @default false */
+            mainCharacter: boolean;
+            /** @default 0 */
+            position: number;
+            manga: components["schemas"]["Manga.multipart-manga_character.read_entity.read_label"];
+            character: components["schemas"]["Character.multipart-manga_character.read_entity.read_label"];
             readonly id?: number;
         };
         "MediaObject.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
@@ -6028,6 +6256,255 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Arc.jsonld-arc.read_entity.read_label"];
                     "multipart/form-data": components["schemas"]["Arc.multipart-arc.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_arc_characters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description ArcCharacter arc */
+                arc?: string;
+                /** @description ArcCharacter arc */
+                "arc[]"?: string[];
+                /** @description ArcCharacter character */
+                character?: string;
+                /** @description ArcCharacter character */
+                "character[]"?: string[];
+                /** @description ArcCharacter order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description ArcCharacter order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ArcCharacter collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["ArcCharacter.jsonld-arc_character.read_entity.read_label"][];
+                    };
+                    "multipart/form-data": components["schemas"]["ArcCharacter.multipart-arc_character.read_entity.read_label"][];
+                };
+            };
+        };
+    };
+    api_arc_characters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new ArcCharacter resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["ArcCharacter-arc_character.write"];
+                "multipart/form-data": components["schemas"]["ArcCharacter-arc_character.write"];
+            };
+        };
+        responses: {
+            /** @description ArcCharacter resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ArcCharacter.jsonld-arc_character.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["ArcCharacter.multipart-arc_character.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_arc_characters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ArcCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ArcCharacter resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ArcCharacter.jsonld-arc_character.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["ArcCharacter.multipart-arc_character.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_arc_characters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ArcCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ArcCharacter resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_arc_characters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ArcCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated ArcCharacter resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["ArcCharacter-arc_character.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description ArcCharacter resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ArcCharacter.jsonld-arc_character.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["ArcCharacter.multipart-arc_character.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -10725,6 +11202,259 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read_label"];
                     "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_manga_characters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description MangaCharacter manga */
+                manga?: string;
+                /** @description MangaCharacter manga */
+                "manga[]"?: string[];
+                /** @description MangaCharacter character */
+                character?: string;
+                /** @description MangaCharacter character */
+                "character[]"?: string[];
+                /** @description MangaCharacter order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description MangaCharacter order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description MangaCharacter order[position] */
+                "order[position]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description MangaCharacter order[position] */
+                "order[position][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description MangaCharacter collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["MangaCharacter.jsonld-manga_character.read_entity.read_label"][];
+                    };
+                    "multipart/form-data": components["schemas"]["MangaCharacter.multipart-manga_character.read_entity.read_label"][];
+                };
+            };
+        };
+    };
+    api_manga_characters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new MangaCharacter resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["MangaCharacter-manga_character.write"];
+                "multipart/form-data": components["schemas"]["MangaCharacter-manga_character.write"];
+            };
+        };
+        responses: {
+            /** @description MangaCharacter resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["MangaCharacter.jsonld-manga_character.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["MangaCharacter.multipart-manga_character.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_manga_characters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MangaCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description MangaCharacter resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["MangaCharacter.jsonld-manga_character.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["MangaCharacter.multipart-manga_character.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_manga_characters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MangaCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description MangaCharacter resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_manga_characters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MangaCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated MangaCharacter resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["MangaCharacter-manga_character.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description MangaCharacter resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["MangaCharacter.jsonld-manga_character.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["MangaCharacter.multipart-manga_character.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */
