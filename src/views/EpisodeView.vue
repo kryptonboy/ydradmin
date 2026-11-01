@@ -6,7 +6,6 @@ import { useListView } from '@/composables/useListView'
 import { useAnimesStore, useEpisodesStore } from '@/stores'
 import type { Filters } from '@/types/Api'
 import type { Anime } from '@/types/models/Anime'
-import type { Ref as ModelRef } from '@/types/models/Ref'
 import { onMounted, ref } from 'vue'
 
 const animes = ref<Anime[]>([])
@@ -42,10 +41,6 @@ const {
 onMounted(async () => {
   animes.value = await useAnimesStore().fetchAll()
 })
-
-// L'API ne renvoie que l'identifiant de l'animé : le nom vient de la liste chargée
-const animeName = (ref?: ModelRef | null) =>
-  ref ? (animes.value.find((a) => a.id === ref.id)?.name ?? '') : ''
 </script>
 
 <template>
@@ -149,7 +144,7 @@ const animeName = (ref?: ModelRef | null) =>
         <td>{{ episode.id }}</td>
         <td>{{ episode.episodeNumber }}</td>
         <td>{{ episode.title }}</td>
-        <td>{{ animeName(episode.anime) }}</td>
+        <td>{{ episode.anime?.name }}</td>
         <td>
           <span class="badge" :class="episode.visible ? 'text-bg-success' : 'text-bg-secondary'">
             {{ episode.visible ? 'Publié' : 'Brouillon' }}

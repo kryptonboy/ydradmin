@@ -1,3 +1,5 @@
+import type { ApiCardUsage } from '../api-types'
+
 /** Un personnage dans un épisode ou un chapitre, avec les cartes qu'il y utilise. */
 export interface Appearance {
   '@id'?: string
@@ -13,9 +15,4 @@ export interface Appearance {
 }
 
 /** Carte listée une seule fois, avec son nombre d'apparitions (`GET /{ressource}/{id}/cards`). */
-export interface UsedCard {
-  '@id': string
-  id: number
-  name: string
-  usageCount: number
-}
+export type UsedCard = ApiCardUsage

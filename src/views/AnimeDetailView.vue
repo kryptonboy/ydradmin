@@ -5,7 +5,7 @@ import { useAnimesStore, useArcSeasonsStore, useArcsStore, useSeasonsStore } fro
 import type { Anime } from '@/types/models/Anime'
 import type { Arc } from '@/types/models/Arc'
 import type { ArcSeason } from '@/types/models/ArcSeason'
-import type { Ref as ModelRef } from '@/types/models/Ref'
+import type { NamedRef, SeasonRef } from '@/types/models/Ref'
 import type { Season } from '@/types/models/Season'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -59,15 +59,8 @@ async function load() {
   }
 }
 
-// L'API ne renvoie que l'identifiant des relations : les libellés sont reconstruits ici
-function seasonLabel(ref: ModelRef): string {
-  const season = seasons.value.find((s) => s.id === ref.id)
-  return season ? `Saison ${season.seasonNumber}` : `Saison #${ref.id}`
-}
-
-function arcLabel(ref: ModelRef): string {
-  return arcs.value.find((a) => a.id === ref.id)?.name ?? `Arc #${ref.id}`
-}
+const seasonLabel = (ref: SeasonRef) => `Saison ${ref.seasonNumber ?? `#${ref.id}`}`
+const arcLabel = (ref: NamedRef) => ref.name
 
 const isSeasonLinked = (season: Season) => links.value.some((l) => l.season.id === season.id)
 const isArcLinked = (arc: Arc) => links.value.some((l) => l.arc.id === arc.id)

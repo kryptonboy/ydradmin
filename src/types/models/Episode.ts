@@ -1,6 +1,6 @@
 import type { Block, MediaMap } from '../content-blocks'
 import type { Appearance } from './Appearance'
-import type { Ref } from './Ref'
+import type { NamedRef, Ref, SeasonRef } from './Ref'
 
 export interface Episode {
   '@id': string
@@ -14,9 +14,9 @@ export interface Episode {
   romanizedJapaneseTitle?: string | null
   arcSeason: Ref
   /** Déduits de `arcSeason` par l'API (identifiants seulement) */
-  arc?: Ref | null
-  season?: Ref | null
-  anime?: Ref | null
+  arc?: NamedRef | null
+  season?: SeasonRef | null
+  anime?: NamedRef | null
   /** Détail uniquement */
   blocks?: Block[]
   media?: MediaMap

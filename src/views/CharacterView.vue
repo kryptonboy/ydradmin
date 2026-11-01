@@ -8,7 +8,6 @@ import type { Filters } from '@/types/Api'
 import type { AstrologicalSign } from '@/types/models/AstrologicalSign'
 import type { Character } from '@/types/models/Character'
 import type { Gender } from '@/types/models/Gender'
-import type { Ref as ModelRef } from '@/types/models/Ref'
 import { onMounted, ref } from 'vue'
 import CharacterModal from './modals/CharacterModal.vue'
 
@@ -50,11 +49,6 @@ onMounted(async () => {
     useAstrologicalSignsStore().fetchAll(),
   ])
 })
-
-// L'API ne renvoie que l'identifiant de ces relations : les noms viennent des listes chargées
-const genderName = (ref: ModelRef) => genders.value.find((g) => g.id === ref.id)?.name ?? ''
-const signName = (ref?: ModelRef | null) =>
-  ref ? (signs.value.find((s) => s.id === ref.id)?.name ?? '') : ''
 
 function openModal(character: Character | null = null) {
   selected.value = character
@@ -160,8 +154,8 @@ function openModal(character: Character | null = null) {
           />
         </td>
         <td>{{ character.name }}</td>
-        <td>{{ genderName(character.gender) }}</td>
-        <td>{{ signName(character.astrologicalSign) }}</td>
+        <td>{{ character.gender.name }}</td>
+        <td>{{ character.astrologicalSign?.name }}</td>
         <td>
           <button class="btn btn-primary" aria-label="Modifier" @click="openModal(character)">
             <font-awesome-icon :icon="['fa', 'pencil']" />

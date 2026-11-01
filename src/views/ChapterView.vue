@@ -6,7 +6,6 @@ import { useListView } from '@/composables/useListView'
 import { useMangasStore, useChaptersStore } from '@/stores'
 import type { Filters } from '@/types/Api'
 import type { Manga } from '@/types/models/Manga'
-import type { Ref as ModelRef } from '@/types/models/Ref'
 import { onMounted, ref } from 'vue'
 
 const mangas = ref<Manga[]>([])
@@ -42,10 +41,6 @@ const {
 onMounted(async () => {
   mangas.value = await useMangasStore().fetchAll()
 })
-
-// L'API ne renvoie que l'identifiant du manga : le nom vient de la liste chargée
-const mangaName = (ref?: ModelRef | null) =>
-  ref ? (mangas.value.find((a) => a.id === ref.id)?.name ?? '') : ''
 </script>
 
 <template>
@@ -149,7 +144,7 @@ const mangaName = (ref?: ModelRef | null) =>
         <td>{{ chapter.id }}</td>
         <td>{{ chapter.chapterNumber }}</td>
         <td>{{ chapter.title }}</td>
-        <td>{{ mangaName(chapter.manga) }}</td>
+        <td>{{ chapter.manga.name }}</td>
         <td>
           <span class="badge" :class="chapter.visible ? 'text-bg-success' : 'text-bg-secondary'">
             {{ chapter.visible ? 'Publié' : 'Brouillon' }}

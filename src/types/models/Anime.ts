@@ -1,4 +1,4 @@
-import type { Ref } from './Ref'
+import type { NamedRef, SeasonRef } from './Ref'
 
 export interface Anime {
   '@id': string
@@ -11,6 +11,6 @@ export interface Anime {
   usReleaseDate?: string | null
   japanReleaseDate?: string | null
   europeReleaseDate?: string | null
-  arcs?: Ref[]
-  seasons?: Ref[]
+  arcs?: NamedRef[]
+  seasons?: SeasonRef[]
 }

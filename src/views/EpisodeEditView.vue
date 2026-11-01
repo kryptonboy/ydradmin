@@ -6,13 +6,7 @@ import UsedCards from '@/components/content/UsedCards.vue'
 import { useBlockContent } from '@/composables/useBlockContent'
 import { useSubmit } from '@/composables/useSubmit'
 import { getErrorMessage } from '@/helpers/api-error'
-import {
-  useAnimesStore,
-  useArcSeasonsStore,
-  useArcsStore,
-  useEpisodesStore,
-  useSeasonsStore,
-} from '@/stores'
+import { useAnimesStore, useArcSeasonsStore, useEpisodesStore } from '@/stores'
 import type { EpisodeForm } from '@/types/forms/EpisodeForm'
 import type { Anime } from '@/types/models/Anime'
 import type { Appearance } from '@/types/models/Appearance'
@@ -26,8 +20,6 @@ const route = useRoute()
 const router = useRouter()
 const store = useEpisodesStore()
 const animesStore = useAnimesStore()
-const arcsStore = useArcsStore()
-const seasonsStore = useSeasonsStore()
 const arcSeasonsStore = useArcSeasonsStore()
 const { submitError, submit } = useSubmit()
 const content = useBlockContent()
@@ -45,17 +37,12 @@ const loadError = ref<string | null>(null)
 const saved = ref(false)
 const saving = ref(false)
 
-// Un épisode appartient à un lien arc/saison de son animé : les libellés sont reconstruits ici
-// car l'API ne renvoie que l'identifiant des relations.
+// Un épisode appartient à un lien arc/saison de son animé
 const arcSeasonOptions = computed(() =>
-  arcSeasonsStore.items.map((link) => {
-    const arc = arcsStore.items.find((a) => a.id === link.arc.id)
-    const season = seasonsStore.items.find((s) => s.id === link.season.id)
-    return {
-      iri: link['@id'],
-      label: `${arc?.name ?? `Arc #${link.arc.id}`} — saison ${season?.seasonNumber ?? `#${link.season.id}`}`,
-    }
-  }),
+  arcSeasonsStore.items.map((link) => ({
+    iri: link['@id'],
+    label: `${link.arc.name} — saison ${link.season.seasonNumber ?? `#${link.season.id}`}`,
+  })),
 )
 
 const schema = yup.object({
@@ -94,18 +81,12 @@ const [arcSeason] = defineField('arcSeason')
 
 async function loadStructure(id: number | '') {
   if (id === '') {
-    arcsStore.items = []
-    seasonsStore.items = []
     arcSeasonsStore.items = []
     return
   }
   const filters = { anime: id }
   const sort = { sortBy: 'id', sortDir: 'asc' as const }
-  await Promise.all([
-    arcsStore.filter(filters, sort, 1),
-    seasonsStore.filter(filters, sort, 1),
-    arcSeasonsStore.filter(filters, sort, 1),
-  ])
+  await Promise.all([arcSeasonsStore.filter(filters, sort, 1)])
 }
 
 async function onAnimeChange() {
