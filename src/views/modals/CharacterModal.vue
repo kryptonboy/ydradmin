@@ -2,15 +2,23 @@
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
 import { useSubmit } from '@/composables/useSubmit'
+import { createFetchWrapper } from '@/helpers'
 import { fromDateInput, toDateInput } from '@/helpers/date'
 import { mediaUrl } from '@/helpers/media'
-import { useAstrologicalSignsStore, useCharactersStore, useGendersStore } from '@/stores'
+import {
+  useAstrologicalSignsStore,
+  useAuthStore,
+  useCharactersStore,
+  useGendersStore,
+} from '@/stores'
+import type { PaginatedApiResponse } from '@/types/Api'
 import type { CharacterForm } from '@/types/forms/CharacterForm'
 import type { AstrologicalSign } from '@/types/models/AstrologicalSign'
 import type { Gender } from '@/types/models/Gender'
+import type { VideoGame } from '@/types/models/VideoGame'
 import type { SubmissionContext } from 'vee-validate'
 import { ErrorMessage, Field } from 'vee-validate'
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import * as yup from 'yup'
 
 const props = defineProps({
@@ -32,6 +40,25 @@ const bannerId = ref<string | null>(null)
 const isUploadingPhoto = ref(false)
 const isUploadingBanner = ref(false)
 const isEdit = computed(() => !!props.character)
+
+// Jeux vidéo dans lesquels le personnage apparaît (fiche en modification uniquement)
+const games = ref<VideoGame[]>([])
+watch(
+  () => props.character?.id as number | undefined,
+  async (id) => {
+    games.value = []
+    if (!id) return
+    try {
+      const url = `${import.meta.env.VITE_API_URL}/video_games?character=${id}`
+      const data =
+        await createFetchWrapper(useAuthStore()).get<PaginatedApiResponse<VideoGame>>(url)
+      games.value = data.member ?? []
+    } catch {
+      games.value = []
+    }
+  },
+  { immediate: true },
+)
 
 const currentPhoto = computed(() => mediaUrl(props.character?.photo?.contentUrl))
 const currentBanner = computed(() => mediaUrl(props.character?.banner?.contentUrl))
@@ -247,5 +274,16 @@ defineExpose({ showModal: () => modal.value?.show() })
       label="Bannière"
       context="character"
     />
+    <div v-if="isEdit" class="mt-2">
+      <strong class="d-block mb-1">Jeux vidéo</strong>
+      <p v-if="!games.length" class="text-muted fst-italic small mb-0">Aucun jeu vidéo.</p>
+      <ul v-else class="mb-0">
+        <li v-for="game in games" :key="game.id">
+          {{ game.title }}
+          <span class="text-muted small">({{ game.videoGameSupport.name }})</span>
+          <span v-if="!game.visible" class="badge text-bg-secondary ms-1">Brouillon</span>
+        </li>
+      </ul>
+    </div>
   </FormModal>
 </template>

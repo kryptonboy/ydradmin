@@ -75,6 +75,13 @@ export const router = createRouter({
       path: String.raw`/anime_manga/chapter/:id(\d+)`,
       component: () => import('@/views/ChapterEditView.vue'),
     },
+    { path: '/video_game/game', component: () => import('@/views/VideoGameView.vue') },
+    { path: '/video_game/game/new', component: () => import('@/views/VideoGameEditView.vue') },
+    {
+      path: String.raw`/video_game/game/:id(\d+)`,
+      component: () => import('@/views/VideoGameEditView.vue'),
+    },
+    { path: '/video_game/support', component: () => import('@/views/VideoGameSupportView.vue') },
     { path: '/login', component: () => import('@/views/LoginView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],

@@ -52,6 +52,12 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Épisodes et chapitres réutilisent l'éditeur de blocs des actualités (`useBlockContent`) et ont un état brouillon (`visible: false`). Leurs personnages se gèrent avec `AppearanceEditor` (`/api/episode_characters`, `/api/chapter_characters`) ; la liste des cartes avec compteur vient de `GET /api/{ressource}/{id}/cards` (hors OpenAPI, typée à la main dans `types/models/Appearance.ts`).
 - Les relations sont lues sous la forme `{ @id, id }` seulement : les libellés (nom de l'animé, arc, saison...) sont reconstruits côté admin à partir de listes chargées.
 
+## Jeux vidéo
+
+- Pages sous `/video_game` : jeux (liste filtrable, création/édition) et supports. Le contrat est décrit dans `../newkryproject/docs/video-games.md`.
+- Un jeu a un résumé court en texte brut, un état brouillon (`visible`) et son contenu (présentation et test) en blocs, avec le même éditeur que les actualités. Ses personnages se gèrent avec `CharacterLinks` (`/api/video_game_characters`) ; la fiche d'un personnage liste ses jeux (`GET /api/video_games?character=<id>`).
+- Les relations sont lues avec un libellé (`{ @id, id, name }`, `seasonNumber`, `title`...) : types `NamedRef`, `SeasonRef`... dans `types/models/Ref.ts`.
+
 ## Sécurité
 
 - Le JWT est conservé dans `localStorage` (clé `token`) : il est lisible par tout script de la page en cas de faille XSS. Ne jamais utiliser `v-html` avec du contenu venant de l'API (le BBCode des cartes doit être converti puis assaini avant affichage).

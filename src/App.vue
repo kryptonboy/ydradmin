@@ -9,6 +9,7 @@ const route = useRoute()
 const isCardManagementDropdownActive = computed(() => route.path.startsWith('/card_management'))
 const isContentDropdownActive = computed(() => route.path.startsWith('/content'))
 const isAnimeMangaDropdownActive = computed(() => route.path.startsWith('/anime_manga'))
+const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_game'))
 </script>
 
 <template>
@@ -219,6 +220,30 @@ const isAnimeMangaDropdownActive = computed(() => route.path.startsWith('/anime_
                   activeClass="active"
                 >
                   Signes astrologiques
+                </AppLink>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              :class="{ active: isVideoGameDropdownActive }"
+              href="#"
+              id="videoGameDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Jeux vidéo</a
+            >
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="videoGameDropdown">
+              <li>
+                <AppLink to="/video_game/game" class="dropdown-item" activeClass="active">
+                  Jeux vidéo
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/video_game/support" class="dropdown-item" activeClass="active">
+                  Supports
                 </AppLink>
               </li>
             </ul>
