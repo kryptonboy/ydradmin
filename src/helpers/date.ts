@@ -21,3 +21,20 @@ export function formatDateTime(iso: string | null | undefined): string {
   const date = new Date(iso)
   return Number.isNaN(date.getTime()) ? '' : date.toLocaleString('fr-FR')
 }
+
+/** ISO 8601 de l'API → valeur d'un `<input type="date">` (jour calendaire, sans décalage de fuseau). */
+export function toDateInput(iso: string | null | undefined): string {
+  return iso ? iso.slice(0, 10) : ''
+}
+
+/** Valeur d'un `<input type="date">` → ISO 8601 à minuit UTC, ou null si vide. */
+export function fromDateInput(value: string | null | undefined): string | null {
+  return value ? `${value}T00:00:00+00:00` : null
+}
+
+/** Jour calendaire (UTC) en français, ex. `05/11/2026`. */
+export function formatDate(iso: string | null | undefined): string {
+  if (!iso) return ''
+  const date = new Date(iso)
+  return Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString('fr-FR', { timeZone: 'UTC' })
+}

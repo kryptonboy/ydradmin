@@ -5,6 +5,13 @@
  */
 import type {
   ApiAbstractCard,
+  ApiAnime,
+  ApiArc,
+  ApiArcSeason,
+  ApiAstrologicalSign,
+  ApiGender,
+  ApiManga,
+  ApiSeason,
   ApiActualityCategory,
   ApiCard,
   ApiCardGroup,
@@ -21,6 +28,13 @@ import type {
   ApiTag,
 } from './api-types'
 import type { AbstractCard } from './models/AbstractCard'
+import type { Anime } from './models/Anime'
+import type { Arc } from './models/Arc'
+import type { ArcSeason } from './models/ArcSeason'
+import type { AstrologicalSign } from './models/AstrologicalSign'
+import type { Gender } from './models/Gender'
+import type { Manga } from './models/Manga'
+import type { Season } from './models/Season'
 import type { ActualityCategory } from './models/ActualityCategory'
 import type { Card } from './models/Card'
 import type { CardGroup } from './models/CardGroup'
@@ -49,6 +63,13 @@ type Assert<T extends true> = T
 export type ModelChecks = [
   Assert<Conforms<Card, ApiCard>>,
   Assert<Conforms<AbstractCard, ApiAbstractCard>>,
+  Assert<Conforms<Anime, ApiAnime>>,
+  Assert<Conforms<Arc, ApiArc>>,
+  Assert<Conforms<ArcSeason, ApiArcSeason>>,
+  Assert<Conforms<AstrologicalSign, ApiAstrologicalSign>>,
+  Assert<Conforms<Gender, ApiGender>>,
+  Assert<Conforms<Manga, ApiManga>>,
+  Assert<Conforms<Season, ApiSeason>>,
   Assert<Conforms<ActualityCategory, ApiActualityCategory>>,
   Assert<Conforms<CardGroup, ApiCardGroup>>,
   Assert<Conforms<CardSubType, ApiCardSubType>>,

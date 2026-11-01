@@ -51,6 +51,17 @@ export const router = createRouter({
       path: '/content/actuality_category',
       component: () => import('@/views/ActualityCategoryView.vue'),
     },
+    { path: '/anime_manga/anime', component: () => import('@/views/AnimeView.vue') },
+    { path: '/anime_manga/manga', component: () => import('@/views/MangaView.vue') },
+    { path: '/anime_manga/gender', component: () => import('@/views/GenderView.vue') },
+    {
+      path: '/anime_manga/astrological_sign',
+      component: () => import('@/views/AstrologicalSignView.vue'),
+    },
+    {
+      path: String.raw`/anime_manga/anime/:id(\d+)`,
+      component: () => import('@/views/AnimeDetailView.vue'),
+    },
     { path: '/login', component: () => import('@/views/LoginView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],
