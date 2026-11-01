@@ -72,3 +72,9 @@ export type ChapterCharacterInput = Schemas['ChapterCharacter-chapter_character.
 
 export type ApiCardUsage = Schemas['CardUsage']
 export type ApiCardUsageList = Schemas['CardUsageList']
+
+export type VideoGameSupportInput = Schemas['VideoGameSupport-video_game_support.write']
+export type VideoGameInput = Schemas['VideoGame-video_game.write']
+export type VideoGameCharacterInput = Schemas['VideoGameCharacter-video_game_character.write']
+export type ApiVideoGameSupport =
+  Schemas['VideoGameSupport.jsonld-video_game_support.read_entity.read_label']

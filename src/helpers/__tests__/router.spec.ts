@@ -30,6 +30,13 @@ describe('routes avec identifiant numérique', () => {
     expect(matchedPath('/anime_manga/chapter/new')).toBe('/anime_manga/chapter/new')
   })
 
+  it('reconnaît les pages des jeux vidéo', () => {
+    expect(matchedPath('/video_game/game/8')).toBe('/video_game/game/:id(\\d+)')
+    expect(matchedPath('/video_game/game/new')).toBe('/video_game/game/new')
+    expect(matchedPath('/video_game/support')).toBe('/video_game/support')
+    expect(matchedPath('/video_game/game/abc')).toBe('/:pathMatch(.*)*')
+  })
+
   it('refuse un identifiant non numérique', () => {
     expect(matchedPath('/anime_manga/anime/abc')).toBe('/:pathMatch(.*)*')
     expect(matchedPath('/content/actuality/abc')).toBe('/:pathMatch(.*)*')

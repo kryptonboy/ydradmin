@@ -27,6 +27,7 @@ import type {
   ApiMonsterType,
   ApiRarity,
   ApiTag,
+  ApiVideoGameSupport,
 } from './api-types'
 import type { AbstractCard } from './models/AbstractCard'
 import type { Anime } from './models/Anime'
@@ -51,6 +52,7 @@ import type { MonsterSubType } from './models/MonsterSubType'
 import type { MonsterType } from './models/MonsterType'
 import type { Rarity } from './models/Rarity'
 import type { Tag } from './models/Tag'
+import type { VideoGameSupport } from './models/VideoGameSupport'
 
 // '@context' et '@type' (Hydra) sont toujours renvoyés mais inutilisés par l'admin
 type StripHydra<T> = T extends (infer U)[]
@@ -86,4 +88,5 @@ export type ModelChecks = [
   Assert<Conforms<MonsterType, ApiMonsterType>>,
   Assert<Conforms<Rarity, ApiRarity>>,
   Assert<Conforms<Tag, ApiTag>>,
+  Assert<Conforms<VideoGameSupport, ApiVideoGameSupport>>,
 ]
