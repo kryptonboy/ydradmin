@@ -49,6 +49,12 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Modération des commentaires : `/content/actuality_comment` (ressource `actuality_comments`, administrateurs uniquement). Pas de création ; on peut modifier le texte, masquer/ré-afficher (`hidden`) et supprimer. L'auteur n'est qu'un pseudo (le compte utilisateur n'est pas exposé). Supprimer une actualité qui a des commentaires renvoie un 409 : supprimer les commentaires d'abord.
 - Smileys : `/content/smiley`. Un code unique de 10 caractères maximum (ex. `:)`) et une image facultative, utilisable par un seul smiley (422 sinon). Supprimer un smiley ne supprime pas le fichier.
 
+## Utilisateurs
+
+- Page `/users` (ressource `users`, administrateurs uniquement) : liste filtrable par nom et email, création, modification, suppression. Le mot de passe n'est jamais lu ; à l'écriture (`plainPassword`) il est obligatoire à la création et, laissé vide à la modification, il reste inchangé.
+- Rôles : `ROLE_USER` ou `ROLE_ADMIN` uniquement. L'API refuse qu'un administrateur retire son propre rôle (422) ou supprime son propre compte (403) : l'interface verrouille le rôle de son compte et masque sa suppression. Un compte qui a des commentaires renvoie un 409 à la suppression : supprimer d'abord ses commentaires.
+- Le modèle s'appelle `Account` (le type `User` désigne l'utilisateur connecté, lu sur `/me`).
+
 ## Animés et mangas
 
 - Pages sous `/anime_manga` : animés (et leur page « Structure » : saisons, arcs, liens arc/saison), mangas, épisodes, chapitres, personnages, genres, signes astrologiques. Le contrat est décrit dans `../newkryproject/docs/anime-manga.md`.

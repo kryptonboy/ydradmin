@@ -56,6 +56,7 @@ describe('routes avec identifiant numérique', () => {
   it('reconnaît les pages de modération et des smileys', () => {
     expect(matchedPath('/content/actuality_comment')).toBe('/content/actuality_comment')
     expect(matchedPath('/content/smiley')).toBe('/content/smiley')
+    expect(matchedPath('/users')).toBe('/users')
   })
 
   it('refuse un identifiant non numérique', () => {
