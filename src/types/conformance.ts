@@ -32,6 +32,7 @@ import type {
   ApiRarity,
   ApiRuling,
   ApiTag,
+  ApiAccount,
   ApiSmiley,
   ApiActualityComment,
   ApiVideoGameSupport,
@@ -64,6 +65,7 @@ import type { MonsterType } from './models/MonsterType'
 import type { Rarity } from './models/Rarity'
 import type { Ruling } from './models/Ruling'
 import type { Tag } from './models/Tag'
+import type { Account } from './models/Account'
 import type { Smiley } from './models/Smiley'
 import type { ActualityComment } from './models/ActualityComment'
 import type { VideoGameSupport } from './models/VideoGameSupport'
@@ -107,6 +109,7 @@ export type ModelChecks = [
   Assert<Conforms<Rarity, ApiRarity>>,
   Assert<Conforms<Ruling, ApiRuling>>,
   Assert<Conforms<Tag, ApiTag>>,
+  Assert<Conforms<Account, ApiAccount>>,
   Assert<Conforms<Smiley, ApiSmiley>>,
   Assert<Conforms<ActualityComment, ApiActualityComment>>,
   Assert<Conforms<VideoGameSupport, ApiVideoGameSupport>>,

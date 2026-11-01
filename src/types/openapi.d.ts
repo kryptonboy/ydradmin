@@ -1852,6 +1852,26 @@ export interface paths {
         patch: operations["api_rarities_id_patch"];
         trace?: never;
     };
+    "/api/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Creates a Registration resource.
+         * @description Creates a Registration resource.
+         */
+        post: operations["api_register_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/restrictions": {
         parameters: {
             query?: never;
@@ -2110,6 +2130,58 @@ export interface paths {
          * @description Updates the Tag resource.
          */
         patch: operations["api_tags_id_patch"];
+        trace?: never;
+    };
+    "/api/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of User resources.
+         * @description Retrieves the collection of User resources.
+         */
+        get: operations["api_users_get_collection"];
+        put?: never;
+        /**
+         * Creates a User resource.
+         * @description Creates a User resource.
+         */
+        post: operations["api_users_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a User resource.
+         * @description Retrieves a User resource.
+         */
+        get: operations["api_users_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the User resource.
+         * @description Removes the User resource.
+         */
+        delete: operations["api_users_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the User resource.
+         * @description Updates the User resource.
+         */
+        patch: operations["api_users_id_patch"];
         trace?: never;
     };
     "/api/video_games": {
@@ -5044,6 +5116,27 @@ export interface components {
             position: number;
             readonly id?: number;
         };
+        /**
+         * @description Account creation by a visitor: a regular user (never an administrator), who can then log in on /api/login_check.
+         *     The response has no body (201).
+         */
+        "Registration-registration.write": {
+            /**
+             * @description Letters and digits only, shown publicly next to the comments.
+             * @default
+             */
+            username: string;
+            /**
+             * Format: email
+             * @default
+             */
+            email: string;
+            /**
+             * @description At least 8 characters with an uppercase letter, a lowercase letter, a digit and a special character.
+             * @default
+             */
+            password: string;
+        };
         "Restriction-restriction.write": {
             /**
              * Format: iri-reference
@@ -5259,6 +5352,64 @@ export interface components {
             /** @default true */
             visible: boolean;
             readonly id?: number;
+        };
+        "User-user.write.jsonMergePatch": {
+            /** Format: email */
+            email?: string;
+            /** @description The user roles */
+            roles?: string[];
+            username?: string;
+            /** @description Write only: the new password in clear, hashed by the processor and never stored as is. Required on creation. */
+            plainPassword?: string | null;
+        };
+        "User-user.write_validation.Default_create": {
+            /** Format: email */
+            email: string;
+            /** @description The user roles */
+            roles?: string[];
+            username: string;
+            /** @description Write only: the new password in clear, hashed by the processor and never stored as is. Required on creation. */
+            plainPassword: string | null;
+        };
+        "User.jsonld-user.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+            /** Format: email */
+            email: string;
+            /** @description The user roles */
+            roles?: string[];
+            username: string;
+            /** @description Number of comments posted by the user. */
+            readonly commentsCount?: number;
+        };
+        "User.jsonld-user.read_validation.Default_create": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+            /** Format: email */
+            email: string;
+            /** @description The user roles */
+            roles?: string[];
+            username: string;
+            /** @description Number of comments posted by the user. */
+            readonly commentsCount?: number;
+        };
+        "User.multipart-user.read": {
+            readonly id?: number;
+            /** Format: email */
+            email: string;
+            /** @description The user roles */
+            roles?: string[];
+            username: string;
+            /** @description Number of comments posted by the user. */
+            readonly commentsCount?: number;
+        };
+        "User.multipart-user.read_validation.Default_create": {
+            readonly id?: number;
+            /** Format: email */
+            email: string;
+            /** @description The user roles */
+            roles?: string[];
+            username: string;
+            /** @description Number of comments posted by the user. */
+            readonly commentsCount?: number;
         };
         "VideoGame-video_game.write": {
             title: string;
@@ -14199,6 +14350,52 @@ export interface operations {
             };
         };
     };
+    api_register_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Registration resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Registration-registration.write"];
+                "multipart/form-data": components["schemas"]["Registration-registration.write"];
+            };
+        };
+        responses: {
+            /** @description Registration resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
     api_restrictions_get_collection: {
         parameters: {
             query?: {
@@ -15436,6 +15633,285 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Tag.jsonld-tag.read_entity.read"];
                     "multipart/form-data": components["schemas"]["Tag.multipart-tag.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_users_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description User username */
+                username?: string;
+                /** @description User username */
+                "username[]"?: string[];
+                /** @description User email */
+                email?: string;
+                /** @description User email */
+                "email[]"?: string[];
+                /** @description User order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description User order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description User order[username] */
+                "order[username]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description User order[username] */
+                "order[username][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description User order[email] */
+                "order[email]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description User order[email] */
+                "order[email][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description User collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["User.jsonld-user.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["User.multipart-user.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_users_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new User resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["User-user.write_validation.Default_create"];
+                "multipart/form-data": components["schemas"]["User-user.write_validation.Default_create"];
+            };
+        };
+        responses: {
+            /** @description User resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["User.jsonld-user.read_validation.Default_create"];
+                    "multipart/form-data": components["schemas"]["User.multipart-user.read_validation.Default_create"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_users_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description User identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description User resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["User.jsonld-user.read"];
+                    "multipart/form-data": components["schemas"]["User.multipart-user.read"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_users_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description User identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description User resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_users_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description User identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated User resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["User-user.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description User resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["User.jsonld-user.read"];
+                    "multipart/form-data": components["schemas"]["User.multipart-user.read"];
                 };
             };
             /** @description Invalid input */

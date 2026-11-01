@@ -286,6 +286,9 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <AppLink to="/users" class="nav-link" activeClass="active">Utilisateurs</AppLink>
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item dropdown">

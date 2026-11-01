@@ -109,3 +109,7 @@ export type ActualityCommentInput =
   Schemas['ActualityComment-actuality_comment.write.jsonMergePatch']
 export type ApiActualityComment =
   Schemas['ActualityComment.jsonld-actuality_comment.read_entity.read']
+
+// Comptes utilisateurs (administrateurs uniquement). Le mot de passe n'existe qu'en écriture.
+export type AccountInput = Schemas['User-user.write.jsonMergePatch']
+export type ApiAccount = Schemas['User.jsonld-user.read']

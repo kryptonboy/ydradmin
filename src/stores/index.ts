@@ -1,4 +1,5 @@
 export * from './abstract_cards.store'
+export * from './accounts.store'
 export * from './actualities.store'
 export * from './actuality_comments.store'
 export * from './actuality_categories.store'
