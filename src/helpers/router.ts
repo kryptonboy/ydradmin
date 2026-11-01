@@ -41,6 +41,16 @@ export const router = createRouter({
     },
     { path: '/card_management/rarity', component: () => import('@/views/RarityView.vue') },
     { path: '/card_management/tag', component: () => import('@/views/TagView.vue') },
+    { path: '/content/actuality', component: () => import('@/views/ActualityView.vue') },
+    { path: '/content/actuality/new', component: () => import('@/views/ActualityEditView.vue') },
+    {
+      path: String.raw`/content/actuality/:id(\d+)`,
+      component: () => import('@/views/ActualityEditView.vue'),
+    },
+    {
+      path: '/content/actuality_category',
+      component: () => import('@/views/ActualityCategoryView.vue'),
+    },
     { path: '/login', component: () => import('@/views/LoginView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],

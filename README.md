@@ -38,6 +38,14 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - **Routes** : chargées à la demande (`src/helpers/router.ts`). Une route inconnue affiche `NotFoundView`.
 - **Stores / listes / modales** : `createResourceStore` (stores CRUD), `useListView` + `SortableHeader` (listes), `FormModal` + `useSubmit` (formulaires en modale).
 
+## Contenu éditorial (actualités)
+
+- Pages `/content/actuality` (liste), `/content/actuality/new` et `/content/actuality/:id` (édition), `/content/actuality_category`.
+- Le contenu d'une actualité est une liste de blocs ; le format est décrit dans `../newkryproject/docs/content-blocks.md`. L'OpenAPI type `blocks` de façon générique : les types sont écrits à la main dans `src/types/content-blocks.ts` (à tenir à jour avec cette doc).
+- L'éditeur est dans `src/components/content/` : `BlockEditor` (liste glisser-déposer récursive, `vue-draggable-plus`), `BlockItem` (un bloc) et `RichTextEditor` (TipTap pour les champs HTML).
+- Les blocs reçoivent un `uid` côté éditeur (clé du glisser-déposer) retiré par `toApiBlocks`, qui omet aussi les champs vides : l'API refuse les champs inconnus.
+- Les erreurs 422 (`blocks[2].children[0].content`) sont rattachées au bloc fautif.
+
 ## Sécurité
 
 - Le JWT est conservé dans `localStorage` (clé `token`) : il est lisible par tout script de la page en cas de faille XSS. Ne jamais utiliser `v-html` avec du contenu venant de l'API (le BBCode des cartes doit être converti puis assaini avant affichage).

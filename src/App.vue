@@ -7,6 +7,7 @@ const authStore = useAuthStore()
 const route = useRoute()
 
 const isCardManagementDropdownActive = computed(() => route.path.startsWith('/card_management'))
+const isContentDropdownActive = computed(() => route.path.startsWith('/content'))
 </script>
 
 <template>
@@ -136,6 +137,34 @@ const isCardManagementDropdownActive = computed(() => route.path.startsWith('/ca
               <li>
                 <AppLink to="/card_management/country" class="dropdown-item" activeClass="active">
                   Pays
+                </AppLink>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              :class="{ active: isContentDropdownActive }"
+              href="#"
+              id="contentDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Contenu</a
+            >
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="contentDropdown">
+              <li>
+                <AppLink to="/content/actuality" class="dropdown-item" activeClass="active">
+                  Actualités
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/content/actuality_category"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Catégories d'actualités
                 </AppLink>
               </li>
             </ul>

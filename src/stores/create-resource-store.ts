@@ -70,6 +70,16 @@ export function createResourceStore<T, F>(id: string, path: string) {
       return fetchWrapper().patch<T>(`${baseUrl}/${resourceId}`, form)
     }
 
+    /** Détail d'une ressource. Rejette avec une `ApiError` en cas d'échec. */
+    function get(resourceId: number): Promise<T> {
+      return fetchWrapper().get<T>(`${baseUrl}/${resourceId}`)
+    }
+
+    /** Supprime la ressource. Rejette avec une `ApiError` en cas d'échec. */
+    async function remove(resourceId: number): Promise<void> {
+      await fetchWrapper().delete(`${baseUrl}/${resourceId}`)
+    }
+
     /** Première page de la collection, sans filtre (listes de choix). */
     async function fetchAll(): Promise<T[]> {
       try {
@@ -97,6 +107,18 @@ export function createResourceStore<T, F>(id: string, path: string) {
       }
     }
 
-    return { items, loading, error, pagination, filter, create, update, fetchAll, autocomplete }
+    return {
+      items,
+      loading,
+      error,
+      pagination,
+      filter,
+      create,
+      update,
+      get,
+      remove,
+      fetchAll,
+      autocomplete,
+    }
   })
 }
