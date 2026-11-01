@@ -1,3 +1,4 @@
+import type { Block, MediaMap } from '../content-blocks'
 import type { NamedRef } from './Ref'
 
 export interface Character {
@@ -17,4 +18,7 @@ export interface Character {
   birthDate?: string | null
   photo?: { '@id': string; id?: number; contentUrl?: string | null } | null
   banner?: { '@id': string; id?: number; contentUrl?: string | null } | null
+  /** Détail uniquement : contenu en blocs et médias qu'il référence */
+  blocks?: Block[]
+  media?: MediaMap
 }

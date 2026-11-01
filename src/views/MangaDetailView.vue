@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
+import ContentEditor from '@/components/content/ContentEditor.vue'
 import LinkedCharacters from '@/components/content/LinkedCharacters.vue'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useMangasStore } from '@/stores'
@@ -33,7 +34,7 @@ watch(mangaId, load, { immediate: true })
 
 <template>
   <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-    <h2 class="mb-0">Personnages du manga{{ manga ? ` « ${manga.name} »` : '' }}</h2>
+    <h2 class="mb-0">Fiche du manga{{ manga ? ` « ${manga.name} »` : '' }}</h2>
     <AppLink to="/anime_manga/manga" class="btn btn-secondary">
       <font-awesome-icon :icon="['fa', 'xmark']" />
       Retour à la liste
@@ -46,10 +47,13 @@ watch(mangaId, load, { immediate: true })
       <span class="visually-hidden">Chargement...</span>
     </div>
   </div>
-  <LinkedCharacters
-    v-else-if="manga"
-    kind="manga"
-    :parent-id="manga.id"
-    :parent-iri="manga['@id']"
-  />
+  <template v-else-if="manga">
+    <section class="card mb-3">
+      <div class="card-header"><strong>Personnages</strong></div>
+      <div class="card-body">
+        <LinkedCharacters kind="manga" :parent-id="manga.id" :parent-iri="manga['@id']" />
+      </div>
+    </section>
+    <ContentEditor resource="mangas" :id="manga.id" />
+  </template>
 </template>

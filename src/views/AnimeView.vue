@@ -31,6 +31,7 @@ const {
   sort: { sortBy: 'id', sortDir: 'asc' },
   createFilters: () => ({
     name: null as string | null,
+    search: null as string | null,
   }),
 })
 
@@ -90,6 +91,16 @@ function openModal(anime: Anime | null = null) {
           v-model="filters.name"
         />
       </div>
+      <div class="col-3">
+        <label for="anime_search" class="form-label">Texte de la fiche</label>
+        <input
+          type="text"
+          class="form-control"
+          id="anime_search"
+          placeholder="Rechercher dans le contenu..."
+          v-model="filters.search"
+        />
+      </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">
         <button class="btn btn-secondary w-100" @click="resetFilters">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
@@ -135,7 +146,7 @@ function openModal(anime: Anime | null = null) {
             <font-awesome-icon :icon="['fa', 'pencil']" />
           </button>
           <AppLink :to="`/anime_manga/anime/${anime.id}`" class="btn btn-outline-primary ms-1">
-            Structure
+            Fiche
           </AppLink>
           <button
             class="btn btn-outline-danger ms-1"

@@ -2501,6 +2501,8 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Anime-anime.write.jsonMergePatch": {
             name?: string;
@@ -2513,6 +2515,26 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Anime.jsonld-anime.read_anime.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            arcs?: components["schemas"]["Arc.jsonld-anime.read_anime.detail_entity.read_label"][];
+            seasons?: components["schemas"]["Season.jsonld-anime.read_anime.detail_entity.read_label"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Anime.jsonld-anime.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -2545,6 +2567,24 @@ export interface components {
         "Anime.jsonld-season.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+        };
+        "Anime.multipart-anime.read_anime.detail_entity.read_label": {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            arcs?: components["schemas"]["Arc.multipart-anime.read_anime.detail_entity.read_label"][];
+            seasons?: components["schemas"]["Season.multipart-anime.read_anime.detail_entity.read_label"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Anime.multipart-anime.read_entity.read_label": {
             name: string;
@@ -2598,6 +2638,10 @@ export interface components {
              */
             anime?: string;
         };
+        "Arc.jsonld-anime.read_anime.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Arc.jsonld-anime.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
@@ -2623,6 +2667,10 @@ export interface components {
             readonly id?: number;
         };
         "Arc.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
+        "Arc.multipart-anime.read_anime.detail_entity.read_label": {
             name: string;
             readonly id?: number;
         };
@@ -2772,6 +2820,10 @@ export interface components {
             endDay?: number;
             readonly id?: number;
         };
+        "AstrologicalSign.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "AstrologicalSign.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
@@ -2784,6 +2836,10 @@ export interface components {
             startDay?: number;
             endMonth?: number;
             endDay?: number;
+            readonly id?: number;
+        };
+        "AstrologicalSign.multipart-character.read_character.detail_entity.read_label": {
+            name: string;
             readonly id?: number;
         };
         "AstrologicalSign.multipart-character.read_entity.read_label": {
@@ -3117,6 +3173,11 @@ export interface components {
             chapterNumber?: number | null;
             readonly id?: number;
         };
+        "Chapter.jsonld-manga.read_manga.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            chapterNumber?: number | null;
+            readonly id?: number;
+        };
         "Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             title: string;
             slug?: string;
@@ -3158,6 +3219,11 @@ export interface components {
             readonly id?: number;
         };
         "Chapter.multipart-manga.read_entity.read_label": {
+            title: string;
+            chapterNumber?: number | null;
+            readonly id?: number;
+        };
+        "Chapter.multipart-manga.read_manga.detail_entity.read_label": {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
@@ -3251,6 +3317,8 @@ export interface components {
              * @example https://example.com/
              */
             banner?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Character-character.write.jsonMergePatch": {
             name?: string;
@@ -3283,6 +3351,8 @@ export interface components {
              * @example https://example.com/
              */
             banner?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Character.jsonld-arc_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3299,6 +3369,26 @@ export interface components {
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-chapter_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+        };
+        "Character.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            astrologicalSign?: components["schemas"]["AstrologicalSign.jsonld-character.read_character.detail_entity.read_label"] | null;
+            description?: string | null;
+            gender: components["schemas"]["Gender.jsonld-character.read_character.detail_entity.read_label"];
+            height?: string | null;
+            weight?: string | null;
+            hairColor?: string | null;
+            eyeColor?: string | null;
+            /** Format: date-time */
+            birthDate?: string | null;
+            photo?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
+            banner?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Character.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3373,6 +3463,26 @@ export interface components {
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+        };
+        "Character.multipart-character.read_character.detail_entity.read_label": {
+            name: string;
+            slug?: string;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            astrologicalSign?: components["schemas"]["AstrologicalSign.multipart-character.read_character.detail_entity.read_label"] | null;
+            description?: string | null;
+            gender: components["schemas"]["Gender.multipart-character.read_character.detail_entity.read_label"];
+            height?: string | null;
+            weight?: string | null;
+            hairColor?: string | null;
+            eyeColor?: string | null;
+            /** Format: date-time */
+            birthDate?: string | null;
+            photo?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
+            banner?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Character.multipart-character.read_entity.read_label": {
             name: string;
@@ -3896,6 +4006,10 @@ export interface components {
         "Gender-gender.write.jsonMergePatch": {
             name?: string;
         };
+        "Gender.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Gender.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
@@ -3903,6 +4017,10 @@ export interface components {
         "Gender.jsonld-gender.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
+            readonly id?: number;
+        };
+        "Gender.multipart-character.read_character.detail_entity.read_label": {
+            name: string;
             readonly id?: number;
         };
         "Gender.multipart-character.read_entity.read_label": {
@@ -3975,6 +4093,8 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Manga-manga.write.jsonMergePatch": {
             name?: string;
@@ -3987,6 +4107,8 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Manga.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -4010,6 +4132,23 @@ export interface components {
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.jsonld-manga.read_entity.read_label"][];
             readonly id?: number;
+        };
+        "Manga.jsonld-manga.read_manga.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            chapters?: components["schemas"]["Chapter.jsonld-manga.read_manga.detail_entity.read_label"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Manga.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -4037,6 +4176,23 @@ export interface components {
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.multipart-manga.read_entity.read_label"][];
             readonly id?: number;
+        };
+        "Manga.multipart-manga.read_manga.detail_entity.read_label": {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            chapters?: components["schemas"]["Chapter.multipart-manga.read_manga.detail_entity.read_label"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
         };
         "Manga.multipart-manga_character.read_entity.read_label": {
             name: string;
@@ -4128,6 +4284,10 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -4205,6 +4365,10 @@ export interface components {
             readonly id?: number;
         };
         "MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-character.read_character.detail_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -4770,6 +4934,10 @@ export interface components {
              */
             anime?: string;
         };
+        "Season.jsonld-anime.read_anime.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            seasonNumber?: number | null;
+            readonly id?: number;
+        };
         "Season.jsonld-anime.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             readonly id?: number;
@@ -4790,6 +4958,10 @@ export interface components {
             seasonNumber?: number | null;
             synopsis?: string | null;
             anime: components["schemas"]["Anime.jsonld-season.read_entity.read_label"];
+            readonly id?: number;
+        };
+        "Season.multipart-anime.read_anime.detail_entity.read_label": {
+            seasonNumber?: number | null;
             readonly id?: number;
         };
         "Season.multipart-anime.read_entity.read_label": {
@@ -5897,6 +6069,10 @@ export interface operations {
             query?: {
                 /** @description The collection page number */
                 page?: number;
+                /** @description Anime search */
+                search?: string;
+                /** @description Anime search */
+                "search[]"?: string[];
                 /** @description Anime name */
                 name?: string;
                 /** @description Anime name */
@@ -5959,8 +6135,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_anime.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_anime.detail_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -6016,8 +6192,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_anime.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_anime.detail_entity.read_label"];
                 };
             };
             /** @description Not found */
@@ -6099,8 +6275,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_anime.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_anime.detail_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -8984,6 +9160,10 @@ export interface operations {
             query?: {
                 /** @description The collection page number */
                 page?: number;
+                /** @description Character search */
+                search?: string;
+                /** @description Character search */
+                "search[]"?: string[];
                 /** @description Character name */
                 name?: string;
                 /** @description Character name */
@@ -9050,8 +9230,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_character.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_character.detail_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -9107,8 +9287,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_character.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_character.detail_entity.read_label"];
                 };
             };
             /** @description Not found */
@@ -9190,8 +9370,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_character.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_character.detail_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -11100,6 +11280,10 @@ export interface operations {
             query?: {
                 /** @description The collection page number */
                 page?: number;
+                /** @description Manga search */
+                search?: string;
+                /** @description Manga search */
+                "search[]"?: string[];
                 /** @description Manga name */
                 name?: string;
                 /** @description Manga name */
@@ -11162,8 +11346,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_manga.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_manga.detail_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -11219,8 +11403,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_manga.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_manga.detail_entity.read_label"];
                 };
             };
             /** @description Not found */
@@ -11302,8 +11486,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read_label"];
-                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read_label"];
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_manga.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_manga.detail_entity.read_label"];
                 };
             };
             /** @description Invalid input */

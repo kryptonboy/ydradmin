@@ -95,3 +95,9 @@ export type ApiArcCharacter = Schemas['ArcCharacter.jsonld-arc_character.read_en
 
 export type RulingInput = Schemas['Ruling-ruling.write']
 export type ApiRuling = Schemas['Ruling.jsonld-ruling.read_entity.read_label']
+
+// Détail (avec `blocks` et `media`) : réponses de GET /{id}, POST et PATCH
+export type ApiAnimeDetail = Schemas['Anime.jsonld-anime.read_anime.detail_entity.read_label']
+export type ApiMangaDetail = Schemas['Manga.jsonld-manga.read_manga.detail_entity.read_label']
+export type ApiCharacterDetail =
+  Schemas['Character.jsonld-character.read_character.detail_entity.read_label']

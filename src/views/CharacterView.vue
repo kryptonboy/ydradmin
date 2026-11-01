@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppLink from '@/components/AppLink.vue'
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
@@ -33,11 +34,13 @@ const {
   sort: { sortBy: 'name', sortDir: 'asc' },
   createFilters: () => ({
     name: null as string | null,
+    search: null as string | null,
     gender: null as number | null,
     astrologicalSign: null as number | null,
   }),
   toQuery: (f): Filters => ({
     name: f.name || null,
+    search: f.search || null,
     gender: f.gender,
     astrologicalSign: f.astrologicalSign,
   }),
@@ -91,6 +94,16 @@ function openModal(character: Character | null = null) {
           id="character_name"
           placeholder="Filtrer par nom..."
           v-model="filters.name"
+        />
+      </div>
+      <div class="col-3">
+        <label for="character_search" class="form-label">Texte de la fiche</label>
+        <input
+          type="text"
+          class="form-control"
+          id="character_search"
+          placeholder="Rechercher dans le contenu..."
+          v-model="filters.search"
         />
       </div>
       <div class="col-3">
@@ -160,6 +173,12 @@ function openModal(character: Character | null = null) {
           <button class="btn btn-primary" aria-label="Modifier" @click="openModal(character)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
           </button>
+          <AppLink
+            :to="`/anime_manga/character/${character.id}`"
+            class="btn btn-outline-primary ms-1"
+          >
+            Fiche
+          </AppLink>
         </td>
       </tr>
     </tbody>

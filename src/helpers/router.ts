@@ -98,6 +98,10 @@ export const router = createRouter({
       path: String.raw`/anime_manga/manga/:id(\d+)`,
       component: () => import('@/views/MangaDetailView.vue'),
     },
+    {
+      path: String.raw`/anime_manga/character/:id(\d+)`,
+      component: () => import('@/views/CharacterDetailView.vue'),
+    },
     { path: '/login', component: () => import('@/views/LoginView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],

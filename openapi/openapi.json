@@ -2454,6 +2454,33 @@
                         "explode": true
                     },
                     {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Anime search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "search[]",
+                        "in": "query",
+                        "description": "Anime search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "name",
                         "in": "query",
                         "description": "Anime name",
@@ -2637,12 +2664,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Anime.jsonld-anime.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Anime.jsonld-anime.read_anime.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Anime.multipart-anime.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Anime.multipart-anime.read_anime.detail_entity.read_label"
                                 }
                             }
                         },
@@ -2745,12 +2772,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Anime.jsonld-anime.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Anime.jsonld-anime.read_anime.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Anime.multipart-anime.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Anime.multipart-anime.read_anime.detail_entity.read_label"
                                 }
                             }
                         }
@@ -2874,12 +2901,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Anime.jsonld-anime.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Anime.jsonld-anime.read_anime.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Anime.multipart-anime.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Anime.multipart-anime.read_anime.detail_entity.read_label"
                                 }
                             }
                         },
@@ -9853,6 +9880,33 @@
                         "explode": true
                     },
                     {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Character search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "search[]",
+                        "in": "query",
+                        "description": "Character search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "name",
                         "in": "query",
                         "description": "Character name",
@@ -10051,12 +10105,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Character.jsonld-character.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Character.jsonld-character.read_character.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Character.multipart-character.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Character.multipart-character.read_character.detail_entity.read_label"
                                 }
                             }
                         },
@@ -10159,12 +10213,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Character.jsonld-character.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Character.jsonld-character.read_character.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Character.multipart-character.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Character.multipart-character.read_character.detail_entity.read_label"
                                 }
                             }
                         }
@@ -10288,12 +10342,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Character.jsonld-character.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Character.jsonld-character.read_character.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Character.multipart-character.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Character.multipart-character.read_character.detail_entity.read_label"
                                 }
                             }
                         },
@@ -14922,6 +14976,33 @@
                         "explode": true
                     },
                     {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Manga search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "search[]",
+                        "in": "query",
+                        "description": "Manga search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "name",
                         "in": "query",
                         "description": "Manga name",
@@ -15105,12 +15186,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Manga.jsonld-manga.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Manga.jsonld-manga.read_manga.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Manga.multipart-manga.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Manga.multipart-manga.read_manga.detail_entity.read_label"
                                 }
                             }
                         },
@@ -15213,12 +15294,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Manga.jsonld-manga.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Manga.jsonld-manga.read_manga.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Manga.multipart-manga.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Manga.multipart-manga.read_manga.detail_entity.read_label"
                                 }
                             }
                         }
@@ -15342,12 +15423,12 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Manga.jsonld-manga.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Manga.jsonld-manga.read_manga.detail_entity.read_label"
                                 }
                             },
                             "multipart/form-data": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Manga.multipart-manga.read_entity.read_label"
+                                    "$ref": "#/components/schemas/Manga.multipart-manga.read_manga.detail_entity.read_label"
                                 }
                             }
                         },
@@ -25993,6 +26074,13 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -26043,8 +26131,101 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
+            },
+            "Anime.jsonld-anime.read_anime.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "synopsis": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "japaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "romanizedJapaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "usReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "japanReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "europeReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "arcs": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Arc.jsonld-anime.read_anime.detail_entity.read_label"
+                                }
+                            },
+                            "seasons": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Season.jsonld-anime.read_anime.detail_entity.read_label"
+                                }
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "description": "List of content blocks, see docs/content-blocks.md."
+                            }
+                        }
+                    }
+                ]
             },
             "Anime.jsonld-anime.read_entity.read_label": {
                 "allOf": [
@@ -26216,6 +26397,85 @@
                         }
                     }
                 ]
+            },
+            "Anime.multipart-anime.read_anime.detail_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "usReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "japanReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "europeReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "arcs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Arc.multipart-anime.read_anime.detail_entity.read_label"
+                        }
+                    },
+                    "seasons": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Season.multipart-anime.read_anime.detail_entity.read_label"
+                        }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
             },
             "Anime.multipart-anime.read_entity.read_label": {
                 "type": "object",
@@ -26411,6 +26671,29 @@
                     }
                 }
             },
+            "Arc.jsonld-anime.read_anime.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Arc.jsonld-anime.read_entity.read_label": {
                 "allOf": [
                     {
@@ -26568,6 +26851,22 @@
                         }
                     }
                 ]
+            },
+            "Arc.multipart-anime.read_anime.detail_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
             },
             "Arc.multipart-anime.read_entity.read_label": {
                 "type": "object",
@@ -27030,6 +27329,29 @@
                     }
                 ]
             },
+            "AstrologicalSign.jsonld-character.read_character.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "AstrologicalSign.jsonld-character.read_entity.read_label": {
                 "allOf": [
                     {
@@ -27095,6 +27417,22 @@
                         "minimum": 1,
                         "maximum": 31,
                         "type": "integer"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "AstrologicalSign.multipart-character.read_character.detail_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
                     },
                     "id": {
                         "type": "integer",
@@ -28420,6 +28758,37 @@
                     }
                 ]
             },
+            "Chapter.jsonld-manga.read_manga.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "title"
+                        ],
+                        "properties": {
+                            "title": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "chapterNumber": {
+                                "minimum": 0,
+                                "exclusiveMinimum": 0,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "required": [
@@ -28572,6 +28941,30 @@
                 }
             },
             "Chapter.multipart-manga.read_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "chapterNumber": {
+                        "minimum": 0,
+                        "exclusiveMinimum": 0,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Chapter.multipart-manga.read_manga.detail_entity.read_label": {
                 "type": "object",
                 "required": [
                     "title"
@@ -28855,6 +29248,13 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -28948,6 +29348,13 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -29041,6 +29448,128 @@
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Character.jsonld-character.read_character.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "gender"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "japaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "romanizedJapaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "astrologicalSign": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/AstrologicalSign.jsonld-character.read_character.detail_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "description": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "gender": {
+                                "$ref": "#/components/schemas/Gender.jsonld-character.read_character.detail_entity.read_label"
+                            },
+                            "height": {
+                                "maxLength": 10,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "weight": {
+                                "maxLength": 10,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "hairColor": {
+                                "maxLength": 50,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "eyeColor": {
+                                "maxLength": 50,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "birthDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "photo": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-character.read_character.detail_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "banner": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-character.read_character.detail_entity.read_label"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "description": "List of content blocks, see docs/content-blocks.md."
                             }
                         }
                     }
@@ -29471,6 +30000,121 @@
                     "id": {
                         "type": "integer",
                         "readOnly": true
+                    }
+                }
+            },
+            "Character.multipart-character.read_character.detail_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "gender"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "astrologicalSign": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AstrologicalSign.multipart-character.read_character.detail_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "gender": {
+                        "$ref": "#/components/schemas/Gender.multipart-character.read_character.detail_entity.read_label"
+                    },
+                    "height": {
+                        "maxLength": 10,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "weight": {
+                        "maxLength": 10,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "hairColor": {
+                        "maxLength": 50,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "eyeColor": {
+                        "maxLength": 50,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "birthDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "photo": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-character.read_character.detail_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "banner": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-character.read_character.detail_entity.read_label"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -31504,6 +32148,29 @@
                     }
                 }
             },
+            "Gender.jsonld-character.read_character.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Gender.jsonld-character.read_entity.read_label": {
                 "allOf": [
                     {
@@ -31552,6 +32219,22 @@
                         }
                     }
                 ]
+            },
+            "Gender.multipart-character.read_character.detail_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
             },
             "Gender.multipart-character.read_entity.read_label": {
                 "type": "object",
@@ -31785,6 +32468,13 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -31835,6 +32525,13 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -31952,6 +32649,86 @@
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Manga.jsonld-manga.read_manga.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "synopsis": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "japaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "romanizedJapaneseName": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "usReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "japanReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "europeReleaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "chapters": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Chapter.jsonld-manga.read_manga.detail_entity.read_label"
+                                }
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "description": "List of content blocks, see docs/content-blocks.md."
                             }
                         }
                     }
@@ -32075,6 +32852,79 @@
                     "id": {
                         "type": "integer",
                         "readOnly": true
+                    }
+                }
+            },
+            "Manga.multipart-manga.read_manga.detail_entity.read_label": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "japaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "romanizedJapaneseName": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "usReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "japanReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "europeReleaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "chapters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Chapter.multipart-manga.read_manga.detail_entity.read_label"
+                        }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
                     }
                 }
             },
@@ -32396,6 +33246,32 @@
                 ]
             },
             "MediaObject.jsonld-chapter_character.read_appearance.read_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "MediaObject.jsonld-character.read_character.detail_entity.read_label": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/HydraItemBaseSchema"
@@ -32881,6 +33757,25 @@
                 }
             },
             "MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-character.read_character.detail_entity.read_label": {
                 "type": "object",
                 "properties": {
                     "contentUrl": {
@@ -34905,6 +35800,30 @@
                     }
                 }
             },
+            "Season.jsonld-anime.read_anime.detail_entity.read_label": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "seasonNumber": {
+                                "minimum": 0,
+                                "exclusiveMinimum": 0,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Season.jsonld-anime.read_entity.read_label": {
                 "allOf": [
                     {
@@ -35036,6 +35955,23 @@
                         ]
                     }
                 ]
+            },
+            "Season.multipart-anime.read_anime.detail_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "seasonNumber": {
+                        "minimum": 0,
+                        "exclusiveMinimum": 0,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
             },
             "Season.multipart-anime.read_entity.read_label": {
                 "type": "object",
