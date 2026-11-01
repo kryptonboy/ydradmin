@@ -37,9 +37,9 @@ afterEach(() => {
 })
 
 describe('BlockEditor', () => {
-  it('propose les 12 types de blocs', () => {
+  it('propose les 13 types de blocs', () => {
     const { wrapper } = mountEditor([])
-    expect(wrapper.findAll('.dropdown-item')).toHaveLength(12)
+    expect(wrapper.findAll('.dropdown-item')).toHaveLength(13)
   })
 
   it('ajoute un bloc du type choisi', async () => {
@@ -92,5 +92,40 @@ describe('BlockEditor', () => {
     expect(cards[0].classes()).toContain('border-danger')
     expect(wrapper.findAll('ul.text-danger')).toHaveLength(1)
     expect(cards[1].find('ul.text-danger').text()).toContain('Adresse invalide')
+  })
+
+  it('ajoute un bloc de liens externes avec un premier lien vide', async () => {
+    const { wrapper, blocks } = mountEditor([])
+    const links = wrapper.findAll('.dropdown-item').find((b) => b.text() === 'Liens externes')
+    await links?.trigger('click')
+
+    expect(blocks.value.map((b) => b.type)).toEqual(['links'])
+    expect(wrapper.findAll('input[type="url"]')).toHaveLength(1)
+  })
+
+  it('saisit, ajoute et retire des liens, et propose les types suggérés', async () => {
+    const { wrapper, blocks } = mountEditor([createBlock('links')])
+
+    await wrapper.find('input[type="url"]').setValue('https://example.com/trailer')
+    const kinds = wrapper.findAll('datalist option').map((o) => o.attributes('value'))
+    expect(kinds).toEqual(['video', 'trailer', 'article', 'site', 'other'])
+
+    const add = wrapper.findAll('button').find((b) => b.text().includes('Ajouter un lien'))
+    await add?.trigger('click')
+    expect(wrapper.findAll('input[type="url"]')).toHaveLength(2)
+
+    await wrapper.find('button[aria-label="Supprimer le lien"]').trigger('click')
+    const block = blocks.value[0]
+    expect(block.type === 'links' && block.items).toHaveLength(1)
+  })
+
+  it("signale le lien fautif quand l'API refuse une adresse", () => {
+    const { wrapper } = mountEditor([createBlock('links')], {
+      'blocks[0].items[0].url': 'Adresse invalide',
+    })
+
+    expect(wrapper.find('.block-item').classes()).toContain('border-danger')
+    expect(wrapper.find('.block-item').text()).toContain('Adresse invalide')
+    expect(wrapper.find('input[type="url"]').classes()).toContain('is-invalid')
   })
 })

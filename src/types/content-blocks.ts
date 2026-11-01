@@ -73,6 +73,20 @@ export interface VideoBlock {
   url: string
 }
 
+export interface LinkItem {
+  title: string
+  url: string
+  /** Mot libre qui choisit l'icône côté front (suggestions : voir LINK_KINDS) */
+  kind?: string
+  description?: string
+}
+
+export interface LinksBlock {
+  type: 'links'
+  title?: string
+  items: LinkItem[]
+}
+
 /** Blocs sans enfants */
 export type LeafBlock =
   | ParagraphBlock
@@ -85,6 +99,7 @@ export type LeafBlock =
   | MapBlock
   | TableBlock
   | VideoBlock
+  | LinksBlock
 
 /** `C` est le type des blocs enfants (avec ou sans identifiant d'édition). */
 export interface SectionBlock<C> {
@@ -127,6 +142,12 @@ export interface MediaRef {
 
 export type MediaMap = Record<number, MediaRef>
 
+/** Types de lien suggérés (le champ reste libre) */
+export const LINK_KINDS = ['video', 'trailer', 'article', 'site', 'other'] as const
+
+/** Nombre maximal de liens dans un bloc */
+export const MAX_LINKS = 50
+
 /** Imbrication maximale acceptée par l'API */
 export const MAX_DEPTH = 6
 
@@ -141,6 +162,7 @@ export const BLOCK_LABELS: Record<BlockType, string> = {
   map: 'Carte',
   table: 'Tableau',
   video: 'Vidéo',
+  links: 'Liens externes',
   section: 'Section',
   tab_container: 'Onglets',
 }

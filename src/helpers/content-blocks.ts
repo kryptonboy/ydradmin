@@ -30,6 +30,13 @@ export function createBlock(type: BlockType): EditorBlock {
       return { uid, type, content: '' }
     case 'video':
       return { uid, type, url: '' }
+    case 'links':
+      return {
+        uid,
+        type,
+        title: '',
+        items: [{ title: '', url: '', kind: '', description: '' }],
+      }
     case 'section':
       return { uid, type, title: '', spoiler: false, children: [] }
     case 'tab_container':
@@ -83,6 +90,9 @@ export function toApiBlocks(blocks: EditorBlock[]): Block[] {
     }
     if (rest.type === 'carousel') {
       return { ...rest, images: rest.images.map((image) => clean(image)) }
+    }
+    if (rest.type === 'links') {
+      return clean({ ...rest, items: rest.items.map((item) => clean(item)) })
     }
     if (rest.type === 'glossary') {
       return clean({ ...rest, entries: rest.entries.map((entry) => clean(entry)) })
