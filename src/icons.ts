@@ -2,6 +2,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faArrowDown,
   faArrowUp,
+  faBan,
   faBold,
   faGripVertical,
   faHeading,
@@ -38,6 +39,7 @@ import { faCircleUser, faUser } from '@fortawesome/free-regular-svg-icons'
 library.add(
   faArrowDown,
   faArrowUp,
+  faBan,
   faBold,
   faGripVertical,
   faHeading,

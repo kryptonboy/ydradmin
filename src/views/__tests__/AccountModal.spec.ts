@@ -59,6 +59,7 @@ const account = {
   email: 'joueur@example.com',
   roles: ['ROLE_USER'],
   commentsCount: 2,
+  banned: false,
 }
 
 describe('AccountModal', () => {
@@ -109,6 +110,7 @@ describe('AccountModal', () => {
       username: 'nouveau',
       email: 'nouveau@example.com',
       roles: ['ROLE_ADMIN'],
+      banned: false,
       plainPassword: 'Motdepasse1!',
     })
   })
@@ -127,7 +129,20 @@ describe('AccountModal', () => {
       username: 'joueur',
       email: 'joueur@example.com',
       roles: ['ROLE_USER'],
+      banned: false,
     })
+  })
+
+  it('bannit un compte depuis la modale', async () => {
+    const fetchMock = mockFetch({})
+    const wrapper = mountComponent(AccountModal, { account })
+    await settle()
+
+    await wrapper.find('#accountModal-banned').setValue(true)
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    expect(JSON.parse(writes(fetchMock, 'PATCH')[0][1].body).banned).toBe(true)
   })
 
   it('verrouille le rôle de son propre compte', async () => {
@@ -136,6 +151,7 @@ describe('AccountModal', () => {
     await settle()
 
     expect(wrapper.find('#accountModal-role').attributes('disabled')).toBeDefined()
+    expect(wrapper.find('#accountModal-banned').attributes('disabled')).toBeDefined()
   })
 
   it("affiche l'erreur 422 de l'API sur le champ concerné", async () => {
@@ -168,5 +184,20 @@ describe('AccountView', () => {
 
     expect(wrapper.text()).toContain('joueur')
     expect(wrapper.findAll('button[aria-label="Supprimer"]')).toHaveLength(1)
+    expect(wrapper.findAll('button[aria-label="Bannir"]')).toHaveLength(1)
+  })
+
+  it('bannit un compte après confirmation', async () => {
+    vi.stubGlobal('confirm', vi.fn().mockReturnValue(true))
+    const fetchMock = mockFetch({ member: [account], totalItems: 1 })
+    const wrapper = mountComponent(AccountView, {}, 1)
+    await settle()
+
+    await wrapper.find('button[aria-label="Bannir"]').trigger('click')
+    await settle()
+
+    const call = writes(fetchMock, 'PATCH')[0]
+    expect(String(call[0])).toMatch(/\/users\/7$/)
+    expect(JSON.parse(call[1].body)).toEqual({ banned: true })
   })
 })

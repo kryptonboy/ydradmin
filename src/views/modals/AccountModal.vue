@@ -59,6 +59,7 @@ const onSubmit = async (values: Record<string, unknown>, { setErrors }: Submissi
     username: String(values.username),
     email: String(values.email),
     roles: [String(values.role)],
+    banned: Boolean(values.banned),
   }
   // Absent = mot de passe inchangé
   if (values.plainPassword) payload.plainPassword = String(values.plainPassword)
@@ -89,6 +90,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       username: props.account?.username ?? '',
       email: props.account?.email ?? '',
       role: props.account?.roles?.includes('ROLE_ADMIN') ? 'ROLE_ADMIN' : 'ROLE_USER',
+      banned: props.account?.banned ?? false,
       plainPassword: '',
     }"
     :form-key="props.account?.id ?? 'new'"
@@ -126,6 +128,23 @@ defineExpose({ showModal: () => modal.value?.show() })
       </Field>
       <div v-if="isSelf" class="form-text">Tu ne peux pas modifier ton propre rôle.</div>
       <ErrorMessage name="role" class="text-danger small" />
+    </div>
+    <div class="form-check mb-3">
+      <Field
+        name="banned"
+        id="accountModal-banned"
+        type="checkbox"
+        class="form-check-input"
+        :value="true"
+        :unchecked-value="false"
+        :disabled="isSelf"
+      />
+      <label class="form-check-label" for="accountModal-banned">Banni</label>
+      <div class="form-text">
+        Un compte banni ne peut plus se connecter. Ses commentaires restent en place (à masquer
+        depuis la modération).
+      </div>
+      <ErrorMessage name="banned" class="text-danger small" />
     </div>
     <div class="mb-3">
       <label class="form-label" for="accountModal-password">

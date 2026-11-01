@@ -5361,6 +5361,11 @@ export interface components {
             username?: string;
             /** @description Write only: the new password in clear, hashed by the processor and never stored as is. Required on creation. */
             plainPassword?: string | null;
+            /**
+             * @description A banned account can no longer log in nor use its tokens. Its comments are left as they are.
+             * @default false
+             */
+            banned: boolean;
         };
         "User-user.write_validation.Default_create": {
             /** Format: email */
@@ -5370,6 +5375,11 @@ export interface components {
             username: string;
             /** @description Write only: the new password in clear, hashed by the processor and never stored as is. Required on creation. */
             plainPassword: string | null;
+            /**
+             * @description A banned account can no longer log in nor use its tokens. Its comments are left as they are.
+             * @default false
+             */
+            banned: boolean;
         };
         "User.jsonld-user.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
@@ -5378,6 +5388,11 @@ export interface components {
             /** @description The user roles */
             roles?: string[];
             username: string;
+            /**
+             * @description A banned account can no longer log in nor use its tokens. Its comments are left as they are.
+             * @default false
+             */
+            banned: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -5388,6 +5403,11 @@ export interface components {
             /** @description The user roles */
             roles?: string[];
             username: string;
+            /**
+             * @description A banned account can no longer log in nor use its tokens. Its comments are left as they are.
+             * @default false
+             */
+            banned: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -5398,6 +5418,11 @@ export interface components {
             /** @description The user roles */
             roles?: string[];
             username: string;
+            /**
+             * @description A banned account can no longer log in nor use its tokens. Its comments are left as they are.
+             * @default false
+             */
+            banned: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -5408,6 +5433,11 @@ export interface components {
             /** @description The user roles */
             roles?: string[];
             username: string;
+            /**
+             * @description A banned account can no longer log in nor use its tokens. Its comments are left as they are.
+             * @default false
+             */
+            banned: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -15694,6 +15724,10 @@ export interface operations {
                 email?: string;
                 /** @description User email */
                 "email[]"?: string[];
+                /** @description User banned */
+                banned?: string;
+                /** @description User banned */
+                "banned[]"?: string[];
                 /** @description User order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description User order[id] */

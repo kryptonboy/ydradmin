@@ -7,4 +7,6 @@ export interface Account {
   /** `ROLE_USER` est toujours présent */
   roles?: string[]
   commentsCount?: number
+  /** Un compte banni ne peut plus se connecter */
+  banned: boolean
 }

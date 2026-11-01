@@ -24335,6 +24335,33 @@
                         "explode": true
                     },
                     {
+                        "name": "banned",
+                        "in": "query",
+                        "description": "User banned",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "banned[]",
+                        "in": "query",
+                        "description": "User banned",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "order[id]",
                         "in": "query",
                         "description": "User order[id]",
@@ -38543,6 +38570,11 @@
                             "string",
                             "null"
                         ]
+                    },
+                    "banned": {
+                        "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                        "default": false,
+                        "type": "boolean"
                     }
                 }
             },
@@ -38583,6 +38615,11 @@
                             "string",
                             "null"
                         ]
+                    },
+                    "banned": {
+                        "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                        "default": false,
+                        "type": "boolean"
                     }
                 }
             },
@@ -38617,6 +38654,11 @@
                                 "minLength": 3,
                                 "maxLength": 50,
                                 "type": "string"
+                            },
+                            "banned": {
+                                "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                                "default": false,
+                                "type": "boolean"
                             },
                             "commentsCount": {
                                 "readOnly": true,
@@ -38663,6 +38705,11 @@
                                 "maxLength": 50,
                                 "type": "string"
                             },
+                            "banned": {
+                                "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                                "default": false,
+                                "type": "boolean"
+                            },
                             "commentsCount": {
                                 "readOnly": true,
                                 "description": "Number of comments posted by the user.",
@@ -38703,6 +38750,11 @@
                         "maxLength": 50,
                         "type": "string"
                     },
+                    "banned": {
+                        "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                        "default": false,
+                        "type": "boolean"
+                    },
                     "commentsCount": {
                         "readOnly": true,
                         "description": "Number of comments posted by the user.",
@@ -38740,6 +38792,11 @@
                         "minLength": 3,
                         "maxLength": 50,
                         "type": "string"
+                    },
+                    "banned": {
+                        "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                        "default": false,
+                        "type": "boolean"
                     },
                     "commentsCount": {
                         "readOnly": true,

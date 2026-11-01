@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
+import { getErrorMessage } from '@/helpers/api-error'
 import { useListView } from '@/composables/useListView'
 import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useAccountsStore, useAuthStore } from '@/stores'
@@ -31,14 +32,28 @@ const {
   createFilters: () => ({
     username: null as string | null,
     email: null as string | null,
+    banned: null as string | null,
   }),
 })
 
+const banError = ref<string | null>(null)
 const { removeError, remove } = useRemoveAction(store, reload)
 
 const isAdmin = (account: Account) => !!account.roles?.includes('ROLE_ADMIN')
 // L'API refuse qu'un administrateur supprime son propre compte
 const isSelf = (account: Account) => account.id === auth.user?.id
+
+/** Bannit (après confirmation) ou rétablit un compte sans ouvrir la modale */
+async function toggleBan(account: Account) {
+  if (!account.banned && !window.confirm(`Bannir « ${account.username} » ?`)) return
+  banError.value = null
+  try {
+    await store.update(account.id, { banned: !account.banned })
+    await reload()
+  } catch (err) {
+    banError.value = getErrorMessage(err)
+  }
+}
 
 function openModal(account: Account | null = null) {
   selected.value = account
@@ -93,6 +108,14 @@ function openModal(account: Account | null = null) {
           v-model="filters.email"
         />
       </div>
+      <div class="col-3">
+        <label for="account_banned" class="form-label">Statut</label>
+        <select class="form-select" id="account_banned" v-model="filters.banned">
+          <option :value="null">Tous</option>
+          <option value="false">Actifs</option>
+          <option value="true">Bannis</option>
+        </select>
+      </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">
         <button class="btn btn-secondary w-100" @click="resetFilters">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
@@ -105,7 +128,9 @@ function openModal(account: Account | null = null) {
       </div>
     </div>
   </div>
-  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
+  <div v-if="removeError || banError" class="alert alert-danger" role="alert">
+    {{ removeError ?? banError }}
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -116,6 +141,7 @@ function openModal(account: Account | null = null) {
         <SortableHeader field="email" :sort="sort" @sort="setSort">Email</SortableHeader>
         <th scope="col">Rôle</th>
         <th scope="col">Commentaires</th>
+        <th scope="col">Statut</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -139,9 +165,23 @@ function openModal(account: Account | null = null) {
           </span>
         </td>
         <td>{{ account.commentsCount ?? 0 }}</td>
+        <td>
+          <span class="badge" :class="account.banned ? 'bg-danger' : 'bg-success'">
+            {{ account.banned ? 'Banni' : 'Actif' }}
+          </span>
+        </td>
         <td class="text-nowrap">
           <button class="btn btn-primary" aria-label="Modifier" @click="openModal(account)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            v-if="!isSelf(account)"
+            class="btn btn-outline-secondary ms-1"
+            :aria-label="account.banned ? 'Rétablir' : 'Bannir'"
+            :title="account.banned ? 'Rétablir' : 'Bannir'"
+            @click="toggleBan(account)"
+          >
+            <font-awesome-icon :icon="['fa', account.banned ? 'check' : 'ban']" />
           </button>
           <button
             v-if="!isSelf(account)"
