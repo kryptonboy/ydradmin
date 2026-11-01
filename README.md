@@ -45,6 +45,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - L'éditeur est dans `src/components/content/` : `BlockEditor` (liste glisser-déposer récursive, `vue-draggable-plus`), `BlockItem` (un bloc) et `RichTextEditor` (TipTap pour les champs HTML).
 - Les blocs reçoivent un `uid` côté éditeur (clé du glisser-déposer) retiré par `toApiBlocks`, qui omet aussi les champs vides : l'API refuse les champs inconnus.
 - Les erreurs 422 (`blocks[2].children[0].content`) sont rattachées au bloc fautif.
+- Le bloc « Liens externes » (`links`, 1 à 50 liens avec titre, adresse, type libre et description) remplace les médias externes : il est utilisable dans tous les contenus en blocs. Les animés, mangas et personnages n'ont pas de contenu en blocs et donc pas de liens.
 
 ## Animés et mangas
 

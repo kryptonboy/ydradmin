@@ -60,6 +60,25 @@ describe('toApiBlocks', () => {
     ])
   })
 
+  it('nettoie les liens externes : titre vide et champs optionnels vides omis', () => {
+    const links = createBlock('links')
+    if (links.type !== 'links') throw new Error('type inattendu')
+    links.items = [
+      { title: 'Bande-annonce', url: 'https://example.com/t', kind: 'trailer', description: '' },
+      { title: 'Site', url: 'https://example.com', kind: '', description: 'Officiel' },
+    ]
+
+    expect(toApiBlocks([links])).toEqual([
+      {
+        type: 'links',
+        items: [
+          { title: 'Bande-annonce', url: 'https://example.com/t', kind: 'trailer' },
+          { title: 'Site', url: 'https://example.com', description: 'Officiel' },
+        ],
+      },
+    ])
+  })
+
   it("garde l'ordre des blocs", () => {
     const a = createBlock('video')
     const b = createBlock('map')

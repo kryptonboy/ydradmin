@@ -5,6 +5,7 @@ import { computed, inject, ref, watch } from 'vue'
 import BlockEditor from './BlockEditor.vue'
 import CarouselFields from './CarouselFields.vue'
 import GlossaryFields from './GlossaryFields.vue'
+import LinksFields from './LinksFields.vue'
 import { blockErrorsKey } from './injection'
 import ListFields from './ListFields.vue'
 import MediaPicker from './MediaPicker.vue'
@@ -72,6 +73,9 @@ const summary = computed(() => {
       break
     case 'video':
       text = b.url
+      break
+    case 'links':
+      text = b.title || `${b.items.length} lien(s)`
       break
     case 'list':
       text = strip(b.items.join(' '))
@@ -234,6 +238,13 @@ function confirmRemove() {
 
       <GlossaryFields
         v-else-if="block.type === 'glossary'"
+        v-model="block"
+        :uid="block.uid"
+        :has-error="hasError"
+      />
+
+      <LinksFields
+        v-else-if="block.type === 'links'"
         v-model="block"
         :uid="block.uid"
         :has-error="hasError"
