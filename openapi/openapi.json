@@ -2435,27 +2435,6 @@
                                 }
                             }
                         }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error.jsonld"
-                                }
-                            },
-                            "application/problem+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            },
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        },
-                        "links": {}
                     }
                 },
                 "summary": "Retrieves the collection of ActualityComment resources.",
@@ -2661,6 +2640,112 @@
                         "explode": true
                     }
                 ]
+            },
+            "post": {
+                "operationId": "api_actuality_comments_post",
+                "tags": [
+                    "ActualityComment"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "ActualityComment resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityComment.jsonld-actuality_comment.read_entity.read_validation.Default_create"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityComment.multipart-actuality_comment.read_entity.read_validation.Default_create"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a ActualityComment resource.",
+                "description": "Creates a ActualityComment resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new ActualityComment resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualityComment-actuality_comment.create_validation.Default_create"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualityComment-actuality_comment.create_validation.Default_create"
+                            }
+                        }
+                    },
+                    "required": true
+                }
             }
         },
         "/api/actuality_comments/{id}": {
@@ -2684,27 +2769,6 @@
                                 }
                             }
                         }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error.jsonld"
-                                }
-                            },
-                            "application/problem+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            },
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        },
-                        "links": {}
                     },
                     "404": {
                         "description": "Not found",
@@ -27150,11 +27214,33 @@
                     }
                 }
             },
+            "ActualityComment-actuality_comment.create_validation.Default_create": {
+                "type": "object",
+                "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators.",
+                "required": [
+                    "actuality",
+                    "content"
+                ],
+                "properties": {
+                    "actuality": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "content": {
+                        "maxLength": 2000,
+                        "description": "Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image).",
+                        "type": "string"
+                    }
+                }
+            },
             "ActualityComment-actuality_comment.write.jsonMergePatch": {
                 "type": "object",
-                "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only.",
+                "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators.",
                 "properties": {
                     "content": {
+                        "maxLength": 2000,
+                        "description": "Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image).",
                         "type": "string"
                     },
                     "hidden": {
@@ -27169,6 +27255,10 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "actuality",
+                            "content"
+                        ],
                         "properties": {
                             "actuality": {
                                 "$ref": "#/components/schemas/Actuality.jsonld-actuality_comment.read_entity.read"
@@ -27182,6 +27272,8 @@
                                 "type": "string"
                             },
                             "content": {
+                                "maxLength": 2000,
+                                "description": "Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image).",
                                 "type": "string"
                             },
                             "author": {
@@ -27200,17 +27292,67 @@
                                 ],
                                 "format": "date-time"
                             }
-                        },
-                        "required": [
-                            "content"
-                        ]
+                        }
                     }
                 ],
-                "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only."
+                "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators."
+            },
+            "ActualityComment.jsonld-actuality_comment.read_entity.read_validation.Default_create": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "actuality",
+                            "content"
+                        ],
+                        "properties": {
+                            "actuality": {
+                                "$ref": "#/components/schemas/Actuality.jsonld-actuality_comment.read_entity.read"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "actualityTitle": {
+                                "readOnly": true,
+                                "type": "string"
+                            },
+                            "content": {
+                                "maxLength": 2000,
+                                "description": "Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image).",
+                                "type": "string"
+                            },
+                            "author": {
+                                "readOnly": true,
+                                "description": "Username of the author: the account itself is not exposed.",
+                                "type": "string"
+                            },
+                            "hidden": {
+                                "type": "boolean"
+                            },
+                            "postedAt": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                ],
+                "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators."
             },
             "ActualityComment.multipart-actuality_comment.read_entity.read": {
                 "type": "object",
-                "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only.",
+                "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators.",
+                "required": [
+                    "actuality",
+                    "content"
+                ],
                 "properties": {
                     "actuality": {
                         "$ref": "#/components/schemas/Actuality.multipart-actuality_comment.read_entity.read"
@@ -27224,6 +27366,8 @@
                         "type": "string"
                     },
                     "content": {
+                        "maxLength": 2000,
+                        "description": "Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image).",
                         "type": "string"
                     },
                     "author": {
@@ -27242,10 +27386,49 @@
                         ],
                         "format": "date-time"
                     }
-                },
+                }
+            },
+            "ActualityComment.multipart-actuality_comment.read_entity.read_validation.Default_create": {
+                "type": "object",
+                "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators.",
                 "required": [
+                    "actuality",
                     "content"
-                ]
+                ],
+                "properties": {
+                    "actuality": {
+                        "$ref": "#/components/schemas/Actuality.multipart-actuality_comment.read_entity.read"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "actualityTitle": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "content": {
+                        "maxLength": 2000,
+                        "description": "Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image).",
+                        "type": "string"
+                    },
+                    "author": {
+                        "readOnly": true,
+                        "description": "Username of the author: the account itself is not exposed.",
+                        "type": "string"
+                    },
+                    "hidden": {
+                        "type": "boolean"
+                    },
+                    "postedAt": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    }
+                }
             },
             "Anime-anime.write": {
                 "type": "object",
@@ -38274,7 +38457,7 @@
         },
         {
             "name": "ActualityComment",
-            "description": "A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself\nis never exposed), and a \"hidden\" flag. Administrators only."
+            "description": "A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a\n\"hidden\" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in\nuser can post one (rate limited); everything else is reserved to the administrators."
         },
         {
             "name": "Anime",

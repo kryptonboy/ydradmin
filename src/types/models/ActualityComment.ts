@@ -7,7 +7,7 @@ export interface ActualityComment {
   hidden?: boolean
   /** Pseudo de l'auteur : le compte utilisateur n'est pas exposé */
   author?: string
-  actuality?: Ref
+  actuality: Ref
   actualityTitle?: string
   postedAt?: string | null
 }

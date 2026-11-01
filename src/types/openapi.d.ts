@@ -173,7 +173,11 @@ export interface paths {
          */
         get: operations["api_actuality_comments_get_collection"];
         put?: never;
-        post?: never;
+        /**
+         * Creates a ActualityComment resource.
+         * @description Creates a ActualityComment resource.
+         */
+        post: operations["api_actuality_comments_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2597,21 +2601,39 @@ export interface components {
             readonly id?: number;
         };
         /**
-         * @description A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself
-         *     is never exposed), and a "hidden" flag. Administrators only.
+         * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
+         *     "hidden" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in
+         *     user can post one (rate limited); everything else is reserved to the administrators.
+         */
+        "ActualityComment-actuality_comment.create_validation.Default_create": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            actuality: string;
+            /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
+            content: string;
+        };
+        /**
+         * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
+         *     "hidden" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in
+         *     user can post one (rate limited); everything else is reserved to the administrators.
          */
         "ActualityComment-actuality_comment.write.jsonMergePatch": {
+            /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content?: string;
             hidden?: boolean;
         };
         /**
-         * @description A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself
-         *     is never exposed), and a "hidden" flag. Administrators only.
+         * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
+         *     "hidden" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in
+         *     user can post one (rate limited); everything else is reserved to the administrators.
          */
         "ActualityComment.jsonld-actuality_comment.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
-            actuality?: components["schemas"]["Actuality.jsonld-actuality_comment.read_entity.read"];
+            actuality: components["schemas"]["Actuality.jsonld-actuality_comment.read_entity.read"];
             readonly id?: number;
             readonly actualityTitle?: string;
+            /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content: string;
             /** @description Username of the author: the account itself is not exposed. */
             readonly author?: string;
@@ -2620,13 +2642,49 @@ export interface components {
             readonly postedAt?: string | null;
         };
         /**
-         * @description A comment left on an actuality, as seen by the moderators: the text, the author's username (the user account itself
-         *     is never exposed), and a "hidden" flag. Administrators only.
+         * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
+         *     "hidden" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in
+         *     user can post one (rate limited); everything else is reserved to the administrators.
          */
-        "ActualityComment.multipart-actuality_comment.read_entity.read": {
-            actuality?: components["schemas"]["Actuality.multipart-actuality_comment.read_entity.read"];
+        "ActualityComment.jsonld-actuality_comment.read_entity.read_validation.Default_create": components["schemas"]["HydraItemBaseSchema"] & {
+            actuality: components["schemas"]["Actuality.jsonld-actuality_comment.read_entity.read"];
             readonly id?: number;
             readonly actualityTitle?: string;
+            /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
+            content: string;
+            /** @description Username of the author: the account itself is not exposed. */
+            readonly author?: string;
+            hidden?: boolean;
+            /** Format: date-time */
+            readonly postedAt?: string | null;
+        };
+        /**
+         * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
+         *     "hidden" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in
+         *     user can post one (rate limited); everything else is reserved to the administrators.
+         */
+        "ActualityComment.multipart-actuality_comment.read_entity.read": {
+            actuality: components["schemas"]["Actuality.multipart-actuality_comment.read_entity.read"];
+            readonly id?: number;
+            readonly actualityTitle?: string;
+            /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
+            content: string;
+            /** @description Username of the author: the account itself is not exposed. */
+            readonly author?: string;
+            hidden?: boolean;
+            /** Format: date-time */
+            readonly postedAt?: string | null;
+        };
+        /**
+         * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
+         *     "hidden" flag set by the moderators. Visitors only see the visible comments of published actualities; any logged-in
+         *     user can post one (rate limited); everything else is reserved to the administrators.
+         */
+        "ActualityComment.multipart-actuality_comment.read_entity.read_validation.Default_create": {
+            actuality: components["schemas"]["Actuality.multipart-actuality_comment.read_entity.read"];
+            readonly id?: number;
+            readonly actualityTitle?: string;
+            /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content: string;
             /** @description Username of the author: the account itself is not exposed. */
             readonly author?: string;
@@ -6294,6 +6352,44 @@ export interface operations {
                     "multipart/form-data": components["schemas"]["ActualityComment.multipart-actuality_comment.read_entity.read"][];
                 };
             };
+        };
+    };
+    api_actuality_comments_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new ActualityComment resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["ActualityComment-actuality_comment.create_validation.Default_create"];
+                "multipart/form-data": components["schemas"]["ActualityComment-actuality_comment.create_validation.Default_create"];
+            };
+        };
+        responses: {
+            /** @description ActualityComment resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityComment.jsonld-actuality_comment.read_entity.read_validation.Default_create"];
+                    "multipart/form-data": components["schemas"]["ActualityComment.multipart-actuality_comment.read_entity.read_validation.Default_create"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
             /** @description Forbidden */
             403: {
                 headers: {
@@ -6303,6 +6399,17 @@ export interface operations {
                     "application/ld+json": components["schemas"]["Error.jsonld"];
                     "application/problem+json": components["schemas"]["Error"];
                     "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
                 };
             };
         };
@@ -6327,17 +6434,6 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["ActualityComment.jsonld-actuality_comment.read_entity.read"];
                     "multipart/form-data": components["schemas"]["ActualityComment.multipart-actuality_comment.read_entity.read"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/ld+json": components["schemas"]["Error.jsonld"];
-                    "application/problem+json": components["schemas"]["Error"];
-                    "application/json": components["schemas"]["Error"];
                 };
             };
             /** @description Not found */
