@@ -160,6 +160,214 @@ export interface paths {
         patch: operations["api_actuality_categories_id_patch"];
         trace?: never;
     };
+    "/api/animes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Anime resources.
+         * @description Retrieves the collection of Anime resources.
+         */
+        get: operations["api_animes_get_collection"];
+        put?: never;
+        /**
+         * Creates a Anime resource.
+         * @description Creates a Anime resource.
+         */
+        post: operations["api_animes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/animes/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Anime resource.
+         * @description Retrieves a Anime resource.
+         */
+        get: operations["api_animes_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Anime resource.
+         * @description Removes the Anime resource.
+         */
+        delete: operations["api_animes_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Anime resource.
+         * @description Updates the Anime resource.
+         */
+        patch: operations["api_animes_id_patch"];
+        trace?: never;
+    };
+    "/api/arcs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Arc resources.
+         * @description Retrieves the collection of Arc resources.
+         */
+        get: operations["api_arcs_get_collection"];
+        put?: never;
+        /**
+         * Creates a Arc resource.
+         * @description Creates a Arc resource.
+         */
+        post: operations["api_arcs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/arcs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Arc resource.
+         * @description Retrieves a Arc resource.
+         */
+        get: operations["api_arcs_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Arc resource.
+         * @description Removes the Arc resource.
+         */
+        delete: operations["api_arcs_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Arc resource.
+         * @description Updates the Arc resource.
+         */
+        patch: operations["api_arcs_id_patch"];
+        trace?: never;
+    };
+    "/api/arc_seasons": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of ArcSeason resources.
+         * @description Retrieves the collection of ArcSeason resources.
+         */
+        get: operations["api_arc_seasons_get_collection"];
+        put?: never;
+        /**
+         * Creates a ArcSeason resource.
+         * @description Creates a ArcSeason resource.
+         */
+        post: operations["api_arc_seasons_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/arc_seasons/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ArcSeason resource.
+         * @description Retrieves a ArcSeason resource.
+         */
+        get: operations["api_arc_seasons_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the ArcSeason resource.
+         * @description Removes the ArcSeason resource.
+         */
+        delete: operations["api_arc_seasons_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the ArcSeason resource.
+         * @description Updates the ArcSeason resource.
+         */
+        patch: operations["api_arc_seasons_id_patch"];
+        trace?: never;
+    };
+    "/api/astrological_signs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of AstrologicalSign resources.
+         * @description Retrieves the collection of AstrologicalSign resources.
+         */
+        get: operations["api_astrological_signs_get_collection"];
+        put?: never;
+        /**
+         * Creates a AstrologicalSign resource.
+         * @description Creates a AstrologicalSign resource.
+         */
+        post: operations["api_astrological_signs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/astrological_signs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a AstrologicalSign resource.
+         * @description Retrieves a AstrologicalSign resource.
+         */
+        get: operations["api_astrological_signs_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the AstrologicalSign resource.
+         * @description Removes the AstrologicalSign resource.
+         */
+        delete: operations["api_astrological_signs_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the AstrologicalSign resource.
+         * @description Updates the AstrologicalSign resource.
+         */
+        patch: operations["api_astrological_signs_id_patch"];
+        trace?: never;
+    };
     "/api/cards": {
         parameters: {
             query?: never;
@@ -368,6 +576,162 @@ export interface paths {
         patch: operations["api_card_types_id_patch"];
         trace?: never;
     };
+    "/api/chapters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Chapter resources.
+         * @description Retrieves the collection of Chapter resources.
+         */
+        get: operations["api_chapters_get_collection"];
+        put?: never;
+        /**
+         * Creates a Chapter resource.
+         * @description Creates a Chapter resource.
+         */
+        post: operations["api_chapters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/chapters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Chapter resource.
+         * @description Retrieves a Chapter resource.
+         */
+        get: operations["api_chapters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Chapter resource.
+         * @description Removes the Chapter resource.
+         */
+        delete: operations["api_chapters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Chapter resource.
+         * @description Updates the Chapter resource.
+         */
+        patch: operations["api_chapters_id_patch"];
+        trace?: never;
+    };
+    "/api/chapter_characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of ChapterCharacter resources.
+         * @description Retrieves the collection of ChapterCharacter resources.
+         */
+        get: operations["api_chapter_characters_get_collection"];
+        put?: never;
+        /**
+         * Creates a ChapterCharacter resource.
+         * @description Creates a ChapterCharacter resource.
+         */
+        post: operations["api_chapter_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/chapter_characters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ChapterCharacter resource.
+         * @description Retrieves a ChapterCharacter resource.
+         */
+        get: operations["api_chapter_characters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the ChapterCharacter resource.
+         * @description Removes the ChapterCharacter resource.
+         */
+        delete: operations["api_chapter_characters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the ChapterCharacter resource.
+         * @description Updates the ChapterCharacter resource.
+         */
+        patch: operations["api_chapter_characters_id_patch"];
+        trace?: never;
+    };
+    "/api/characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Character resources.
+         * @description Retrieves the collection of Character resources.
+         */
+        get: operations["api_characters_get_collection"];
+        put?: never;
+        /**
+         * Creates a Character resource.
+         * @description Creates a Character resource.
+         */
+        post: operations["api_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/characters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Character resource.
+         * @description Retrieves a Character resource.
+         */
+        get: operations["api_characters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Character resource.
+         * @description Removes the Character resource.
+         */
+        delete: operations["api_characters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Character resource.
+         * @description Updates the Character resource.
+         */
+        patch: operations["api_characters_id_patch"];
+        trace?: never;
+    };
     "/api/countries": {
         parameters: {
             query?: never;
@@ -418,6 +782,110 @@ export interface paths {
          * @description Updates the Country resource.
          */
         patch: operations["api_countries_id_patch"];
+        trace?: never;
+    };
+    "/api/episodes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Episode resources.
+         * @description Retrieves the collection of Episode resources.
+         */
+        get: operations["api_episodes_get_collection"];
+        put?: never;
+        /**
+         * Creates a Episode resource.
+         * @description Creates a Episode resource.
+         */
+        post: operations["api_episodes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/episodes/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Episode resource.
+         * @description Retrieves a Episode resource.
+         */
+        get: operations["api_episodes_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Episode resource.
+         * @description Removes the Episode resource.
+         */
+        delete: operations["api_episodes_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Episode resource.
+         * @description Updates the Episode resource.
+         */
+        patch: operations["api_episodes_id_patch"];
+        trace?: never;
+    };
+    "/api/episode_characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of EpisodeCharacter resources.
+         * @description Retrieves the collection of EpisodeCharacter resources.
+         */
+        get: operations["api_episode_characters_get_collection"];
+        put?: never;
+        /**
+         * Creates a EpisodeCharacter resource.
+         * @description Creates a EpisodeCharacter resource.
+         */
+        post: operations["api_episode_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/episode_characters/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a EpisodeCharacter resource.
+         * @description Retrieves a EpisodeCharacter resource.
+         */
+        get: operations["api_episode_characters_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the EpisodeCharacter resource.
+         * @description Removes the EpisodeCharacter resource.
+         */
+        delete: operations["api_episode_characters_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the EpisodeCharacter resource.
+         * @description Updates the EpisodeCharacter resource.
+         */
+        patch: operations["api_episode_characters_id_patch"];
         trace?: never;
     };
     "/api/extensions": {
@@ -576,6 +1044,58 @@ export interface paths {
         patch: operations["api_game_formats_id_patch"];
         trace?: never;
     };
+    "/api/genders": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Gender resources.
+         * @description Retrieves the collection of Gender resources.
+         */
+        get: operations["api_genders_get_collection"];
+        put?: never;
+        /**
+         * Creates a Gender resource.
+         * @description Creates a Gender resource.
+         */
+        post: operations["api_genders_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/genders/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Gender resource.
+         * @description Retrieves a Gender resource.
+         */
+        get: operations["api_genders_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Gender resource.
+         * @description Removes the Gender resource.
+         */
+        delete: operations["api_genders_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Gender resource.
+         * @description Updates the Gender resource.
+         */
+        patch: operations["api_genders_id_patch"];
+        trace?: never;
+    };
     "/api/login_check": {
         parameters: {
             query?: never;
@@ -594,6 +1114,58 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/api/mangas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Manga resources.
+         * @description Retrieves the collection of Manga resources.
+         */
+        get: operations["api_mangas_get_collection"];
+        put?: never;
+        /**
+         * Creates a Manga resource.
+         * @description Creates a Manga resource.
+         */
+        post: operations["api_mangas_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/mangas/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Manga resource.
+         * @description Retrieves a Manga resource.
+         */
+        get: operations["api_mangas_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Manga resource.
+         * @description Removes the Manga resource.
+         */
+        delete: operations["api_mangas_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Manga resource.
+         * @description Updates the Manga resource.
+         */
+        patch: operations["api_mangas_id_patch"];
         trace?: never;
     };
     "/api/media_objects": {
@@ -952,6 +1524,58 @@ export interface paths {
         patch: operations["api_restrictions_id_patch"];
         trace?: never;
     };
+    "/api/seasons": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Season resources.
+         * @description Retrieves the collection of Season resources.
+         */
+        get: operations["api_seasons_get_collection"];
+        put?: never;
+        /**
+         * Creates a Season resource.
+         * @description Creates a Season resource.
+         */
+        post: operations["api_seasons_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/seasons/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Season resource.
+         * @description Retrieves a Season resource.
+         */
+        get: operations["api_seasons_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Season resource.
+         * @description Removes the Season resource.
+         */
+        delete: operations["api_seasons_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Season resource.
+         * @description Updates the Season resource.
+         */
+        patch: operations["api_seasons_id_patch"];
+        trace?: never;
+    };
     "/api/tags": {
         parameters: {
             query?: never;
@@ -1073,6 +1697,22 @@ export interface components {
             monsterType?: components["schemas"]["MonsterType.jsonld-card.read_entity.read"] | null;
             readonly id?: number;
         };
+        "AbstractCard.jsonld-chapter.list_chapter.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.jsonld-chapter_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.jsonld-episode_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
         "AbstractCard.multipart-abstract_card.read_entity.read": {
             name?: string;
             level?: number | null;
@@ -1102,6 +1742,22 @@ export interface components {
             monsterAttribute?: components["schemas"]["MonsterAttribute.multipart-card.read_entity.read"] | null;
             monsterSubType?: components["schemas"]["MonsterSubType.multipart-card.read_entity.read"] | null;
             monsterType?: components["schemas"]["MonsterType.multipart-card.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-chapter.list_chapter.read_appearance.read_entity.read": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-chapter_character.read_appearance.read_entity.read": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-episode_character.read_appearance.read_entity.read": {
+            name?: string;
             readonly id?: number;
         };
         "Actuality-actuality.write": {
@@ -1268,6 +1924,242 @@ export interface components {
             slug?: string;
             /** @default true */
             active: boolean;
+            readonly id?: number;
+        };
+        "Anime-anime.write": {
+            name: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+        };
+        "Anime-anime.write.jsonMergePatch": {
+            name?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+        };
+        "Anime.jsonld-anime.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            arcs?: components["schemas"]["Arc.jsonld-anime.read_entity.read"][];
+            seasons?: components["schemas"]["Season.jsonld-anime.read_entity.read"][];
+            readonly id?: number;
+        };
+        "Anime.jsonld-arc.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Anime.jsonld-episode.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Anime.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Anime.jsonld-season.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Anime.multipart-anime.read_entity.read": {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            arcs?: components["schemas"]["Arc.multipart-anime.read_entity.read"][];
+            seasons?: components["schemas"]["Season.multipart-anime.read_entity.read"][];
+            readonly id?: number;
+        };
+        "Anime.multipart-arc.read_entity.read": {
+            readonly id?: number;
+        };
+        "Anime.multipart-episode.list_entity.read": {
+            readonly id?: number;
+        };
+        "Anime.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        "Anime.multipart-season.read_entity.read": {
+            readonly id?: number;
+        };
+        "Arc-arc.write": {
+            name: string;
+            synopsis?: string | null;
+            position?: number | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            anime: string;
+        };
+        "Arc-arc.write.jsonMergePatch": {
+            name?: string;
+            synopsis?: string | null;
+            position?: number | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            anime?: string;
+        };
+        "Arc.jsonld-anime.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Arc.jsonld-arc.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            position?: number | null;
+            anime: components["schemas"]["Anime.jsonld-arc.read_entity.read"];
+            readonly id?: number;
+        };
+        "Arc.jsonld-arc_season.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Arc.jsonld-episode.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Arc.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Arc.multipart-anime.read_entity.read": {
+            readonly id?: number;
+        };
+        "Arc.multipart-arc.read_entity.read": {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            position?: number | null;
+            anime: components["schemas"]["Anime.multipart-arc.read_entity.read"];
+            readonly id?: number;
+        };
+        "Arc.multipart-arc_season.read_entity.read": {
+            readonly id?: number;
+        };
+        "Arc.multipart-episode.list_entity.read": {
+            readonly id?: number;
+        };
+        "Arc.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        "ArcSeason-arc_season.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            arc: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            season: string;
+        };
+        "ArcSeason-arc_season.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            arc?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            season?: string;
+        };
+        "ArcSeason.jsonld-arc_season.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            arc: components["schemas"]["Arc.jsonld-arc_season.read_entity.read"];
+            season: components["schemas"]["Season.jsonld-arc_season.read_entity.read"];
+            readonly id?: number;
+        };
+        "ArcSeason.jsonld-episode.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "ArcSeason.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "ArcSeason.multipart-arc_season.read_entity.read": {
+            arc: components["schemas"]["Arc.multipart-arc_season.read_entity.read"];
+            season: components["schemas"]["Season.multipart-arc_season.read_entity.read"];
+            readonly id?: number;
+        };
+        "ArcSeason.multipart-episode.list_entity.read": {
+            readonly id?: number;
+        };
+        "ArcSeason.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        "AstrologicalSign-astrological_sign.write": {
+            name: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            icon?: string | null;
+            startMonth?: number;
+            startDay?: number;
+            endMonth?: number;
+            endDay?: number;
+        };
+        "AstrologicalSign-astrological_sign.write.jsonMergePatch": {
+            name?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            icon?: string | null;
+            startMonth?: number;
+            startDay?: number;
+            endMonth?: number;
+            endDay?: number;
+        };
+        "AstrologicalSign.jsonld-astrological_sign.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            icon?: components["schemas"]["MediaObject.jsonld-astrological_sign.read_entity.read"] | null;
+            startMonth?: number;
+            startDay?: number;
+            endMonth?: number;
+            endDay?: number;
+            readonly id?: number;
+        };
+        "AstrologicalSign.jsonld-character.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "AstrologicalSign.multipart-astrological_sign.read_entity.read": {
+            name: string;
+            slug?: string;
+            icon?: components["schemas"]["MediaObject.multipart-astrological_sign.read_entity.read"] | null;
+            startMonth?: number;
+            startDay?: number;
+            endMonth?: number;
+            endDay?: number;
+            readonly id?: number;
+        };
+        "AstrologicalSign.multipart-character.read_entity.read": {
             readonly id?: number;
         };
         "Card-card.write": {
@@ -1500,6 +2392,334 @@ export interface components {
             position: number;
             readonly id?: number;
         };
+        "Chapter-chapter.write": {
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            shortSummary?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            chapterNumber?: number | null;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            manga: string;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Chapter-chapter.write.jsonMergePatch": {
+            title?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            shortSummary?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            chapterNumber?: number | null;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            manga?: string;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Chapter.jsonld-chapter.list_chapter.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            shortSummary?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            chapterNumber?: number | null;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            manga: components["schemas"]["Manga.jsonld-chapter.list_chapter.read_appearance.read_entity.read"];
+            characters?: components["schemas"]["ChapterCharacter.jsonld-chapter.list_chapter.read_appearance.read_entity.read"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Chapter.jsonld-chapter.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            shortSummary?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            chapterNumber?: number | null;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            manga: components["schemas"]["Manga.jsonld-chapter.list_entity.read"];
+            readonly id?: number;
+        };
+        "Chapter.jsonld-chapter_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Chapter.jsonld-manga.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read": {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            shortSummary?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            chapterNumber?: number | null;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            manga: components["schemas"]["Manga.multipart-chapter.list_chapter.read_appearance.read_entity.read"];
+            characters?: components["schemas"]["ChapterCharacter.multipart-chapter.list_chapter.read_appearance.read_entity.read"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Chapter.multipart-chapter.list_entity.read": {
+            title: string;
+            slug?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            shortSummary?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            chapterNumber?: number | null;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            manga: components["schemas"]["Manga.multipart-chapter.list_entity.read"];
+            readonly id?: number;
+        };
+        "Chapter.multipart-chapter_character.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        "Chapter.multipart-manga.read_entity.read": {
+            readonly id?: number;
+        };
+        /** @description A character appearing in a chapter, with the cards he or she uses in it. */
+        "ChapterCharacter-chapter_character.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            chapter: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character: string;
+            /** @description The cards the character uses in the chapter, each listed once. */
+            cards?: string[];
+        };
+        /** @description A character appearing in a chapter, with the cards he or she uses in it. */
+        "ChapterCharacter-chapter_character.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            chapter?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character?: string;
+            /** @description The cards the character uses in the chapter, each listed once. */
+            cards?: string[];
+        };
+        "ChapterCharacter.jsonld-chapter.list_chapter.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            character: components["schemas"]["Character.jsonld-chapter.list_chapter.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the chapter, each listed once. */
+            cards?: components["schemas"]["AbstractCard.jsonld-chapter.list_chapter.read_appearance.read_entity.read"][];
+        };
+        /** @description A character appearing in a chapter, with the cards he or she uses in it. */
+        "ChapterCharacter.jsonld-chapter_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            chapter: components["schemas"]["Chapter.jsonld-chapter_character.read_appearance.read_entity.read"];
+            character: components["schemas"]["Character.jsonld-chapter_character.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the chapter, each listed once. */
+            cards?: components["schemas"]["AbstractCard.jsonld-chapter_character.read_appearance.read_entity.read"][];
+        };
+        "ChapterCharacter.multipart-chapter.list_chapter.read_appearance.read_entity.read": {
+            character: components["schemas"]["Character.multipart-chapter.list_chapter.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the chapter, each listed once. */
+            cards?: components["schemas"]["AbstractCard.multipart-chapter.list_chapter.read_appearance.read_entity.read"][];
+        };
+        /** @description A character appearing in a chapter, with the cards he or she uses in it. */
+        "ChapterCharacter.multipart-chapter_character.read_appearance.read_entity.read": {
+            chapter: components["schemas"]["Chapter.multipart-chapter_character.read_appearance.read_entity.read"];
+            character: components["schemas"]["Character.multipart-chapter_character.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the chapter, each listed once. */
+            cards?: components["schemas"]["AbstractCard.multipart-chapter_character.read_appearance.read_entity.read"][];
+        };
+        "Character-character.write": {
+            name: string;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            astrologicalSign?: string | null;
+            description?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gender: string;
+            height?: string | null;
+            weight?: string | null;
+            hairColor?: string | null;
+            eyeColor?: string | null;
+            /** Format: date-time */
+            birthDate?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            photo?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            banner?: string | null;
+        };
+        "Character-character.write.jsonMergePatch": {
+            name?: string;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            astrologicalSign?: string | null;
+            description?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gender?: string;
+            height?: string | null;
+            weight?: string | null;
+            hairColor?: string | null;
+            eyeColor?: string | null;
+            /** Format: date-time */
+            birthDate?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            photo?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            banner?: string | null;
+        };
+        "Character.jsonld-chapter.list_chapter.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.jsonld-chapter_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.jsonld-chapter_character.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.jsonld-character.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            astrologicalSign?: components["schemas"]["AstrologicalSign.jsonld-character.read_entity.read"] | null;
+            description?: string | null;
+            gender: components["schemas"]["Gender.jsonld-character.read_entity.read"];
+            height?: string | null;
+            weight?: string | null;
+            hairColor?: string | null;
+            eyeColor?: string | null;
+            /** Format: date-time */
+            birthDate?: string | null;
+            photo?: components["schemas"]["MediaObject.jsonld-character.read_entity.read"] | null;
+            banner?: components["schemas"]["MediaObject.jsonld-character.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.jsonld-episode_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.jsonld-episode_character.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-chapter.list_chapter.read_appearance.read_entity.read": {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-chapter_character.read_appearance.read_entity.read": {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.multipart-chapter_character.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-character.read_entity.read": {
+            name: string;
+            slug?: string;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            astrologicalSign?: components["schemas"]["AstrologicalSign.multipart-character.read_entity.read"] | null;
+            description?: string | null;
+            gender: components["schemas"]["Gender.multipart-character.read_entity.read"];
+            height?: string | null;
+            weight?: string | null;
+            hairColor?: string | null;
+            eyeColor?: string | null;
+            /** Format: date-time */
+            birthDate?: string | null;
+            photo?: components["schemas"]["MediaObject.multipart-character.read_entity.read"] | null;
+            banner?: components["schemas"]["MediaObject.multipart-character.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Character.multipart-episode_character.read_appearance.read_entity.read": {
+            name: string;
+            slug?: string;
+            photo?: components["schemas"]["MediaObject.multipart-episode_character.read_appearance.read_entity.read"] | null;
+            readonly id?: number;
+        };
         /** @description Unprocessable entity */
         ConstraintViolation: {
             /** @default 422 */
@@ -1576,6 +2796,192 @@ export interface components {
         "Country.multipart-extension.read_entity.read": {
             name: string;
             readonly id?: number;
+        };
+        "Episode-episode.write": {
+            episodeNumber?: number | null;
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            arcSeason: string;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Episode-episode.write.jsonMergePatch": {
+            episodeNumber?: number | null;
+            title?: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            arcSeason?: string;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Episode.jsonld-episode.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            episodeNumber?: number | null;
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            arcSeason: components["schemas"]["ArcSeason.jsonld-episode.list_entity.read"];
+            readonly id?: number;
+            /** @description The arc, season and anime of the episode, derived from its arc/season link. */
+            readonly arc?: components["schemas"]["Arc.jsonld-episode.list_entity.read"] | null;
+            readonly season?: components["schemas"]["Season.jsonld-episode.list_entity.read"] | null;
+            readonly anime?: components["schemas"]["Anime.jsonld-episode.list_entity.read"] | null;
+        };
+        "Episode.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            episodeNumber?: number | null;
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            arcSeason: components["schemas"]["ArcSeason.jsonld-episode.list_episode.read_appearance.read_entity.read"];
+            characters?: components["schemas"]["EpisodeCharacter.jsonld-episode.list_episode.read_appearance.read_entity.read"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+            /** @description The arc, season and anime of the episode, derived from its arc/season link. */
+            readonly arc?: components["schemas"]["Arc.jsonld-episode.list_episode.read_appearance.read_entity.read"] | null;
+            readonly season?: components["schemas"]["Season.jsonld-episode.list_episode.read_appearance.read_entity.read"] | null;
+            readonly anime?: components["schemas"]["Anime.jsonld-episode.list_episode.read_appearance.read_entity.read"] | null;
+        };
+        "Episode.jsonld-episode_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Episode.multipart-episode.list_entity.read": {
+            episodeNumber?: number | null;
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            arcSeason: components["schemas"]["ArcSeason.multipart-episode.list_entity.read"];
+            readonly id?: number;
+            /** @description The arc, season and anime of the episode, derived from its arc/season link. */
+            readonly arc?: components["schemas"]["Arc.multipart-episode.list_entity.read"] | null;
+            readonly season?: components["schemas"]["Season.multipart-episode.list_entity.read"] | null;
+            readonly anime?: components["schemas"]["Anime.multipart-episode.list_entity.read"] | null;
+        };
+        "Episode.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            episodeNumber?: number | null;
+            title: string;
+            /** @description Short summary in plain text; the complete one is in the blocks. */
+            synopsis?: string | null;
+            /**
+             * @description A draft (false) is only visible to administrators.
+             * @default true
+             */
+            visible: boolean;
+            japaneseTitle?: string | null;
+            romanizedJapaneseTitle?: string | null;
+            arcSeason: components["schemas"]["ArcSeason.multipart-episode.list_episode.read_appearance.read_entity.read"];
+            characters?: components["schemas"]["EpisodeCharacter.multipart-episode.list_episode.read_appearance.read_entity.read"][];
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+            /** @description The arc, season and anime of the episode, derived from its arc/season link. */
+            readonly arc?: components["schemas"]["Arc.multipart-episode.list_episode.read_appearance.read_entity.read"] | null;
+            readonly season?: components["schemas"]["Season.multipart-episode.list_episode.read_appearance.read_entity.read"] | null;
+            readonly anime?: components["schemas"]["Anime.multipart-episode.list_episode.read_appearance.read_entity.read"] | null;
+        };
+        "Episode.multipart-episode_character.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        /** @description A character appearing in an episode, with the cards he or she uses in it. */
+        "EpisodeCharacter-episode_character.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            episode: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character: string;
+            /** @description The cards the character uses in the episode, each listed once. */
+            cards?: string[];
+        };
+        /** @description A character appearing in an episode, with the cards he or she uses in it. */
+        "EpisodeCharacter-episode_character.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            episode?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            character?: string;
+            /** @description The cards the character uses in the episode, each listed once. */
+            cards?: string[];
+        };
+        "EpisodeCharacter.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            character: components["schemas"]["Character.jsonld-episode.list_episode.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the episode, each listed once. */
+            cards?: components["schemas"]["AbstractCard.jsonld-episode.list_episode.read_appearance.read_entity.read"][];
+        };
+        /** @description A character appearing in an episode, with the cards he or she uses in it. */
+        "EpisodeCharacter.jsonld-episode_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            episode: components["schemas"]["Episode.jsonld-episode_character.read_appearance.read_entity.read"];
+            character: components["schemas"]["Character.jsonld-episode_character.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the episode, each listed once. */
+            cards?: components["schemas"]["AbstractCard.jsonld-episode_character.read_appearance.read_entity.read"][];
+        };
+        "EpisodeCharacter.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            character: components["schemas"]["Character.multipart-episode.list_episode.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the episode, each listed once. */
+            cards?: components["schemas"]["AbstractCard.multipart-episode.list_episode.read_appearance.read_entity.read"][];
+        };
+        /** @description A character appearing in an episode, with the cards he or she uses in it. */
+        "EpisodeCharacter.multipart-episode_character.read_appearance.read_entity.read": {
+            episode: components["schemas"]["Episode.multipart-episode_character.read_appearance.read_entity.read"];
+            character: components["schemas"]["Character.multipart-episode_character.read_appearance.read_entity.read"];
+            readonly id?: number;
+            /** @description The cards the character uses in the episode, each listed once. */
+            cards?: components["schemas"]["AbstractCard.multipart-episode_character.read_appearance.read_entity.read"][];
         };
         /** @description A representation of common errors. */
         Error: {
@@ -1750,6 +3156,28 @@ export interface components {
             /** Format: date-time */
             updatedAt?: string;
         };
+        "Gender-gender.write": {
+            name: string;
+        };
+        "Gender-gender.write.jsonMergePatch": {
+            name?: string;
+        };
+        "Gender.jsonld-character.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Gender.jsonld-gender.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            readonly id?: number;
+        };
+        "Gender.multipart-character.read_entity.read": {
+            readonly id?: number;
+        };
+        "Gender.multipart-gender.read_entity.read": {
+            name: string;
+            slug?: string;
+            readonly id?: number;
+        };
         HydraCollectionBaseSchema: components["schemas"]["HydraCollectionBaseSchemaNoPagination"] & {
             /**
              * @example {
@@ -1800,6 +3228,72 @@ export interface components {
             "@id": string;
             "@type": string;
         };
+        "Manga-manga.write": {
+            name: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+        };
+        "Manga-manga.write.jsonMergePatch": {
+            name?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+        };
+        "Manga.jsonld-chapter.list_chapter.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Manga.jsonld-chapter.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Manga.jsonld-manga.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            chapters?: components["schemas"]["Chapter.jsonld-manga.read_entity.read"][];
+            readonly id?: number;
+        };
+        "Manga.multipart-chapter.list_chapter.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        "Manga.multipart-chapter.list_entity.read": {
+            readonly id?: number;
+        };
+        "Manga.multipart-manga.read_entity.read": {
+            name: string;
+            slug?: string;
+            synopsis?: string | null;
+            japaneseName?: string | null;
+            romanizedJapaneseName?: string | null;
+            /** Format: date-time */
+            usReleaseDate?: string | null;
+            /** Format: date-time */
+            japanReleaseDate?: string | null;
+            /** Format: date-time */
+            europeReleaseDate?: string | null;
+            chapters?: components["schemas"]["Chapter.multipart-manga.read_entity.read"][];
+            readonly id?: number;
+        };
         "MediaObject.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -1808,7 +3302,31 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-astrological_sign.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-chapter_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-character.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-episode_character.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -1828,7 +3346,31 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.multipart-astrological_sign.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.multipart-card.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-chapter_character.read_appearance.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-character.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-episode_character.read_appearance.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -2070,6 +3612,60 @@ export interface components {
             readonly id?: number;
         };
         "Ruling.multipart-abstract_card.read_entity.read": {
+            readonly id?: number;
+        };
+        "Season-season.write": {
+            seasonNumber?: number | null;
+            synopsis?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            anime: string;
+        };
+        "Season-season.write.jsonMergePatch": {
+            seasonNumber?: number | null;
+            synopsis?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            anime?: string;
+        };
+        "Season.jsonld-anime.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Season.jsonld-arc_season.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Season.jsonld-episode.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Season.jsonld-episode.list_episode.read_appearance.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Season.jsonld-season.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            seasonNumber?: number | null;
+            synopsis?: string | null;
+            anime: components["schemas"]["Anime.jsonld-season.read_entity.read"];
+            readonly id?: number;
+        };
+        "Season.multipart-anime.read_entity.read": {
+            readonly id?: number;
+        };
+        "Season.multipart-arc_season.read_entity.read": {
+            readonly id?: number;
+        };
+        "Season.multipart-episode.list_entity.read": {
+            readonly id?: number;
+        };
+        "Season.multipart-episode.list_episode.read_appearance.read_entity.read": {
+            readonly id?: number;
+        };
+        "Season.multipart-season.read_entity.read": {
+            seasonNumber?: number | null;
+            synopsis?: string | null;
+            anime: components["schemas"]["Anime.multipart-season.read_entity.read"];
             readonly id?: number;
         };
         "Tag-tag.write": {
@@ -2890,6 +4486,1022 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"];
                     "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_animes_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Anime name */
+                name?: string;
+                /** @description Anime name */
+                "name[]"?: string[];
+                /** @description Anime slug */
+                slug?: string;
+                /** @description Anime slug */
+                "slug[]"?: string[];
+                /** @description Anime order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Anime order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Anime order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Anime order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Anime order[japanReleaseDate] */
+                "order[japanReleaseDate]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Anime order[japanReleaseDate] */
+                "order[japanReleaseDate][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Anime collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Anime.jsonld-anime.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_animes_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Anime resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Anime-anime.write"];
+                "multipart/form-data": components["schemas"]["Anime-anime.write"];
+            };
+        };
+        responses: {
+            /** @description Anime resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_animes_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Anime identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Anime resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_animes_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Anime identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Anime resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_animes_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Anime identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Anime resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Anime-anime.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Anime resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_arcs_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Arc name */
+                name?: string;
+                /** @description Arc name */
+                "name[]"?: string[];
+                /** @description Arc anime */
+                anime?: string;
+                /** @description Arc anime */
+                "anime[]"?: string[];
+                /** @description Arc order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Arc order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Arc order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Arc order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Arc order[position] */
+                "order[position]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Arc order[position] */
+                "order[position][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Arc collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Arc.jsonld-arc.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Arc.multipart-arc.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_arcs_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Arc resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Arc-arc.write"];
+                "multipart/form-data": components["schemas"]["Arc-arc.write"];
+            };
+        };
+        responses: {
+            /** @description Arc resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Arc.jsonld-arc.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Arc.multipart-arc.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_arcs_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Arc identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Arc resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Arc.jsonld-arc.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Arc.multipart-arc.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_arcs_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Arc identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Arc resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_arcs_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Arc identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Arc resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Arc-arc.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Arc resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Arc.jsonld-arc.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Arc.multipart-arc.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_arc_seasons_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description ArcSeason arc */
+                arc?: string;
+                /** @description ArcSeason arc */
+                "arc[]"?: string[];
+                /** @description ArcSeason season */
+                season?: string;
+                /** @description ArcSeason season */
+                "season[]"?: string[];
+                /** @description ArcSeason anime */
+                anime?: string;
+                /** @description ArcSeason anime */
+                "anime[]"?: string[];
+                /** @description ArcSeason order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description ArcSeason order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ArcSeason collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["ArcSeason.jsonld-arc_season.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["ArcSeason.multipart-arc_season.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_arc_seasons_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new ArcSeason resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["ArcSeason-arc_season.write"];
+                "multipart/form-data": components["schemas"]["ArcSeason-arc_season.write"];
+            };
+        };
+        responses: {
+            /** @description ArcSeason resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ArcSeason.jsonld-arc_season.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ArcSeason.multipart-arc_season.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_arc_seasons_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ArcSeason identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ArcSeason resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ArcSeason.jsonld-arc_season.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ArcSeason.multipart-arc_season.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_arc_seasons_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ArcSeason identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ArcSeason resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_arc_seasons_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ArcSeason identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated ArcSeason resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["ArcSeason-arc_season.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description ArcSeason resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ArcSeason.jsonld-arc_season.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ArcSeason.multipart-arc_season.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_astrological_signs_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description AstrologicalSign name */
+                name?: string;
+                /** @description AstrologicalSign name */
+                "name[]"?: string[];
+                /** @description AstrologicalSign order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description AstrologicalSign order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description AstrologicalSign order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description AstrologicalSign order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description AstrologicalSign collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["AstrologicalSign.jsonld-astrological_sign.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["AstrologicalSign.multipart-astrological_sign.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_astrological_signs_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new AstrologicalSign resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["AstrologicalSign-astrological_sign.write"];
+                "multipart/form-data": components["schemas"]["AstrologicalSign-astrological_sign.write"];
+            };
+        };
+        responses: {
+            /** @description AstrologicalSign resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["AstrologicalSign.jsonld-astrological_sign.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["AstrologicalSign.multipart-astrological_sign.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_astrological_signs_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description AstrologicalSign identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description AstrologicalSign resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["AstrologicalSign.jsonld-astrological_sign.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["AstrologicalSign.multipart-astrological_sign.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_astrological_signs_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description AstrologicalSign identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description AstrologicalSign resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_astrological_signs_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description AstrologicalSign identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated AstrologicalSign resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["AstrologicalSign-astrological_sign.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description AstrologicalSign resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["AstrologicalSign.jsonld-astrological_sign.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["AstrologicalSign.multipart-astrological_sign.read_entity.read"];
                 };
             };
             /** @description Invalid input */
@@ -4002,6 +6614,793 @@ export interface operations {
             };
         };
     };
+    api_chapters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Chapter title */
+                title?: string;
+                /** @description Chapter title */
+                "title[]"?: string[];
+                /** @description Chapter search */
+                search?: string;
+                /** @description Chapter search */
+                "search[]"?: string[];
+                /** @description Chapter slug */
+                slug?: string;
+                /** @description Chapter slug */
+                "slug[]"?: string[];
+                /** @description Chapter chapterNumber */
+                chapterNumber?: string;
+                /** @description Chapter chapterNumber */
+                "chapterNumber[]"?: string[];
+                /** @description Chapter manga */
+                manga?: string;
+                /** @description Chapter manga */
+                "manga[]"?: string[];
+                /** @description Chapter character */
+                character?: string;
+                /** @description Chapter character */
+                "character[]"?: string[];
+                /** @description Chapter abstractCard */
+                abstractCard?: string;
+                /** @description Chapter abstractCard */
+                "abstractCard[]"?: string[];
+                /** @description Chapter visible */
+                visible?: string;
+                /** @description Chapter visible */
+                "visible[]"?: string[];
+                /** @description Chapter order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Chapter order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Chapter order[chapterNumber] */
+                "order[chapterNumber]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Chapter order[chapterNumber] */
+                "order[chapterNumber][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Chapter order[title] */
+                "order[title]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Chapter order[title] */
+                "order[title][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Chapter collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Chapter.jsonld-chapter.list_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Chapter.multipart-chapter.list_entity.read"][];
+                };
+            };
+        };
+    };
+    api_chapters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Chapter resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Chapter-chapter.write"];
+                "multipart/form-data": components["schemas"]["Chapter-chapter.write"];
+            };
+        };
+        responses: {
+            /** @description Chapter resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Chapter.jsonld-chapter.list_chapter.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_chapters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Chapter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Chapter resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Chapter.jsonld-chapter.list_chapter.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_chapters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Chapter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Chapter resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_chapters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Chapter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Chapter resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Chapter-chapter.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Chapter resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Chapter.jsonld-chapter.list_chapter.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_chapter_characters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description ChapterCharacter chapter */
+                chapter?: string;
+                /** @description ChapterCharacter chapter */
+                "chapter[]"?: string[];
+                /** @description ChapterCharacter character */
+                character?: string;
+                /** @description ChapterCharacter character */
+                "character[]"?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ChapterCharacter collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["ChapterCharacter.jsonld-chapter_character.read_appearance.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["ChapterCharacter.multipart-chapter_character.read_appearance.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_chapter_characters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new ChapterCharacter resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["ChapterCharacter-chapter_character.write"];
+                "multipart/form-data": components["schemas"]["ChapterCharacter-chapter_character.write"];
+            };
+        };
+        responses: {
+            /** @description ChapterCharacter resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ChapterCharacter.jsonld-chapter_character.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ChapterCharacter.multipart-chapter_character.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_chapter_characters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ChapterCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ChapterCharacter resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ChapterCharacter.jsonld-chapter_character.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ChapterCharacter.multipart-chapter_character.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_chapter_characters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ChapterCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ChapterCharacter resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_chapter_characters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ChapterCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated ChapterCharacter resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["ChapterCharacter-chapter_character.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description ChapterCharacter resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ChapterCharacter.jsonld-chapter_character.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ChapterCharacter.multipart-chapter_character.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_characters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Character name */
+                name?: string;
+                /** @description Character name */
+                "name[]"?: string[];
+                /** @description Character slug */
+                slug?: string;
+                /** @description Character slug */
+                "slug[]"?: string[];
+                /** @description Character gender */
+                gender?: string;
+                /** @description Character gender */
+                "gender[]"?: string[];
+                /** @description Character astrologicalSign */
+                astrologicalSign?: string;
+                /** @description Character astrologicalSign */
+                "astrologicalSign[]"?: string[];
+                /** @description Character order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Character order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Character order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Character order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Character collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Character.jsonld-character.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_characters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Character resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Character-character.write"];
+                "multipart/form-data": components["schemas"]["Character-character.write"];
+            };
+        };
+        responses: {
+            /** @description Character resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_characters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Character identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Character resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_characters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Character identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Character resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_characters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Character identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Character resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Character-character.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Character resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
     api_countries_get_collection: {
         parameters: {
             query?: {
@@ -4191,6 +7590,540 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Country.jsonld-country.read_entity.read"];
                     "multipart/form-data": components["schemas"]["Country.multipart-country.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_episodes_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Episode title */
+                title?: string;
+                /** @description Episode title */
+                "title[]"?: string[];
+                /** @description Episode search */
+                search?: string;
+                /** @description Episode search */
+                "search[]"?: string[];
+                /** @description Episode episodeNumber */
+                episodeNumber?: string;
+                /** @description Episode episodeNumber */
+                "episodeNumber[]"?: string[];
+                /** @description Episode arcSeason */
+                arcSeason?: string;
+                /** @description Episode arcSeason */
+                "arcSeason[]"?: string[];
+                /** @description Episode arc */
+                arc?: string;
+                /** @description Episode arc */
+                "arc[]"?: string[];
+                /** @description Episode season */
+                season?: string;
+                /** @description Episode season */
+                "season[]"?: string[];
+                /** @description Episode anime */
+                anime?: string;
+                /** @description Episode anime */
+                "anime[]"?: string[];
+                /** @description Episode character */
+                character?: string;
+                /** @description Episode character */
+                "character[]"?: string[];
+                /** @description Episode abstractCard */
+                abstractCard?: string;
+                /** @description Episode abstractCard */
+                "abstractCard[]"?: string[];
+                /** @description Episode visible */
+                visible?: string;
+                /** @description Episode visible */
+                "visible[]"?: string[];
+                /** @description Episode order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Episode order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Episode order[episodeNumber] */
+                "order[episodeNumber]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Episode order[episodeNumber] */
+                "order[episodeNumber][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Episode order[title] */
+                "order[title]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Episode order[title] */
+                "order[title][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Episode collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Episode.jsonld-episode.list_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Episode.multipart-episode.list_entity.read"][];
+                };
+            };
+        };
+    };
+    api_episodes_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Episode resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Episode-episode.write"];
+                "multipart/form-data": components["schemas"]["Episode-episode.write"];
+            };
+        };
+        responses: {
+            /** @description Episode resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Episode.jsonld-episode.list_episode.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Episode.multipart-episode.list_episode.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_episodes_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Episode identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Episode resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Episode.jsonld-episode.list_episode.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Episode.multipart-episode.list_episode.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_episodes_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Episode identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Episode resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_episodes_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Episode identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Episode resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Episode-episode.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Episode resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Episode.jsonld-episode.list_episode.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Episode.multipart-episode.list_episode.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_episode_characters_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description EpisodeCharacter episode */
+                episode?: string;
+                /** @description EpisodeCharacter episode */
+                "episode[]"?: string[];
+                /** @description EpisodeCharacter character */
+                character?: string;
+                /** @description EpisodeCharacter character */
+                "character[]"?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description EpisodeCharacter collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["EpisodeCharacter.jsonld-episode_character.read_appearance.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["EpisodeCharacter.multipart-episode_character.read_appearance.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_episode_characters_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new EpisodeCharacter resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["EpisodeCharacter-episode_character.write"];
+                "multipart/form-data": components["schemas"]["EpisodeCharacter-episode_character.write"];
+            };
+        };
+        responses: {
+            /** @description EpisodeCharacter resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["EpisodeCharacter.jsonld-episode_character.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["EpisodeCharacter.multipart-episode_character.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_episode_characters_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description EpisodeCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description EpisodeCharacter resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["EpisodeCharacter.jsonld-episode_character.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["EpisodeCharacter.multipart-episode_character.read_appearance.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_episode_characters_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description EpisodeCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description EpisodeCharacter resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_episode_characters_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description EpisodeCharacter identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated EpisodeCharacter resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["EpisodeCharacter-episode_character.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description EpisodeCharacter resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["EpisodeCharacter.jsonld-episode_character.read_appearance.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["EpisodeCharacter.multipart-episode_character.read_appearance.read_entity.read"];
                 };
             };
             /** @description Invalid input */
@@ -5014,6 +8947,255 @@ export interface operations {
             };
         };
     };
+    api_genders_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Gender name */
+                name?: string;
+                /** @description Gender name */
+                "name[]"?: string[];
+                /** @description Gender order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Gender order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Gender order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Gender order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Gender collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Gender.jsonld-gender.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Gender.multipart-gender.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_genders_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Gender resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Gender-gender.write"];
+                "multipart/form-data": components["schemas"]["Gender-gender.write"];
+            };
+        };
+        responses: {
+            /** @description Gender resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Gender.jsonld-gender.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Gender.multipart-gender.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_genders_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Gender identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Gender resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Gender.jsonld-gender.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Gender.multipart-gender.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_genders_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Gender identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Gender resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_genders_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Gender identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Gender resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Gender-gender.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Gender resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Gender.jsonld-gender.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Gender.multipart-gender.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
     login_check_post: {
         parameters: {
             query?: never;
@@ -5040,6 +9222,263 @@ export interface operations {
                     "application/json": {
                         readonly token: string;
                     };
+                };
+            };
+        };
+    };
+    api_mangas_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Manga name */
+                name?: string;
+                /** @description Manga name */
+                "name[]"?: string[];
+                /** @description Manga slug */
+                slug?: string;
+                /** @description Manga slug */
+                "slug[]"?: string[];
+                /** @description Manga order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Manga order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Manga order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Manga order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Manga order[japanReleaseDate] */
+                "order[japanReleaseDate]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Manga order[japanReleaseDate] */
+                "order[japanReleaseDate][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Manga collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Manga.jsonld-manga.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_mangas_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Manga resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Manga-manga.write"];
+                "multipart/form-data": components["schemas"]["Manga-manga.write"];
+            };
+        };
+        responses: {
+            /** @description Manga resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_mangas_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Manga identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Manga resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_mangas_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Manga identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Manga resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_mangas_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Manga identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Manga resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Manga-manga.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Manga resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
                 };
             };
         };
@@ -6608,6 +11047,259 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Restriction.jsonld"];
                     "multipart/form-data": components["schemas"]["Restriction.multipart"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_seasons_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Season anime */
+                anime?: string;
+                /** @description Season anime */
+                "anime[]"?: string[];
+                /** @description Season seasonNumber */
+                seasonNumber?: string;
+                /** @description Season seasonNumber */
+                "seasonNumber[]"?: string[];
+                /** @description Season order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Season order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Season order[seasonNumber] */
+                "order[seasonNumber]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Season order[seasonNumber] */
+                "order[seasonNumber][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Season collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Season.jsonld-season.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Season.multipart-season.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_seasons_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Season resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Season-season.write"];
+                "multipart/form-data": components["schemas"]["Season-season.write"];
+            };
+        };
+        responses: {
+            /** @description Season resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Season.jsonld-season.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Season.multipart-season.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_seasons_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Season identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Season resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Season.jsonld-season.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Season.multipart-season.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_seasons_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Season identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Season resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_seasons_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Season identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Season resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Season-season.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Season resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Season.jsonld-season.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Season.multipart-season.read_entity.read"];
                 };
             };
             /** @description Invalid input */

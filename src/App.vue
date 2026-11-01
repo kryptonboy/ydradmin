@@ -8,6 +8,7 @@ const route = useRoute()
 
 const isCardManagementDropdownActive = computed(() => route.path.startsWith('/card_management'))
 const isContentDropdownActive = computed(() => route.path.startsWith('/content'))
+const isAnimeMangaDropdownActive = computed(() => route.path.startsWith('/anime_manga'))
 </script>
 
 <template>
@@ -165,6 +166,44 @@ const isContentDropdownActive = computed(() => route.path.startsWith('/content')
                   activeClass="active"
                 >
                   Catégories d'actualités
+                </AppLink>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              :class="{ active: isAnimeMangaDropdownActive }"
+              href="#"
+              id="animeMangaDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Animés &amp; mangas</a
+            >
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="animeMangaDropdown">
+              <li>
+                <AppLink to="/anime_manga/anime" class="dropdown-item" activeClass="active">
+                  Animés
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/anime_manga/manga" class="dropdown-item" activeClass="active">
+                  Mangas
+                </AppLink>
+              </li>
+              <li>
+                <AppLink to="/anime_manga/gender" class="dropdown-item" activeClass="active">
+                  Genres
+                </AppLink>
+              </li>
+              <li>
+                <AppLink
+                  to="/anime_manga/astrological_sign"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Signes astrologiques
                 </AppLink>
               </li>
             </ul>
