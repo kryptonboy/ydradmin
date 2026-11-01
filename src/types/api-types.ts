@@ -39,3 +39,8 @@ export type ApiMonsterType = Schemas['MonsterType.jsonld-monster_type.read_entit
 export type ApiRarity = Schemas['Rarity.jsonld-rarity.read_entity.read']
 export type ApiTag = Schemas['Tag.jsonld-tag.read_entity.read']
 export type ApiMediaObject = Schemas['MediaObject.jsonld-media_object.read_entity.read']
+
+export type ActualityInput = Schemas['Actuality-actuality.write']
+export type ActualityCategoryInput = Schemas['ActualityCategory-actuality_category.write']
+export type ApiActualityCategory =
+  Schemas['ActualityCategory.jsonld-actuality_category.read_entity.read']

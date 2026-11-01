@@ -5,6 +5,7 @@
  */
 import type {
   ApiAbstractCard,
+  ApiActualityCategory,
   ApiCard,
   ApiCardGroup,
   ApiCardSubType,
@@ -20,6 +21,7 @@ import type {
   ApiTag,
 } from './api-types'
 import type { AbstractCard } from './models/AbstractCard'
+import type { ActualityCategory } from './models/ActualityCategory'
 import type { Card } from './models/Card'
 import type { CardGroup } from './models/CardGroup'
 import type { CardSubType } from './models/CardSubType'
@@ -47,6 +49,7 @@ type Assert<T extends true> = T
 export type ModelChecks = [
   Assert<Conforms<Card, ApiCard>>,
   Assert<Conforms<AbstractCard, ApiAbstractCard>>,
+  Assert<Conforms<ActualityCategory, ApiActualityCategory>>,
   Assert<Conforms<CardGroup, ApiCardGroup>>,
   Assert<Conforms<CardSubType, ApiCardSubType>>,
   Assert<Conforms<CardType, ApiCardType>>,

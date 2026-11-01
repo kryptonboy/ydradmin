@@ -56,6 +56,110 @@ export interface paths {
         patch: operations["api_abstract_cards_id_patch"];
         trace?: never;
     };
+    "/api/actualities": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Actuality resources.
+         * @description Retrieves the collection of Actuality resources.
+         */
+        get: operations["api_actualities_get_collection"];
+        put?: never;
+        /**
+         * Creates a Actuality resource.
+         * @description Creates a Actuality resource.
+         */
+        post: operations["api_actualities_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/actualities/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Actuality resource.
+         * @description Retrieves a Actuality resource.
+         */
+        get: operations["api_actualities_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Actuality resource.
+         * @description Removes the Actuality resource.
+         */
+        delete: operations["api_actualities_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Actuality resource.
+         * @description Updates the Actuality resource.
+         */
+        patch: operations["api_actualities_id_patch"];
+        trace?: never;
+    };
+    "/api/actuality_categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of ActualityCategory resources.
+         * @description Retrieves the collection of ActualityCategory resources.
+         */
+        get: operations["api_actuality_categories_get_collection"];
+        put?: never;
+        /**
+         * Creates a ActualityCategory resource.
+         * @description Creates a ActualityCategory resource.
+         */
+        post: operations["api_actuality_categories_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/actuality_categories/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ActualityCategory resource.
+         * @description Retrieves a ActualityCategory resource.
+         */
+        get: operations["api_actuality_categories_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the ActualityCategory resource.
+         * @description Removes the ActualityCategory resource.
+         */
+        delete: operations["api_actuality_categories_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the ActualityCategory resource.
+         * @description Updates the ActualityCategory resource.
+         */
+        patch: operations["api_actuality_categories_id_patch"];
+        trace?: never;
+    };
     "/api/cards": {
         parameters: {
             query?: never;
@@ -1000,6 +1104,172 @@ export interface components {
             monsterType?: components["schemas"]["MonsterType.multipart-card.read_entity.read"] | null;
             readonly id?: number;
         };
+        "Actuality-actuality.write": {
+            title: string;
+            headnote: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            image?: string | null;
+            /** @default true */
+            commentable: boolean;
+            /** @default true */
+            visible: boolean;
+            /**
+             * Format: date-time
+             * @description Visitors only see the article from this moment on; null means it is not scheduled.
+             */
+            publishedAt?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            actualityCategory?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Actuality-actuality.write.jsonMergePatch": {
+            title?: string;
+            headnote?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            image?: string | null;
+            /** @default true */
+            commentable: boolean;
+            /** @default true */
+            visible: boolean;
+            /**
+             * Format: date-time
+             * @description Visitors only see the article from this moment on; null means it is not scheduled.
+             */
+            publishedAt?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            actualityCategory?: string | null;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Actuality.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            slug?: string;
+            headnote: string;
+            image?: components["schemas"]["MediaObject.jsonld-actuality.list_actuality.read_entity.read"] | null;
+            /** @default true */
+            commentable: boolean;
+            /** @default true */
+            visible: boolean;
+            /**
+             * Format: date-time
+             * @description Visitors only see the article from this moment on; null means it is not scheduled.
+             */
+            publishedAt?: string | null;
+            actualityCategory?: components["schemas"]["ActualityCategory.jsonld-actuality.list_actuality.read_entity.read"] | null;
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Actuality.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            title: string;
+            slug?: string;
+            headnote: string;
+            image?: components["schemas"]["MediaObject.jsonld-actuality.list_entity.read"] | null;
+            /** @default true */
+            commentable: boolean;
+            /** @default true */
+            visible: boolean;
+            /**
+             * Format: date-time
+             * @description Visitors only see the article from this moment on; null means it is not scheduled.
+             */
+            publishedAt?: string | null;
+            actualityCategory?: components["schemas"]["ActualityCategory.jsonld-actuality.list_entity.read"] | null;
+            readonly id?: number;
+        };
+        "Actuality.multipart-actuality.list_actuality.read_entity.read": {
+            title: string;
+            slug?: string;
+            headnote: string;
+            image?: components["schemas"]["MediaObject.multipart-actuality.list_actuality.read_entity.read"] | null;
+            /** @default true */
+            commentable: boolean;
+            /** @default true */
+            visible: boolean;
+            /**
+             * Format: date-time
+             * @description Visitors only see the article from this moment on; null means it is not scheduled.
+             */
+            publishedAt?: string | null;
+            actualityCategory?: components["schemas"]["ActualityCategory.multipart-actuality.list_actuality.read_entity.read"] | null;
+            readonly id?: number;
+            /** @description List of content blocks, see docs/content-blocks.md. */
+            blocks?: Record<string, never>[];
+        };
+        "Actuality.multipart-actuality.list_entity.read": {
+            title: string;
+            slug?: string;
+            headnote: string;
+            image?: components["schemas"]["MediaObject.multipart-actuality.list_entity.read"] | null;
+            /** @default true */
+            commentable: boolean;
+            /** @default true */
+            visible: boolean;
+            /**
+             * Format: date-time
+             * @description Visitors only see the article from this moment on; null means it is not scheduled.
+             */
+            publishedAt?: string | null;
+            actualityCategory?: components["schemas"]["ActualityCategory.multipart-actuality.list_entity.read"] | null;
+            readonly id?: number;
+        };
+        "ActualityCategory-actuality_category.write": {
+            label: string;
+            /** @default true */
+            active: boolean;
+        };
+        "ActualityCategory-actuality_category.write.jsonMergePatch": {
+            label?: string;
+            /** @default true */
+            active: boolean;
+        };
+        "ActualityCategory.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            label: string;
+            slug?: string;
+            readonly id?: number;
+        };
+        "ActualityCategory.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            label: string;
+            slug?: string;
+            readonly id?: number;
+        };
+        "ActualityCategory.jsonld-actuality_category.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            label: string;
+            slug?: string;
+            /** @default true */
+            active: boolean;
+            readonly id?: number;
+        };
+        "ActualityCategory.multipart-actuality.list_actuality.read_entity.read": {
+            label: string;
+            slug?: string;
+            readonly id?: number;
+        };
+        "ActualityCategory.multipart-actuality.list_entity.read": {
+            label: string;
+            slug?: string;
+            readonly id?: number;
+        };
+        "ActualityCategory.multipart-actuality_category.read_entity.read": {
+            label: string;
+            slug?: string;
+            /** @default true */
+            active: boolean;
+            readonly id?: number;
+        };
         "Card-card.write": {
             name: string;
             description?: string | null;
@@ -1530,6 +1800,14 @@ export interface components {
             "@id": string;
             "@type": string;
         };
+        "MediaObject.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -1539,6 +1817,14 @@ export interface components {
             fileSize?: number | null;
             /** @enum {string|null} */
             context: "actuality" | "astrological_sign" | "card" | "card_sub_type" | "card_type" | "character" | "extension" | "file_type" | "monster_attribute" | "movie" | "smiley" | "content_bloc_attachment" | "content_bloc_carousel_image" | "content_bloc_image" | null;
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-actuality.list_actuality.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-actuality.list_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -2090,6 +2376,520 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["AbstractCard.jsonld-abstract_card.read_entity.read"];
                     "multipart/form-data": components["schemas"]["AbstractCard.multipart-abstract_card.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_actualities_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Actuality title */
+                title?: string;
+                /** @description Actuality title */
+                "title[]"?: string[];
+                /** @description Actuality search */
+                search?: string;
+                /** @description Actuality search */
+                "search[]"?: string[];
+                /** @description Actuality slug */
+                slug?: string;
+                /** @description Actuality slug */
+                "slug[]"?: string[];
+                /** @description Actuality actualityCategory */
+                actualityCategory?: string;
+                /** @description Actuality actualityCategory */
+                "actualityCategory[]"?: string[];
+                /** @description Actuality order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Actuality order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Actuality order[title] */
+                "order[title]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Actuality order[title] */
+                "order[title][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Actuality order[publishedAt] */
+                "order[publishedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Actuality order[publishedAt] */
+                "order[publishedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Actuality collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Actuality.jsonld-actuality.list_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Actuality.multipart-actuality.list_entity.read"][];
+                };
+            };
+        };
+    };
+    api_actualities_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Actuality resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Actuality-actuality.write"];
+                "multipart/form-data": components["schemas"]["Actuality-actuality.write"];
+            };
+        };
+        responses: {
+            /** @description Actuality resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Actuality.jsonld-actuality.list_actuality.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Actuality.multipart-actuality.list_actuality.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_actualities_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Actuality identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Actuality resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Actuality.jsonld-actuality.list_actuality.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Actuality.multipart-actuality.list_actuality.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actualities_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Actuality identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Actuality resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actualities_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Actuality identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Actuality resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Actuality-actuality.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Actuality resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Actuality.jsonld-actuality.list_actuality.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Actuality.multipart-actuality.list_actuality.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_actuality_categories_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description ActualityCategory label */
+                label?: string;
+                /** @description ActualityCategory label */
+                "label[]"?: string[];
+                /** @description ActualityCategory order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description ActualityCategory order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description ActualityCategory order[label] */
+                "order[label]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description ActualityCategory order[label] */
+                "order[label][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityCategory collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_actuality_categories_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new ActualityCategory resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["ActualityCategory-actuality_category.write"];
+                "multipart/form-data": components["schemas"]["ActualityCategory-actuality_category.write"];
+            };
+        };
+        responses: {
+            /** @description ActualityCategory resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_actuality_categories_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityCategory identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityCategory resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actuality_categories_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityCategory identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityCategory resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_actuality_categories_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityCategory identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated ActualityCategory resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["ActualityCategory-actuality_category.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description ActualityCategory resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"];
                 };
             };
             /** @description Invalid input */

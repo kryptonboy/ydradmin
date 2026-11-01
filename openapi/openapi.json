@@ -1067,6 +1067,1210 @@
                 }
             }
         },
+        "/api/actualities": {
+            "get": {
+                "operationId": "api_actualities_get_collection",
+                "tags": [
+                    "Actuality"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actuality collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "Actuality.jsonld-actuality.list_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Actuality.jsonld-actuality.list_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Actuality.multipart-actuality.list_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Actuality resources.",
+                "description": "Retrieves the collection of Actuality resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Actuality title",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "title[]",
+                        "in": "query",
+                        "description": "Actuality title",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Actuality search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "search[]",
+                        "in": "query",
+                        "description": "Actuality search",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "description": "Actuality slug",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "slug[]",
+                        "in": "query",
+                        "description": "Actuality slug",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "actualityCategory",
+                        "in": "query",
+                        "description": "Actuality actualityCategory",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "actualityCategory[]",
+                        "in": "query",
+                        "description": "Actuality actualityCategory",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Actuality order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Actuality order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[title]",
+                        "in": "query",
+                        "description": "Actuality order[title]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[title][]",
+                        "in": "query",
+                        "description": "Actuality order[title]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[publishedAt]",
+                        "in": "query",
+                        "description": "Actuality order[publishedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[publishedAt][]",
+                        "in": "query",
+                        "description": "Actuality order[publishedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_actualities_post",
+                "tags": [
+                    "Actuality"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Actuality resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Actuality.jsonld-actuality.list_actuality.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Actuality.multipart-actuality.list_actuality.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a Actuality resource.",
+                "description": "Creates a Actuality resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new Actuality resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Actuality-actuality.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Actuality-actuality.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/actualities/{id}": {
+            "get": {
+                "operationId": "api_actualities_id_get",
+                "tags": [
+                    "Actuality"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actuality resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Actuality.jsonld-actuality.list_actuality.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Actuality.multipart-actuality.list_actuality.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a Actuality resource.",
+                "description": "Retrieves a Actuality resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Actuality identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_actualities_id_delete",
+                "tags": [
+                    "Actuality"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Actuality resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the Actuality resource.",
+                "description": "Removes the Actuality resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Actuality identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_actualities_id_patch",
+                "tags": [
+                    "Actuality"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Actuality resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Actuality.jsonld-actuality.list_actuality.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Actuality.multipart-actuality.list_actuality.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the Actuality resource.",
+                "description": "Updates the Actuality resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Actuality identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated Actuality resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Actuality-actuality.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/actuality_categories": {
+            "get": {
+                "operationId": "api_actuality_categories_get_collection",
+                "tags": [
+                    "ActualityCategory"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityCategory collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "ActualityCategory.jsonld-actuality_category.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality_category.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ActualityCategory.multipart-actuality_category.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of ActualityCategory resources.",
+                "description": "Retrieves the collection of ActualityCategory resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "label",
+                        "in": "query",
+                        "description": "ActualityCategory label",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "label[]",
+                        "in": "query",
+                        "description": "ActualityCategory label",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "ActualityCategory order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "ActualityCategory order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[label]",
+                        "in": "query",
+                        "description": "ActualityCategory order[label]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[label][]",
+                        "in": "query",
+                        "description": "ActualityCategory order[label]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_actuality_categories_post",
+                "tags": [
+                    "ActualityCategory"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "ActualityCategory resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality_category.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.multipart-actuality_category.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a ActualityCategory resource.",
+                "description": "Creates a ActualityCategory resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new ActualityCategory resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualityCategory-actuality_category.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualityCategory-actuality_category.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/actuality_categories/{id}": {
+            "get": {
+                "operationId": "api_actuality_categories_id_get",
+                "tags": [
+                    "ActualityCategory"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityCategory resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality_category.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.multipart-actuality_category.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a ActualityCategory resource.",
+                "description": "Retrieves a ActualityCategory resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActualityCategory identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_actuality_categories_id_delete",
+                "tags": [
+                    "ActualityCategory"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "ActualityCategory resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the ActualityCategory resource.",
+                "description": "Removes the ActualityCategory resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActualityCategory identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_actuality_categories_id_patch",
+                "tags": [
+                    "ActualityCategory"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityCategory resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality_category.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.multipart-actuality_category.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the ActualityCategory resource.",
+                "description": "Updates the ActualityCategory resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActualityCategory identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated ActualityCategory resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActualityCategory-actuality_category.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "/api/cards": {
             "get": {
                 "operationId": "api_cards_get_collection",
@@ -10578,6 +11782,548 @@
                     }
                 }
             },
+            "Actuality-actuality.write": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "headnote"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "headnote": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "commentable": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "visible": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "publishedAt": {
+                        "description": "Visitors only see the article from this moment on; null means it is not scheduled.",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "actualityCategory": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
+            },
+            "Actuality-actuality.write.jsonMergePatch": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "headnote": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "commentable": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "visible": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "publishedAt": {
+                        "description": "Visitors only see the article from this moment on; null means it is not scheduled.",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "actualityCategory": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
+            },
+            "Actuality.jsonld-actuality.list_actuality.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "title",
+                            "headnote"
+                        ],
+                        "properties": {
+                            "title": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "headnote": {
+                                "type": "string"
+                            },
+                            "image": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-actuality.list_actuality.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "commentable": {
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "visible": {
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "publishedAt": {
+                                "description": "Visitors only see the article from this moment on; null means it is not scheduled.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "actualityCategory": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality.list_actuality.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "description": "List of content blocks, see docs/content-blocks.md."
+                            }
+                        }
+                    }
+                ]
+            },
+            "Actuality.jsonld-actuality.list_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "title",
+                            "headnote"
+                        ],
+                        "properties": {
+                            "title": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "headnote": {
+                                "type": "string"
+                            },
+                            "image": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-actuality.list_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "commentable": {
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "visible": {
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "publishedAt": {
+                                "description": "Visitors only see the article from this moment on; null means it is not scheduled.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
+                            "actualityCategory": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality.list_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Actuality.multipart-actuality.list_actuality.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "headnote"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "headnote": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-actuality.list_actuality.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "commentable": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "visible": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "publishedAt": {
+                        "description": "Visitors only see the article from this moment on; null means it is not scheduled.",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "actualityCategory": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ActualityCategory.multipart-actuality.list_actuality.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "List of content blocks, see docs/content-blocks.md."
+                    }
+                }
+            },
+            "Actuality.multipart-actuality.list_entity.read": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "headnote"
+                ],
+                "properties": {
+                    "title": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "headnote": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-actuality.list_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "commentable": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "visible": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "publishedAt": {
+                        "description": "Visitors only see the article from this moment on; null means it is not scheduled.",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "actualityCategory": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ActualityCategory.multipart-actuality.list_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "ActualityCategory-actuality_category.write": {
+                "type": "object",
+                "required": [
+                    "label"
+                ],
+                "properties": {
+                    "label": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "active": {
+                        "default": true,
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ActualityCategory-actuality_category.write.jsonMergePatch": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "active": {
+                        "default": true,
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ActualityCategory.jsonld-actuality.list_actuality.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "label"
+                        ],
+                        "properties": {
+                            "label": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "ActualityCategory.jsonld-actuality.list_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "label"
+                        ],
+                        "properties": {
+                            "label": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "ActualityCategory.jsonld-actuality_category.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "label"
+                        ],
+                        "properties": {
+                            "label": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "active": {
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "ActualityCategory.multipart-actuality.list_actuality.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "label"
+                ],
+                "properties": {
+                    "label": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "ActualityCategory.multipart-actuality.list_entity.read": {
+                "type": "object",
+                "required": [
+                    "label"
+                ],
+                "properties": {
+                    "label": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "ActualityCategory.multipart-actuality_category.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "label"
+                ],
+                "properties": {
+                    "label": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
             "Card-card.write": {
                 "type": "object",
                 "required": [
@@ -12520,6 +14266,58 @@
                     "@type"
                 ]
             },
+            "MediaObject.jsonld-actuality.list_actuality.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "MediaObject.jsonld-actuality.list_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-card.read_entity.read": {
                 "allOf": [
                     {
@@ -12611,6 +14409,44 @@
                         ]
                     }
                 ]
+            },
+            "MediaObject.multipart-actuality.list_actuality.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-actuality.list_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
             },
             "MediaObject.multipart-card.read_entity.read": {
                 "type": "object",
@@ -13625,6 +15461,14 @@
         {
             "name": "AbstractCard",
             "description": "Resource 'AbstractCard' operations."
+        },
+        {
+            "name": "Actuality",
+            "description": "Resource 'Actuality' operations."
+        },
+        {
+            "name": "ActualityCategory",
+            "description": "Resource 'ActualityCategory' operations."
         },
         {
             "name": "Card",

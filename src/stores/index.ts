@@ -1,4 +1,6 @@
 export * from './abstract_cards.store'
+export * from './actualities.store'
+export * from './actuality_categories.store'
 export * from './auth.store'
 export * from './card_groups.store'
 export * from './card_sub_types.store'
