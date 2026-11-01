@@ -1852,6 +1852,58 @@ export interface paths {
         patch: operations["api_restrictions_id_patch"];
         trace?: never;
     };
+    "/api/rulings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Ruling resources.
+         * @description Retrieves the collection of Ruling resources.
+         */
+        get: operations["api_rulings_get_collection"];
+        put?: never;
+        /**
+         * Creates a Ruling resource.
+         * @description Creates a Ruling resource.
+         */
+        post: operations["api_rulings_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/rulings/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Ruling resource.
+         * @description Retrieves a Ruling resource.
+         */
+        get: operations["api_rulings_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Ruling resource.
+         * @description Removes the Ruling resource.
+         */
+        delete: operations["api_rulings_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Ruling resource.
+         * @description Updates the Ruling resource.
+         */
+        patch: operations["api_rulings_id_patch"];
+        trace?: never;
+    };
     "/api/seasons": {
         parameters: {
             query?: never;
@@ -2132,6 +2184,8 @@ export interface components {
             monsterEffects?: string[] | null;
             /** @description IRIs of the tags; null leaves them untouched, an empty list removes them all. */
             tags?: string[] | null;
+            /** @description IRIs of the rulings; null leaves them untouched, an empty list removes them all. */
+            rulings?: string[] | null;
         };
         "AbstractCard.AbstractCardInput.jsonMergePatch": {
             name?: string;
@@ -2149,6 +2203,8 @@ export interface components {
             monsterEffects?: string[] | null;
             /** @description IRIs of the tags; null leaves them untouched, an empty list removes them all. */
             tags?: string[] | null;
+            /** @description IRIs of the rulings; null leaves them untouched, an empty list removes them all. */
+            rulings?: string[] | null;
         };
         "AbstractCard.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
@@ -2205,6 +2261,10 @@ export interface components {
             name?: string;
             readonly id?: number;
         };
+        "AbstractCard.jsonld-ruling.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
         "AbstractCard.multipart-abstract_card.read_entity.read": {
             name?: string;
             level?: number | null;
@@ -2257,6 +2317,10 @@ export interface components {
             readonly id?: number;
         };
         "AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-ruling.read_entity.read_label": {
             name?: string;
             readonly id?: number;
         };
@@ -4648,10 +4712,44 @@ export interface components {
             limitNumber: number;
             readonly id?: number;
         };
-        "Ruling.jsonld-abstract_card.read_entity.read": {
+        /** @description An official ruling about the cards it applies to. */
+        "Ruling-ruling.write": {
+            name: string;
+            ruling: string;
+            /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
+            abstractCards?: string[];
+        };
+        /** @description An official ruling about the cards it applies to. */
+        "Ruling-ruling.write.jsonMergePatch": {
+            name?: string;
+            ruling?: string;
+            /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
+            abstractCards?: string[];
+        };
+        "Ruling.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
+        /** @description An official ruling about the cards it applies to. */
+        "Ruling.jsonld-ruling.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            ruling: string;
+            /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
+            abstractCards?: components["schemas"]["AbstractCard.jsonld-ruling.read_entity.read_label"][];
             readonly id?: number;
         };
         "Ruling.multipart-abstract_card.read_entity.read": {
+            name: string;
+            readonly id?: number;
+        };
+        /** @description An official ruling about the cards it applies to. */
+        "Ruling.multipart-ruling.read_entity.read_label": {
+            name: string;
+            slug?: string;
+            ruling: string;
+            /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
+            abstractCards?: components["schemas"]["AbstractCard.multipart-ruling.read_entity.read_label"][];
             readonly id?: number;
         };
         "Season-season.write": {
@@ -4996,6 +5094,10 @@ export interface operations {
                 tags?: string;
                 /** @description AbstractCard tags */
                 "tags[]"?: string[];
+                /** @description AbstractCard rulings */
+                rulings?: string;
+                /** @description AbstractCard rulings */
+                "rulings[]"?: string[];
                 /** @description AbstractCard order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description AbstractCard order[id] */
@@ -13629,6 +13731,267 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Restriction.jsonld-restriction.read_entity.read_label"];
                     "multipart/form-data": components["schemas"]["Restriction.multipart-restriction.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_rulings_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Ruling name */
+                name?: string;
+                /** @description Ruling name */
+                "name[]"?: string[];
+                /** @description Ruling ruling */
+                ruling?: string;
+                /** @description Ruling ruling */
+                "ruling[]"?: string[];
+                /** @description Ruling slug */
+                slug?: string;
+                /** @description Ruling slug */
+                "slug[]"?: string[];
+                /** @description Ruling abstractCard */
+                abstractCard?: string;
+                /** @description Ruling abstractCard */
+                "abstractCard[]"?: string[];
+                /** @description Ruling order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Ruling order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Ruling order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Ruling order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Ruling collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Ruling.jsonld-ruling.read_entity.read_label"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Ruling.multipart-ruling.read_entity.read_label"][];
+                };
+            };
+        };
+    };
+    api_rulings_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Ruling resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Ruling-ruling.write"];
+                "multipart/form-data": components["schemas"]["Ruling-ruling.write"];
+            };
+        };
+        responses: {
+            /** @description Ruling resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Ruling.jsonld-ruling.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Ruling.multipart-ruling.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_rulings_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Ruling identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Ruling resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Ruling.jsonld-ruling.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Ruling.multipart-ruling.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_rulings_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Ruling identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Ruling resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_rulings_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Ruling identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Ruling resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Ruling-ruling.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Ruling resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Ruling.jsonld-ruling.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Ruling.multipart-ruling.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */

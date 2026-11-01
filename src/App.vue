@@ -159,6 +159,11 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
                   Restrictions
                 </AppLink>
               </li>
+              <li>
+                <AppLink to="/card_management/ruling" class="dropdown-item" activeClass="active">
+                  Rulings
+                </AppLink>
+              </li>
             </ul>
           </li>
           <li class="nav-item dropdown">

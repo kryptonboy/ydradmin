@@ -92,3 +92,6 @@ export type ArcCharacterInput = Schemas['ArcCharacter-arc_character.write']
 export type ApiMangaCharacter =
   Schemas['MangaCharacter.jsonld-manga_character.read_entity.read_label']
 export type ApiArcCharacter = Schemas['ArcCharacter.jsonld-arc_character.read_entity.read_label']
+
+export type RulingInput = Schemas['Ruling-ruling.write']
+export type ApiRuling = Schemas['Ruling.jsonld-ruling.read_entity.read_label']

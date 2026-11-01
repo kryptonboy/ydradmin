@@ -46,6 +46,7 @@ export const router = createRouter({
       path: '/card_management/restriction',
       component: () => import('@/views/RestrictionView.vue'),
     },
+    { path: '/card_management/ruling', component: () => import('@/views/RulingView.vue') },
     { path: '/content/actuality', component: () => import('@/views/ActualityView.vue') },
     { path: '/content/actuality/new', component: () => import('@/views/ActualityEditView.vue') },
     {

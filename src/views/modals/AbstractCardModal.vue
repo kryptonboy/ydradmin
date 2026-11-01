@@ -3,7 +3,7 @@ import FormModal from '@/components/FormModal.vue'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useSubmit } from '@/composables/useSubmit'
 import type { SubmissionContext } from 'vee-validate'
-import { useCardSubTypesStore, useTagsStore } from '@/stores'
+import { useCardSubTypesStore, useRulingsStore, useTagsStore } from '@/stores'
 import { useAbstractCardsStore } from '@/stores/abstract_cards.store'
 import { useCardGroupsStore } from '@/stores/card_groups.store'
 import { useMonsterAttributesStore } from '@/stores/monster_attributes.store'
@@ -19,6 +19,7 @@ import type { MonsterAttribute } from '@/types/models/MonsterAttribute'
 import type { MonsterEffect } from '@/types/models/MonsterEffect'
 import type { MonsterSubType } from '@/types/models/MonsterSubType'
 import type { MonsterType } from '@/types/models/MonsterType'
+import type { Ruling } from '@/types/models/Ruling'
 import type { Tag } from '@/types/models/Tag'
 import { ErrorMessage, Field } from 'vee-validate'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
@@ -44,6 +45,8 @@ const monsterSubTypes = ref<MonsterSubType[]>([])
 const monsterTypes = ref<MonsterType[]>([])
 const monsterEffects = ref<MonsterEffect[]>([])
 const tags = ref<Tag[]>([])
+const rulings = ref<Ruling[]>([])
+const rulingLoading = ref(false)
 // Loading states
 const cardGroupLoading = ref(false)
 const tagLoading = ref(false)
@@ -74,6 +77,20 @@ async function fetchTags(query: string) {
     tags.value = await tagsStore.autocomplete(query)
   } finally {
     tagLoading.value = false
+  }
+}
+
+async function fetchRulings(query: string) {
+  if (!query) {
+    rulings.value = []
+    return
+  }
+
+  rulingLoading.value = true
+  try {
+    rulings.value = await useRulingsStore().autocomplete(query)
+  } finally {
+    rulingLoading.value = false
   }
 }
 
@@ -110,6 +127,7 @@ const schema = yup.object({
   monsterType: yup.object({ id: idSchema }).nullable().default(null),
   monsterEffects: yup.array().of(yup.object({ id: idSchema })),
   tags: yup.array().of(yup.object({ id: idSchema })),
+  rulings: yup.array().of(yup.object({ id: idSchema })),
 })
 
 const store = useAbstractCardsStore()
@@ -126,6 +144,8 @@ function processValues(values: AbstractCard): AbstractCardForm {
     cardGroup: values.cardGroup?.['@id'] ?? undefined,
     monsterEffects: [],
     tags: [],
+    // La liste remplace l'existant : [] retire tous les rulings de la carte
+    rulings: [],
   }
 
   if (values.monsterAttribute?.id) {
@@ -146,6 +166,10 @@ function processValues(values: AbstractCard): AbstractCardForm {
 
   if (values.tags && values.tags.length > 0) {
     result.tags = values.tags.map((tag) => tag['@id'])
+  }
+
+  if (values.rulings && values.rulings.length > 0) {
+    result.rulings = values.rulings.map((ruling) => ruling['@id'])
   }
 
   return result
@@ -210,6 +234,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       monsterType: props.abstractCard?.monsterType ?? undefined,
       monsterEffects: props.abstractCard?.monsterEffects ?? [],
       tags: props.abstractCard?.tags ?? [],
+      rulings: props.abstractCard?.rulings ?? [],
     }"
     :form-key="props.abstractCard?.id ?? 'new'"
     :submit-error="submitError"
@@ -359,6 +384,26 @@ defineExpose({ showModal: () => modal.value?.show() })
         />
       </Field>
       <ErrorMessage name="tags" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="rulings" v-slot="{ field }">
+        <label class="form-label" for="abstractCardModal-rulings">Rulings</label>
+        <multi-select
+          id="abstractCardModal-rulings"
+          v-model="field.value"
+          :options="rulings"
+          multiple
+          :close-on-select="false"
+          :loading="rulingLoading"
+          :internal-search="false"
+          placeholder="Rechercher un ou plusieurs rulings"
+          label="name"
+          track-by="id"
+          @search-change="fetchRulings"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="rulings" class="text-danger small" />
     </div>
   </FormModal>
 </template>
