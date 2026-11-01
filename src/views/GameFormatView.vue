@@ -125,7 +125,7 @@ function openModal(gameFormat: GameFormat | null = null) {
         <td>{{ gameFormat.id }}</td>
         <td>{{ gameFormat.name }}</td>
         <td>{{ gameFormat.description }}</td>
-        <td>{{ gameFormat.extensions?.length ?? 0 }}</td>
+        <td>{{ gameFormat.extensions?.map((e) => e.name).join(', ') }}</td>
         <td>
           <button class="btn btn-primary" aria-label="Modifier" @click="openModal(gameFormat)">
             <font-awesome-icon :icon="['fa', 'pencil']" />

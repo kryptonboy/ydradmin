@@ -27333,6 +27333,14 @@
                         "type": "string",
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "gameFormats": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference",
+                            "example": "https://example.com/"
+                        }
                     }
                 }
             },
@@ -27375,6 +27383,14 @@
                         "type": "string",
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "gameFormats": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference",
+                            "example": "https://example.com/"
+                        }
                     }
                 }
             },
@@ -27444,6 +27460,12 @@
                             "country": {
                                 "$ref": "#/components/schemas/Country.jsonld-extension.read_entity.read"
                             },
+                            "gameFormats": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/GameFormat.jsonld-extension.read_entity.read"
+                                }
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -27459,7 +27481,19 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "name",
+                            "reference"
+                        ],
                         "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "reference": {
+                                "maxLength": 15,
+                                "type": "string"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -27522,6 +27556,12 @@
                     "country": {
                         "$ref": "#/components/schemas/Country.multipart-extension.read_entity.read"
                     },
+                    "gameFormats": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GameFormat.multipart-extension.read_entity.read"
+                        }
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -27530,7 +27570,19 @@
             },
             "Extension.multipart-game_format.read_entity.read_label": {
                 "type": "object",
+                "required": [
+                    "name",
+                    "reference"
+                ],
                 "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "reference": {
+                        "maxLength": 15,
+                        "type": "string"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -27692,6 +27744,29 @@
                     }
                 }
             },
+            "GameFormat.jsonld-extension.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "GameFormat.jsonld-game_format.read_entity.read_label": {
                 "allOf": [
                     {
@@ -27751,6 +27826,22 @@
                         }
                     }
                 ]
+            },
+            "GameFormat.multipart-extension.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
             },
             "GameFormat.multipart-game_format.read_entity.read_label": {
                 "type": "object",

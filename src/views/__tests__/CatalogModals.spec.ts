@@ -1,6 +1,7 @@
 import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import ExtensionModal from '../modals/ExtensionModal.vue'
 import GameFormatModal from '../modals/GameFormatModal.vue'
 import RestrictionModal from '../modals/RestrictionModal.vue'
 
@@ -134,5 +135,52 @@ describe('GameFormatModal', () => {
 
     const call = writes(fetchMock, 'POST')[0]
     expect(JSON.parse(call[1].body)).toEqual({ name: 'Edison', description: 'Format 2010' })
+  })
+})
+
+describe('ExtensionModal (formats de jeu)', () => {
+  const extension = {
+    id: 3,
+    name: 'LOB',
+    reference: 'LOB',
+    releaseDate: '2002-03-08T00:00:00+00:00',
+    cardsCount: 126,
+    extensionType: { '@id': '/api/extension_types/1', id: 1, name: 'Set' },
+    country: { '@id': '/api/countries/1', id: 1, name: 'France' },
+  }
+
+  it('envoie les formats de jeu en IRI', async () => {
+    const fetchMock = mockFetch({})
+    const wrapper = mountModal(ExtensionModal, {
+      extension: {
+        ...extension,
+        gameFormats: [
+          { '@id': '/api/game_formats/2', id: 2, name: 'Edison' },
+          { '@id': '/api/game_formats/5', id: 5, name: 'GOAT' },
+        ],
+      },
+    })
+    await settle()
+
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    const call = writes(fetchMock, 'PATCH')[0]
+    expect(JSON.parse(call[1].body).gameFormats).toEqual([
+      '/api/game_formats/2',
+      '/api/game_formats/5',
+    ])
+  })
+
+  it("envoie une liste vide quand l'extension n'est dans aucun format", async () => {
+    const fetchMock = mockFetch({})
+    const wrapper = mountModal(ExtensionModal, { extension })
+    await settle()
+
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    const call = writes(fetchMock, 'PATCH')[0]
+    expect(JSON.parse(call[1].body).gameFormats).toEqual([])
   })
 })
