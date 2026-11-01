@@ -3,11 +3,17 @@ import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
 import MediaThumb from '@/components/MediaThumb.vue'
 import { useSubmit } from '@/composables/useSubmit'
-import { useCountriesStore, useExtensionsStore, useExtensionTypesStore } from '@/stores'
+import {
+  useCountriesStore,
+  useExtensionsStore,
+  useExtensionTypesStore,
+  useGameFormatsStore,
+} from '@/stores'
 import type { ExtensionForm } from '@/types/forms/ExtensionForm'
 import type { Country } from '@/types/models/Country'
 import type { Extension } from '@/types/models/Extension'
 import type { ExtensionType } from '@/types/models/ExtensionType'
+import type { GameFormat } from '@/types/models/GameFormat'
 import type { SubmissionContext } from 'vee-validate'
 import { ErrorMessage, Field } from 'vee-validate'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
@@ -28,6 +34,7 @@ const { submitError, submit } = useSubmit()
 
 const countries = ref<Country[]>([])
 const extensionTypes = ref<ExtensionType[]>([])
+const gameFormats = ref<GameFormat[]>([])
 const iconId = ref<string | null>(null)
 const isUploadingIcon = ref(false)
 const isEdit = computed(() => !!props.extension)
@@ -39,6 +46,7 @@ const schema = yup.object({
   cardsCount: yup.number().required('Nombre de cartes requis'),
   extensionType: yup.object({ id: yup.string().required() }).nullable().required(),
   country: yup.object({ id: yup.string().required() }).nullable().required(),
+  gameFormats: yup.array().default([]),
 })
 
 function toForm(values: Extension): ExtensionForm {
@@ -49,6 +57,8 @@ function toForm(values: Extension): ExtensionForm {
     cardsCount: values.cardsCount,
     extensionType: values.extensionType['@id'],
     country: values.country['@id'],
+    // La liste remplace l'existant : [] retire l'extension de tous les formats
+    gameFormats: (values.gameFormats ?? []).map((format) => format['@id']),
   }
 }
 
@@ -83,6 +93,7 @@ function onReset() {
 onMounted(async () => {
   countries.value = await countriesStore.fetchAll()
   extensionTypes.value = await extensionTypesStore.fetchAll()
+  gameFormats.value = await useGameFormatsStore().fetchAll()
 })
 
 defineExpose({ showModal: () => modal.value?.show() })
@@ -103,6 +114,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       cardsCount: props.extension?.cardsCount ?? 0,
       extensionType: props.extension?.extensionType ?? null,
       country: props.extension?.country ?? null,
+      gameFormats: props.extension?.gameFormats ?? [],
     }"
     :form-key="props.extension?.id ?? 'new'"
     :submit-error="submitError"
@@ -159,6 +171,23 @@ defineExpose({ showModal: () => modal.value?.show() })
         />
       </Field>
       <ErrorMessage name="country" class="text-danger small" />
+    </div>
+    <div class="mb-3">
+      <Field name="gameFormats" v-slot="{ field }">
+        <label class="form-label" for="extensionModal-gameFormats">Formats de jeu</label>
+        <multi-select
+          id="extensionModal-gameFormats"
+          v-model="field.value"
+          :options="gameFormats"
+          :multiple="true"
+          :close-on-select="false"
+          label="name"
+          track-by="id"
+          placeholder="Choisir des formats de jeu"
+          @update:model-value="field.onChange"
+        />
+      </Field>
+      <ErrorMessage name="gameFormats" class="text-danger small" />
     </div>
     <MediaThumb v-if="!iconId" :media="props.extension?.icon" alt="Icône actuelle" />
     <FileUploader

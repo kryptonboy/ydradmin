@@ -3359,6 +3359,7 @@ export interface components {
              * @example https://example.com/
              */
             country: string;
+            gameFormats?: string[];
         };
         "Extension-extension.write.jsonMergePatch": {
             name?: string;
@@ -3381,6 +3382,7 @@ export interface components {
              * @example https://example.com/
              */
             country?: string;
+            gameFormats?: string[];
         };
         "Extension.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
@@ -3394,9 +3396,12 @@ export interface components {
             cardsCount: number;
             extensionType: components["schemas"]["ExtensionType.jsonld-extension.read_entity.read"];
             country: components["schemas"]["Country.jsonld-extension.read_entity.read"];
+            gameFormats?: components["schemas"]["GameFormat.jsonld-extension.read_entity.read"][];
             readonly id?: number;
         };
         "Extension.jsonld-game_format.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            reference: string;
             readonly id?: number;
         };
         "Extension.multipart-card.read_entity.read": {
@@ -3411,9 +3416,12 @@ export interface components {
             cardsCount: number;
             extensionType: components["schemas"]["ExtensionType.multipart-extension.read_entity.read"];
             country: components["schemas"]["Country.multipart-extension.read_entity.read"];
+            gameFormats?: components["schemas"]["GameFormat.multipart-extension.read_entity.read"][];
             readonly id?: number;
         };
         "Extension.multipart-game_format.read_entity.read_label": {
+            name: string;
+            reference: string;
             readonly id?: number;
         };
         "ExtensionType-extension_type.write": {
@@ -3456,6 +3464,10 @@ export interface components {
             name?: string;
             description?: string;
         };
+        "GameFormat.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "GameFormat.jsonld-game_format.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
@@ -3465,6 +3477,10 @@ export interface components {
             readonly id?: number;
         };
         "GameFormat.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
+        "GameFormat.multipart-extension.read_entity.read": {
             name: string;
             readonly id?: number;
         };

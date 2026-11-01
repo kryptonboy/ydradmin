@@ -55,7 +55,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 ## Catalogue
 
 - Chaque page du catalogue (`/card_management`) a une modale de création/modification et un bouton de suppression (`useRemoveAction`) : si l'élément est encore référencé, l'API répond 409 et son message est affiché tel quel.
-- Formats de jeu et restrictions (nombre d'exemplaires d'un groupe de cartes dans un format : 0, 1 ou 2) : `/card_management/game_format` et `/card_management/restriction`. Le lien extensions ↔ formats n'est pas géré (l'API ne l'expose pas en écriture).
+- Formats de jeu et restrictions (nombre d'exemplaires d'un groupe de cartes dans un format : 0, 1 ou 2) : `/card_management/game_format` et `/card_management/restriction`. Le lien extensions ↔ formats se règle depuis la modale de l'extension (`gameFormats`, la liste remplace l'existant) ; la liste des formats affiche leurs extensions.
 - Les icônes (types et sous-types de carte, extensions, attributs de monstre, signes) sont lues avec leur `contentUrl` : `MediaThumb` affiche l'icône actuelle dans les modales.
 
 ## Jeux vidéo
