@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import MediaThumb from '@/components/MediaThumb.vue'
 import { useSubmit } from '@/composables/useSubmit'
 import { useCardTypesStore } from '@/stores'
 import type { CardTypeForm } from '@/types/forms/CardTypeForm'
@@ -84,6 +85,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       <Field name="position" id="cardTypeModal-position" type="number" class="form-control" />
       <ErrorMessage name="position" class="text-danger small" />
     </div>
+    <MediaThumb v-if="!iconId" :media="props.cardType?.icon" alt="Icône actuelle" />
     <FileUploader
       ref="iconUploader"
       v-model="iconId"

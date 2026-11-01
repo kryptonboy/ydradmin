@@ -2,6 +2,7 @@
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useMonsterSubTypesStore } from '@/stores'
 import type { MonsterSubType } from '@/types/models/MonsterSubType'
 import { ref } from 'vue'
@@ -29,6 +30,8 @@ const {
     name: null as string | null,
   }),
 })
+
+const { removeError, remove } = useRemoveAction(useMonsterSubTypesStore(), filterMonsterSubTypes)
 
 function openMonsterSubTypeModal(monsterSubType: MonsterSubType | null = null) {
   selectedMonsterSubType.value = monsterSubType
@@ -88,6 +91,7 @@ function openMonsterSubTypeModal(monsterSubType: MonsterSubType | null = null) {
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -112,6 +116,14 @@ function openMonsterSubTypeModal(monsterSubType: MonsterSubType | null = null) {
         <td>
           <button class="btn btn-primary" @click="openMonsterSubTypeModal(monsterSubType)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(monsterSubType, monsterSubType.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>

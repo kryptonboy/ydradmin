@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import MediaThumb from '@/components/MediaThumb.vue'
 import { useSubmit } from '@/composables/useSubmit'
 import { useCountriesStore, useExtensionsStore, useExtensionTypesStore } from '@/stores'
 import type { ExtensionForm } from '@/types/forms/ExtensionForm'
@@ -18,6 +20,7 @@ const props = defineProps({
 const emit = defineEmits(['extensionSaved'])
 
 const modal = useTemplateRef<InstanceType<typeof FormModal>>('modal')
+const iconUploader = useTemplateRef<InstanceType<typeof FileUploader>>('iconUploader')
 const store = useExtensionsStore()
 const countriesStore = useCountriesStore()
 const extensionTypesStore = useExtensionTypesStore()
@@ -25,6 +28,8 @@ const { submitError, submit } = useSubmit()
 
 const countries = ref<Country[]>([])
 const extensionTypes = ref<ExtensionType[]>([])
+const iconId = ref<string | null>(null)
+const isUploadingIcon = ref(false)
 const isEdit = computed(() => !!props.extension)
 
 const schema = yup.object({
@@ -54,6 +59,9 @@ const formatDateForInput = (date: string | Date | undefined | null) => {
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
   const payload = toForm(values as unknown as Extension)
+  if (iconId.value) {
+    payload.icon = iconId.value
+  }
   const saved = await submit(async () => {
     if (isEdit.value) {
       await store.update(props.extension.id, payload)
@@ -68,6 +76,8 @@ const onSubmit = async (values: Record<string, unknown>, { setErrors }: Submissi
 
 function onReset() {
   submitError.value = null
+  iconId.value = null
+  iconUploader.value?.clearFile()
 }
 
 onMounted(async () => {
@@ -96,6 +106,7 @@ defineExpose({ showModal: () => modal.value?.show() })
     }"
     :form-key="props.extension?.id ?? 'new'"
     :submit-error="submitError"
+    :disabled="isUploadingIcon"
     @submit="onSubmit"
     @reset="onReset"
   >
@@ -149,5 +160,13 @@ defineExpose({ showModal: () => modal.value?.show() })
       </Field>
       <ErrorMessage name="country" class="text-danger small" />
     </div>
+    <MediaThumb v-if="!iconId" :media="props.extension?.icon" alt="Icône actuelle" />
+    <FileUploader
+      ref="iconUploader"
+      v-model="iconId"
+      v-model:uploading="isUploadingIcon"
+      label="Icône"
+      context="extension"
+    />
   </FormModal>
 </template>

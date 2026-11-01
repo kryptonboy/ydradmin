@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import MediaThumb from '@/components/MediaThumb.vue'
 import { useSubmit } from '@/composables/useSubmit'
 import { useMonsterAttributesStore } from '@/stores'
 import type { MonsterAttributeForm } from '@/types/forms/MonsterAttributeForm'
@@ -75,6 +76,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       <Field name="name" id="monsterAttributeModal-name" type="text" class="form-control" />
       <ErrorMessage name="name" class="text-danger small" />
     </div>
+    <MediaThumb v-if="!iconId" :media="props.monsterAttribute?.icon" alt="Icône actuelle" />
     <FileUploader
       ref="iconUploader"
       v-model="iconId"

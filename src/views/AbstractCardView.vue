@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import {
   useAbstractCardsStore,
   useCardGroupsStore,
@@ -126,6 +127,8 @@ const {
   createFilters,
   toQuery,
 })
+
+const { removeError, remove } = useRemoveAction(abstractCardsStore, filterAbstractCards)
 
 function openAbstractCardModal(abstractCard: AbstractCard | null = null) {
   selectedAbstractCard.value = abstractCard
@@ -294,6 +297,7 @@ filterAbstractCards()
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -350,6 +354,14 @@ filterAbstractCards()
         <td class="actions">
           <button class="btn btn-primary" @click="openAbstractCardModal(abstractCard)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(abstractCard, abstractCard.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>

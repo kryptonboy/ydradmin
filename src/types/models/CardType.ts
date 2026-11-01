@@ -1,7 +1,9 @@
+import type { MediaLink } from './Ref'
+
 export interface CardType {
   '@id': string
   id: number
   name: string
   position: number
-  icon?: string
+  icon?: MediaLink | null
 }

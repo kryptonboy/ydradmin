@@ -2532,6 +2532,10 @@ export interface components {
             name: string;
             readonly id?: number;
         };
+        "CardGroup.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "CardGroup.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
@@ -2541,6 +2545,10 @@ export interface components {
             readonly id?: number;
         };
         "CardGroup.multipart-card_group.read_entity.read": {
+            name: string;
+            readonly id?: number;
+        };
+        "CardGroup.multipart-restriction.read_entity.read_label": {
             name: string;
             readonly id?: number;
         };
@@ -2588,6 +2596,7 @@ export interface components {
         };
         "CardSubType.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            icon?: components["schemas"]["MediaObject.jsonld-card_sub_type.read_entity.read"] | null;
             cssClass?: string | null;
             position: number;
             cardType: components["schemas"]["CardType.jsonld-card_sub_type.read_entity.read"];
@@ -2607,6 +2616,7 @@ export interface components {
         };
         "CardSubType.multipart-card_sub_type.read_entity.read": {
             name: string;
+            icon?: components["schemas"]["MediaObject.multipart-card_sub_type.read_entity.read"] | null;
             cssClass?: string | null;
             position: number;
             cardType: components["schemas"]["CardType.multipart-card_sub_type.read_entity.read"];
@@ -2645,6 +2655,7 @@ export interface components {
         };
         "CardType.jsonld-card_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            icon?: components["schemas"]["MediaObject.jsonld-card_type.read_entity.read"] | null;
             /** @default 0 */
             position: number;
             readonly id?: number;
@@ -2662,6 +2673,7 @@ export interface components {
         };
         "CardType.multipart-card_type.read_entity.read": {
             name: string;
+            icon?: components["schemas"]["MediaObject.multipart-card_type.read_entity.read"] | null;
             /** @default 0 */
             position: number;
             readonly id?: number;
@@ -3331,6 +3343,11 @@ export interface components {
             reference: string;
             /** Format: date-time */
             releaseDate?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            icon?: string | null;
             cardsCount: number;
             /**
              * Format: iri-reference
@@ -3348,6 +3365,11 @@ export interface components {
             reference?: string;
             /** Format: date-time */
             releaseDate?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            icon?: string | null;
             cardsCount?: number;
             /**
              * Format: iri-reference
@@ -3368,9 +3390,13 @@ export interface components {
             reference: string;
             /** Format: date-time */
             releaseDate?: string | null;
+            icon?: components["schemas"]["MediaObject.jsonld-extension.read_entity.read"] | null;
             cardsCount: number;
             extensionType: components["schemas"]["ExtensionType.jsonld-extension.read_entity.read"];
             country: components["schemas"]["Country.jsonld-extension.read_entity.read"];
+            readonly id?: number;
+        };
+        "Extension.jsonld-game_format.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
         };
         "Extension.multipart-card.read_entity.read": {
@@ -3381,9 +3407,13 @@ export interface components {
             reference: string;
             /** Format: date-time */
             releaseDate?: string | null;
+            icon?: components["schemas"]["MediaObject.multipart-extension.read_entity.read"] | null;
             cardsCount: number;
             extensionType: components["schemas"]["ExtensionType.multipart-extension.read_entity.read"];
             country: components["schemas"]["Country.multipart-extension.read_entity.read"];
+            readonly id?: number;
+        };
+        "Extension.multipart-game_format.read_entity.read_label": {
             readonly id?: number;
         };
         "ExtensionType-extension_type.write": {
@@ -3418,53 +3448,37 @@ export interface components {
             readonly id?: number;
             readonly extensionsCount?: number;
         };
-        GameFormat: {
+        "GameFormat-game_format.write": {
             name: string;
-            slug?: string;
             description: string;
-            extensions?: string[];
-            restrictions?: string[];
-            readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
-        "GameFormat.jsonMergePatch": {
+        "GameFormat-game_format.write.jsonMergePatch": {
             name?: string;
-            slug?: string;
             description?: string;
-            extensions?: string[];
-            restrictions?: string[];
-            readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
-        "GameFormat.jsonld": components["schemas"]["HydraItemBaseSchema"] & {
+        "GameFormat.jsonld-game_format.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             description: string;
-            extensions?: string[];
-            restrictions?: string[];
+            /** @description Read only: the extensions are linked from Extension.gameFormats. */
+            extensions?: components["schemas"]["Extension.jsonld-game_format.read_entity.read_label"][];
             readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
-        "GameFormat.multipart": {
+        "GameFormat.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
+        "GameFormat.multipart-game_format.read_entity.read_label": {
             name: string;
             slug?: string;
             description: string;
-            extensions?: string[];
-            restrictions?: string[];
+            /** @description Read only: the extensions are linked from Extension.gameFormats. */
+            extensions?: components["schemas"]["Extension.multipart-game_format.read_entity.read_label"][];
             readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
+        };
+        "GameFormat.multipart-restriction.read_entity.read_label": {
+            name: string;
+            readonly id?: number;
         };
         "Gender-gender.write": {
             name: string;
@@ -3626,6 +3640,14 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-card_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -3646,11 +3668,19 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-media_object.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             filePath?: string | null;
             fileSize?: number | null;
             /** @enum {string|null} */
             context: "actuality" | "astrological_sign" | "card" | "card_sub_type" | "card_type" | "character" | "extension" | "file_type" | "monster_attribute" | "movie" | "smiley" | "content_bloc_attachment" | "content_bloc_carousel_image" | "content_bloc_image" | null;
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.jsonld-monster_attribute.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -3678,6 +3708,14 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.multipart-card_sub_type.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-card_type.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -3695,6 +3733,14 @@ export interface components {
             readonly id?: number;
         };
         "MediaObject.multipart-episode_character.read_appearance.read_entity.read_label": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-extension.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-monster_attribute.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -3732,6 +3778,7 @@ export interface components {
         };
         "MonsterAttribute.jsonld-monster_attribute.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            icon?: components["schemas"]["MediaObject.jsonld-monster_attribute.read_entity.read"] | null;
             readonly id?: number;
         };
         "MonsterAttribute.multipart-abstract_card.read_entity.read": {
@@ -3744,6 +3791,7 @@ export interface components {
         };
         "MonsterAttribute.multipart-monster_attribute.read_entity.read": {
             name: string;
+            icon?: components["schemas"]["MediaObject.multipart-monster_attribute.read_entity.read"] | null;
             readonly id?: number;
         };
         "MonsterEffect-monster_effect.write": {
@@ -3864,7 +3912,7 @@ export interface components {
             position: number;
             readonly id?: number;
         };
-        Restriction: {
+        "Restriction-restriction.write": {
             /**
              * Format: iri-reference
              * @example https://example.com/
@@ -3877,13 +3925,8 @@ export interface components {
             gameFormat: string;
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
-            readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
-        "Restriction.jsonMergePatch": {
+        "Restriction-restriction.write.jsonMergePatch": {
             /**
              * Format: iri-reference
              * @example https://example.com/
@@ -3896,49 +3939,20 @@ export interface components {
             gameFormat?: string;
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber?: number;
-            readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
-        "Restriction.jsonld": components["schemas"]["HydraItemBaseSchema"] & {
-            /**
-             * Format: iri-reference
-             * @example https://example.com/
-             */
-            cardGroup: string;
-            /**
-             * Format: iri-reference
-             * @example https://example.com/
-             */
-            gameFormat: string;
+        "Restriction.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            cardGroup: components["schemas"]["CardGroup.jsonld-restriction.read_entity.read_label"];
+            gameFormat: components["schemas"]["GameFormat.jsonld-restriction.read_entity.read_label"];
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
             readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
-        "Restriction.multipart": {
-            /**
-             * Format: iri-reference
-             * @example https://example.com/
-             */
-            cardGroup: string;
-            /**
-             * Format: iri-reference
-             * @example https://example.com/
-             */
-            gameFormat: string;
+        "Restriction.multipart-restriction.read_entity.read_label": {
+            cardGroup: components["schemas"]["CardGroup.multipart-restriction.read_entity.read_label"];
+            gameFormat: components["schemas"]["GameFormat.multipart-restriction.read_entity.read_label"];
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
             readonly id?: number;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
         };
         "Ruling.jsonld-abstract_card.read_entity.read": {
             readonly id?: number;
@@ -4280,6 +4294,18 @@ export interface operations {
                 monsterType?: string;
                 /** @description AbstractCard monsterType */
                 "monsterType[]"?: string[];
+                /** @description AbstractCard monsterEffects */
+                monsterEffects?: string;
+                /** @description AbstractCard monsterEffects */
+                "monsterEffects[]"?: string[];
+                /** @description AbstractCard tags */
+                tags?: string;
+                /** @description AbstractCard tags */
+                "tags[]"?: string[];
+                /** @description AbstractCard order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description AbstractCard order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
                 /** @description AbstractCard order[name] */
                 "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description AbstractCard order[name] */
@@ -6095,6 +6121,10 @@ export interface operations {
                 name?: string;
                 /** @description Card name */
                 "name[]"?: string[];
+                /** @description Card reference */
+                reference?: string;
+                /** @description Card reference */
+                "reference[]"?: string[];
                 /** @description Card description */
                 description?: string;
                 /** @description Card description */
@@ -6111,6 +6141,18 @@ export interface operations {
                 "abstractCard.cardSubType.cardType"?: string;
                 /** @description Card abstractCard.cardSubType.cardType */
                 "abstractCard.cardSubType.cardType[]"?: string[];
+                /** @description Card abstractCard.cardGroup */
+                "abstractCard.cardGroup"?: string;
+                /** @description Card abstractCard.cardGroup */
+                "abstractCard.cardGroup[]"?: string[];
+                /** @description Card abstractCard.monsterEffects */
+                "abstractCard.monsterEffects"?: string;
+                /** @description Card abstractCard.monsterEffects */
+                "abstractCard.monsterEffects[]"?: string[];
+                /** @description Card abstractCard.tags */
+                "abstractCard.tags"?: string;
+                /** @description Card abstractCard.tags */
+                "abstractCard.tags[]"?: string[];
                 /** @description Card abstractCard.monsterAttribute */
                 "abstractCard.monsterAttribute"?: string;
                 /** @description Card abstractCard.monsterAttribute */
@@ -6159,6 +6201,42 @@ export interface operations {
                 "abstractCard.def[ne]"?: string;
                 /** @description Card abstractCard.def */
                 "abstractCard.def[between]"?: string;
+                /** @description Card order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[reference] */
+                "order[reference]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[reference] */
+                "order[reference][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[abstractCard.cardSubType.name] */
+                "order[abstractCard.cardSubType.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[abstractCard.cardSubType.name] */
+                "order[abstractCard.cardSubType.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[abstractCard.cardSubType.cardType.name] */
+                "order[abstractCard.cardSubType.cardType.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[abstractCard.cardSubType.cardType.name] */
+                "order[abstractCard.cardSubType.cardType.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[abstractCard.cardGroup.name] */
+                "order[abstractCard.cardGroup.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[abstractCard.cardGroup.name] */
+                "order[abstractCard.cardGroup.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[abstractCard.monsterAttribute.name] */
+                "order[abstractCard.monsterAttribute.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[abstractCard.monsterAttribute.name] */
+                "order[abstractCard.monsterAttribute.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[abstractCard.monsterSubType.name] */
+                "order[abstractCard.monsterSubType.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[abstractCard.monsterSubType.name] */
+                "order[abstractCard.monsterSubType.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Card order[abstractCard.monsterType.name] */
+                "order[abstractCard.monsterType.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Card order[abstractCard.monsterType.name] */
+                "order[abstractCard.monsterType.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
             };
             header?: never;
             path?: never;
@@ -8092,6 +8170,22 @@ export interface operations {
             query?: {
                 /** @description The collection page number */
                 page?: number;
+                /** @description Country name */
+                name?: string;
+                /** @description Country name */
+                "name[]"?: string[];
+                /** @description Country order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Country order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Country order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Country order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Country order[position] */
+                "order[position]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Country order[position] */
+                "order[position][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
             };
             header?: never;
             path?: never;
@@ -9152,6 +9246,8 @@ export interface operations {
                 name?: string;
                 /** @description ExtensionType name */
                 "name[]"?: string[];
+                /** @description Sort by the number of extensions */
+                "order[extensionsCount]"?: "asc" | "desc";
                 /** @description ExtensionType order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description ExtensionType order[id] */
@@ -9401,6 +9497,18 @@ export interface operations {
             query?: {
                 /** @description The collection page number */
                 page?: number;
+                /** @description GameFormat name */
+                name?: string;
+                /** @description GameFormat name */
+                "name[]"?: string[];
+                /** @description GameFormat order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description GameFormat order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description GameFormat order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description GameFormat order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
             };
             header?: never;
             path?: never;
@@ -9415,9 +9523,9 @@ export interface operations {
                 };
                 content: {
                     "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
-                        member: components["schemas"]["GameFormat.jsonld"][];
+                        member: components["schemas"]["GameFormat.jsonld-game_format.read_entity.read_label"][];
                     };
-                    "multipart/form-data": components["schemas"]["GameFormat.multipart"][];
+                    "multipart/form-data": components["schemas"]["GameFormat.multipart-game_format.read_entity.read_label"][];
                 };
             };
         };
@@ -9432,8 +9540,8 @@ export interface operations {
         /** @description The new GameFormat resource */
         requestBody: {
             content: {
-                "application/ld+json": components["schemas"]["GameFormat"];
-                "multipart/form-data": components["schemas"]["GameFormat"];
+                "application/ld+json": components["schemas"]["GameFormat-game_format.write"];
+                "multipart/form-data": components["schemas"]["GameFormat-game_format.write"];
             };
         };
         responses: {
@@ -9443,8 +9551,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["GameFormat.jsonld"];
-                    "multipart/form-data": components["schemas"]["GameFormat.multipart"];
+                    "application/ld+json": components["schemas"]["GameFormat.jsonld-game_format.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["GameFormat.multipart-game_format.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -9500,8 +9608,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["GameFormat.jsonld"];
-                    "multipart/form-data": components["schemas"]["GameFormat.multipart"];
+                    "application/ld+json": components["schemas"]["GameFormat.jsonld-game_format.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["GameFormat.multipart-game_format.read_entity.read_label"];
                 };
             };
             /** @description Not found */
@@ -9573,7 +9681,7 @@ export interface operations {
         /** @description The updated GameFormat resource */
         requestBody: {
             content: {
-                "application/merge-patch+json": components["schemas"]["GameFormat.jsonMergePatch"];
+                "application/merge-patch+json": components["schemas"]["GameFormat-game_format.write.jsonMergePatch"];
             };
         };
         responses: {
@@ -9583,8 +9691,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["GameFormat.jsonld"];
-                    "multipart/form-data": components["schemas"]["GameFormat.multipart"];
+                    "application/ld+json": components["schemas"]["GameFormat.jsonld-game_format.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["GameFormat.multipart-game_format.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -11549,6 +11657,34 @@ export interface operations {
             query?: {
                 /** @description The collection page number */
                 page?: number;
+                /** @description Restriction cardGroup */
+                cardGroup?: string;
+                /** @description Restriction cardGroup */
+                "cardGroup[]"?: string[];
+                /** @description Restriction gameFormat */
+                gameFormat?: string;
+                /** @description Restriction gameFormat */
+                "gameFormat[]"?: string[];
+                /** @description Restriction limitNumber */
+                limitNumber?: string;
+                /** @description Restriction limitNumber */
+                "limitNumber[]"?: string[];
+                /** @description Restriction order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Restriction order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Restriction order[limitNumber] */
+                "order[limitNumber]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Restriction order[limitNumber] */
+                "order[limitNumber][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Restriction order[cardGroup.name] */
+                "order[cardGroup.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Restriction order[cardGroup.name] */
+                "order[cardGroup.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Restriction order[gameFormat.name] */
+                "order[gameFormat.name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Restriction order[gameFormat.name] */
+                "order[gameFormat.name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
             };
             header?: never;
             path?: never;
@@ -11563,9 +11699,9 @@ export interface operations {
                 };
                 content: {
                     "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
-                        member: components["schemas"]["Restriction.jsonld"][];
+                        member: components["schemas"]["Restriction.jsonld-restriction.read_entity.read_label"][];
                     };
-                    "multipart/form-data": components["schemas"]["Restriction.multipart"][];
+                    "multipart/form-data": components["schemas"]["Restriction.multipart-restriction.read_entity.read_label"][];
                 };
             };
         };
@@ -11580,8 +11716,8 @@ export interface operations {
         /** @description The new Restriction resource */
         requestBody: {
             content: {
-                "application/ld+json": components["schemas"]["Restriction"];
-                "multipart/form-data": components["schemas"]["Restriction"];
+                "application/ld+json": components["schemas"]["Restriction-restriction.write"];
+                "multipart/form-data": components["schemas"]["Restriction-restriction.write"];
             };
         };
         responses: {
@@ -11591,8 +11727,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Restriction.jsonld"];
-                    "multipart/form-data": components["schemas"]["Restriction.multipart"];
+                    "application/ld+json": components["schemas"]["Restriction.jsonld-restriction.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Restriction.multipart-restriction.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */
@@ -11648,8 +11784,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Restriction.jsonld"];
-                    "multipart/form-data": components["schemas"]["Restriction.multipart"];
+                    "application/ld+json": components["schemas"]["Restriction.jsonld-restriction.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Restriction.multipart-restriction.read_entity.read_label"];
                 };
             };
             /** @description Not found */
@@ -11721,7 +11857,7 @@ export interface operations {
         /** @description The updated Restriction resource */
         requestBody: {
             content: {
-                "application/merge-patch+json": components["schemas"]["Restriction.jsonMergePatch"];
+                "application/merge-patch+json": components["schemas"]["Restriction-restriction.write.jsonMergePatch"];
             };
         };
         responses: {
@@ -11731,8 +11867,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/ld+json": components["schemas"]["Restriction.jsonld"];
-                    "multipart/form-data": components["schemas"]["Restriction.multipart"];
+                    "application/ld+json": components["schemas"]["Restriction.jsonld-restriction.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Restriction.multipart-restriction.read_entity.read_label"];
                 };
             };
             /** @description Invalid input */

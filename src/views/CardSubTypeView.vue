@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useCardSubTypesStore } from '@/stores/card_sub_types.store'
 import { onMounted, ref } from 'vue'
 import CardSubTypeModal from './modals/CardSubTypeModal.vue'
@@ -49,6 +50,8 @@ const {
   createFilters,
   toQuery,
 })
+
+const { removeError, remove } = useRemoveAction(cardSubTypesStore, filterCardSubTypes)
 
 function openCardSubTypeModal(cardSubType: CardSubType | null = null) {
   selectedCardSubType.value = cardSubType
@@ -125,6 +128,7 @@ filterCardSubTypes()
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -153,6 +157,14 @@ filterCardSubTypes()
         <td class="actions">
           <button class="btn btn-primary" @click="openCardSubTypeModal(cardSubType)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(cardSubType, cardSubType.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>

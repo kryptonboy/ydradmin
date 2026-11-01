@@ -1,3 +1,4 @@
+import type { MediaLink } from './Ref'
 import type { CardType } from './CardType'
 
 export interface CardSubType {
@@ -7,5 +8,5 @@ export interface CardSubType {
   position: number
   cssClass: string
   cardType: CardType
-  icon?: string
+  icon?: MediaLink | null
 }

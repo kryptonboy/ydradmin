@@ -2,6 +2,7 @@
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useCardTypesStore } from '@/stores'
 import type { CardType } from '@/types/models/CardType'
 import { ref } from 'vue'
@@ -29,6 +30,8 @@ const {
     name: null as string | null,
   }),
 })
+
+const { removeError, remove } = useRemoveAction(useCardTypesStore(), filterCardTypes)
 
 function openCardTypeModal(cardType: CardType | null = null) {
   selectedCardType.value = cardType
@@ -88,6 +91,7 @@ function openCardTypeModal(cardType: CardType | null = null) {
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -114,6 +118,14 @@ function openCardTypeModal(cardType: CardType | null = null) {
         <td>
           <button class="btn btn-primary" @click="openCardTypeModal(cardType)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(cardType, cardType.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>

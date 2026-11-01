@@ -2,6 +2,7 @@
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useExtensionTypesStore } from '@/stores'
 import type { ExtensionType } from '@/types/models/ExtensionType'
 import { ref } from 'vue'
@@ -29,6 +30,8 @@ const {
     name: null as string | null,
   }),
 })
+
+const { removeError, remove } = useRemoveAction(useExtensionTypesStore(), filterExtensionTypes)
 
 function openExtensionTypeModal(extensionType: ExtensionType | null = null) {
   selectedExtensionType.value = extensionType
@@ -88,6 +91,7 @@ function openExtensionTypeModal(extensionType: ExtensionType | null = null) {
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -118,6 +122,14 @@ function openExtensionTypeModal(extensionType: ExtensionType | null = null) {
         <td>
           <button class="btn btn-primary" @click="openExtensionTypeModal(extensionType)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(extensionType, extensionType.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>

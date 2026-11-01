@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useExtensionsStore } from '@/stores/extensions.store'
 import { onMounted, ref } from 'vue'
 import ExtensionModal from './modals/ExtensionModal.vue'
@@ -54,6 +55,8 @@ const {
   createFilters,
   toQuery,
 })
+
+const { removeError, remove } = useRemoveAction(extensionsStore, filterExtensions)
 
 function openExtensionModal(extension: Extension | null = null) {
   selectedExtension.value = extension
@@ -150,6 +153,7 @@ filterExtensions()
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -186,6 +190,14 @@ filterExtensions()
         <td>
           <button class="btn btn-primary" @click="openExtensionModal(extension)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(extension, extension.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>

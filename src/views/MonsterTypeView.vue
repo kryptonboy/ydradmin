@@ -2,6 +2,7 @@
 import AppPaginator from '@/components/AppPaginator.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
+import { useRemoveAction } from '@/composables/useRemoveAction'
 import { useMonsterTypesStore } from '@/stores'
 import type { MonsterType } from '@/types/models/MonsterType'
 import { ref } from 'vue'
@@ -29,6 +30,8 @@ const {
     name: null as string | null,
   }),
 })
+
+const { removeError, remove } = useRemoveAction(useMonsterTypesStore(), filterMonsterTypes)
 
 function openMonsterTypeModal(monsterType: MonsterType | null = null) {
   selectedMonsterType.value = monsterType
@@ -88,6 +91,7 @@ function openMonsterTypeModal(monsterType: MonsterType | null = null) {
       </div>
     </div>
   </div>
+  <div v-if="removeError" class="alert alert-danger" role="alert">{{ removeError }}</div>
   <table class="table">
     <thead>
       <tr>
@@ -112,6 +116,14 @@ function openMonsterTypeModal(monsterType: MonsterType | null = null) {
         <td>
           <button class="btn btn-primary" @click="openMonsterTypeModal(monsterType)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
+          </button>
+          <button
+            class="btn btn-outline-danger ms-1"
+            aria-label="Supprimer"
+            title="Supprimer"
+            @click="remove(monsterType, monsterType.name)"
+          >
+            <font-awesome-icon :icon="['fa', 'trash']" />
           </button>
         </td>
       </tr>
