@@ -20,7 +20,11 @@ function mountModal(component: object, props: Record<string, unknown> = {}) {
     attachTo: document.body,
     global: {
       plugins: [createPinia()],
-      stubs: { FontAwesomeIcon: true, 'multi-select': true, FileUploader: true },
+      stubs: {
+        FontAwesomeIcon: true,
+        'multi-select': true,
+        FileUploader: { template: '<div />', methods: { clearFile() {} } },
+      },
     },
   })
   mounted.push(wrapper)

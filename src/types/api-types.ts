@@ -101,3 +101,11 @@ export type ApiAnimeDetail = Schemas['Anime.jsonld-anime.read_anime.detail_entit
 export type ApiMangaDetail = Schemas['Manga.jsonld-manga.read_manga.detail_entity.read_label']
 export type ApiCharacterDetail =
   Schemas['Character.jsonld-character.read_character.detail_entity.read_label']
+
+export type SmileyInput = Schemas['Smiley-smiley.write']
+export type ApiSmiley = Schemas['Smiley.jsonld-smiley.read_entity.read']
+// Pas de création de commentaire côté API : seules content et hidden sont modifiables (PATCH)
+export type ActualityCommentInput =
+  Schemas['ActualityComment-actuality_comment.write.jsonMergePatch']
+export type ApiActualityComment =
+  Schemas['ActualityComment.jsonld-actuality_comment.read_entity.read']
