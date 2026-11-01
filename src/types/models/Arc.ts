@@ -1,4 +1,4 @@
-import type { Ref } from './Ref'
+import type { NamedRef } from './Ref'
 
 export interface Arc {
   '@id': string
@@ -7,5 +7,5 @@ export interface Arc {
   slug?: string
   synopsis?: string | null
   position?: number | null
-  anime: Ref
+  anime: NamedRef
 }

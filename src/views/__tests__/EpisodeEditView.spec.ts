@@ -39,7 +39,14 @@ function mockApi(patch: { status: number; body: unknown }) {
       body = { member: [{ '@id': '/api/seasons/4', id: 4, seasonNumber: 1 }] }
     } else if (/\/arc_seasons\?/.test(path)) {
       body = {
-        member: [{ '@id': '/api/arc_seasons/2', id: 2, arc: { id: 3 }, season: { id: 4 } }],
+        member: [
+          {
+            '@id': '/api/arc_seasons/2',
+            id: 2,
+            arc: { id: 3, name: 'Royaume des duellistes' },
+            season: { id: 4, seasonNumber: 1 },
+          },
+        ],
       }
     }
     return Promise.resolve(new Response(JSON.stringify(body), { status }))

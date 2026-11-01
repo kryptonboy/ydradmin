@@ -1,4 +1,4 @@
-import type { Ref } from './Ref'
+import type { ChapterRef } from './Ref'
 
 export interface Manga {
   '@id': string
@@ -11,5 +11,5 @@ export interface Manga {
   usReleaseDate?: string | null
   japanReleaseDate?: string | null
   europeReleaseDate?: string | null
-  chapters?: Ref[]
+  chapters?: ChapterRef[]
 }

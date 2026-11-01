@@ -2,6 +2,7 @@
 import { createFetchWrapper } from '@/helpers'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useAuthStore } from '@/stores'
+import type { ApiCardUsageList } from '@/types/api-types'
 import type { UsedCard } from '@/types/models/Appearance'
 import { ref, watch } from 'vue'
 
@@ -16,12 +17,12 @@ const props = defineProps<{
 const cards = ref<UsedCard[]>([])
 const error = ref<string | null>(null)
 
-// Route hors OpenAPI : `GET /{ressource}/{id}/cards`, cartes dédoublonnées avec leur compteur
+// `GET /{ressource}/{id}/cards` : cartes dédoublonnées avec leur compteur d'apparitions
 async function load() {
   error.value = null
   try {
     const url = `${import.meta.env.VITE_API_URL}/${props.resource}/${props.id}/cards`
-    const data = await createFetchWrapper(useAuthStore()).get<{ member?: UsedCard[] }>(url)
+    const data = await createFetchWrapper(useAuthStore()).get<ApiCardUsageList>(url)
     cards.value = data.member ?? []
   } catch (err) {
     error.value = getErrorMessage(err)

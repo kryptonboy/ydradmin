@@ -1,8 +1,8 @@
-import type { Ref } from './Ref'
+import type { NamedRef, SeasonRef } from './Ref'
 
 export interface ArcSeason {
   '@id': string
   id: number
-  arc: Ref
-  season: Ref
+  arc: NamedRef
+  season: SeasonRef
 }

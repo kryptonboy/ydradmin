@@ -1,4 +1,4 @@
-import type { Ref } from './Ref'
+import type { NamedRef } from './Ref'
 
 export interface Character {
   '@id': string
@@ -7,9 +7,9 @@ export interface Character {
   slug?: string
   japaneseName?: string | null
   romanizedJapaneseName?: string | null
-  astrologicalSign?: Ref | null
+  astrologicalSign?: NamedRef | null
   description?: string | null
-  gender: Ref
+  gender: NamedRef
   height?: string | null
   weight?: string | null
   hairColor?: string | null

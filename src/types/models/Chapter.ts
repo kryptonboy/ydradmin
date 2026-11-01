@@ -1,6 +1,6 @@
 import type { Block, MediaMap } from '../content-blocks'
 import type { Appearance } from './Appearance'
-import type { Ref } from './Ref'
+import type { NamedRef } from './Ref'
 
 export interface Chapter {
   '@id': string
@@ -13,7 +13,7 @@ export interface Chapter {
   chapterNumber?: number | null
   japaneseTitle?: string | null
   romanizedJapaneseTitle?: string | null
-  manga: Ref
+  manga: NamedRef
   /** Détail uniquement */
   blocks?: Block[]
   media?: MediaMap
