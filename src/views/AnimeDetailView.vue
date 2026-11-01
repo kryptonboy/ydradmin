@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
+import ContentEditor from '@/components/content/ContentEditor.vue'
 import LinkedCharacters from '@/components/content/LinkedCharacters.vue'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useAnimesStore, useArcSeasonsStore, useArcsStore, useSeasonsStore } from '@/stores'
@@ -121,7 +122,7 @@ watch(animeId, load, { immediate: true })
 
 <template>
   <div class="d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-    <h2 class="mb-0">Structure de l'animé{{ anime ? ` « ${anime.name} »` : '' }}</h2>
+    <h2 class="mb-0">Fiche de l'animé{{ anime ? ` « ${anime.name} »` : '' }}</h2>
     <AppLink to="/anime_manga/anime" class="btn btn-secondary">
       <font-awesome-icon :icon="['fa', 'xmark']" />
       Retour à la liste
@@ -324,6 +325,8 @@ watch(animeId, load, { immediate: true })
         </tfoot>
       </table>
     </section>
+
+    <ContentEditor resource="animes" :id="anime.id" />
 
     <SeasonModal
       ref="seasonModal"

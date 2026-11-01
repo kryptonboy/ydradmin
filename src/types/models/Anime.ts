@@ -1,3 +1,4 @@
+import type { Block, MediaMap } from '../content-blocks'
 import type { NamedRef, SeasonRef } from './Ref'
 
 export interface Anime {
@@ -13,4 +14,7 @@ export interface Anime {
   europeReleaseDate?: string | null
   arcs?: NamedRef[]
   seasons?: SeasonRef[]
+  /** Détail uniquement : contenu en blocs et médias qu'il référence */
+  blocks?: Block[]
+  media?: MediaMap
 }
