@@ -193,6 +193,11 @@ const isAnimeMangaDropdownActive = computed(() => route.path.startsWith('/anime_
                 </AppLink>
               </li>
               <li>
+                <AppLink to="/anime_manga/character" class="dropdown-item" activeClass="active">
+                  Personnages
+                </AppLink>
+              </li>
+              <li>
                 <AppLink to="/anime_manga/gender" class="dropdown-item" activeClass="active">
                   Genres
                 </AppLink>
