@@ -64,3 +64,8 @@ export type ApiArcSeason = Schemas['ArcSeason.jsonld-arc_season.read_entity.read
 
 export type CharacterInput = Schemas['Character-character.write']
 export type ApiCharacter = Schemas['Character.jsonld-character.read_entity.read']
+
+export type EpisodeInput = Schemas['Episode-episode.write']
+export type ChapterInput = Schemas['Chapter-chapter.write']
+export type EpisodeCharacterInput = Schemas['EpisodeCharacter-episode_character.write']
+export type ChapterCharacterInput = Schemas['ChapterCharacter-chapter_character.write']

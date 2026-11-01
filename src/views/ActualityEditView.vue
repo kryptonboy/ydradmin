@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
 import BlockEditor from '@/components/content/BlockEditor.vue'
-import { blockErrorsKey, mediaMapKey } from '@/components/content/injection'
 import FileUploader from '@/components/FileUploader.vue'
+import { useBlockContent } from '@/composables/useBlockContent'
 import { useSubmit } from '@/composables/useSubmit'
 import { getErrorMessage } from '@/helpers/api-error'
-import { countBlocks, toApiBlocks, toEditorBlocks } from '@/helpers/content-blocks'
 import { fromDatetimeLocal, toDatetimeLocal } from '@/helpers/date'
 import { mediaUrl } from '@/helpers/media'
 import { useActualitiesStore, useActualityCategoriesStore } from '@/stores'
-import type { EditorBlock, MediaMap } from '@/types/content-blocks'
 import type { ActualityForm } from '@/types/forms/ActualityForm'
 import type { Actuality } from '@/types/models/Actuality'
 import type { ActualityCategory } from '@/types/models/ActualityCategory'
 import { useForm } from 'vee-validate'
-import { computed, onMounted, provide, reactive, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import * as yup from 'yup'
 
@@ -34,11 +32,16 @@ const saved = ref(false)
 const saving = ref(false)
 
 // État de l'éditeur de contenu, partagé avec les blocs
-const blocks = ref<EditorBlock[]>([])
-const mediaMap = reactive<MediaMap>({})
-const blockErrors = ref<Record<string, string>>({})
-provide(mediaMapKey, mediaMap)
-provide(blockErrorsKey, blockErrors)
+const {
+  blocks,
+  blockErrors,
+  blockCount,
+  blockErrorCount,
+  clear,
+  load: loadContent,
+  toPayload,
+  splitViolations,
+} = useBlockContent()
 
 const imageUploader = useTemplateRef<InstanceType<typeof FileUploader>>('imageUploader')
 const imageIri = ref<string | null>(null)
@@ -75,17 +78,12 @@ const [visible] = defineField('visible')
 const [publishedAt] = defineField('publishedAt')
 const [actualityCategory] = defineField('actualityCategory')
 
-const blockCount = computed(() => countBlocks(blocks.value))
-const blockErrorCount = computed(() => Object.keys(blockErrors.value).length)
-
 function reset() {
   resetForm()
-  blocks.value = []
-  Object.keys(mediaMap).forEach((key) => delete mediaMap[Number(key)])
+  clear()
   imageIri.value = null
   currentImageUrl.value = null
   imageUploader.value?.clearFile()
-  blockErrors.value = {}
   submitError.value = null
   saved.value = false
 }
@@ -108,29 +106,13 @@ async function load() {
         actualityCategory: actuality.actualityCategory?.['@id'] ?? '',
       },
     })
-    Object.assign(mediaMap, actuality.media ?? {})
-    blocks.value = toEditorBlocks(actuality.blocks)
+    loadContent(actuality.blocks, actuality.media)
     currentImageUrl.value = mediaUrl(actuality.image?.contentUrl)
   } catch (err) {
     loadError.value = getErrorMessage(err)
   } finally {
     loading.value = false
   }
-}
-
-/** Sépare les violations des champs de celles du contenu (`blocks[2].children[0].content`). */
-function dispatchViolations(violations: Record<string, string>) {
-  const fields: Record<string, string> = {}
-  const content: Record<string, string> = {}
-  for (const [path, message] of Object.entries(violations)) {
-    if (path === 'blocks' || path.startsWith('blocks[') || path.startsWith('blocks.')) {
-      content[path] = message
-    } else {
-      fields[path] = message
-    }
-  }
-  blockErrors.value = content
-  setErrors(fields)
 }
 
 const onSubmit = handleSubmit(async (values) => {
@@ -145,18 +127,21 @@ const onSubmit = handleSubmit(async (values) => {
     visible: values.visible,
     publishedAt: fromDatetimeLocal(values.publishedAt),
     actualityCategory: values.actualityCategory || null,
-    blocks: toApiBlocks(blocks.value),
+    blocks: toPayload(),
   }
   if (imageIri.value) payload.image = imageIri.value
 
   let createdId: number | null = null
-  const ok = await submit(async () => {
-    if (actualityId.value !== null) {
-      await store.update(actualityId.value, payload)
-    } else {
-      createdId = (await store.create(payload)).id
-    }
-  }, dispatchViolations)
+  const ok = await submit(
+    async () => {
+      if (actualityId.value !== null) {
+        await store.update(actualityId.value, payload)
+      } else {
+        createdId = (await store.create(payload)).id
+      }
+    },
+    (violations) => setErrors(splitViolations(violations)),
+  )
   saving.value = false
   if (!ok) return
 

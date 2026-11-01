@@ -63,6 +63,18 @@ export const router = createRouter({
       component: () => import('@/views/AnimeDetailView.vue'),
     },
     { path: '/anime_manga/character', component: () => import('@/views/CharacterView.vue') },
+    { path: '/anime_manga/episode', component: () => import('@/views/EpisodeView.vue') },
+    { path: '/anime_manga/episode/new', component: () => import('@/views/EpisodeEditView.vue') },
+    {
+      path: String.raw`/anime_manga/episode/:id(\d+)`,
+      component: () => import('@/views/EpisodeEditView.vue'),
+    },
+    { path: '/anime_manga/chapter', component: () => import('@/views/ChapterView.vue') },
+    { path: '/anime_manga/chapter/new', component: () => import('@/views/ChapterEditView.vue') },
+    {
+      path: String.raw`/anime_manga/chapter/:id(\d+)`,
+      component: () => import('@/views/ChapterEditView.vue'),
+    },
     { path: '/login', component: () => import('@/views/LoginView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],
