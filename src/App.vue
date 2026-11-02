@@ -73,6 +73,15 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
                 </AppLink>
               </li>
               <li>
+                <AppLink
+                  to="/card_management/grading_company"
+                  class="dropdown-item"
+                  activeClass="active"
+                >
+                  Sociétés de gradation
+                </AppLink>
+              </li>
+              <li>
                 <AppLink to="/card_management/card_type" class="dropdown-item" activeClass="active">
                   Types de carte
                 </AppLink>

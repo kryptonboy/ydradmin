@@ -153,13 +153,14 @@ function openModal(account: Account | null = null) {
         <SortableHeader field="email" :sort="sort" @sort="setSort">Email</SortableHeader>
         <th scope="col">Rôle</th>
         <th scope="col">Commentaires</th>
+        <th scope="col">Collection</th>
         <th scope="col">Statut</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody v-if="loading">
       <tr>
-        <td colspan="6" class="text-center align-middle">
+        <td colspan="8" class="text-center align-middle">
           <div class="spinner-border spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -177,6 +178,11 @@ function openModal(account: Account | null = null) {
           </span>
         </td>
         <td>{{ account.commentsCount ?? 0 }}</td>
+        <td>
+          <span class="badge" :class="account.collectionPublic ? 'bg-info' : 'bg-secondary'">
+            {{ account.collectionPublic ? 'Publique' : 'Privée' }}
+          </span>
+        </td>
         <td>
           <span class="badge" :class="account.banned ? 'bg-danger' : 'bg-success'">
             {{ account.banned ? 'Banni' : 'Actif' }}
@@ -218,14 +224,14 @@ function openModal(account: Account | null = null) {
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="6">
+        <td colspan="8">
           <em>Aucun utilisateur</em>
         </td>
       </tr>
     </tbody>
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
-        <td colspan="6" class="text-center pt-3 pb-0">
+        <td colspan="8" class="text-center pt-3 pb-0">
           <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"

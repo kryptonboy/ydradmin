@@ -19,6 +19,7 @@ export type MonsterEffectInput = Schemas['MonsterEffect-monster_effect.write']
 export type MonsterSubTypeInput = Schemas['MonsterSubType-monster_sub_type.write']
 export type MonsterTypeInput = Schemas['MonsterType-monster_type.write']
 export type RarityInput = Schemas['Rarity-rarity.write']
+export type GradingCompanyInput = Schemas['GradingCompany-grading_company.write']
 export type TagInput = Schemas['Tag-tag.write']
 export type AbstractCardInput = Schemas['AbstractCard.AbstractCardInput']
 
@@ -37,6 +38,7 @@ export type ApiMonsterEffect = Schemas['MonsterEffect.jsonld-monster_effect.read
 export type ApiMonsterSubType = Schemas['MonsterSubType.jsonld-monster_sub_type.read_entity.read']
 export type ApiMonsterType = Schemas['MonsterType.jsonld-monster_type.read_entity.read']
 export type ApiRarity = Schemas['Rarity.jsonld-rarity.read_entity.read']
+export type ApiGradingCompany = Schemas['GradingCompany.jsonld-grading_company.read_entity.read']
 export type ApiTag = Schemas['Tag.jsonld-tag.read_entity.read']
 export type ApiMediaObject = Schemas['MediaObject.jsonld-media_object.read_entity.read']
 

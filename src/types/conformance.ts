@@ -29,6 +29,7 @@ import type {
   ApiMonsterEffect,
   ApiMonsterSubType,
   ApiMonsterType,
+  ApiGradingCompany,
   ApiRarity,
   ApiRuling,
   ApiTag,
@@ -63,6 +64,7 @@ import type { MonsterAttribute } from './models/MonsterAttribute'
 import type { MonsterEffect } from './models/MonsterEffect'
 import type { MonsterSubType } from './models/MonsterSubType'
 import type { MonsterType } from './models/MonsterType'
+import type { GradingCompany } from './models/GradingCompany'
 import type { Rarity } from './models/Rarity'
 import type { Ruling } from './models/Ruling'
 import type { Tag } from './models/Tag'
@@ -109,6 +111,7 @@ export type ModelChecks = [
   Assert<Conforms<MonsterSubType, ApiMonsterSubType>>,
   Assert<Conforms<MonsterType, ApiMonsterType>>,
   Assert<Conforms<Rarity, ApiRarity>>,
+  Assert<Conforms<GradingCompany, ApiGradingCompany>>,
   Assert<Conforms<Ruling, ApiRuling>>,
   Assert<Conforms<Tag, ApiTag>>,
   Assert<Conforms<Deck, ApiDeck>>,

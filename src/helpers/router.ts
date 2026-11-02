@@ -40,6 +40,10 @@ export const router = createRouter({
       component: () => import('@/views/MonsterTypeView.vue'),
     },
     { path: '/card_management/rarity', component: () => import('@/views/RarityView.vue') },
+    {
+      path: '/card_management/grading_company',
+      component: () => import('@/views/GradingCompanyView.vue'),
+    },
     { path: '/card_management/tag', component: () => import('@/views/TagView.vue') },
     { path: '/card_management/game_format', component: () => import('@/views/GameFormatView.vue') },
     {

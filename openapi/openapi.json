@@ -11090,6 +11090,848 @@
                 }
             }
         },
+        "/api/collection_items": {
+            "get": {
+                "operationId": "api_collection_items_get_collection",
+                "tags": [
+                    "CollectionItem"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "CollectionItem collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "CollectionItem.jsonld-collection.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/CollectionItem.jsonld-collection.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CollectionItem.multipart-collection.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of CollectionItem resources.",
+                "description": "Retrieves the collection of CollectionItem resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "card",
+                        "in": "query",
+                        "description": "CollectionItem card",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "card[]",
+                        "in": "query",
+                        "description": "CollectionItem card",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "rarity",
+                        "in": "query",
+                        "description": "CollectionItem rarity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "rarity[]",
+                        "in": "query",
+                        "description": "CollectionItem rarity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "extension",
+                        "in": "query",
+                        "description": "CollectionItem extension",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "extension[]",
+                        "in": "query",
+                        "description": "CollectionItem extension",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "condition",
+                        "in": "query",
+                        "description": "CollectionItem condition",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "condition[]",
+                        "in": "query",
+                        "description": "CollectionItem condition",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "description": "CollectionItem language",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "language[]",
+                        "in": "query",
+                        "description": "CollectionItem language",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "edition",
+                        "in": "query",
+                        "description": "CollectionItem edition",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "edition[]",
+                        "in": "query",
+                        "description": "CollectionItem edition",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "gradingCompany",
+                        "in": "query",
+                        "description": "CollectionItem gradingCompany",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "gradingCompany[]",
+                        "in": "query",
+                        "description": "CollectionItem gradingCompany",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "tradeQuantity[gt]",
+                        "in": "query",
+                        "description": "CollectionItem tradeQuantity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "tradeQuantity[gte]",
+                        "in": "query",
+                        "description": "CollectionItem tradeQuantity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "tradeQuantity[lt]",
+                        "in": "query",
+                        "description": "CollectionItem tradeQuantity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "tradeQuantity[lte]",
+                        "in": "query",
+                        "description": "CollectionItem tradeQuantity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "tradeQuantity[ne]",
+                        "in": "query",
+                        "description": "CollectionItem tradeQuantity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "tradeQuantity[between]",
+                        "in": "query",
+                        "description": "CollectionItem tradeQuantity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "owner",
+                        "in": "query",
+                        "description": "CollectionItem owner",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "owner[]",
+                        "in": "query",
+                        "description": "CollectionItem owner",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "CollectionItem order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "CollectionItem order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[quantity]",
+                        "in": "query",
+                        "description": "CollectionItem order[quantity]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[quantity][]",
+                        "in": "query",
+                        "description": "CollectionItem order[quantity]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[updatedAt]",
+                        "in": "query",
+                        "description": "CollectionItem order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[updatedAt][]",
+                        "in": "query",
+                        "description": "CollectionItem order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_collection_items_post",
+                "tags": [
+                    "CollectionItem"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "CollectionItem resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionItem.jsonld-collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionItem.multipart-collection.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a CollectionItem resource.",
+                "description": "Creates a CollectionItem resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new CollectionItem resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CollectionItem-collection.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CollectionItem-collection.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/collection_items/{id}": {
+            "get": {
+                "operationId": "api_collection_items_id_get",
+                "tags": [
+                    "CollectionItem"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "CollectionItem resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionItem.jsonld-collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionItem.multipart-collection.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a CollectionItem resource.",
+                "description": "Retrieves a CollectionItem resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CollectionItem identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_collection_items_id_delete",
+                "tags": [
+                    "CollectionItem"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "CollectionItem resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the CollectionItem resource.",
+                "description": "Removes the CollectionItem resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CollectionItem identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_collection_items_id_patch",
+                "tags": [
+                    "CollectionItem"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "CollectionItem resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionItem.jsonld-collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CollectionItem.multipart-collection.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the CollectionItem resource.",
+                "description": "Updates the CollectionItem resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CollectionItem identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated CollectionItem resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CollectionItem-collection.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "/api/countries": {
             "get": {
                 "operationId": "api_countries_get_collection",
@@ -16439,6 +17281,548 @@
                         "application/merge-patch+json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Gender-gender.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/grading_companies": {
+            "get": {
+                "operationId": "api_grading_companies_get_collection",
+                "tags": [
+                    "GradingCompany"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GradingCompany collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "GradingCompany.jsonld-grading_company.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/GradingCompany.jsonld-grading_company.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GradingCompany.multipart-grading_company.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of GradingCompany resources.",
+                "description": "Retrieves the collection of GradingCompany resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "GradingCompany name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "name[]",
+                        "in": "query",
+                        "description": "GradingCompany name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "GradingCompany order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "GradingCompany order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name]",
+                        "in": "query",
+                        "description": "GradingCompany order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[name][]",
+                        "in": "query",
+                        "description": "GradingCompany order[name]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_grading_companies_post",
+                "tags": [
+                    "GradingCompany"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "GradingCompany resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradingCompany.jsonld-grading_company.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradingCompany.multipart-grading_company.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a GradingCompany resource.",
+                "description": "Creates a GradingCompany resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new GradingCompany resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GradingCompany-grading_company.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GradingCompany-grading_company.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/grading_companies/{id}": {
+            "get": {
+                "operationId": "api_grading_companies_id_get",
+                "tags": [
+                    "GradingCompany"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GradingCompany resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradingCompany.jsonld-grading_company.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradingCompany.multipart-grading_company.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a GradingCompany resource.",
+                "description": "Retrieves a GradingCompany resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "GradingCompany identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_grading_companies_id_delete",
+                "tags": [
+                    "GradingCompany"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "GradingCompany resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the GradingCompany resource.",
+                "description": "Removes the GradingCompany resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "GradingCompany identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_grading_companies_id_patch",
+                "tags": [
+                    "GradingCompany"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GradingCompany resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradingCompany.jsonld-grading_company.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GradingCompany.multipart-grading_company.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the GradingCompany resource.",
+                "description": "Updates the GradingCompany resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "GradingCompany identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated GradingCompany resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GradingCompany-grading_company.write.jsonMergePatch"
                             }
                         }
                     },
@@ -27589,6 +28973,668 @@
                     "required": true
                 }
             }
+        },
+        "/api/wishlist_items": {
+            "get": {
+                "operationId": "api_wishlist_items_get_collection",
+                "tags": [
+                    "WishlistItem"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "WishlistItem collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "WishlistItem.jsonld-collection.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/WishlistItem.jsonld-collection.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/WishlistItem.multipart-collection.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of WishlistItem resources.",
+                "description": "Retrieves the collection of WishlistItem resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "card",
+                        "in": "query",
+                        "description": "WishlistItem card",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "card[]",
+                        "in": "query",
+                        "description": "WishlistItem card",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "rarity",
+                        "in": "query",
+                        "description": "WishlistItem rarity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "rarity[]",
+                        "in": "query",
+                        "description": "WishlistItem rarity",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "extension",
+                        "in": "query",
+                        "description": "WishlistItem extension",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "extension[]",
+                        "in": "query",
+                        "description": "WishlistItem extension",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "owner",
+                        "in": "query",
+                        "description": "WishlistItem owner",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "owner[]",
+                        "in": "query",
+                        "description": "WishlistItem owner",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "WishlistItem order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "WishlistItem order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[quantity]",
+                        "in": "query",
+                        "description": "WishlistItem order[quantity]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[quantity][]",
+                        "in": "query",
+                        "description": "WishlistItem order[quantity]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[updatedAt]",
+                        "in": "query",
+                        "description": "WishlistItem order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[updatedAt][]",
+                        "in": "query",
+                        "description": "WishlistItem order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_wishlist_items_post",
+                "tags": [
+                    "WishlistItem"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "WishlistItem resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WishlistItem.jsonld-collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WishlistItem.multipart-collection.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a WishlistItem resource.",
+                "description": "Creates a WishlistItem resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new WishlistItem resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WishlistItem-collection.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WishlistItem-collection.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/wishlist_items/{id}": {
+            "get": {
+                "operationId": "api_wishlist_items_id_get",
+                "tags": [
+                    "WishlistItem"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "WishlistItem resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WishlistItem.jsonld-collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WishlistItem.multipart-collection.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a WishlistItem resource.",
+                "description": "Retrieves a WishlistItem resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "WishlistItem identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "api_wishlist_items_id_delete",
+                "tags": [
+                    "WishlistItem"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "WishlistItem resource deleted"
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Removes the WishlistItem resource.",
+                "description": "Removes the WishlistItem resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "WishlistItem identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "api_wishlist_items_id_patch",
+                "tags": [
+                    "WishlistItem"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "WishlistItem resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WishlistItem.jsonld-collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WishlistItem.multipart-collection.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Updates the WishlistItem resource.",
+                "description": "Updates the WishlistItem resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "WishlistItem identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated WishlistItem resource",
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WishlistItem-collection.write.jsonMergePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
         }
     },
     "components": {
@@ -30841,6 +32887,50 @@
                     }
                 ]
             },
+            "Card.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "extension"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "code": {
+                                "pattern": "^(\\d{1,8})$",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "image": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-collection.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "extension": {
+                                "$ref": "#/components/schemas/Extension.jsonld-collection.read_entity.read"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Card.jsonld-deck.read_entity.read": {
                 "allOf": [
                     {
@@ -30926,6 +33016,43 @@
                         "items": {
                             "$ref": "#/components/schemas/Rarity.multipart-card.read_entity.read"
                         }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Card.multipart-collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "extension"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "code": {
+                        "pattern": "^(\\d{1,8})$",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "image": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-collection.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "extension": {
+                        "$ref": "#/components/schemas/Extension.multipart-collection.read_entity.read"
                     },
                     "id": {
                         "type": "integer",
@@ -33637,6 +35764,497 @@
                     }
                 }
             },
+            "CollectionItem-collection.write": {
+                "type": "object",
+                "description": "A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given\ncondition, language and edition. Copies in another condition are another line; a graded card (company, grade,\noptional certificate number) has no condition and is a line of its own, one copy per line.\n\nThe collection is private unless its owner made it public (User::collectionPublic).",
+                "required": [
+                    "card",
+                    "rarity"
+                ],
+                "properties": {
+                    "card": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "rarity": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "condition": {
+                        "description": "Empty for a graded card (its grade tells it).",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "default": "fr",
+                        "type": "string",
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh"
+                        ]
+                    },
+                    "edition": {
+                        "default": "unlimited",
+                        "type": "string",
+                        "enum": [
+                            "first",
+                            "unlimited",
+                            "limited"
+                        ]
+                    },
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 9999,
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "tradeQuantity": {
+                        "minimum": 0,
+                        "description": "How many of the copies are offered for trade (the \"doubles\"), from 0 to the quantity.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "tradeValue": {
+                        "minimum": 0,
+                        "maximum": 100000,
+                        "description": "What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now.",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "gradingCompany": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "grade": {
+                        "minimum": 1,
+                        "maximum": 10,
+                        "description": "The grade given by the company, from 1 to 10 (half points allowed).",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "certificateNumber": {
+                        "maxLength": 40,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "note": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "CollectionItem-collection.write.jsonMergePatch": {
+                "type": "object",
+                "description": "A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given\ncondition, language and edition. Copies in another condition are another line; a graded card (company, grade,\noptional certificate number) has no condition and is a line of its own, one copy per line.\n\nThe collection is private unless its owner made it public (User::collectionPublic).",
+                "properties": {
+                    "card": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "rarity": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "condition": {
+                        "description": "Empty for a graded card (its grade tells it).",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "default": "fr",
+                        "type": "string",
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh"
+                        ]
+                    },
+                    "edition": {
+                        "default": "unlimited",
+                        "type": "string",
+                        "enum": [
+                            "first",
+                            "unlimited",
+                            "limited"
+                        ]
+                    },
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 9999,
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "tradeQuantity": {
+                        "minimum": 0,
+                        "description": "How many of the copies are offered for trade (the \"doubles\"), from 0 to the quantity.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "tradeValue": {
+                        "minimum": 0,
+                        "maximum": 100000,
+                        "description": "What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now.",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "gradingCompany": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "grade": {
+                        "minimum": 1,
+                        "maximum": 10,
+                        "description": "The grade given by the company, from 1 to 10 (half points allowed).",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "certificateNumber": {
+                        "maxLength": 40,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "note": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "CollectionItem.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "card",
+                            "rarity"
+                        ],
+                        "properties": {
+                            "card": {
+                                "$ref": "#/components/schemas/Card.jsonld-collection.read_entity.read"
+                            },
+                            "rarity": {
+                                "$ref": "#/components/schemas/Rarity.jsonld-collection.read_entity.read"
+                            },
+                            "condition": {
+                                "description": "Empty for a graded card (its grade tells it).",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "MT",
+                                    "NM",
+                                    "EX",
+                                    "GD",
+                                    "LP",
+                                    "PL",
+                                    "PO",
+                                    null
+                                ]
+                            },
+                            "language": {
+                                "default": "fr",
+                                "type": "string",
+                                "enum": [
+                                    "fr",
+                                    "en",
+                                    "de",
+                                    "it",
+                                    "es",
+                                    "pt",
+                                    "ja",
+                                    "ko",
+                                    "zh"
+                                ]
+                            },
+                            "edition": {
+                                "default": "unlimited",
+                                "type": "string",
+                                "enum": [
+                                    "first",
+                                    "unlimited",
+                                    "limited"
+                                ]
+                            },
+                            "quantity": {
+                                "minimum": 1,
+                                "maximum": 9999,
+                                "default": 1,
+                                "type": "integer"
+                            },
+                            "tradeQuantity": {
+                                "minimum": 0,
+                                "description": "How many of the copies are offered for trade (the \"doubles\"), from 0 to the quantity.",
+                                "default": 0,
+                                "type": "integer"
+                            },
+                            "tradeValue": {
+                                "minimum": 0,
+                                "maximum": 100000,
+                                "description": "What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now.",
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "gradingCompany": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/GradingCompany.jsonld-collection.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "grade": {
+                                "minimum": 1,
+                                "maximum": 10,
+                                "description": "The grade given by the company, from 1 to 10 (half points allowed).",
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "certificateNumber": {
+                                "maxLength": 40,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "note": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "author": {
+                                "readOnly": true,
+                                "description": "Read only: the username of the owner (the account itself is never exposed).",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "description": "A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given\ncondition, language and edition. Copies in another condition are another line; a graded card (company, grade,\noptional certificate number) has no condition and is a line of its own, one copy per line.\n\nThe collection is private unless its owner made it public (User::collectionPublic)."
+            },
+            "CollectionItem.multipart-collection.read_entity.read": {
+                "type": "object",
+                "description": "A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given\ncondition, language and edition. Copies in another condition are another line; a graded card (company, grade,\noptional certificate number) has no condition and is a line of its own, one copy per line.\n\nThe collection is private unless its owner made it public (User::collectionPublic).",
+                "required": [
+                    "card",
+                    "rarity"
+                ],
+                "properties": {
+                    "card": {
+                        "$ref": "#/components/schemas/Card.multipart-collection.read_entity.read"
+                    },
+                    "rarity": {
+                        "$ref": "#/components/schemas/Rarity.multipart-collection.read_entity.read"
+                    },
+                    "condition": {
+                        "description": "Empty for a graded card (its grade tells it).",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "default": "fr",
+                        "type": "string",
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh"
+                        ]
+                    },
+                    "edition": {
+                        "default": "unlimited",
+                        "type": "string",
+                        "enum": [
+                            "first",
+                            "unlimited",
+                            "limited"
+                        ]
+                    },
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 9999,
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "tradeQuantity": {
+                        "minimum": 0,
+                        "description": "How many of the copies are offered for trade (the \"doubles\"), from 0 to the quantity.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "tradeValue": {
+                        "minimum": 0,
+                        "maximum": 100000,
+                        "description": "What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now.",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "gradingCompany": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GradingCompany.multipart-collection.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "grade": {
+                        "minimum": 1,
+                        "maximum": 10,
+                        "description": "The grade given by the company, from 1 to 10 (half points allowed).",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "certificateNumber": {
+                        "maxLength": 40,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "note": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "author": {
+                        "readOnly": true,
+                        "description": "Read only: the username of the owner (the account itself is never exposed).",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
             "ConstraintViolation": {
                 "type": "object",
                 "description": "Unprocessable entity",
@@ -35544,6 +38162,29 @@
                     }
                 ]
             },
+            "Extension.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Extension.jsonld-extension.read_entity.read": {
                 "allOf": [
                     {
@@ -35639,6 +38280,22 @@
             "Extension.multipart-card.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Extension.multipart-collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -36198,6 +38855,115 @@
                         "type": "string"
                     },
                     "slug": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "GradingCompany-grading_company.write": {
+                "type": "object",
+                "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators.",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 100,
+                        "default": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "GradingCompany-grading_company.write.jsonMergePatch": {
+                "type": "object",
+                "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators.",
+                "properties": {
+                    "name": {
+                        "maxLength": 100,
+                        "default": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "GradingCompany.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 100,
+                                "default": "",
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "GradingCompany.jsonld-grading_company.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 100,
+                                "default": "",
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ],
+                "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators."
+            },
+            "GradingCompany.multipart-collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 100,
+                        "default": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "GradingCompany.multipart-grading_company.read_entity.read": {
+                "type": "object",
+                "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators.",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 100,
+                        "default": "",
                         "type": "string"
                     },
                     "id": {
@@ -37258,6 +40024,32 @@
                     }
                 ]
             },
+            "MediaObject.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read_label": {
                 "allOf": [
                     {
@@ -37756,6 +40548,25 @@
                 }
             },
             "MediaObject.multipart-character.read_entity.read_label": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-collection.read_entity.read": {
                 "type": "object",
                 "properties": {
                     "contentUrl": {
@@ -39397,6 +42208,29 @@
                     }
                 ]
             },
+            "Rarity.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Rarity.jsonld-rarity.read_entity.read": {
                 "allOf": [
                     {
@@ -39434,6 +42268,22 @@
             "Rarity.multipart-card.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Rarity.multipart-collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -40437,6 +43287,11 @@
                                 "default": false,
                                 "type": "boolean"
                             },
+                            "collectionPublic": {
+                                "description": "Whether the collection and the wishlist can be read by the other players (private by default).",
+                                "default": false,
+                                "type": "boolean"
+                            },
                             "commentsCount": {
                                 "readOnly": true,
                                 "description": "Number of comments posted by the user.",
@@ -40487,6 +43342,11 @@
                                 "default": false,
                                 "type": "boolean"
                             },
+                            "collectionPublic": {
+                                "description": "Whether the collection and the wishlist can be read by the other players (private by default).",
+                                "default": false,
+                                "type": "boolean"
+                            },
                             "commentsCount": {
                                 "readOnly": true,
                                 "description": "Number of comments posted by the user.",
@@ -40532,6 +43392,11 @@
                         "default": false,
                         "type": "boolean"
                     },
+                    "collectionPublic": {
+                        "description": "Whether the collection and the wishlist can be read by the other players (private by default).",
+                        "default": false,
+                        "type": "boolean"
+                    },
                     "commentsCount": {
                         "readOnly": true,
                         "description": "Number of comments posted by the user.",
@@ -40572,6 +43437,11 @@
                     },
                     "banned": {
                         "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "collectionPublic": {
+                        "description": "Whether the collection and the wishlist can be read by the other players (private by default).",
                         "default": false,
                         "type": "boolean"
                     },
@@ -41219,6 +44089,313 @@
                     }
                 }
             },
+            "WishlistItem-collection.write": {
+                "type": "object",
+                "description": "A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the\nlanguage that are acceptable. It is shown with the collection (same visibility).",
+                "required": [
+                    "card",
+                    "rarity"
+                ],
+                "properties": {
+                    "card": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "rarity": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 99,
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "minCondition": {
+                        "description": "The worst condition that is acceptable (any when empty).",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh",
+                            null
+                        ]
+                    },
+                    "note": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "WishlistItem-collection.write.jsonMergePatch": {
+                "type": "object",
+                "description": "A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the\nlanguage that are acceptable. It is shown with the collection (same visibility).",
+                "properties": {
+                    "card": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "rarity": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 99,
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "minCondition": {
+                        "description": "The worst condition that is acceptable (any when empty).",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh",
+                            null
+                        ]
+                    },
+                    "note": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "WishlistItem.jsonld-collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "card",
+                            "rarity"
+                        ],
+                        "properties": {
+                            "card": {
+                                "$ref": "#/components/schemas/Card.jsonld-collection.read_entity.read"
+                            },
+                            "rarity": {
+                                "$ref": "#/components/schemas/Rarity.jsonld-collection.read_entity.read"
+                            },
+                            "quantity": {
+                                "minimum": 1,
+                                "maximum": 99,
+                                "default": 1,
+                                "type": "integer"
+                            },
+                            "minCondition": {
+                                "description": "The worst condition that is acceptable (any when empty).",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "MT",
+                                    "NM",
+                                    "EX",
+                                    "GD",
+                                    "LP",
+                                    "PL",
+                                    "PO",
+                                    null
+                                ]
+                            },
+                            "language": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "fr",
+                                    "en",
+                                    "de",
+                                    "it",
+                                    "es",
+                                    "pt",
+                                    "ja",
+                                    "ko",
+                                    "zh",
+                                    null
+                                ]
+                            },
+                            "note": {
+                                "maxLength": 255,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "author": {
+                                "readOnly": true,
+                                "description": "Read only: the username of the owner (the account itself is never exposed).",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "description": "A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the\nlanguage that are acceptable. It is shown with the collection (same visibility)."
+            },
+            "WishlistItem.multipart-collection.read_entity.read": {
+                "type": "object",
+                "description": "A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the\nlanguage that are acceptable. It is shown with the collection (same visibility).",
+                "required": [
+                    "card",
+                    "rarity"
+                ],
+                "properties": {
+                    "card": {
+                        "$ref": "#/components/schemas/Card.multipart-collection.read_entity.read"
+                    },
+                    "rarity": {
+                        "$ref": "#/components/schemas/Rarity.multipart-collection.read_entity.read"
+                    },
+                    "quantity": {
+                        "minimum": 1,
+                        "maximum": 99,
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "minCondition": {
+                        "description": "The worst condition that is acceptable (any when empty).",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh",
+                            null
+                        ]
+                    },
+                    "note": {
+                        "maxLength": 255,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "author": {
+                        "readOnly": true,
+                        "description": "Read only: the username of the owner (the account itself is never exposed).",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
             "CardUsage": {
                 "type": "object",
                 "required": [
@@ -41347,6 +44524,10 @@
             "description": "Resource 'Character' operations."
         },
         {
+            "name": "CollectionItem",
+            "description": "A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given\ncondition, language and edition. Copies in another condition are another line; a graded card (company, grade,\noptional certificate number) has no condition and is a line of its own, one copy per line.\n\nThe collection is private unless its owner made it public (User::collectionPublic)."
+        },
+        {
             "name": "Country",
             "description": "Resource 'Country' operations."
         },
@@ -41377,6 +44558,10 @@
         {
             "name": "Gender",
             "description": "Resource 'Gender' operations."
+        },
+        {
+            "name": "GradingCompany",
+            "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators."
         },
         {
             "name": "Manga",
@@ -41453,6 +44638,10 @@
         {
             "name": "VideoGameSupport",
             "description": "The platform a video game is released on."
+        },
+        {
+            "name": "WishlistItem",
+            "description": "A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the\nlanguage that are acceptable. It is shown with the collection (same visibility)."
         }
     ],
     "webhooks": {}

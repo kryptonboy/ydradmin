@@ -9,4 +9,6 @@ export interface Account {
   commentsCount?: number
   /** Un compte banni ne peut plus se connecter */
   banned: boolean
+  /** Collection consultable par tous (réglée par le joueur lui-même) */
+  collectionPublic: boolean
 }

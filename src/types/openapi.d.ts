@@ -956,6 +956,58 @@ export interface paths {
         patch: operations["api_characters_id_patch"];
         trace?: never;
     };
+    "/api/collection_items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of CollectionItem resources.
+         * @description Retrieves the collection of CollectionItem resources.
+         */
+        get: operations["api_collection_items_get_collection"];
+        put?: never;
+        /**
+         * Creates a CollectionItem resource.
+         * @description Creates a CollectionItem resource.
+         */
+        post: operations["api_collection_items_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/collection_items/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a CollectionItem resource.
+         * @description Retrieves a CollectionItem resource.
+         */
+        get: operations["api_collection_items_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the CollectionItem resource.
+         * @description Removes the CollectionItem resource.
+         */
+        delete: operations["api_collection_items_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the CollectionItem resource.
+         * @description Updates the CollectionItem resource.
+         */
+        patch: operations["api_collection_items_id_patch"];
+        trace?: never;
+    };
     "/api/countries": {
         parameters: {
             query?: never;
@@ -1430,6 +1482,58 @@ export interface paths {
          * @description Updates the Gender resource.
          */
         patch: operations["api_genders_id_patch"];
+        trace?: never;
+    };
+    "/api/grading_companies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of GradingCompany resources.
+         * @description Retrieves the collection of GradingCompany resources.
+         */
+        get: operations["api_grading_companies_get_collection"];
+        put?: never;
+        /**
+         * Creates a GradingCompany resource.
+         * @description Creates a GradingCompany resource.
+         */
+        post: operations["api_grading_companies_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/grading_companies/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a GradingCompany resource.
+         * @description Retrieves a GradingCompany resource.
+         */
+        get: operations["api_grading_companies_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the GradingCompany resource.
+         * @description Removes the GradingCompany resource.
+         */
+        delete: operations["api_grading_companies_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the GradingCompany resource.
+         * @description Updates the GradingCompany resource.
+         */
+        patch: operations["api_grading_companies_id_patch"];
         trace?: never;
     };
     "/api/login_check": {
@@ -2452,6 +2556,58 @@ export interface paths {
         patch: operations["api_video_game_supports_id_patch"];
         trace?: never;
     };
+    "/api/wishlist_items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of WishlistItem resources.
+         * @description Retrieves the collection of WishlistItem resources.
+         */
+        get: operations["api_wishlist_items_get_collection"];
+        put?: never;
+        /**
+         * Creates a WishlistItem resource.
+         * @description Creates a WishlistItem resource.
+         */
+        post: operations["api_wishlist_items_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/wishlist_items/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a WishlistItem resource.
+         * @description Retrieves a WishlistItem resource.
+         */
+        get: operations["api_wishlist_items_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the WishlistItem resource.
+         * @description Removes the WishlistItem resource.
+         */
+        delete: operations["api_wishlist_items_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the WishlistItem resource.
+         * @description Updates the WishlistItem resource.
+         */
+        patch: operations["api_wishlist_items_id_patch"];
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -3304,6 +3460,13 @@ export interface components {
             rarities?: components["schemas"]["Rarity.jsonld-card.read_entity.read"][];
             readonly id?: number;
         };
+        "Card.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            code?: string | null;
+            image?: components["schemas"]["MediaObject.jsonld-collection.read_entity.read"] | null;
+            extension: components["schemas"]["Extension.jsonld-collection.read_entity.read"];
+            readonly id?: number;
+        };
         "Card.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
         };
@@ -3319,6 +3482,13 @@ export interface components {
             abstractCard: components["schemas"]["AbstractCard.multipart-card.read_entity.read"];
             extension: components["schemas"]["Extension.multipart-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.multipart-card.read_entity.read"][];
+            readonly id?: number;
+        };
+        "Card.multipart-collection.read_entity.read": {
+            name: string;
+            code?: string | null;
+            image?: components["schemas"]["MediaObject.multipart-collection.read_entity.read"] | null;
+            extension: components["schemas"]["Extension.multipart-collection.read_entity.read"];
             readonly id?: number;
         };
         "Card.multipart-deck.read_entity.read": {
@@ -3981,6 +4151,204 @@ export interface components {
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-video_game_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+        };
+        /**
+         * @description A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given
+         *     condition, language and edition. Copies in another condition are another line; a graded card (company, grade,
+         *     optional certificate number) has no condition and is a line of its own, one copy per line.
+         *
+         *     The collection is private unless its owner made it public (User::collectionPublic).
+         */
+        "CollectionItem-collection.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            card: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            rarity: string;
+            /**
+             * @description Empty for a graded card (its grade tells it).
+             * @enum {string|null}
+             */
+            condition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /**
+             * @default fr
+             * @enum {string}
+             */
+            language: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh";
+            /**
+             * @default unlimited
+             * @enum {string}
+             */
+            edition: "first" | "unlimited" | "limited";
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description How many of the copies are offered for trade (the "doubles"), from 0 to the quantity.
+             * @default 0
+             */
+            tradeQuantity: number;
+            /** @description What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now. */
+            tradeValue?: number | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gradingCompany?: string | null;
+            /** @description The grade given by the company, from 1 to 10 (half points allowed). */
+            grade?: number | null;
+            certificateNumber?: string | null;
+            note?: string | null;
+        };
+        /**
+         * @description A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given
+         *     condition, language and edition. Copies in another condition are another line; a graded card (company, grade,
+         *     optional certificate number) has no condition and is a line of its own, one copy per line.
+         *
+         *     The collection is private unless its owner made it public (User::collectionPublic).
+         */
+        "CollectionItem-collection.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            card?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            rarity?: string;
+            /**
+             * @description Empty for a graded card (its grade tells it).
+             * @enum {string|null}
+             */
+            condition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /**
+             * @default fr
+             * @enum {string}
+             */
+            language: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh";
+            /**
+             * @default unlimited
+             * @enum {string}
+             */
+            edition: "first" | "unlimited" | "limited";
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description How many of the copies are offered for trade (the "doubles"), from 0 to the quantity.
+             * @default 0
+             */
+            tradeQuantity: number;
+            /** @description What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now. */
+            tradeValue?: number | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gradingCompany?: string | null;
+            /** @description The grade given by the company, from 1 to 10 (half points allowed). */
+            grade?: number | null;
+            certificateNumber?: string | null;
+            note?: string | null;
+        };
+        /**
+         * @description A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given
+         *     condition, language and edition. Copies in another condition are another line; a graded card (company, grade,
+         *     optional certificate number) has no condition and is a line of its own, one copy per line.
+         *
+         *     The collection is private unless its owner made it public (User::collectionPublic).
+         */
+        "CollectionItem.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            card: components["schemas"]["Card.jsonld-collection.read_entity.read"];
+            rarity: components["schemas"]["Rarity.jsonld-collection.read_entity.read"];
+            /**
+             * @description Empty for a graded card (its grade tells it).
+             * @enum {string|null}
+             */
+            condition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /**
+             * @default fr
+             * @enum {string}
+             */
+            language: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh";
+            /**
+             * @default unlimited
+             * @enum {string}
+             */
+            edition: "first" | "unlimited" | "limited";
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description How many of the copies are offered for trade (the "doubles"), from 0 to the quantity.
+             * @default 0
+             */
+            tradeQuantity: number;
+            /** @description What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now. */
+            tradeValue?: number | null;
+            gradingCompany?: components["schemas"]["GradingCompany.jsonld-collection.read_entity.read"] | null;
+            /** @description The grade given by the company, from 1 to 10 (half points allowed). */
+            grade?: number | null;
+            certificateNumber?: string | null;
+            note?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            /** @description Read only: the username of the owner (the account itself is never exposed). */
+            readonly author?: string | null;
+        };
+        /**
+         * @description A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given
+         *     condition, language and edition. Copies in another condition are another line; a graded card (company, grade,
+         *     optional certificate number) has no condition and is a line of its own, one copy per line.
+         *
+         *     The collection is private unless its owner made it public (User::collectionPublic).
+         */
+        "CollectionItem.multipart-collection.read_entity.read": {
+            card: components["schemas"]["Card.multipart-collection.read_entity.read"];
+            rarity: components["schemas"]["Rarity.multipart-collection.read_entity.read"];
+            /**
+             * @description Empty for a graded card (its grade tells it).
+             * @enum {string|null}
+             */
+            condition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /**
+             * @default fr
+             * @enum {string}
+             */
+            language: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh";
+            /**
+             * @default unlimited
+             * @enum {string}
+             */
+            edition: "first" | "unlimited" | "limited";
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description How many of the copies are offered for trade (the "doubles"), from 0 to the quantity.
+             * @default 0
+             */
+            tradeQuantity: number;
+            /** @description What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now. */
+            tradeValue?: number | null;
+            gradingCompany?: components["schemas"]["GradingCompany.multipart-collection.read_entity.read"] | null;
+            /** @description The grade given by the company, from 1 to 10 (half points allowed). */
+            grade?: number | null;
+            certificateNumber?: string | null;
+            note?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            /** @description Read only: the username of the owner (the account itself is never exposed). */
+            readonly author?: string | null;
         };
         /** @description Unprocessable entity */
         ConstraintViolation: {
@@ -4662,6 +5030,10 @@ export interface components {
         "Extension.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
         };
+        "Extension.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Extension.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             reference: string;
@@ -4680,6 +5052,10 @@ export interface components {
             readonly id?: number;
         };
         "Extension.multipart-card.read_entity.read": {
+            readonly id?: number;
+        };
+        "Extension.multipart-collection.read_entity.read": {
+            name: string;
             readonly id?: number;
         };
         "Extension.multipart-extension.read_entity.read": {
@@ -4809,6 +5185,38 @@ export interface components {
         "Gender.multipart-gender.read_entity.read_label": {
             name: string;
             slug?: string;
+            readonly id?: number;
+        };
+        /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
+        "GradingCompany-grading_company.write": {
+            /** @default  */
+            name: string;
+        };
+        /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
+        "GradingCompany-grading_company.write.jsonMergePatch": {
+            /** @default  */
+            name: string;
+        };
+        "GradingCompany.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default  */
+            name: string;
+            readonly id?: number;
+        };
+        /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
+        "GradingCompany.jsonld-grading_company.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default  */
+            name: string;
+            readonly id?: number;
+        };
+        "GradingCompany.multipart-collection.read_entity.read": {
+            /** @default  */
+            name: string;
+            readonly id?: number;
+        };
+        /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
+        "GradingCompany.multipart-grading_company.read_entity.read": {
+            /** @default  */
+            name: string;
             readonly id?: number;
         };
         HydraCollectionBaseSchema: components["schemas"]["HydraCollectionBaseSchemaNoPagination"] & {
@@ -5071,6 +5479,10 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -5156,6 +5568,10 @@ export interface components {
             readonly id?: number;
         };
         "MediaObject.multipart-character.read_entity.read_label": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-collection.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -5604,6 +6020,10 @@ export interface components {
         "Rarity.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
         };
+        "Rarity.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Rarity.jsonld-rarity.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             description?: string | null;
@@ -5612,6 +6032,10 @@ export interface components {
             readonly id?: number;
         };
         "Rarity.multipart-card.read_entity.read": {
+            readonly id?: number;
+        };
+        "Rarity.multipart-collection.read_entity.read": {
+            name: string;
             readonly id?: number;
         };
         "Rarity.multipart-rarity.read_entity.read": {
@@ -5898,6 +6322,11 @@ export interface components {
              * @default false
              */
             banned: boolean;
+            /**
+             * @description Whether the collection and the wishlist can be read by the other players (private by default).
+             * @default false
+             */
+            collectionPublic: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -5913,6 +6342,11 @@ export interface components {
              * @default false
              */
             banned: boolean;
+            /**
+             * @description Whether the collection and the wishlist can be read by the other players (private by default).
+             * @default false
+             */
+            collectionPublic: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -5928,6 +6362,11 @@ export interface components {
              * @default false
              */
             banned: boolean;
+            /**
+             * @description Whether the collection and the wishlist can be read by the other players (private by default).
+             * @default false
+             */
+            collectionPublic: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -5943,6 +6382,11 @@ export interface components {
              * @default false
              */
             banned: boolean;
+            /**
+             * @description Whether the collection and the wishlist can be read by the other players (private by default).
+             * @default false
+             */
+            collectionPublic: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -6129,6 +6573,108 @@ export interface components {
             name: string;
             position?: number | null;
             readonly id?: number;
+        };
+        /**
+         * @description A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the
+         *     language that are acceptable. It is shown with the collection (same visibility).
+         */
+        "WishlistItem-collection.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            card: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            rarity: string;
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description The worst condition that is acceptable (any when empty).
+             * @enum {string|null}
+             */
+            minCondition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /** @enum {string|null} */
+            language?: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh" | null;
+            note?: string | null;
+        };
+        /**
+         * @description A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the
+         *     language that are acceptable. It is shown with the collection (same visibility).
+         */
+        "WishlistItem-collection.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            card?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            rarity?: string;
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description The worst condition that is acceptable (any when empty).
+             * @enum {string|null}
+             */
+            minCondition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /** @enum {string|null} */
+            language?: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh" | null;
+            note?: string | null;
+        };
+        /**
+         * @description A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the
+         *     language that are acceptable. It is shown with the collection (same visibility).
+         */
+        "WishlistItem.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            card: components["schemas"]["Card.jsonld-collection.read_entity.read"];
+            rarity: components["schemas"]["Rarity.jsonld-collection.read_entity.read"];
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description The worst condition that is acceptable (any when empty).
+             * @enum {string|null}
+             */
+            minCondition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /** @enum {string|null} */
+            language?: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh" | null;
+            note?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            /** @description Read only: the username of the owner (the account itself is never exposed). */
+            readonly author?: string | null;
+        };
+        /**
+         * @description A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the
+         *     language that are acceptable. It is shown with the collection (same visibility).
+         */
+        "WishlistItem.multipart-collection.read_entity.read": {
+            card: components["schemas"]["Card.multipart-collection.read_entity.read"];
+            rarity: components["schemas"]["Rarity.multipart-collection.read_entity.read"];
+            /** @default 1 */
+            quantity: number;
+            /**
+             * @description The worst condition that is acceptable (any when empty).
+             * @enum {string|null}
+             */
+            minCondition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /** @enum {string|null} */
+            language?: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh" | null;
+            note?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            /** @description Read only: the username of the owner (the account itself is never exposed). */
+            readonly author?: string | null;
         };
         CardUsage: {
             /** @example /api/abstract_cards/10 */
@@ -10607,6 +11153,299 @@ export interface operations {
             };
         };
     };
+    api_collection_items_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description CollectionItem card */
+                card?: string;
+                /** @description CollectionItem card */
+                "card[]"?: string[];
+                /** @description CollectionItem rarity */
+                rarity?: string;
+                /** @description CollectionItem rarity */
+                "rarity[]"?: string[];
+                /** @description CollectionItem extension */
+                extension?: string;
+                /** @description CollectionItem extension */
+                "extension[]"?: string[];
+                /** @description CollectionItem condition */
+                condition?: string;
+                /** @description CollectionItem condition */
+                "condition[]"?: string[];
+                /** @description CollectionItem language */
+                language?: string;
+                /** @description CollectionItem language */
+                "language[]"?: string[];
+                /** @description CollectionItem edition */
+                edition?: string;
+                /** @description CollectionItem edition */
+                "edition[]"?: string[];
+                /** @description CollectionItem gradingCompany */
+                gradingCompany?: string;
+                /** @description CollectionItem gradingCompany */
+                "gradingCompany[]"?: string[];
+                /** @description CollectionItem tradeQuantity */
+                "tradeQuantity[gt]"?: string;
+                /** @description CollectionItem tradeQuantity */
+                "tradeQuantity[gte]"?: string;
+                /** @description CollectionItem tradeQuantity */
+                "tradeQuantity[lt]"?: string;
+                /** @description CollectionItem tradeQuantity */
+                "tradeQuantity[lte]"?: string;
+                /** @description CollectionItem tradeQuantity */
+                "tradeQuantity[ne]"?: string;
+                /** @description CollectionItem tradeQuantity */
+                "tradeQuantity[between]"?: string;
+                /** @description CollectionItem owner */
+                owner?: string;
+                /** @description CollectionItem owner */
+                "owner[]"?: string[];
+                /** @description CollectionItem order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CollectionItem order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description CollectionItem order[quantity] */
+                "order[quantity]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CollectionItem order[quantity] */
+                "order[quantity][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description CollectionItem order[updatedAt] */
+                "order[updatedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CollectionItem order[updatedAt] */
+                "order[updatedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CollectionItem collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["CollectionItem.jsonld-collection.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["CollectionItem.multipart-collection.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_collection_items_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new CollectionItem resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["CollectionItem-collection.write"];
+                "multipart/form-data": components["schemas"]["CollectionItem-collection.write"];
+            };
+        };
+        responses: {
+            /** @description CollectionItem resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["CollectionItem.jsonld-collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["CollectionItem.multipart-collection.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_collection_items_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CollectionItem identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CollectionItem resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["CollectionItem.jsonld-collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["CollectionItem.multipart-collection.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_collection_items_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CollectionItem identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CollectionItem resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_collection_items_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CollectionItem identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated CollectionItem resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["CollectionItem-collection.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description CollectionItem resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["CollectionItem.jsonld-collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["CollectionItem.multipart-collection.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
     api_countries_get_collection: {
         parameters: {
             query?: {
@@ -12808,6 +13647,255 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["Gender.jsonld-gender.read_entity.read_label"];
                     "multipart/form-data": components["schemas"]["Gender.multipart-gender.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_grading_companies_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description GradingCompany name */
+                name?: string;
+                /** @description GradingCompany name */
+                "name[]"?: string[];
+                /** @description GradingCompany order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description GradingCompany order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description GradingCompany order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description GradingCompany order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description GradingCompany collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["GradingCompany.jsonld-grading_company.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["GradingCompany.multipart-grading_company.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_grading_companies_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new GradingCompany resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["GradingCompany-grading_company.write"];
+                "multipart/form-data": components["schemas"]["GradingCompany-grading_company.write"];
+            };
+        };
+        responses: {
+            /** @description GradingCompany resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["GradingCompany.jsonld-grading_company.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["GradingCompany.multipart-grading_company.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_grading_companies_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description GradingCompany identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description GradingCompany resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["GradingCompany.jsonld-grading_company.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["GradingCompany.multipart-grading_company.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_grading_companies_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description GradingCompany identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description GradingCompany resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_grading_companies_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description GradingCompany identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated GradingCompany resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["GradingCompany-grading_company.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description GradingCompany resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["GradingCompany.jsonld-grading_company.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["GradingCompany.multipart-grading_company.read_entity.read"];
                 };
             };
             /** @description Invalid input */
@@ -17642,6 +18730,271 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["VideoGameSupport.jsonld-video_game_support.read_entity.read_label"];
                     "multipart/form-data": components["schemas"]["VideoGameSupport.multipart-video_game_support.read_entity.read_label"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_wishlist_items_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description WishlistItem card */
+                card?: string;
+                /** @description WishlistItem card */
+                "card[]"?: string[];
+                /** @description WishlistItem rarity */
+                rarity?: string;
+                /** @description WishlistItem rarity */
+                "rarity[]"?: string[];
+                /** @description WishlistItem extension */
+                extension?: string;
+                /** @description WishlistItem extension */
+                "extension[]"?: string[];
+                /** @description WishlistItem owner */
+                owner?: string;
+                /** @description WishlistItem owner */
+                "owner[]"?: string[];
+                /** @description WishlistItem order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description WishlistItem order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description WishlistItem order[quantity] */
+                "order[quantity]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description WishlistItem order[quantity] */
+                "order[quantity][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description WishlistItem order[updatedAt] */
+                "order[updatedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description WishlistItem order[updatedAt] */
+                "order[updatedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description WishlistItem collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["WishlistItem.jsonld-collection.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["WishlistItem.multipart-collection.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_wishlist_items_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new WishlistItem resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["WishlistItem-collection.write"];
+                "multipart/form-data": components["schemas"]["WishlistItem-collection.write"];
+            };
+        };
+        responses: {
+            /** @description WishlistItem resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["WishlistItem.jsonld-collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["WishlistItem.multipart-collection.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_wishlist_items_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description WishlistItem identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description WishlistItem resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["WishlistItem.jsonld-collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["WishlistItem.multipart-collection.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_wishlist_items_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description WishlistItem identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description WishlistItem resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_wishlist_items_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description WishlistItem identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated WishlistItem resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["WishlistItem-collection.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description WishlistItem resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["WishlistItem.jsonld-collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["WishlistItem.multipart-collection.read_entity.read"];
                 };
             };
             /** @description Invalid input */
