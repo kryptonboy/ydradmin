@@ -61,6 +61,7 @@ const account = {
   roles: ['ROLE_USER'],
   commentsCount: 2,
   banned: false,
+  emailVerified: true,
 }
 
 describe('AccountModal', () => {
@@ -112,6 +113,7 @@ describe('AccountModal', () => {
       email: 'nouveau@example.com',
       roles: ['ROLE_ADMIN'],
       banned: false,
+      emailVerified: true,
       plainPassword: 'Motdepasse1!',
     })
   })
@@ -131,6 +133,7 @@ describe('AccountModal', () => {
       email: 'joueur@example.com',
       roles: ['ROLE_USER'],
       banned: false,
+      emailVerified: true,
     })
   })
 
@@ -144,6 +147,20 @@ describe('AccountModal', () => {
     await settle()
 
     expect(JSON.parse(writes(fetchMock, 'PATCH')[0][1].body).banned).toBe(true)
+  })
+
+  it("confirme l'adresse e-mail à la main", async () => {
+    const fetchMock = mockFetch({})
+    const wrapper = mountComponent(AccountModal, { account: { ...account, emailVerified: false } })
+    await settle()
+
+    const box = wrapper.find('#accountModal-emailVerified')
+    expect((box.element as HTMLInputElement).checked).toBe(false)
+    await box.setValue(true)
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    expect(JSON.parse(writes(fetchMock, 'PATCH')[0][1].body).emailVerified).toBe(true)
   })
 
   it('verrouille le rôle de son propre compte', async () => {

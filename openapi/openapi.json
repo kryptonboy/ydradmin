@@ -43202,6 +43202,11 @@
                         "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
                         "default": false,
                         "type": "boolean"
+                    },
+                    "emailVerified": {
+                        "description": "An account created through the registration has to confirm its email address before it can log in. Accounts\ncreated otherwise (by an administrator, by the console) are verified from the start.",
+                        "default": true,
+                        "type": "boolean"
                     }
                 }
             },
@@ -43247,6 +43252,11 @@
                         "description": "A banned account can no longer log in nor use its tokens. Its comments are left as they are.",
                         "default": false,
                         "type": "boolean"
+                    },
+                    "emailVerified": {
+                        "description": "An account created through the registration has to confirm its email address before it can log in. Accounts\ncreated otherwise (by an administrator, by the console) are verified from the start.",
+                        "default": true,
+                        "type": "boolean"
                     }
                 }
             },
@@ -43290,6 +43300,11 @@
                             "collectionPublic": {
                                 "description": "Whether the collection and the wishlist can be read by the other players (private by default).",
                                 "default": false,
+                                "type": "boolean"
+                            },
+                            "emailVerified": {
+                                "description": "An account created through the registration has to confirm its email address before it can log in. Accounts\ncreated otherwise (by an administrator, by the console) are verified from the start.",
+                                "default": true,
                                 "type": "boolean"
                             },
                             "commentsCount": {
@@ -43347,6 +43362,11 @@
                                 "default": false,
                                 "type": "boolean"
                             },
+                            "emailVerified": {
+                                "description": "An account created through the registration has to confirm its email address before it can log in. Accounts\ncreated otherwise (by an administrator, by the console) are verified from the start.",
+                                "default": true,
+                                "type": "boolean"
+                            },
                             "commentsCount": {
                                 "readOnly": true,
                                 "description": "Number of comments posted by the user.",
@@ -43397,6 +43417,11 @@
                         "default": false,
                         "type": "boolean"
                     },
+                    "emailVerified": {
+                        "description": "An account created through the registration has to confirm its email address before it can log in. Accounts\ncreated otherwise (by an administrator, by the console) are verified from the start.",
+                        "default": true,
+                        "type": "boolean"
+                    },
                     "commentsCount": {
                         "readOnly": true,
                         "description": "Number of comments posted by the user.",
@@ -43443,6 +43468,11 @@
                     "collectionPublic": {
                         "description": "Whether the collection and the wishlist can be read by the other players (private by default).",
                         "default": false,
+                        "type": "boolean"
+                    },
+                    "emailVerified": {
+                        "description": "An account created through the registration has to confirm its email address before it can log in. Accounts\ncreated otherwise (by an administrator, by the console) are verified from the start.",
+                        "default": true,
                         "type": "boolean"
                     },
                     "commentsCount": {

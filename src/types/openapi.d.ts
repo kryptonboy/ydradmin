@@ -6295,6 +6295,12 @@ export interface components {
              * @default false
              */
             banned: boolean;
+            /**
+             * @description An account created through the registration has to confirm its email address before it can log in. Accounts
+             *     created otherwise (by an administrator, by the console) are verified from the start.
+             * @default true
+             */
+            emailVerified: boolean;
         };
         "User-user.write_validation.Default_create": {
             /** Format: email */
@@ -6309,6 +6315,12 @@ export interface components {
              * @default false
              */
             banned: boolean;
+            /**
+             * @description An account created through the registration has to confirm its email address before it can log in. Accounts
+             *     created otherwise (by an administrator, by the console) are verified from the start.
+             * @default true
+             */
+            emailVerified: boolean;
         };
         "User.jsonld-user.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
@@ -6327,6 +6339,12 @@ export interface components {
              * @default false
              */
             collectionPublic: boolean;
+            /**
+             * @description An account created through the registration has to confirm its email address before it can log in. Accounts
+             *     created otherwise (by an administrator, by the console) are verified from the start.
+             * @default true
+             */
+            emailVerified: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -6347,6 +6365,12 @@ export interface components {
              * @default false
              */
             collectionPublic: boolean;
+            /**
+             * @description An account created through the registration has to confirm its email address before it can log in. Accounts
+             *     created otherwise (by an administrator, by the console) are verified from the start.
+             * @default true
+             */
+            emailVerified: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -6367,6 +6391,12 @@ export interface components {
              * @default false
              */
             collectionPublic: boolean;
+            /**
+             * @description An account created through the registration has to confirm its email address before it can log in. Accounts
+             *     created otherwise (by an administrator, by the console) are verified from the start.
+             * @default true
+             */
+            emailVerified: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };
@@ -6387,6 +6417,12 @@ export interface components {
              * @default false
              */
             collectionPublic: boolean;
+            /**
+             * @description An account created through the registration has to confirm its email address before it can log in. Accounts
+             *     created otherwise (by an administrator, by the console) are verified from the start.
+             * @default true
+             */
+            emailVerified: boolean;
             /** @description Number of comments posted by the user. */
             readonly commentsCount?: number;
         };

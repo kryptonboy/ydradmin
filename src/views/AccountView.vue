@@ -58,9 +58,9 @@ async function toggleBan(account: Account) {
   }
 }
 
-// L'API refuse l'impersonation de soi-même, d'un administrateur ou d'un compte banni
+// L'API refuse l'impersonation de soi-même, d'un administrateur, d'un compte banni ou non confirmé
 const canImpersonate = (account: Account) =>
-  !isSelf(account) && !isAdmin(account) && !account.banned
+  !isSelf(account) && !isAdmin(account) && !account.banned && account.emailVerified
 
 function openImpersonation(account: Account) {
   impersonated.value = account
@@ -154,13 +154,14 @@ function openModal(account: Account | null = null) {
         <th scope="col">Rôle</th>
         <th scope="col">Commentaires</th>
         <th scope="col">Collection</th>
+        <th scope="col">E-mail</th>
         <th scope="col">Statut</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody v-if="loading">
       <tr>
-        <td colspan="8" class="text-center align-middle">
+        <td colspan="9" class="text-center align-middle">
           <div class="spinner-border spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -181,6 +182,14 @@ function openModal(account: Account | null = null) {
         <td>
           <span class="badge" :class="account.collectionPublic ? 'bg-info' : 'bg-secondary'">
             {{ account.collectionPublic ? 'Publique' : 'Privée' }}
+          </span>
+        </td>
+        <td>
+          <span
+            class="badge"
+            :class="account.emailVerified ? 'bg-success' : 'bg-warning text-dark'"
+          >
+            {{ account.emailVerified ? 'Confirmé' : 'En attente' }}
           </span>
         </td>
         <td>
@@ -224,14 +233,14 @@ function openModal(account: Account | null = null) {
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="8">
+        <td colspan="9">
           <em>Aucun utilisateur</em>
         </td>
       </tr>
     </tbody>
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
-        <td colspan="8" class="text-center pt-3 pb-0">
+        <td colspan="9" class="text-center pt-3 pb-0">
           <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
