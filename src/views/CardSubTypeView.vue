@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BooleanToIcon from '@/components/BooleanToIcon.vue'
 import SortableHeader from '@/components/SortableHeader.vue'
 import { useListView } from '@/composables/useListView'
 import { useRemoveAction } from '@/composables/useRemoveAction'
@@ -136,12 +137,13 @@ filterCardSubTypes()
         <SortableHeader field="name" :sort="sort" @sort="setSort">Nom</SortableHeader>
         <SortableHeader field="position" :sort="sort" @sort="setSort">Position</SortableHeader>
         <th scope="col">Type de carte</th>
+        <th scope="col">Extra Deck</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody v-if="loading">
       <tr>
-        <td colspan="5" class="text-center align-middle">
+        <td colspan="6" class="text-center align-middle">
           <div class="spinner-border spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -154,6 +156,7 @@ filterCardSubTypes()
         <td>{{ cardSubType.name }}</td>
         <td>{{ cardSubType.position }}</td>
         <td>{{ cardSubType.cardType?.name }}</td>
+        <td><BooleanToIcon :field="cardSubType.extraDeck" /></td>
         <td class="actions">
           <button class="btn btn-primary" @click="openCardSubTypeModal(cardSubType)">
             <font-awesome-icon :icon="['fa', 'pencil']" />
@@ -171,14 +174,14 @@ filterCardSubTypes()
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="5" class="text-center align-middle">
+        <td colspan="6" class="text-center align-middle">
           <em>Aucun sous-type de carte</em>
         </td>
       </tr>
     </tbody>
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
-        <td colspan="5" class="text-center pt-3 pb-0">
+        <td colspan="6" class="text-center pt-3 pb-0">
           <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"

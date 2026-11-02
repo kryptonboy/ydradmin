@@ -287,6 +287,9 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
             </ul>
           </li>
           <li class="nav-item">
+            <AppLink to="/decks" class="nav-link" activeClass="active">Decks</AppLink>
+          </li>
+          <li class="nav-item">
             <AppLink to="/users" class="nav-link" activeClass="active">Utilisateurs</AppLink>
           </li>
         </ul>

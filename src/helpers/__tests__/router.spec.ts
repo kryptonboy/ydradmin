@@ -57,6 +57,7 @@ describe('routes avec identifiant numérique', () => {
     expect(matchedPath('/content/actuality_comment')).toBe('/content/actuality_comment')
     expect(matchedPath('/content/smiley')).toBe('/content/smiley')
     expect(matchedPath('/users')).toBe('/users')
+    expect(matchedPath('/decks')).toBe('/decks')
   })
 
   it('refuse un identifiant non numérique', () => {

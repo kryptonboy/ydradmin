@@ -1008,6 +1008,118 @@ export interface paths {
         patch: operations["api_countries_id_patch"];
         trace?: never;
     };
+    "/api/decks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Deck resources.
+         * @description Retrieves the collection of Deck resources.
+         */
+        get: operations["api_decks_get_collection"];
+        put?: never;
+        /**
+         * Creates a Deck resource.
+         * @description Creates a Deck resource.
+         */
+        post: operations["api_decks_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/decks/import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Creates a Deck resource.
+         * @description Creates a Deck resource.
+         */
+        post: operations["deck_import"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/decks/validate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Creates a Deck resource.
+         * @description Creates a Deck resource.
+         */
+        post: operations["deck_validate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/decks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Deck resource.
+         * @description Retrieves a Deck resource.
+         */
+        get: operations["api_decks_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the Deck resource.
+         * @description Removes the Deck resource.
+         */
+        delete: operations["api_decks_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the Deck resource.
+         * @description Updates the Deck resource.
+         */
+        patch: operations["api_decks_id_patch"];
+        trace?: never;
+    };
+    "/api/decks/{id}/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Deck resource.
+         * @description Retrieves a Deck resource.
+         */
+        get: operations["deck_export"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/episodes": {
         parameters: {
             query?: never;
@@ -2421,6 +2533,10 @@ export interface components {
             name?: string;
             readonly id?: number;
         };
+        "AbstractCard.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name?: string;
+            readonly id?: number;
+        };
         "AbstractCard.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
@@ -2477,6 +2593,10 @@ export interface components {
             readonly id?: number;
         };
         "AbstractCard.multipart-chapter_character.read_appearance.read_entity.read_label": {
+            name?: string;
+            readonly id?: number;
+        };
+        "AbstractCard.multipart-deck.read_entity.read": {
             name?: string;
             readonly id?: number;
         };
@@ -3184,6 +3304,9 @@ export interface components {
             rarities?: components["schemas"]["Rarity.jsonld-card.read_entity.read"][];
             readonly id?: number;
         };
+        "Card.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
         "Card.multipart-card.read_entity.read": {
             name: string;
             description?: string | null;
@@ -3196,6 +3319,9 @@ export interface components {
             abstractCard: components["schemas"]["AbstractCard.multipart-card.read_entity.read"];
             extension: components["schemas"]["Extension.multipart-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.multipart-card.read_entity.read"][];
+            readonly id?: number;
+        };
+        "Card.multipart-deck.read_entity.read": {
             readonly id?: number;
         };
         "CardGroup-card_group.write": {
@@ -3244,6 +3370,11 @@ export interface components {
              */
             icon?: string | null;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             position: number;
             /**
              * Format: iri-reference
@@ -3259,6 +3390,11 @@ export interface components {
              */
             icon?: string | null;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             position?: number;
             /**
              * Format: iri-reference
@@ -3269,12 +3405,22 @@ export interface components {
         "CardSubType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             cardType: components["schemas"]["CardType.jsonld-abstract_card.read_entity.read"];
             readonly id?: number;
         };
         "CardSubType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             cardType: components["schemas"]["CardType.jsonld-card.read_entity.read"];
             readonly id?: number;
         };
@@ -3282,6 +3428,11 @@ export interface components {
             name: string;
             icon?: components["schemas"]["MediaObject.jsonld-card_sub_type.read_entity.read"] | null;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             position: number;
             cardType: components["schemas"]["CardType.jsonld-card_sub_type.read_entity.read"];
             readonly id?: number;
@@ -3289,12 +3440,22 @@ export interface components {
         "CardSubType.multipart-abstract_card.read_entity.read": {
             name: string;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             cardType: components["schemas"]["CardType.multipart-abstract_card.read_entity.read"];
             readonly id?: number;
         };
         "CardSubType.multipart-card.read_entity.read": {
             name: string;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             cardType: components["schemas"]["CardType.multipart-card.read_entity.read"];
             readonly id?: number;
         };
@@ -3302,6 +3463,11 @@ export interface components {
             name: string;
             icon?: components["schemas"]["MediaObject.multipart-card_sub_type.read_entity.read"] | null;
             cssClass?: string | null;
+            /**
+             * @description Cards of this sub type (Fusion, Synchro, Xyz, Link) are played from the Extra Deck, not from the Main Deck.
+             * @default false
+             */
+            extraDeck: boolean;
             position: number;
             cardType: components["schemas"]["CardType.multipart-card_sub_type.read_entity.read"];
             readonly id?: number;
@@ -3893,6 +4059,337 @@ export interface components {
             name: string;
             readonly id?: number;
         };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck-deck.write": {
+            /** @default  */
+            name: string;
+            description?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gameFormat?: string | null;
+            /**
+             * @description A public deck can be read by everyone; a private one only by its owner.
+             * @default false
+             */
+            public: boolean;
+            /**
+             * @description Set by the moderators: a hidden deck is no longer shown publicly (its owner still sees it). Only an
+             *     administrator can change it.
+             * @default false
+             */
+            hidden: boolean;
+            /** @description Writing the cards replaces the whole list. */
+            cards?: components["schemas"]["DeckCard-deck.write"][];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck-deck.write.jsonMergePatch": {
+            /** @default  */
+            name: string;
+            description?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gameFormat?: string | null;
+            /**
+             * @description A public deck can be read by everyone; a private one only by its owner.
+             * @default false
+             */
+            public: boolean;
+            /**
+             * @description Set by the moderators: a hidden deck is no longer shown publicly (its owner still sees it). Only an
+             *     administrator can change it.
+             * @default false
+             */
+            hidden: boolean;
+            /** @description Writing the cards replaces the whole list. */
+            cards?: components["schemas"]["DeckCard-deck.write"][];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck-deck.write_validation.validate": {
+            /** @default  */
+            name: string;
+            description?: string | null;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            gameFormat?: string | null;
+            /**
+             * @description A public deck can be read by everyone; a private one only by its owner.
+             * @default false
+             */
+            public: boolean;
+            /**
+             * @description Set by the moderators: a hidden deck is no longer shown publicly (its owner still sees it). Only an
+             *     administrator can change it.
+             * @default false
+             */
+            hidden: boolean;
+            /** @description Writing the cards replaces the whole list. */
+            cards?: components["schemas"]["DeckCard-deck.write"][];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckExport.jsonld-deck_export.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description one line per card ("3 Name"), under the headings Main Deck, Extra Deck, Side Deck */
+            text?: string;
+            /** @description the .ydk file used by the simulators: one passcode per copy */
+            ydk?: string;
+            /** @description names of the cards left out of the .ydk because none of their prints has a passcode */
+            missingPasscode?: string[];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckExport.multipart-deck_export.read": {
+            /** @description one line per card ("3 Name"), under the headings Main Deck, Extra Deck, Side Deck */
+            text?: string;
+            /** @description the .ydk file used by the simulators: one passcode per copy */
+            ydk?: string;
+            /** @description names of the cards left out of the .ydk because none of their prints has a passcode */
+            missingPasscode?: string[];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckImport-deck_import.write": {
+            /**
+             * @description The content of the file or the pasted list.
+             * @default
+             */
+            content: string;
+            /**
+             * @description "ydk" or "text"; detected from the content when left empty.
+             * @enum {string|null}
+             */
+            format?: "ydk" | "text" | null;
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckImportResult.jsonld-deck_import.read": components["schemas"]["HydraItemBaseSchema"] & {
+            cards?: components["schemas"]["DeckImportLine.jsonld-deck_import.read"][];
+            /** @description names or passcodes that match no card */
+            unmatched?: string[];
+            /** @description adjustments made, e.g. a quantity brought back to 3 */
+            warnings?: string[];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckImportResult.multipart-deck_import.read": {
+            cards?: components["schemas"]["DeckImportLine.multipart-deck_import.read"][];
+            /** @description names or passcodes that match no card */
+            unmatched?: string[];
+            /** @description adjustments made, e.g. a quantity brought back to 3 */
+            warnings?: string[];
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckValidationReport.jsonld-deck_validation.read_validation.validate": components["schemas"]["HydraItemBaseSchema"] & {
+            valid?: boolean;
+            issues?: components["schemas"]["DeckIssue.jsonld-deck_validation.read"][];
+            /** @description the number of cards per section */
+            counts?: {
+                [key: string]: number;
+            };
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.DeckValidationReport.multipart-deck_validation.read_validation.validate": {
+            valid?: boolean;
+            issues?: components["schemas"]["DeckIssue.multipart-deck_validation.read"][];
+            /** @description the number of cards per section */
+            counts?: {
+                [key: string]: number;
+            };
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default  */
+            name: string;
+            description?: string | null;
+            gameFormat?: components["schemas"]["GameFormat.jsonld-deck.read_entity.read"] | null;
+            /**
+             * @description A public deck can be read by everyone; a private one only by its owner.
+             * @default false
+             */
+            public: boolean;
+            /**
+             * @description Set by the moderators: a hidden deck is no longer shown publicly (its owner still sees it). Only an
+             *     administrator can change it.
+             * @default false
+             */
+            hidden: boolean;
+            /** @description Writing the cards replaces the whole list. */
+            cards?: components["schemas"]["DeckCard.jsonld-deck.read_entity.read"][];
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            /** @description Read only: the username of the owner (the account itself is never exposed). */
+            readonly author?: string | null;
+        };
+        /**
+         * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
+         *
+         *     A deck is private by default; a public deck is readable by everyone unless a moderator hides it. Saving never
+         *     requires a valid deck (a deck under construction is fine): the rules are checked by POST /api/decks/validate.
+         */
+        "Deck.multipart-deck.read_entity.read": {
+            /** @default  */
+            name: string;
+            description?: string | null;
+            gameFormat?: components["schemas"]["GameFormat.multipart-deck.read_entity.read"] | null;
+            /**
+             * @description A public deck can be read by everyone; a private one only by its owner.
+             * @default false
+             */
+            public: boolean;
+            /**
+             * @description Set by the moderators: a hidden deck is no longer shown publicly (its owner still sees it). Only an
+             *     administrator can change it.
+             * @default false
+             */
+            hidden: boolean;
+            /** @description Writing the cards replaces the whole list. */
+            cards?: components["schemas"]["DeckCard.multipart-deck.read_entity.read"][];
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            /** @description Read only: the username of the owner (the account itself is never exposed). */
+            readonly author?: string | null;
+        };
+        "DeckCard-deck.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            abstractCard: string;
+            /**
+             * Format: iri-reference
+             * @description The print of the card the player wants to see (optional): it has to be a print of the same card.
+             * @example https://example.com/
+             */
+            card?: string | null;
+            /**
+             * @default main
+             * @enum {string}
+             */
+            section: "main" | "extra" | "side";
+            /** @default 1 */
+            quantity: number;
+        };
+        "DeckCard.jsonld-deck.read_entity.read": {
+            abstractCard: components["schemas"]["AbstractCard.jsonld-deck.read_entity.read"];
+            /** @description The print of the card the player wants to see (optional): it has to be a print of the same card. */
+            card?: components["schemas"]["Card.jsonld-deck.read_entity.read"] | null;
+            /**
+             * @default main
+             * @enum {string}
+             */
+            section: "main" | "extra" | "side";
+            /** @default 1 */
+            quantity: number;
+            /** @description Read only: whether the card belongs in the Extra Deck (Fusion, Synchro, Xyz, Link). */
+            readonly extraDeck?: boolean;
+        };
+        "DeckCard.multipart-deck.read_entity.read": {
+            abstractCard: components["schemas"]["AbstractCard.multipart-deck.read_entity.read"];
+            /** @description The print of the card the player wants to see (optional): it has to be a print of the same card. */
+            card?: components["schemas"]["Card.multipart-deck.read_entity.read"] | null;
+            /**
+             * @default main
+             * @enum {string}
+             */
+            section: "main" | "extra" | "side";
+            /** @default 1 */
+            quantity: number;
+            /** @description Read only: whether the card belongs in the Extra Deck (Fusion, Synchro, Xyz, Link). */
+            readonly extraDeck?: boolean;
+        };
+        "DeckImportLine.jsonld-deck_import.read": {
+            /** @description the IRI of the card */
+            abstractCard?: string;
+            name?: string;
+            /** @description main, extra or side */
+            section?: string;
+            quantity?: number;
+        };
+        "DeckImportLine.multipart-deck_import.read": {
+            /** @description the IRI of the card */
+            abstractCard?: string;
+            name?: string;
+            /** @description main, extra or side */
+            section?: string;
+            quantity?: number;
+        };
+        "DeckIssue.jsonld-deck_validation.read": {
+            code?: string;
+            message?: string;
+            /** @description the section concerned (main, extra, side), when the issue is about one */
+            section?: string | null;
+            /** @description the id of the card concerned, when the issue is about one */
+            abstractCard?: number | null;
+        };
+        "DeckIssue.multipart-deck_validation.read": {
+            code?: string;
+            message?: string;
+            /** @description the section concerned (main, extra, side), when the issue is about one */
+            section?: string | null;
+            /** @description the id of the card concerned, when the issue is about one */
+            abstractCard?: number | null;
+        };
         "Episode-episode.write": {
             episodeNumber?: number | null;
             title: string;
@@ -4242,6 +4739,10 @@ export interface components {
             name?: string;
             description?: string;
         };
+        "GameFormat.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "GameFormat.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
@@ -4255,6 +4756,10 @@ export interface components {
             readonly id?: number;
         };
         "GameFormat.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
+        "GameFormat.multipart-deck.read_entity.read": {
             name: string;
             readonly id?: number;
         };
@@ -10351,6 +10856,430 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_decks_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Deck name */
+                name?: string;
+                /** @description Deck name */
+                "name[]"?: string[];
+                /** @description Deck gameFormat */
+                gameFormat?: string;
+                /** @description Deck gameFormat */
+                "gameFormat[]"?: string[];
+                /** @description Deck author */
+                author?: string;
+                /** @description Deck author */
+                "author[]"?: string[];
+                /** @description Deck public */
+                public?: string;
+                /** @description Deck public */
+                "public[]"?: string[];
+                /** @description Deck hidden */
+                hidden?: string;
+                /** @description Deck hidden */
+                "hidden[]"?: string[];
+                /** @description Deck order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Deck order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Deck order[name] */
+                "order[name]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Deck order[name] */
+                "order[name][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Deck order[updatedAt] */
+                "order[updatedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Deck order[updatedAt] */
+                "order[updatedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deck collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Deck.jsonld-deck.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Deck.multipart-deck.read_entity.read"][];
+                };
+            };
+        };
+    };
+    api_decks_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Deck resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Deck-deck.write"];
+                "multipart/form-data": components["schemas"]["Deck-deck.write"];
+            };
+        };
+        responses: {
+            /** @description Deck resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.jsonld-deck.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Deck.multipart-deck.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    deck_import: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Deck resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Deck.DeckImport-deck_import.write"];
+                "multipart/form-data": components["schemas"]["Deck.DeckImport-deck_import.write"];
+            };
+        };
+        responses: {
+            /** @description Deck resource created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.DeckImportResult.jsonld-deck_import.read"];
+                    "multipart/form-data": components["schemas"]["Deck.DeckImportResult.multipart-deck_import.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    deck_validate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new Deck resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["Deck-deck.write_validation.validate"];
+                "multipart/form-data": components["schemas"]["Deck-deck.write_validation.validate"];
+            };
+        };
+        responses: {
+            /** @description Deck resource created */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.DeckValidationReport.jsonld-deck_validation.read_validation.validate"];
+                    "multipart/form-data": components["schemas"]["Deck.DeckValidationReport.multipart-deck_validation.read_validation.validate"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_decks_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Deck identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deck resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.jsonld-deck.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Deck.multipart-deck.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_decks_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Deck identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deck resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_decks_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Deck identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated Deck resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["Deck-deck.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description Deck resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.jsonld-deck.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Deck.multipart-deck.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    deck_export: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Deck identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deck resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.DeckExport.jsonld-deck_export.read"];
+                    "multipart/form-data": components["schemas"]["Deck.DeckExport.multipart-deck_export.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

@@ -113,3 +113,6 @@ export type ApiActualityComment =
 // Comptes utilisateurs (administrateurs uniquement). Le mot de passe n'existe qu'en écriture.
 export type AccountInput = Schemas['User-user.write.jsonMergePatch']
 export type ApiAccount = Schemas['User.jsonld-user.read']
+
+export type DeckInput = Schemas['Deck-deck.write.jsonMergePatch']
+export type ApiDeck = Schemas['Deck.jsonld-deck.read_entity.read']
