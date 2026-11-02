@@ -26713,6 +26713,33 @@
                         "explode": true
                     },
                     {
+                        "name": "emailVerified",
+                        "in": "query",
+                        "description": "User emailVerified",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "emailVerified[]",
+                        "in": "query",
+                        "description": "User emailVerified",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "order[id]",
                         "in": "query",
                         "description": "User order[id]",

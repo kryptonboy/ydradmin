@@ -178,8 +178,11 @@ defineExpose({ showModal: () => modal.value?.show() })
         autocomplete="new-password"
       />
       <div class="form-text">
-        {{ isEdit ? 'Laisser vide pour ne pas le changer. ' : '' }}8 à 128 caractères avec
-        majuscule, minuscule, chiffre et caractère spécial.
+        {{
+          isEdit
+            ? 'Laisser vide pour ne pas le changer ; s’il change, le joueur est déconnecté et doit se reconnecter. '
+            : ''
+        }}8 à 128 caractères avec majuscule, minuscule, chiffre et caractère spécial.
       </div>
       <ErrorMessage name="plainPassword" class="text-danger small" />
     </div>

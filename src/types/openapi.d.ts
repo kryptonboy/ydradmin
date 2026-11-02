@@ -17781,6 +17781,10 @@ export interface operations {
                 banned?: string;
                 /** @description User banned */
                 "banned[]"?: string[];
+                /** @description User emailVerified */
+                emailVerified?: string;
+                /** @description User emailVerified */
+                "emailVerified[]"?: string[];
                 /** @description User order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description User order[id] */

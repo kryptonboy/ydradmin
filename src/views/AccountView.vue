@@ -36,6 +36,7 @@ const {
     username: null as string | null,
     email: null as string | null,
     banned: null as string | null,
+    emailVerified: null as string | null,
   }),
 })
 
@@ -126,6 +127,14 @@ function openModal(account: Account | null = null) {
           <option :value="null">Tous</option>
           <option value="false">Actifs</option>
           <option value="true">Bannis</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label for="account_emailVerified" class="form-label">E-mail</label>
+        <select class="form-select" id="account_emailVerified" v-model="filters.emailVerified">
+          <option :value="null">Tous</option>
+          <option value="true">Confirmés</option>
+          <option value="false">En attente</option>
         </select>
       </div>
       <div class="col-3 ms-auto d-flex flex-column gap-2">

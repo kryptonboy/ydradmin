@@ -205,6 +205,21 @@ describe('AccountView', () => {
     expect(wrapper.findAll('button[aria-label="Bannir"]')).toHaveLength(1)
   })
 
+  it('filtre les comptes dont l’e-mail est en attente', async () => {
+    const fetchMock = mockFetch({ member: [account], totalItems: 1 })
+    const wrapper = mountComponent(AccountView, {}, 1)
+    await settle()
+
+    await wrapper.find('#account_emailVerified').setValue('false')
+    const apply = wrapper.findAll('button').find((b) => b.text().includes('Appliquer'))
+    await apply?.trigger('click')
+    await settle()
+
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes('emailVerified=false'))).toBe(
+      true,
+    )
+  })
+
   it('bannit un compte après confirmation', async () => {
     vi.stubGlobal('confirm', vi.fn().mockReturnValue(true))
     const fetchMock = mockFetch({ member: [account], totalItems: 1 })
