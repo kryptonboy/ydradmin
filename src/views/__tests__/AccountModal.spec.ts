@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAuthStore } from '@/stores'
 import AccountView from '../AccountView.vue'
 import AccountModal from '../modals/AccountModal.vue'
+import ImpersonationModal from '../modals/ImpersonationModal.vue'
 
 const mounted: VueWrapper[] = []
 
@@ -199,5 +200,56 @@ describe('AccountView', () => {
     const call = writes(fetchMock, 'PATCH')[0]
     expect(String(call[0])).toMatch(/\/users\/7$/)
     expect(JSON.parse(call[1].body)).toEqual({ banned: true })
+  })
+})
+
+describe('Impersonation', () => {
+  it("n'est proposée ni pour soi, ni pour un administrateur, ni pour un compte banni", async () => {
+    mockFetch({
+      member: [
+        account,
+        { ...account, id: 1, '@id': '/api/users/1', username: 'moi' },
+        { ...account, id: 8, '@id': '/api/users/8', roles: ['ROLE_ADMIN'] },
+        { ...account, id: 9, '@id': '/api/users/9', banned: true },
+      ],
+      totalItems: 4,
+    })
+    const wrapper = mountComponent(AccountView, {}, 1)
+    await settle()
+
+    expect(wrapper.findAll('button[aria-label="Se connecter en tant que"]')).toHaveLength(1)
+  })
+
+  it("génère le jeton sans corps et l'affiche", async () => {
+    const fetchMock = mockFetch({
+      token: 'jwt.du.joueur',
+      expiresIn: 900,
+      user: { id: 7, username: 'joueur' },
+    })
+    const wrapper = mountComponent(ImpersonationModal, { account })
+    await settle()
+
+    const generate = wrapper.findAll('button').find((b) => b.text().includes('Générer le jeton'))
+    await generate?.trigger('click')
+    await settle()
+
+    const call = writes(fetchMock, 'POST')[0]
+    expect(String(call[0])).toMatch(/\/users\/7\/impersonate$/)
+    expect(call[1].body).toBeUndefined()
+    expect((wrapper.find('textarea').element as HTMLTextAreaElement).value).toBe('jwt.du.joueur')
+    expect(wrapper.text()).toContain('15 minutes')
+  })
+
+  it("affiche le refus 422 de l'API", async () => {
+    mockFetch({ error: 'Impossible de se connecter en tant que ce compte.' }, 422)
+    const wrapper = mountComponent(ImpersonationModal, { account })
+    await settle()
+
+    const generate = wrapper.findAll('button').find((b) => b.text().includes('Générer le jeton'))
+    await generate?.trigger('click')
+    await settle()
+
+    expect(wrapper.text()).toContain('Impossible de se connecter en tant que ce compte.')
+    expect(wrapper.find('textarea').exists()).toBe(false)
   })
 })

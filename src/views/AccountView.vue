@@ -8,9 +8,12 @@ import { useAccountsStore, useAuthStore } from '@/stores'
 import type { Account } from '@/types/models/Account'
 import { ref } from 'vue'
 import AccountModal from './modals/AccountModal.vue'
+import ImpersonationModal from './modals/ImpersonationModal.vue'
 
 const modalRef = ref<InstanceType<typeof AccountModal> | null>(null)
 const selected = ref<Account | null>(null)
+const impersonationRef = ref<InstanceType<typeof ImpersonationModal> | null>(null)
+const impersonated = ref<Account | null>(null)
 const store = useAccountsStore()
 const auth = useAuthStore()
 
@@ -53,6 +56,15 @@ async function toggleBan(account: Account) {
   } catch (err) {
     banError.value = getErrorMessage(err)
   }
+}
+
+// L'API refuse l'impersonation de soi-même, d'un administrateur ou d'un compte banni
+const canImpersonate = (account: Account) =>
+  !isSelf(account) && !isAdmin(account) && !account.banned
+
+function openImpersonation(account: Account) {
+  impersonated.value = account
+  impersonationRef.value?.showModal()
 }
 
 function openModal(account: Account | null = null) {
@@ -175,6 +187,15 @@ function openModal(account: Account | null = null) {
             <font-awesome-icon :icon="['fa', 'pencil']" />
           </button>
           <button
+            v-if="canImpersonate(account)"
+            class="btn btn-outline-secondary ms-1"
+            aria-label="Se connecter en tant que"
+            title="Se connecter en tant que"
+            @click="openImpersonation(account)"
+          >
+            <font-awesome-icon :icon="['fa', 'key']" />
+          </button>
+          <button
             v-if="!isSelf(account)"
             class="btn btn-outline-secondary ms-1"
             :aria-label="account.banned ? 'Rétablir' : 'Bannir'"
@@ -214,5 +235,6 @@ function openModal(account: Account | null = null) {
       </tr>
     </tfoot>
   </table>
+  <ImpersonationModal ref="impersonationRef" :account="impersonated" />
   <AccountModal ref="modalRef" :account="selected ?? undefined" @saved="reload" />
 </template>

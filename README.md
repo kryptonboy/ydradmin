@@ -54,7 +54,8 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Page `/users` (ressource `users`, administrateurs uniquement) : liste filtrable par nom et email, création, modification, suppression. Le mot de passe n'est jamais lu ; à l'écriture (`plainPassword`) il est obligatoire à la création et, laissé vide à la modification, il reste inchangé.
 - Rôles : `ROLE_USER` ou `ROLE_ADMIN` uniquement. L'API refuse qu'un administrateur retire son propre rôle (422) ou supprime son propre compte (403) : l'interface verrouille le rôle de son compte et masque sa suppression. Un compte qui a des commentaires renvoie un 409 à la suppression : supprimer d'abord ses commentaires.
 - Bannissement : champ `banned` (modale ou bouton « Bannir » avec confirmation dans la liste, filtre Statut). Un compte banni ne peut plus se connecter ; ses commentaires restent, à masquer via la modération. Impossible de bannir son propre compte (verrouillé dans l’interface, 422 côté API).
-- Le modèle s'appelle `Account` (le type `User` désigne l'utilisateur connecté, lu sur `/me`).
+- Impersonation : le bouton clé « Se connecter en tant que » (masqué pour soi, les administrateurs et les comptes bannis) génère via `POST /users/{id}/impersonate` un jeton du joueur valable 15 minutes, affiché dans une modale avec un bouton Copier. L'admin garde sa propre session (ses écrans exigent ROLE_ADMIN et ne servent pas sous l'identité d'un joueur) : le jeton sert à tester le site public. Il n'est jamais stocké, il disparaît à la fermeture de la modale.
+& (le type `User` désigne l'utilisateur connecté, lu sur `/me`).
 
 ## Decks
 

@@ -36,6 +36,7 @@ export function createApiError(body: unknown, status: number, statusText: string
     data.message ||
     (typeof data['hydra:description'] === 'string' ? data['hydra:description'] : '') ||
     data.description ||
+    (typeof data.error === 'string' ? data.error : '') ||
     data.title ||
     statusText ||
     `Erreur ${status}`
