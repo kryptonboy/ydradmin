@@ -67,6 +67,20 @@ export function createFetchWrapper(authState: AuthState) {
     put: request('PUT'),
     delete: request('DELETE'),
     patch: request('PATCH'),
+    /** Télécharge un fichier (ex. PDF) avec l'authentification : un lien direct n'enverrait pas le jeton. */
+    getBlob: async (url: string): Promise<Blob> => {
+      const response = await fetch(url, { headers: authHeader(url) })
+      if (!response.ok) {
+        if (response.status === 401 && authState.token) authState.logout()
+        const text = await response.text()
+        let data: unknown = null
+        try {
+          data = text ? JSON.parse(text) : null
+        } catch {}
+        return Promise.reject(createApiError(data, response.status, response.statusText))
+      }
+      return response.blob()
+    },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     upload: async <T = any>(url: string, formData: FormData): Promise<T> => {
       const headers: HeadersInit = {

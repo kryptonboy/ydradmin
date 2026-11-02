@@ -41,6 +41,7 @@ function toForm(values: CardSubType): CardSubTypeForm {
     name: values.name,
     cssClass: values.cssClass,
     position: values.position,
+    extraDeck: !!values.extraDeck,
     cardType: values.cardType['@id'],
   }
 }
@@ -88,6 +89,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       name: props.cardSubType?.name ?? '',
       cssClass: props.cardSubType?.cssClass ?? '',
       position: props.cardSubType?.position ?? 0,
+      extraDeck: props.cardSubType?.extraDeck ?? false,
       cardType: props.cardSubType?.cardType ?? null,
     }"
     :form-key="props.cardSubType?.id ?? 'new'"
@@ -110,6 +112,18 @@ defineExpose({ showModal: () => modal.value?.show() })
       <label class="form-label" for="cardSubTypeModal-position">Position</label>
       <Field name="position" id="cardSubTypeModal-position" type="number" class="form-control" />
       <ErrorMessage name="position" class="text-danger small" />
+    </div>
+    <div class="form-check mb-3">
+      <Field
+        name="extraDeck"
+        id="cardSubTypeModal-extraDeck"
+        type="checkbox"
+        class="form-check-input"
+        :value="true"
+        :unchecked-value="false"
+      />
+      <label class="form-check-label" for="cardSubTypeModal-extraDeck">Extra Deck</label>
+      <div class="form-text">Les cartes de ce sous-type vont dans l'Extra Deck.</div>
     </div>
     <div class="mb-3">
       <Field name="cardType" v-slot="{ field }">

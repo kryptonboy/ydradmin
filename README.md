@@ -56,6 +56,13 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Bannissement : champ `banned` (modale ou bouton « Bannir » avec confirmation dans la liste, filtre Statut). Un compte banni ne peut plus se connecter ; ses commentaires restent, à masquer via la modération. Impossible de bannir son propre compte (verrouillé dans l’interface, 422 côté API).
 - Le modèle s'appelle `Account` (le type `User` désigne l'utilisateur connecté, lu sur `/me`).
 
+## Decks
+
+- Page de modération `/decks` (ressource `decks`) : liste filtrable (nom, auteur, format, public, masqué), résumé des cartes par section, bascule masquer/afficher (PATCH `{hidden}` seul : le reste du deck appartient au joueur), suppression, et feuille de tournoi PDF.
+- Le PDF (`/decks/{id}/sheet`) exige le jeton : il est téléchargé via `fetchWrapper.getBlob` puis ouvert dans un nouvel onglet (un lien direct n'enverrait pas l'authentification).
+- Le sous-type de carte a un indicateur `extraDeck` (Fusion, Synchro, Xyz, Lien) qui sert à ranger les cartes dans l'Extra Deck.
+- Les règles de validation viennent des formats de jeu, groupes de cartes, restrictions (limites 0/1/2 par format) et des formats liés aux extensions : tout se saisit dans les pages « Formats de jeu », « Restrictions » et la modale d'extension.
+
 ## Animés et mangas
 
 - Pages sous `/anime_manga` : animés (et leur page « Structure » : saisons, arcs, liens arc/saison), mangas, épisodes, chapitres, personnages, genres, signes astrologiques. Le contrat est décrit dans `../newkryproject/docs/anime-manga.md`.
