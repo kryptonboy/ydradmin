@@ -59,7 +59,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 ## Decks
 
 - Page de modération `/decks` (ressource `decks`) : liste filtrable (nom, auteur, format, public, masqué), résumé des cartes par section, bascule masquer/afficher (PATCH `{hidden}` seul : le reste du deck appartient au joueur), suppression, et feuille de tournoi PDF.
-- Le PDF (`/decks/{id}/sheet`) exige le jeton : il est téléchargé via `fetchWrapper.getBlob` puis ouvert dans un nouvel onglet (un lien direct n'enverrait pas l'authentification).
+- Trois PDF par deck, pour contrôle : feuille de tournoi (`sheet`, en-tête facultatif prénom/nom/pays/COSSY saisi dans le panneau au-dessus de la liste), liste simple (`list`) et planche de proxies (`proxies`). Chacun exige le jeton : il est téléchargé via `fetchWrapper.getBlob` puis ouvert dans un nouvel onglet (un lien direct n'enverrait pas l'authentification).
 - Le sous-type de carte a un indicateur `extraDeck` (Fusion, Synchro, Xyz, Lien) qui sert à ranger les cartes dans l'Extra Deck.
 - Les règles de validation viennent des formats de jeu, groupes de cartes, restrictions (limites 0/1/2 par format) et des formats liés aux extensions : tout se saisit dans les pages « Formats de jeu », « Restrictions » et la modale d'extension.
 

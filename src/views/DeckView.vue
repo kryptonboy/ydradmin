@@ -69,12 +69,24 @@ async function toggleHidden(deck: Deck) {
   }
 }
 
-/** Ouvre la feuille de tournoi PDF du deck (téléchargée avec le jeton, un lien direct ne passerait pas) */
-async function openSheet(deck: Deck) {
+type PdfKind = 'sheet' | 'list' | 'proxies'
+
+// En-tête facultatif de la feuille de tournoi (transmis en query string)
+const sheetHeader = ref({ firstName: '', lastName: '', country: '', cossyId: '' })
+
+/** Ouvre un PDF du deck (téléchargé avec le jeton : un lien direct ne passerait pas) */
+async function openPdf(deck: Deck, kind: PdfKind) {
   actionError.value = null
   try {
+    const query = new URLSearchParams()
+    if (kind === 'sheet') {
+      for (const [key, value] of Object.entries(sheetHeader.value)) {
+        if (value.trim()) query.set(key, value.trim())
+      }
+    }
+    const suffix = query.size ? `?${query}` : ''
     const blob = await createFetchWrapper(useAuthStore()).getBlob(
-      `${import.meta.env.VITE_API_URL}/decks/${deck.id}/sheet`,
+      `${import.meta.env.VITE_API_URL}/decks/${deck.id}/${kind}${suffix}`,
     )
     const url = URL.createObjectURL(blob)
     window.open(url, '_blank')
@@ -165,6 +177,28 @@ async function openSheet(deck: Deck) {
       </div>
     </div>
   </div>
+  <details class="bg-light p-2 my-2">
+    <summary>En-tête de la feuille de tournoi (facultatif)</summary>
+    <div class="row g-2 mt-1">
+      <div class="col-3">
+        <label for="sheet_firstName" class="form-label">Prénom</label>
+        <input id="sheet_firstName" class="form-control" v-model="sheetHeader.firstName" />
+      </div>
+      <div class="col-3">
+        <label for="sheet_lastName" class="form-label">Nom</label>
+        <input id="sheet_lastName" class="form-control" v-model="sheetHeader.lastName" />
+      </div>
+      <div class="col-3">
+        <label for="sheet_country" class="form-label">Pays</label>
+        <input id="sheet_country" class="form-control" v-model="sheetHeader.country" />
+      </div>
+      <div class="col-3">
+        <label for="sheet_cossyId" class="form-label">Identifiant COSSY</label>
+        <input id="sheet_cossyId" class="form-control" v-model="sheetHeader.cossyId" />
+      </div>
+    </div>
+    <div class="form-text">Utilisé par le bouton « Feuille PDF » de chaque deck.</div>
+  </details>
   <div v-if="removeError || actionError" class="alert alert-danger" role="alert">
     {{ removeError ?? actionError }}
   </div>
@@ -222,9 +256,25 @@ async function openSheet(deck: Deck) {
             class="btn btn-outline-secondary ms-1"
             aria-label="Feuille PDF"
             title="Feuille de tournoi (PDF)"
-            @click="openSheet(deck)"
+            @click="openPdf(deck, 'sheet')"
           >
             <font-awesome-icon :icon="['fa', 'file-pdf']" />
+          </button>
+          <button
+            class="btn btn-outline-secondary ms-1"
+            aria-label="Liste PDF"
+            title="Liste simple (PDF)"
+            @click="openPdf(deck, 'list')"
+          >
+            <font-awesome-icon :icon="['fa', 'list-ul']" />
+          </button>
+          <button
+            class="btn btn-outline-secondary ms-1"
+            aria-label="Proxies PDF"
+            title="Planche de proxies (PDF)"
+            @click="openPdf(deck, 'proxies')"
+          >
+            <font-awesome-icon :icon="['fa', 'images']" />
           </button>
           <button
             class="btn btn-outline-danger ms-1"

@@ -151,4 +151,34 @@ describe('DeckView', () => {
     expect(fetchMock.mock.calls.some(([url]) => String(url).endsWith('/decks/3/sheet'))).toBe(true)
     expect(open).toHaveBeenCalledWith('blob:pdf', '_blank')
   })
+
+  it("télécharge la liste et les proxies, et transmet l'en-tête de la feuille", async () => {
+    vi.stubGlobal('open', vi.fn())
+    URL.createObjectURL = vi.fn().mockReturnValue('blob:pdf')
+    URL.revokeObjectURL = vi.fn()
+    const fetchMock = vi
+      .fn()
+      .mockImplementation((url: string) =>
+        /\/(sheet|list|proxies)/.test(String(url))
+          ? Promise.resolve(new Response('%PDF', { status: 200 }))
+          : Promise.resolve(new Response(JSON.stringify(routes['/decks']), { status: 200 })),
+      )
+    vi.stubGlobal('fetch', fetchMock)
+    const wrapper = mountComponent(DeckView)
+    await settle()
+    const urls = () => fetchMock.mock.calls.map(([url]) => String(url))
+
+    await wrapper.find('button[aria-label="Liste PDF"]').trigger('click')
+    await wrapper.find('button[aria-label="Proxies PDF"]').trigger('click')
+    await wrapper.find('#sheet_lastName').setValue('Dupont')
+    await wrapper.find('#sheet_cossyId').setValue('123')
+    await wrapper.find('button[aria-label="Feuille PDF"]').trigger('click')
+    await settle()
+
+    expect(urls().some((url) => url.endsWith('/decks/3/list'))).toBe(true)
+    expect(urls().some((url) => url.endsWith('/decks/3/proxies'))).toBe(true)
+    expect(urls().some((url) => url.endsWith('/decks/3/sheet?lastName=Dupont&cossyId=123'))).toBe(
+      true,
+    )
+  })
 })
