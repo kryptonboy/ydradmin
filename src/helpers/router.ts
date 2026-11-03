@@ -133,8 +133,13 @@ router.beforeEach(async (to) => {
     return '/login'
   }
 
+  // Un médiateur non administrateur n'a que la page Échanges (commodité : l'API reste l'autorité)
+  if (auth.user && auth.isMediatorOnly && to.path !== '/trades' && to.path !== '/login') {
+    return '/trades'
+  }
+
   if (to.path == '/login' && auth.user) {
-    return '/'
+    return auth.isMediatorOnly ? '/trades' : '/'
   }
 })
 

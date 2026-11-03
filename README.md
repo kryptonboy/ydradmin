@@ -78,6 +78,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Le bouton « Annuler l'échange » (avec confirmation) appelle `POST /trades/{id}/cancel`, visible tant que l'échange est en négociation ou accepté : les cartes mises de côté sont libérées et les listes de souhaits restaurées. Un 409 (déjà terminé, refusé ou annulé) s'affiche tel quel. L'administrateur ne peut ni accepter, ni refuser, ni confirmer à la place des joueurs.
 - Médiation : colonne et filtres « Médiation » (À traiter, Pris en charge) et « Médiateur » dans la liste. Dans le détail, « Prendre en charge » (demande en attente) et « Remettre dans la file » (échange pris en charge) ; le médiateur en charge peut aussi écrire dans la conversation (formulaire visible pour lui seul, l'API refuse les autres) et annuler l'échange. Un médiateur non administrateur ne voit que les échanges dont la médiation a été demandée.
 - Pour un échange terminé, le détail indique pour chaque joueur si l'échange a mis à jour sa collection (`proposerUpdatesCollection`, `recipientUpdatesCollection`).
+- Navigation du médiateur : un compte `ROLE_MEDIATOR` sans `ROLE_ADMIN` n'a que la page Échanges (menu réduit, redirection vers `/trades` après connexion et depuis toute autre route). Les rôles sont lus dans la charge utile du jeton : c'est une commodité d'affichage, l'API reste l'autorité.
 
 ## Animés et mangas
 

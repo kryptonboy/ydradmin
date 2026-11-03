@@ -27,7 +27,12 @@ const isVideoGameDropdownActive = computed(() => route.path.startsWith('/video_g
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul v-if="authStore.isMediatorOnly" class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <AppLink to="/trades" class="nav-link" activeClass="active">Échanges</AppLink>
+          </li>
+        </ul>
+        <ul v-else class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <AppLink to="/" class="nav-link" activeClass="active"> Accueil </AppLink>
           </li>

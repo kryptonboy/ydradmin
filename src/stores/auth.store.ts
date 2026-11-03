@@ -13,6 +13,23 @@ export const useAuthStore = defineStore('auth', {
     isAuthChecked: false,
     isChecking: false,
   }),
+  getters: {
+    /** Rôles du compte connecté, lus dans le jeton (affichage seulement : l'API fait foi) */
+    roles(state): string[] {
+      if (!state.token) return []
+      try {
+        const payload = state.token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')
+        const roles = JSON.parse(atob(payload)).roles
+        return Array.isArray(roles) ? roles : []
+      } catch {
+        return []
+      }
+    },
+    /** Médiateur sans être administrateur : l'admin se limite à la page Échanges */
+    isMediatorOnly(): boolean {
+      return this.roles.includes('ROLE_MEDIATOR') && !this.roles.includes('ROLE_ADMIN')
+    },
+  },
   actions: {
     async login(username: string, password: string) {
       const fetchWrapper = createFetchWrapper(this)
