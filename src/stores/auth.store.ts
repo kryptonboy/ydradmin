@@ -14,16 +14,9 @@ export const useAuthStore = defineStore('auth', {
     isChecking: false,
   }),
   getters: {
-    /** Rôles du compte connecté, lus dans le jeton (affichage seulement : l'API fait foi) */
+    /** Rôles du compte connecté, lus sur /me (affichage seulement : l'API fait foi) */
     roles(state): string[] {
-      if (!state.token) return []
-      try {
-        const payload = state.token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')
-        const roles = JSON.parse(atob(payload)).roles
-        return Array.isArray(roles) ? roles : []
-      } catch {
-        return []
-      }
+      return state.user?.roles ?? []
     },
     /** Médiateur sans être administrateur : l'admin se limite à la page Échanges */
     isMediatorOnly(): boolean {

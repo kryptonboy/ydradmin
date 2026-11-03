@@ -3,14 +3,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAuthStore } from '@/stores'
 import { router } from '../router'
 
-/** Jeton factice dont seule la charge utile (rôles) compte pour l'affichage. */
-const tokenWith = (roles: string[]) =>
-  `e30.${btoa(JSON.stringify({ roles })).replace(/=+$/, '')}.signature`
-
-function signIn(roles: string[]) {
+function signIn(roles?: string[]) {
   const auth = useAuthStore()
-  auth.token = tokenWith(roles)
-  auth.user = { id: 5, username: 'medi', avatar: '' }
+  auth.token = 'jeton'
+  auth.user = { id: 5, username: 'medi', avatar: '', roles }
   auth.isAuthChecked = true
   return auth
 }
@@ -24,15 +20,14 @@ beforeEach(async () => {
 })
 
 describe('accès restreint du médiateur', () => {
-  it('lit les rôles du jeton', () => {
+  it('lit les rôles renvoyés par /me', () => {
     expect(signIn(['ROLE_USER', 'ROLE_MEDIATOR']).isMediatorOnly).toBe(true)
     expect(signIn(['ROLE_ADMIN', 'ROLE_MEDIATOR', 'ROLE_USER']).isMediatorOnly).toBe(false)
     expect(signIn(['ROLE_USER']).isMediatorOnly).toBe(false)
   })
 
-  it('ignore un jeton illisible', () => {
-    const auth = signIn(['ROLE_MEDIATOR'])
-    auth.token = 'pas-un-jeton'
+  it('ne restreint rien quand /me ne renvoie pas de rôles', () => {
+    const auth = signIn(undefined)
     expect(auth.roles).toEqual([])
     expect(auth.isMediatorOnly).toBe(false)
   })
