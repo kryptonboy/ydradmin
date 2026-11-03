@@ -26548,6 +26548,1187 @@
                 }
             }
         },
+        "/api/trades": {
+            "get": {
+                "operationId": "api_trades_get_collection",
+                "tags": [
+                    "Trade"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Trade collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "Trade.jsonld-trade.read_collection.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Trade.jsonld-trade.read_collection.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Trade.multipart-trade.read_collection.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves the collection of Trade resources.",
+                "description": "Retrieves the collection of Trade resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Trade status",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "status[]",
+                        "in": "query",
+                        "description": "Trade status",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "proposer",
+                        "in": "query",
+                        "description": "Trade proposer",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "proposer[]",
+                        "in": "query",
+                        "description": "Trade proposer",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "recipient",
+                        "in": "query",
+                        "description": "Trade recipient",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "recipient[]",
+                        "in": "query",
+                        "description": "Trade recipient",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "Trade order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "Trade order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[updatedAt]",
+                        "in": "query",
+                        "description": "Trade order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[updatedAt][]",
+                        "in": "query",
+                        "description": "Trade order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            }
+        },
+        "/api/trades/{id}": {
+            "get": {
+                "operationId": "api_trades_id_get",
+                "tags": [
+                    "Trade"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Trade resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Trade.jsonld-trade.read_collection.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Trade.multipart-trade.read_collection.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a Trade resource.",
+                "description": "Retrieves a Trade resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Trade identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            }
+        },
+        "/api/trade_messages": {
+            "get": {
+                "operationId": "api_trade_messages_get_collection",
+                "tags": [
+                    "TradeMessage"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "TradeMessage collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "TradeMessage.jsonld-trade_message.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/TradeMessage.jsonld-trade_message.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TradeMessage.multipart-trade_message.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves the collection of TradeMessage resources.",
+                "description": "Retrieves the collection of TradeMessage resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "trade",
+                        "in": "query",
+                        "description": "TradeMessage trade",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "trade[]",
+                        "in": "query",
+                        "description": "TradeMessage trade",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "TradeMessage order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "TradeMessage order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[createdAt]",
+                        "in": "query",
+                        "description": "TradeMessage order[createdAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[createdAt][]",
+                        "in": "query",
+                        "description": "TradeMessage order[createdAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_trade_messages_post",
+                "tags": [
+                    "TradeMessage"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "TradeMessage resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeMessage.jsonld-trade_message.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeMessage.multipart-trade_message.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a TradeMessage resource.",
+                "description": "Creates a TradeMessage resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new TradeMessage resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TradeMessage-trade_message.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TradeMessage-trade_message.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/trade_messages/{id}": {
+            "get": {
+                "operationId": "api_trade_messages_id_get",
+                "tags": [
+                    "TradeMessage"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "TradeMessage resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeMessage.jsonld-trade_message.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeMessage.multipart-trade_message.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a TradeMessage resource.",
+                "description": "Retrieves a TradeMessage resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TradeMessage identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            }
+        },
+        "/api/trade_ratings": {
+            "get": {
+                "operationId": "api_trade_ratings_get_collection",
+                "tags": [
+                    "TradeRating"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "TradeRating collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "description": "TradeRating.jsonld-trade_rating.read_entity.read collection.",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/HydraCollectionBaseSchema"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
+                                            "properties": {
+                                                "member": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/TradeRating.jsonld-trade_rating.read_entity.read"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TradeRating.multipart-trade_rating.read_entity.read"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves the collection of TradeRating resources.",
+                "description": "Retrieves the collection of TradeRating resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "trade",
+                        "in": "query",
+                        "description": "TradeRating trade",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "trade[]",
+                        "in": "query",
+                        "description": "TradeRating trade",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "rated",
+                        "in": "query",
+                        "description": "TradeRating rated",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "rated[]",
+                        "in": "query",
+                        "description": "TradeRating rated",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "rater",
+                        "in": "query",
+                        "description": "TradeRating rater",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "rater[]",
+                        "in": "query",
+                        "description": "TradeRating rater",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id]",
+                        "in": "query",
+                        "description": "TradeRating order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[id][]",
+                        "in": "query",
+                        "description": "TradeRating order[id]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[createdAt]",
+                        "in": "query",
+                        "description": "TradeRating order[createdAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[createdAt][]",
+                        "in": "query",
+                        "description": "TradeRating order[createdAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[score]",
+                        "in": "query",
+                        "description": "TradeRating order[score]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[score][]",
+                        "in": "query",
+                        "description": "TradeRating order[score]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "api_trade_ratings_post",
+                "tags": [
+                    "TradeRating"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "TradeRating resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeRating.jsonld-trade_rating.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeRating.multipart-trade_rating.read_entity.read"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a TradeRating resource.",
+                "description": "Creates a TradeRating resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new TradeRating resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TradeRating-trade_rating.write"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TradeRating-trade_rating.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/trade_ratings/{id}": {
+            "get": {
+                "operationId": "api_trade_ratings_id_get",
+                "tags": [
+                    "TradeRating"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "TradeRating resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeRating.jsonld-trade_rating.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TradeRating.multipart-trade_rating.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a TradeRating resource.",
+                "description": "Retrieves a TradeRating resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TradeRating identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
+            }
+        },
         "/api/users": {
             "get": {
                 "operationId": "api_users_get_collection",
@@ -32923,10 +34104,15 @@
                         "type": "object",
                         "required": [
                             "name",
+                            "reference",
                             "extension"
                         ],
                         "properties": {
                             "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "reference": {
                                 "maxLength": 255,
                                 "type": "string"
                             },
@@ -32966,6 +34152,55 @@
                     {
                         "type": "object",
                         "properties": {
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Card.jsonld-trade.read_collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "reference",
+                            "extension"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "reference": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "code": {
+                                "pattern": "^(\\d{1,8})$",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "image": {
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/MediaObject.jsonld-trade.read_collection.read_entity.read"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ]
+                            },
+                            "extension": {
+                                "$ref": "#/components/schemas/Extension.jsonld-trade.read_collection.read_entity.read"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -33054,10 +34289,15 @@
                 "type": "object",
                 "required": [
                     "name",
+                    "reference",
                     "extension"
                 ],
                 "properties": {
                     "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "reference": {
                         "maxLength": 255,
                         "type": "string"
                     },
@@ -33090,6 +34330,48 @@
             "Card.multipart-deck.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Card.multipart-trade.read_collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "reference",
+                    "extension"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "reference": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "code": {
+                        "pattern": "^(\\d{1,8})$",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "image": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MediaObject.multipart-trade.read_collection.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "extension": {
+                        "$ref": "#/components/schemas/Extension.multipart-trade.read_collection.read_entity.read"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -36084,6 +37366,11 @@
                                 "default": 0,
                                 "type": "integer"
                             },
+                            "reservedQuantity": {
+                                "description": "How many of the copies are set aside by exchanges that were accepted and are not finished: they cannot be part\nof another exchange, nor be removed or taken out of the offered doubles. Kept by the exchanges, read only.",
+                                "default": 0,
+                                "type": "integer"
+                            },
                             "tradeValue": {
                                 "minimum": 0,
                                 "maximum": 100000,
@@ -36215,6 +37502,11 @@
                     "tradeQuantity": {
                         "minimum": 0,
                         "description": "How many of the copies are offered for trade (the \"doubles\"), from 0 to the quantity.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "reservedQuantity": {
+                        "description": "How many of the copies are set aside by exchanges that were accepted and are not finished: they cannot be part\nof another exchange, nor be removed or taken out of the offered doubles. Kept by the exchanges, read only.",
                         "default": 0,
                         "type": "integer"
                     },
@@ -38304,6 +39596,29 @@
                     }
                 ]
             },
+            "Extension.jsonld-trade.read_collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Extension.multipart-card.read_entity.read": {
                 "type": "object",
                 "properties": {
@@ -38399,6 +39714,22 @@
                     },
                     "reference": {
                         "maxLength": 15,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Extension.multipart-trade.read_collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
                         "type": "string"
                     },
                     "id": {
@@ -38964,6 +40295,30 @@
                 ],
                 "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators."
             },
+            "GradingCompany.jsonld-trade.read_collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 100,
+                                "default": "",
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "GradingCompany.multipart-collection.read_entity.read": {
                 "type": "object",
                 "required": [
@@ -38984,6 +40339,23 @@
             "GradingCompany.multipart-grading_company.read_entity.read": {
                 "type": "object",
                 "description": "A company that grades cards (PSA, BGS, CGC...), managed by the administrators.",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 100,
+                        "default": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "GradingCompany.multipart-trade.read_collection.read_entity.read": {
+                "type": "object",
                 "required": [
                     "name"
                 ],
@@ -40351,6 +41723,32 @@
                     }
                 ]
             },
+            "MediaObject.jsonld-trade.read_collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "contentUrl": {
+                                "readOnly": true,
+                                "externalDocs": {
+                                    "url": "https://schema.org/contentUrl"
+                                },
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": {
                 "allOf": [
                     {
@@ -40746,6 +42144,25 @@
                 }
             },
             "MediaObject.multipart-smiley.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "contentUrl": {
+                        "readOnly": true,
+                        "externalDocs": {
+                            "url": "https://schema.org/contentUrl"
+                        },
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "MediaObject.multipart-trade.read_collection.read_entity.read": {
                 "type": "object",
                 "properties": {
                     "contentUrl": {
@@ -42292,6 +43709,29 @@
                     }
                 ]
             },
+            "Rarity.jsonld-trade.read_collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Rarity.multipart-card.read_entity.read": {
                 "type": "object",
                 "properties": {
@@ -42337,6 +43777,22 @@
                         "minimum": 0,
                         "default": 0,
                         "type": "integer"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Rarity.multipart-trade.read_collection.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
                     },
                     "id": {
                         "type": "integer",
@@ -43189,6 +44645,634 @@
                     "id": {
                         "type": "integer",
                         "readOnly": true
+                    }
+                }
+            },
+            "Trade.jsonld-trade.read_collection.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "status": {
+                                "default": "negotiating",
+                                "type": "string",
+                                "enum": [
+                                    "negotiating",
+                                    "accepted",
+                                    "completed",
+                                    "declined",
+                                    "cancelled"
+                                ]
+                            },
+                            "revision": {
+                                "description": "The number of the current proposal: a counter-proposal makes a new revision and keeps the previous ones.",
+                                "default": 1,
+                                "type": "integer"
+                            },
+                            "proposerConfirmed": {
+                                "default": false,
+                                "type": "boolean"
+                            },
+                            "recipientConfirmed": {
+                                "default": false,
+                                "type": "boolean"
+                            },
+                            "partial": {
+                                "description": "True when the exchange was completed with cards missing: what was not received did not change hands.",
+                                "default": false,
+                                "type": "boolean"
+                            },
+                            "lines": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TradeLine.jsonld-trade.read_collection.read_entity.read"
+                                }
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "proposerName": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "recipientName": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "turnName": {
+                                "readOnly": true,
+                                "description": "The username of the player whose answer is awaited (while negotiating).",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "balance": {
+                                "readOnly": true,
+                                "description": "What each side gives in the current proposal, in euros, and the difference (proposer minus recipient): an\nindication for the players, never a rule. A line without value counts for nothing.",
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "description": "An exchange of cards between two players: the proposer and the recipient each give some of their doubles. The\nplayers negotiate (accept, decline, or answer with a counter-proposal, which makes a new revision of the lines);\nwhen it is accepted the cards given are set aside and the cards received are taken off the wishlist; when both\nconfirm what they got (all of it, or only a part when cards are missing) the collections are updated.\n\nRead only here: the actions are in TradeController (POST /api/trades and /api/trades/{id}/accept, counter, decline,\ncancel, confirm). A player reads their own exchanges; an administrator reads them all."
+            },
+            "Trade.multipart-trade.read_collection.read_entity.read": {
+                "type": "object",
+                "description": "An exchange of cards between two players: the proposer and the recipient each give some of their doubles. The\nplayers negotiate (accept, decline, or answer with a counter-proposal, which makes a new revision of the lines);\nwhen it is accepted the cards given are set aside and the cards received are taken off the wishlist; when both\nconfirm what they got (all of it, or only a part when cards are missing) the collections are updated.\n\nRead only here: the actions are in TradeController (POST /api/trades and /api/trades/{id}/accept, counter, decline,\ncancel, confirm). A player reads their own exchanges; an administrator reads them all.",
+                "properties": {
+                    "status": {
+                        "default": "negotiating",
+                        "type": "string",
+                        "enum": [
+                            "negotiating",
+                            "accepted",
+                            "completed",
+                            "declined",
+                            "cancelled"
+                        ]
+                    },
+                    "revision": {
+                        "description": "The number of the current proposal: a counter-proposal makes a new revision and keeps the previous ones.",
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "proposerConfirmed": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "recipientConfirmed": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "partial": {
+                        "description": "True when the exchange was completed with cards missing: what was not received did not change hands.",
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "lines": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TradeLine.multipart-trade.read_collection.read_entity.read"
+                        }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "proposerName": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "recipientName": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "turnName": {
+                        "readOnly": true,
+                        "description": "The username of the player whose answer is awaited (while negotiating).",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "balance": {
+                        "readOnly": true,
+                        "description": "What each side gives in the current proposal, in euros, and the difference (proposer minus recipient): an\nindication for the players, never a rule. A line without value counts for nothing.",
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "TradeLine.jsonld-trade.read_collection.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "revision": {
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "card": {
+                        "$ref": "#/components/schemas/Card.jsonld-trade.read_collection.read_entity.read"
+                    },
+                    "rarity": {
+                        "$ref": "#/components/schemas/Rarity.jsonld-trade.read_collection.read_entity.read"
+                    },
+                    "condition": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "default": "fr",
+                        "type": "string",
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh"
+                        ]
+                    },
+                    "edition": {
+                        "default": "unlimited",
+                        "type": "string",
+                        "enum": [
+                            "first",
+                            "unlimited",
+                            "limited"
+                        ]
+                    },
+                    "gradingCompany": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GradingCompany.jsonld-trade.read_collection.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "grade": {
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "certificateNumber": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "quantity": {
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "unitValue": {
+                        "description": "What one copy was worth (in euros) when the proposal was made.",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "receivedQuantity": {
+                        "description": "How many copies the receiver says they got, when they confirmed (empty until then). Less than the quantity when\nsome of the cards are missing.",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "wishlistReduced": {
+                        "description": "How many copies were taken off the wishlist of the player who receives them when the exchange was accepted, to\nput them back if it is cancelled.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "giverName": {
+                        "readOnly": true,
+                        "description": "Read only: the username of the player who gives these copies.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "TradeLine.multipart-trade.read_collection.read_entity.read": {
+                "type": "object",
+                "properties": {
+                    "revision": {
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "card": {
+                        "$ref": "#/components/schemas/Card.multipart-trade.read_collection.read_entity.read"
+                    },
+                    "rarity": {
+                        "$ref": "#/components/schemas/Rarity.multipart-trade.read_collection.read_entity.read"
+                    },
+                    "condition": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "enum": [
+                            "MT",
+                            "NM",
+                            "EX",
+                            "GD",
+                            "LP",
+                            "PL",
+                            "PO",
+                            null
+                        ]
+                    },
+                    "language": {
+                        "default": "fr",
+                        "type": "string",
+                        "enum": [
+                            "fr",
+                            "en",
+                            "de",
+                            "it",
+                            "es",
+                            "pt",
+                            "ja",
+                            "ko",
+                            "zh"
+                        ]
+                    },
+                    "edition": {
+                        "default": "unlimited",
+                        "type": "string",
+                        "enum": [
+                            "first",
+                            "unlimited",
+                            "limited"
+                        ]
+                    },
+                    "gradingCompany": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GradingCompany.multipart-trade.read_collection.read_entity.read"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "grade": {
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "certificateNumber": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "quantity": {
+                        "default": 1,
+                        "type": "integer"
+                    },
+                    "unitValue": {
+                        "description": "What one copy was worth (in euros) when the proposal was made.",
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "receivedQuantity": {
+                        "description": "How many copies the receiver says they got, when they confirmed (empty until then). Less than the quantity when\nsome of the cards are missing.",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "wishlistReduced": {
+                        "description": "How many copies were taken off the wishlist of the player who receives them when the exchange was accepted, to\nput them back if it is cancelled.",
+                        "default": 0,
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "giverName": {
+                        "readOnly": true,
+                        "description": "Read only: the username of the player who gives these copies.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "TradeMessage-trade_message.write": {
+                "type": "object",
+                "description": "A message between the two players of an exchange. Only they (and the administrators) read the messages; the author\nis always the logged-in player.",
+                "required": [
+                    "trade",
+                    "content"
+                ],
+                "properties": {
+                    "trade": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "content": {
+                        "maxLength": 1000,
+                        "default": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "TradeMessage.jsonld-trade_message.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "content"
+                        ],
+                        "properties": {
+                            "content": {
+                                "maxLength": 1000,
+                                "default": "",
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "tradeId": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "authorName": {
+                                "readOnly": true,
+                                "description": "Read only: the username of the author.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "description": "A message between the two players of an exchange. Only they (and the administrators) read the messages; the author\nis always the logged-in player."
+            },
+            "TradeMessage.multipart-trade_message.read_entity.read": {
+                "type": "object",
+                "description": "A message between the two players of an exchange. Only they (and the administrators) read the messages; the author\nis always the logged-in player.",
+                "required": [
+                    "content"
+                ],
+                "properties": {
+                    "content": {
+                        "maxLength": 1000,
+                        "default": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "tradeId": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "authorName": {
+                        "readOnly": true,
+                        "description": "Read only: the username of the author.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "TradeRating-trade_rating.write": {
+                "type": "object",
+                "description": "What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating\nper player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make\nthe reputation of a player (see GET /api/reputation/{username}).",
+                "required": [
+                    "trade"
+                ],
+                "properties": {
+                    "trade": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "score": {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "default": 5,
+                        "type": "integer"
+                    },
+                    "comment": {
+                        "maxLength": 500,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "TradeRating.jsonld-trade_rating.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "score": {
+                                "minimum": 1,
+                                "maximum": 5,
+                                "default": 5,
+                                "type": "integer"
+                            },
+                            "comment": {
+                                "maxLength": 500,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "tradeId": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "raterName": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "ratedName": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "description": "What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating\nper player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make\nthe reputation of a player (see GET /api/reputation/{username})."
+            },
+            "TradeRating.multipart-trade_rating.read_entity.read": {
+                "type": "object",
+                "description": "What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating\nper player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make\nthe reputation of a player (see GET /api/reputation/{username}).",
+                "properties": {
+                    "score": {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "default": 5,
+                        "type": "integer"
+                    },
+                    "comment": {
+                        "maxLength": 500,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "tradeId": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "raterName": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "ratedName": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -44679,6 +46763,18 @@
         {
             "name": "Tag",
             "description": "Resource 'Tag' operations."
+        },
+        {
+            "name": "Trade",
+            "description": "An exchange of cards between two players: the proposer and the recipient each give some of their doubles. The\nplayers negotiate (accept, decline, or answer with a counter-proposal, which makes a new revision of the lines);\nwhen it is accepted the cards given are set aside and the cards received are taken off the wishlist; when both\nconfirm what they got (all of it, or only a part when cards are missing) the collections are updated.\n\nRead only here: the actions are in TradeController (POST /api/trades and /api/trades/{id}/accept, counter, decline,\ncancel, confirm). A player reads their own exchanges; an administrator reads them all."
+        },
+        {
+            "name": "TradeMessage",
+            "description": "A message between the two players of an exchange. Only they (and the administrators) read the messages; the author\nis always the logged-in player."
+        },
+        {
+            "name": "TradeRating",
+            "description": "What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating\nper player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make\nthe reputation of a player (see GET /api/reputation/{username})."
         },
         {
             "name": "User",

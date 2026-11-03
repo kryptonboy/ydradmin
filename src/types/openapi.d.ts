@@ -2348,6 +2348,134 @@ export interface paths {
         patch: operations["api_tags_id_patch"];
         trace?: never;
     };
+    "/api/trades": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of Trade resources.
+         * @description Retrieves the collection of Trade resources.
+         */
+        get: operations["api_trades_get_collection"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/trades/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Trade resource.
+         * @description Retrieves a Trade resource.
+         */
+        get: operations["api_trades_id_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/trade_messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of TradeMessage resources.
+         * @description Retrieves the collection of TradeMessage resources.
+         */
+        get: operations["api_trade_messages_get_collection"];
+        put?: never;
+        /**
+         * Creates a TradeMessage resource.
+         * @description Creates a TradeMessage resource.
+         */
+        post: operations["api_trade_messages_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/trade_messages/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a TradeMessage resource.
+         * @description Retrieves a TradeMessage resource.
+         */
+        get: operations["api_trade_messages_id_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/trade_ratings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of TradeRating resources.
+         * @description Retrieves the collection of TradeRating resources.
+         */
+        get: operations["api_trade_ratings_get_collection"];
+        put?: never;
+        /**
+         * Creates a TradeRating resource.
+         * @description Creates a TradeRating resource.
+         */
+        post: operations["api_trade_ratings_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/trade_ratings/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a TradeRating resource.
+         * @description Retrieves a TradeRating resource.
+         */
+        get: operations["api_trade_ratings_id_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/users": {
         parameters: {
             query?: never;
@@ -3462,12 +3590,21 @@ export interface components {
         };
         "Card.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            reference: string;
             code?: string | null;
             image?: components["schemas"]["MediaObject.jsonld-collection.read_entity.read"] | null;
             extension: components["schemas"]["Extension.jsonld-collection.read_entity.read"];
             readonly id?: number;
         };
         "Card.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+        };
+        "Card.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            reference: string;
+            code?: string | null;
+            image?: components["schemas"]["MediaObject.jsonld-trade.read_collection.read_entity.read"] | null;
+            extension: components["schemas"]["Extension.jsonld-trade.read_collection.read_entity.read"];
             readonly id?: number;
         };
         "Card.multipart-card.read_entity.read": {
@@ -3486,12 +3623,21 @@ export interface components {
         };
         "Card.multipart-collection.read_entity.read": {
             name: string;
+            reference: string;
             code?: string | null;
             image?: components["schemas"]["MediaObject.multipart-collection.read_entity.read"] | null;
             extension: components["schemas"]["Extension.multipart-collection.read_entity.read"];
             readonly id?: number;
         };
         "Card.multipart-deck.read_entity.read": {
+            readonly id?: number;
+        };
+        "Card.multipart-trade.read_collection.read_entity.read": {
+            name: string;
+            reference: string;
+            code?: string | null;
+            image?: components["schemas"]["MediaObject.multipart-trade.read_collection.read_entity.read"] | null;
+            extension: components["schemas"]["Extension.multipart-trade.read_collection.read_entity.read"];
             readonly id?: number;
         };
         "CardGroup-card_group.write": {
@@ -4288,6 +4434,12 @@ export interface components {
              * @default 0
              */
             tradeQuantity: number;
+            /**
+             * @description How many of the copies are set aside by exchanges that were accepted and are not finished: they cannot be part
+             *     of another exchange, nor be removed or taken out of the offered doubles. Kept by the exchanges, read only.
+             * @default 0
+             */
+            reservedQuantity: number;
             /** @description What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now. */
             tradeValue?: number | null;
             gradingCompany?: components["schemas"]["GradingCompany.jsonld-collection.read_entity.read"] | null;
@@ -4335,6 +4487,12 @@ export interface components {
              * @default 0
              */
             tradeQuantity: number;
+            /**
+             * @description How many of the copies are set aside by exchanges that were accepted and are not finished: they cannot be part
+             *     of another exchange, nor be removed or taken out of the offered doubles. Kept by the exchanges, read only.
+             * @default 0
+             */
+            reservedQuantity: number;
             /** @description What one copy is worth in a trade, in euros (two decimals). Entered by the owner for now. */
             tradeValue?: number | null;
             gradingCompany?: components["schemas"]["GradingCompany.multipart-collection.read_entity.read"] | null;
@@ -5051,6 +5209,10 @@ export interface components {
             reference: string;
             readonly id?: number;
         };
+        "Extension.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Extension.multipart-card.read_entity.read": {
             readonly id?: number;
         };
@@ -5073,6 +5235,10 @@ export interface components {
         "Extension.multipart-game_format.read_entity.read_label": {
             name: string;
             reference: string;
+            readonly id?: number;
+        };
+        "Extension.multipart-trade.read_collection.read_entity.read": {
+            name: string;
             readonly id?: number;
         };
         "ExtensionType-extension_type.write": {
@@ -5208,6 +5374,11 @@ export interface components {
             name: string;
             readonly id?: number;
         };
+        "GradingCompany.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default  */
+            name: string;
+            readonly id?: number;
+        };
         "GradingCompany.multipart-collection.read_entity.read": {
             /** @default  */
             name: string;
@@ -5215,6 +5386,11 @@ export interface components {
         };
         /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
         "GradingCompany.multipart-grading_company.read_entity.read": {
+            /** @default  */
+            name: string;
+            readonly id?: number;
+        };
+        "GradingCompany.multipart-trade.read_collection.read_entity.read": {
             /** @default  */
             name: string;
             readonly id?: number;
@@ -5523,6 +5699,10 @@ export interface components {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
+        "MediaObject.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
         "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
@@ -5604,6 +5784,10 @@ export interface components {
             readonly id?: number;
         };
         "MediaObject.multipart-smiley.read_entity.read": {
+            readonly contentUrl?: string | null;
+            readonly id?: number;
+        };
+        "MediaObject.multipart-trade.read_collection.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
         };
@@ -6031,6 +6215,10 @@ export interface components {
             position: number;
             readonly id?: number;
         };
+        "Rarity.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+        };
         "Rarity.multipart-card.read_entity.read": {
             readonly id?: number;
         };
@@ -6043,6 +6231,10 @@ export interface components {
             description?: string | null;
             /** @default 0 */
             position: number;
+            readonly id?: number;
+        };
+        "Rarity.multipart-trade.read_collection.read_entity.read": {
+            name: string;
             readonly id?: number;
         };
         /**
@@ -6281,6 +6473,266 @@ export interface components {
             /** @default true */
             visible: boolean;
             readonly id?: number;
+        };
+        /**
+         * @description An exchange of cards between two players: the proposer and the recipient each give some of their doubles. The
+         *     players negotiate (accept, decline, or answer with a counter-proposal, which makes a new revision of the lines);
+         *     when it is accepted the cards given are set aside and the cards received are taken off the wishlist; when both
+         *     confirm what they got (all of it, or only a part when cards are missing) the collections are updated.
+         *
+         *     Read only here: the actions are in TradeController (POST /api/trades and /api/trades/{id}/accept, counter, decline,
+         *     cancel, confirm). A player reads their own exchanges; an administrator reads them all.
+         */
+        "Trade.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /**
+             * @default negotiating
+             * @enum {string}
+             */
+            status: "negotiating" | "accepted" | "completed" | "declined" | "cancelled";
+            /**
+             * @description The number of the current proposal: a counter-proposal makes a new revision and keeps the previous ones.
+             * @default 1
+             */
+            revision: number;
+            /** @default false */
+            proposerConfirmed: boolean;
+            /** @default false */
+            recipientConfirmed: boolean;
+            /**
+             * @description True when the exchange was completed with cards missing: what was not received did not change hands.
+             * @default false
+             */
+            partial: boolean;
+            lines?: components["schemas"]["TradeLine.jsonld-trade.read_collection.read_entity.read"][];
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            readonly proposerName?: string | null;
+            readonly recipientName?: string | null;
+            /** @description The username of the player whose answer is awaited (while negotiating). */
+            readonly turnName?: string | null;
+            /**
+             * @description What each side gives in the current proposal, in euros, and the difference (proposer minus recipient): an
+             *     indication for the players, never a rule. A line without value counts for nothing.
+             */
+            readonly balance?: {
+                [key: string]: number;
+            };
+        };
+        /**
+         * @description An exchange of cards between two players: the proposer and the recipient each give some of their doubles. The
+         *     players negotiate (accept, decline, or answer with a counter-proposal, which makes a new revision of the lines);
+         *     when it is accepted the cards given are set aside and the cards received are taken off the wishlist; when both
+         *     confirm what they got (all of it, or only a part when cards are missing) the collections are updated.
+         *
+         *     Read only here: the actions are in TradeController (POST /api/trades and /api/trades/{id}/accept, counter, decline,
+         *     cancel, confirm). A player reads their own exchanges; an administrator reads them all.
+         */
+        "Trade.multipart-trade.read_collection.read_entity.read": {
+            /**
+             * @default negotiating
+             * @enum {string}
+             */
+            status: "negotiating" | "accepted" | "completed" | "declined" | "cancelled";
+            /**
+             * @description The number of the current proposal: a counter-proposal makes a new revision and keeps the previous ones.
+             * @default 1
+             */
+            revision: number;
+            /** @default false */
+            proposerConfirmed: boolean;
+            /** @default false */
+            recipientConfirmed: boolean;
+            /**
+             * @description True when the exchange was completed with cards missing: what was not received did not change hands.
+             * @default false
+             */
+            partial: boolean;
+            lines?: components["schemas"]["TradeLine.multipart-trade.read_collection.read_entity.read"][];
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            updatedAt?: string;
+            readonly proposerName?: string | null;
+            readonly recipientName?: string | null;
+            /** @description The username of the player whose answer is awaited (while negotiating). */
+            readonly turnName?: string | null;
+            /**
+             * @description What each side gives in the current proposal, in euros, and the difference (proposer minus recipient): an
+             *     indication for the players, never a rule. A line without value counts for nothing.
+             */
+            readonly balance?: {
+                [key: string]: number;
+            };
+        };
+        "TradeLine.jsonld-trade.read_collection.read_entity.read": {
+            /** @default 1 */
+            revision: number;
+            card?: components["schemas"]["Card.jsonld-trade.read_collection.read_entity.read"];
+            rarity?: components["schemas"]["Rarity.jsonld-trade.read_collection.read_entity.read"];
+            /** @enum {string|null} */
+            condition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /**
+             * @default fr
+             * @enum {string}
+             */
+            language: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh";
+            /**
+             * @default unlimited
+             * @enum {string}
+             */
+            edition: "first" | "unlimited" | "limited";
+            gradingCompany?: components["schemas"]["GradingCompany.jsonld-trade.read_collection.read_entity.read"] | null;
+            grade?: number | null;
+            certificateNumber?: string | null;
+            /** @default 1 */
+            quantity: number;
+            /** @description What one copy was worth (in euros) when the proposal was made. */
+            unitValue?: number | null;
+            /**
+             * @description How many copies the receiver says they got, when they confirmed (empty until then). Less than the quantity when
+             *     some of the cards are missing.
+             */
+            receivedQuantity?: number | null;
+            /**
+             * @description How many copies were taken off the wishlist of the player who receives them when the exchange was accepted, to
+             *     put them back if it is cancelled.
+             * @default 0
+             */
+            wishlistReduced: number;
+            readonly id?: number;
+            /** @description Read only: the username of the player who gives these copies. */
+            readonly giverName?: string | null;
+        };
+        "TradeLine.multipart-trade.read_collection.read_entity.read": {
+            /** @default 1 */
+            revision: number;
+            card?: components["schemas"]["Card.multipart-trade.read_collection.read_entity.read"];
+            rarity?: components["schemas"]["Rarity.multipart-trade.read_collection.read_entity.read"];
+            /** @enum {string|null} */
+            condition?: "MT" | "NM" | "EX" | "GD" | "LP" | "PL" | "PO" | null;
+            /**
+             * @default fr
+             * @enum {string}
+             */
+            language: "fr" | "en" | "de" | "it" | "es" | "pt" | "ja" | "ko" | "zh";
+            /**
+             * @default unlimited
+             * @enum {string}
+             */
+            edition: "first" | "unlimited" | "limited";
+            gradingCompany?: components["schemas"]["GradingCompany.multipart-trade.read_collection.read_entity.read"] | null;
+            grade?: number | null;
+            certificateNumber?: string | null;
+            /** @default 1 */
+            quantity: number;
+            /** @description What one copy was worth (in euros) when the proposal was made. */
+            unitValue?: number | null;
+            /**
+             * @description How many copies the receiver says they got, when they confirmed (empty until then). Less than the quantity when
+             *     some of the cards are missing.
+             */
+            receivedQuantity?: number | null;
+            /**
+             * @description How many copies were taken off the wishlist of the player who receives them when the exchange was accepted, to
+             *     put them back if it is cancelled.
+             * @default 0
+             */
+            wishlistReduced: number;
+            readonly id?: number;
+            /** @description Read only: the username of the player who gives these copies. */
+            readonly giverName?: string | null;
+        };
+        /**
+         * @description A message between the two players of an exchange. Only they (and the administrators) read the messages; the author
+         *     is always the logged-in player.
+         */
+        "TradeMessage-trade_message.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            trade: string;
+            /** @default  */
+            content: string;
+        };
+        /**
+         * @description A message between the two players of an exchange. Only they (and the administrators) read the messages; the author
+         *     is always the logged-in player.
+         */
+        "TradeMessage.jsonld-trade_message.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default  */
+            content: string;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            readonly tradeId?: number | null;
+            /** @description Read only: the username of the author. */
+            readonly authorName?: string | null;
+        };
+        /**
+         * @description A message between the two players of an exchange. Only they (and the administrators) read the messages; the author
+         *     is always the logged-in player.
+         */
+        "TradeMessage.multipart-trade_message.read_entity.read": {
+            /** @default  */
+            content: string;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            readonly tradeId?: number | null;
+            /** @description Read only: the username of the author. */
+            readonly authorName?: string | null;
+        };
+        /**
+         * @description What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating
+         *     per player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make
+         *     the reputation of a player (see GET /api/reputation/{username}).
+         */
+        "TradeRating-trade_rating.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            trade: string;
+            /** @default 5 */
+            score: number;
+            comment?: string | null;
+        };
+        /**
+         * @description What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating
+         *     per player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make
+         *     the reputation of a player (see GET /api/reputation/{username}).
+         */
+        "TradeRating.jsonld-trade_rating.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @default 5 */
+            score: number;
+            comment?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            readonly tradeId?: number | null;
+            readonly raterName?: string | null;
+            readonly ratedName?: string | null;
+        };
+        /**
+         * @description What a player thinks of the other one once an exchange is completed: a score from 1 to 5 and a comment. One rating
+         *     per player and per exchange, that cannot be changed. The ratings are readable by every logged-in player: they make
+         *     the reputation of a player (see GET /api/reputation/{username}).
+         */
+        "TradeRating.multipart-trade_rating.read_entity.read": {
+            /** @default 5 */
+            score: number;
+            comment?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            createdAt?: string;
+            readonly tradeId?: number | null;
+            readonly raterName?: string | null;
+            readonly ratedName?: string | null;
         };
         "User-user.write.jsonMergePatch": {
             /** Format: email */
@@ -17760,6 +18212,431 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_trades_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description Trade status */
+                status?: string;
+                /** @description Trade status */
+                "status[]"?: string[];
+                /** @description Trade proposer */
+                proposer?: string;
+                /** @description Trade proposer */
+                "proposer[]"?: string[];
+                /** @description Trade recipient */
+                recipient?: string;
+                /** @description Trade recipient */
+                "recipient[]"?: string[];
+                /** @description Trade order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Trade order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description Trade order[updatedAt] */
+                "order[updatedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description Trade order[updatedAt] */
+                "order[updatedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Trade collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["Trade.jsonld-trade.read_collection.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["Trade.multipart-trade.read_collection.read_entity.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_trades_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Trade identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Trade resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Trade.jsonld-trade.read_collection.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Trade.multipart-trade.read_collection.read_entity.read"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_trade_messages_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description TradeMessage trade */
+                trade?: string;
+                /** @description TradeMessage trade */
+                "trade[]"?: string[];
+                /** @description TradeMessage order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description TradeMessage order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description TradeMessage order[createdAt] */
+                "order[createdAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description TradeMessage order[createdAt] */
+                "order[createdAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description TradeMessage collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["TradeMessage.jsonld-trade_message.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["TradeMessage.multipart-trade_message.read_entity.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_trade_messages_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new TradeMessage resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["TradeMessage-trade_message.write"];
+                "multipart/form-data": components["schemas"]["TradeMessage-trade_message.write"];
+            };
+        };
+        responses: {
+            /** @description TradeMessage resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["TradeMessage.jsonld-trade_message.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["TradeMessage.multipart-trade_message.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_trade_messages_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description TradeMessage identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description TradeMessage resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["TradeMessage.jsonld-trade_message.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["TradeMessage.multipart-trade_message.read_entity.read"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_trade_ratings_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description TradeRating trade */
+                trade?: string;
+                /** @description TradeRating trade */
+                "trade[]"?: string[];
+                /** @description TradeRating rated */
+                rated?: string;
+                /** @description TradeRating rated */
+                "rated[]"?: string[];
+                /** @description TradeRating rater */
+                rater?: string;
+                /** @description TradeRating rater */
+                "rater[]"?: string[];
+                /** @description TradeRating order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description TradeRating order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description TradeRating order[createdAt] */
+                "order[createdAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description TradeRating order[createdAt] */
+                "order[createdAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description TradeRating order[score] */
+                "order[score]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description TradeRating order[score] */
+                "order[score][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description TradeRating collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["TradeRating.jsonld-trade_rating.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["TradeRating.multipart-trade_rating.read_entity.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_trade_ratings_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new TradeRating resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["TradeRating-trade_rating.write"];
+                "multipart/form-data": components["schemas"]["TradeRating-trade_rating.write"];
+            };
+        };
+        responses: {
+            /** @description TradeRating resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["TradeRating.jsonld-trade_rating.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["TradeRating.multipart-trade_rating.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_trade_ratings_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description TradeRating identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description TradeRating resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["TradeRating.jsonld-trade_rating.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["TradeRating.multipart-trade_rating.read_entity.read"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

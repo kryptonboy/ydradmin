@@ -66,6 +66,7 @@ export const router = createRouter({
       component: () => import('@/views/ActualityCommentView.vue'),
     },
     { path: '/decks', component: () => import('@/views/DeckView.vue') },
+    { path: '/trades', component: () => import('@/views/TradeView.vue') },
     { path: '/users', component: () => import('@/views/AccountView.vue') },
     { path: '/content/smiley', component: () => import('@/views/SmileyView.vue') },
     { path: '/anime_manga/anime', component: () => import('@/views/AnimeView.vue') },

@@ -71,6 +71,12 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - Le sous-type de carte a un indicateur `extraDeck` (Fusion, Synchro, Xyz, Lien) qui sert à ranger les cartes dans l'Extra Deck.
 - Les règles de validation viennent des formats de jeu, groupes de cartes, restrictions (limites 0/1/2 par format) et des formats liés aux extensions : tout se saisit dans les pages « Formats de jeu », « Restrictions » et la modale d'extension.
 
+## Échanges
+
+- Page de modération `/trades` (ressource `trades`, l'administrateur voit tous les échanges) : liste filtrable par statut, proposeur et destinataire, triable par identifiant et date de modification, avec un badge « Partiel » quand une carte n'est pas arrivée.
+- Le détail s'ouvre dans une modale : statut, tour de réponse, confirmations, valeur indicative de la proposition en cours (`balance`, jamais bloquante), lignes groupées par proposition (la plus récente en premier, « En cours » pour la révision courante), colonne « Reçu / Quantité » pour un échange terminé ou partiel, fil de messages (`/trade_messages?trade=`, texte brut) et évaluations (`/trade_ratings?trade=`).
+- Le bouton « Annuler l'échange » (avec confirmation) appelle `POST /trades/{id}/cancel`, visible tant que l'échange est en négociation ou accepté : les cartes mises de côté sont libérées et les listes de souhaits restaurées. Un 409 (déjà terminé, refusé ou annulé) s'affiche tel quel. L'administrateur ne peut ni accepter, ni refuser, ni confirmer à la place des joueurs.
+
 ## Animés et mangas
 
 - Pages sous `/anime_manga` : animés (et leur page « Structure » : saisons, arcs, liens arc/saison), mangas, épisodes, chapitres, personnages, genres, signes astrologiques. Le contrat est décrit dans `../newkryproject/docs/anime-manga.md`.

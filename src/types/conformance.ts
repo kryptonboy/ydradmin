@@ -31,6 +31,9 @@ import type {
   ApiMonsterType,
   ApiGradingCompany,
   ApiRarity,
+  ApiTrade,
+  ApiTradeMessage,
+  ApiTradeRating,
   ApiRuling,
   ApiTag,
   ApiDeck,
@@ -66,6 +69,7 @@ import type { MonsterSubType } from './models/MonsterSubType'
 import type { MonsterType } from './models/MonsterType'
 import type { GradingCompany } from './models/GradingCompany'
 import type { Rarity } from './models/Rarity'
+import type { Trade, TradeMessage, TradeRating } from './models/Trade'
 import type { Ruling } from './models/Ruling'
 import type { Tag } from './models/Tag'
 import type { Deck } from './models/Deck'
@@ -111,6 +115,9 @@ export type ModelChecks = [
   Assert<Conforms<MonsterSubType, ApiMonsterSubType>>,
   Assert<Conforms<MonsterType, ApiMonsterType>>,
   Assert<Conforms<Rarity, ApiRarity>>,
+  Assert<Conforms<Trade, ApiTrade>>,
+  Assert<Conforms<TradeMessage, ApiTradeMessage>>,
+  Assert<Conforms<TradeRating, ApiTradeRating>>,
   Assert<Conforms<GradingCompany, ApiGradingCompany>>,
   Assert<Conforms<Ruling, ApiRuling>>,
   Assert<Conforms<Tag, ApiTag>>,
