@@ -26713,6 +26713,60 @@
                         "explode": true
                     },
                     {
+                        "name": "mediation",
+                        "in": "query",
+                        "description": "Trade mediation",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "mediation[]",
+                        "in": "query",
+                        "description": "Trade mediation",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "mediator",
+                        "in": "query",
+                        "description": "Trade mediator",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "mediator[]",
+                        "in": "query",
+                        "description": "Trade mediator",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "order[id]",
                         "in": "query",
                         "description": "Trade order[id]",
@@ -44680,6 +44734,26 @@
                                 "default": false,
                                 "type": "boolean"
                             },
+                            "proposerUpdatesCollection": {
+                                "description": "Whether the proposer wants the exchange to update their collection when it completes (they may have done it by\nhand already). Chosen when they confirm; true until then.",
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "recipientUpdatesCollection": {
+                                "default": true,
+                                "type": "boolean"
+                            },
+                            "mediationState": {
+                                "readOnly": true,
+                                "description": "Mediation by the team: asked by one of the players (or both), then taken by a mediator. From the request on, the\nexchange and its conversation are visible to the whole mediation team.",
+                                "default": "none",
+                                "type": "string",
+                                "enum": [
+                                    "none",
+                                    "requested",
+                                    "taken"
+                                ]
+                            },
                             "partial": {
                                 "description": "True when the exchange was completed with cards missing: what was not received did not change hands.",
                                 "default": false,
@@ -44720,6 +44794,20 @@
                             "turnName": {
                                 "readOnly": true,
                                 "description": "The username of the player whose answer is awaited (while negotiating).",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "mediationRequestedByName": {
+                                "readOnly": true,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "mediatorName": {
+                                "readOnly": true,
                                 "type": [
                                     "string",
                                     "null"
@@ -44766,6 +44854,26 @@
                         "default": false,
                         "type": "boolean"
                     },
+                    "proposerUpdatesCollection": {
+                        "description": "Whether the proposer wants the exchange to update their collection when it completes (they may have done it by\nhand already). Chosen when they confirm; true until then.",
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "recipientUpdatesCollection": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "mediationState": {
+                        "readOnly": true,
+                        "description": "Mediation by the team: asked by one of the players (or both), then taken by a mediator. From the request on, the\nexchange and its conversation are visible to the whole mediation team.",
+                        "default": "none",
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "requested",
+                            "taken"
+                        ]
+                    },
                     "partial": {
                         "description": "True when the exchange was completed with cards missing: what was not received did not change hands.",
                         "default": false,
@@ -44806,6 +44914,20 @@
                     "turnName": {
                         "readOnly": true,
                         "description": "The username of the player whose answer is awaited (while negotiating).",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "mediationRequestedByName": {
+                        "readOnly": true,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "mediatorName": {
+                        "readOnly": true,
                         "type": [
                             "string",
                             "null"

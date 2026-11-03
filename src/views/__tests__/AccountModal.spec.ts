@@ -94,6 +94,24 @@ describe('AccountModal', () => {
     expect(writes(fetchMock, 'POST')).toHaveLength(0)
   })
 
+  it('propose le rôle médiateur et le présélectionne', async () => {
+    const fetchMock = mockFetch({})
+    const wrapper = mountComponent(AccountModal, {
+      account: { ...account, roles: ['ROLE_USER', 'ROLE_MEDIATOR'] },
+    })
+    await settle()
+
+    expect((wrapper.find('#accountModal-role').element as HTMLSelectElement).value).toBe(
+      'ROLE_MEDIATOR',
+    )
+    await wrapper.find('#accountModal-role').setValue('ROLE_USER')
+    await wrapper.find('#accountModal-role').setValue('ROLE_MEDIATOR')
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    expect(JSON.parse(writes(fetchMock, 'PATCH')[0][1].body).roles).toEqual(['ROLE_MEDIATOR'])
+  })
+
   it('crée un compte avec son rôle et son mot de passe', async () => {
     const fetchMock = mockFetch({})
     const wrapper = mountComponent(AccountModal)

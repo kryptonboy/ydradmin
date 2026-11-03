@@ -1,5 +1,6 @@
 import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
-import { createPinia } from 'pinia'
+import { createPinia, setActivePinia } from 'pinia'
+import { useAuthStore } from '@/stores'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import TradeView from '../TradeView.vue'
 
@@ -16,10 +17,13 @@ function mockFetch(routes: Record<string, unknown> = {}) {
   return fn
 }
 
-function mountView() {
+function mountView(username = 'admin') {
+  const pinia = createPinia()
+  setActivePinia(pinia)
+  useAuthStore().user = { id: 1, username, avatar: '' }
   const wrapper = mount(TradeView, {
     attachTo: document.body,
-    global: { plugins: [createPinia()], stubs: { FontAwesomeIcon: true } },
+    global: { plugins: [pinia], stubs: { FontAwesomeIcon: true } },
   })
   mounted.push(wrapper)
   return wrapper
@@ -66,6 +70,9 @@ const trade = (extra = {}) => ({
   createdAt: '2026-10-01T10:00:00+00:00',
   updatedAt: '2026-10-02T10:00:00+00:00',
   balance: { proposer: 3, recipient: 1.5, difference: 1.5 },
+  proposerUpdatesCollection: true,
+  recipientUpdatesCollection: true,
+  mediationState: 'none',
   lines: [line(1, 1, 'alice'), line(2, 2, 'alice'), line(3, 2, 'bob')],
   ...extra,
 })
@@ -224,5 +231,113 @@ describe('TradeView', () => {
     await settle()
 
     expect(wrapper.text()).toContain('Échange déjà terminé.')
+  })
+
+  describe('médiation', () => {
+    const requested = trade({
+      mediationState: 'requested',
+      mediationRequestedByName: 'bob',
+      mediationRequestedAt: '2026-10-03T10:00:00+00:00',
+    })
+    const taken = trade({ mediationState: 'taken', mediatorName: 'medi' })
+    const buttonByText = (wrapper: VueWrapper, text: string) =>
+      wrapper.findAll('button').find((b) => b.text().includes(text))
+    const open = async (wrapper: VueWrapper) => {
+      await settle()
+      await wrapper.find('button[aria-label="Détail"]').trigger('click')
+      await settle()
+    }
+
+    it("affiche l'état de médiation dans la liste", async () => {
+      mockFetch({ '/trades': { member: [requested], totalItems: 1 } })
+      const wrapper = mountView()
+      await settle()
+
+      expect(wrapper.text()).toContain('À traiter')
+    })
+
+    it('envoie les filtres de médiation', async () => {
+      const fetchMock = mockFetch({ '/trades': { member: [], totalItems: 0 } })
+      const wrapper = mountView()
+      await settle()
+
+      await wrapper.find('#trade_mediation').setValue('requested')
+      await wrapper.find('#trade_mediator').setValue('medi')
+      await buttonByText(wrapper, 'Appliquer')?.trigger('click')
+      await settle()
+
+      const url = fetchMock.mock.calls
+        .map(([u]) => String(u))
+        .find((u) => u.includes('mediation=requested'))
+      expect(url).toContain('mediator=medi')
+    })
+
+    it('prend en charge une demande', async () => {
+      const fetchMock = mockFetch({ '/trades': { member: [requested], totalItems: 1 } })
+      const wrapper = mountView('medi')
+      await open(wrapper)
+
+      expect(buttonByText(wrapper, 'Remettre dans la file')).toBeUndefined()
+      await buttonByText(wrapper, 'Prendre en charge')?.trigger('click')
+      await settle()
+
+      const post = fetchMock.mock.calls.find(([, init]) => init?.method === 'POST')
+      expect(String(post?.[0])).toMatch(/\/trades\/9\/mediation\/take$/)
+    })
+
+    it("remet l'échange dans la file", async () => {
+      const fetchMock = mockFetch({ '/trades': { member: [taken], totalItems: 1 } })
+      const wrapper = mountView('medi')
+      await open(wrapper)
+
+      await buttonByText(wrapper, 'Remettre dans la file')?.trigger('click')
+      await settle()
+
+      const post = fetchMock.mock.calls.find(([, init]) => init?.method === 'POST')
+      expect(String(post?.[0])).toMatch(/\/trades\/9\/mediation\/release$/)
+    })
+
+    it('laisse écrire le médiateur en charge seulement', async () => {
+      mockFetch({ '/trades': { member: [taken], totalItems: 1 } })
+      const other = mountView('autre')
+      await open(other)
+      expect(other.find('[data-test="write"]').exists()).toBe(false)
+      other.unmount()
+
+      const fetchMock = mockFetch({ '/trades': { member: [taken], totalItems: 1 } })
+      const wrapper = mountView('medi')
+      await open(wrapper)
+      await wrapper.find('#trade_message').setValue('Bonjour')
+      await wrapper.find('[data-test="write"]').trigger('submit')
+      await settle()
+
+      const post = fetchMock.mock.calls.find(([, init]) => init?.method === 'POST')
+      expect(String(post?.[0])).toMatch(/\/trade_messages$/)
+      expect(JSON.parse(String(post?.[1].body))).toEqual({
+        trade: '/api/trades/9',
+        content: 'Bonjour',
+      })
+    })
+
+    it('affiche la mise à jour des collections d’un échange terminé', async () => {
+      mockFetch({
+        '/trades': {
+          member: [
+            trade({
+              status: 'completed',
+              proposerUpdatesCollection: true,
+              recipientUpdatesCollection: false,
+            }),
+          ],
+          totalItems: 1,
+        },
+      })
+      const wrapper = mountView()
+      await open(wrapper)
+
+      const text = wrapper.find('[data-test="collection-update"]').text()
+      expect(text).toContain('alice oui')
+      expect(text).toContain('bob non')
+    })
   })
 })

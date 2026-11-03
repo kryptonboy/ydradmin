@@ -54,6 +54,14 @@ export interface Trade {
   turnName: string | null
   proposerConfirmed: boolean
   recipientConfirmed: boolean
+  /** Chaque joueur choisit à la confirmation si l'échange met à jour sa collection */
+  proposerUpdatesCollection: boolean
+  recipientUpdatesCollection: boolean
+  /** File de médiation : aucune demande, demandée, prise en charge */
+  mediationState: 'none' | 'requested' | 'taken'
+  mediationRequestedByName?: string | null
+  mediationRequestedAt?: string | null
+  mediatorName?: string | null
   createdAt: string
   updatedAt: string
   /** Valeurs en euros de la proposition en cours */
@@ -80,4 +88,12 @@ export interface TradeRating {
   tradeId: number | null
   raterName: string | null
   ratedName: string | null
+}
+
+export type MediationState = Trade['mediationState']
+
+export const MEDIATION_LABELS: Record<MediationState, string> = {
+  none: 'Aucune',
+  requested: 'À traiter',
+  taken: 'Pris en charge',
 }

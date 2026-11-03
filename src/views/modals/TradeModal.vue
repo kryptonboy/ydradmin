@@ -5,11 +5,11 @@ import { formatDateTime } from '@/helpers/date'
 import { useAuthStore } from '@/stores'
 import type { PaginatedApiResponse } from '@/types/Api'
 import type { Trade, TradeLine, TradeMessage, TradeRating } from '@/types/models/Trade'
-import { TRADE_STATUS_LABELS } from '@/types/models/Trade'
+import { MEDIATION_LABELS, TRADE_STATUS_LABELS } from '@/types/models/Trade'
 import { computed, nextTick, onMounted, ref, useTemplateRef } from 'vue'
 
 const props = defineProps<{ trade: Trade | null }>()
-const emit = defineEmits<{ cancelled: [] }>()
+const emit = defineEmits<{ changed: [] }>()
 
 const modalEl = useTemplateRef<HTMLElement>('modalEl')
 let modalInstance: bootstrap.Modal | null = null
@@ -89,12 +89,58 @@ async function cancelTrade() {
     await createFetchWrapper(useAuthStore()).post(
       `${import.meta.env.VITE_API_URL}/trades/${id}/cancel`,
     )
-    emit('cancelled')
+    emit('changed')
     modalInstance?.hide()
   } catch (err) {
     error.value = getErrorMessage(err)
   } finally {
     cancelling.value = false
+  }
+}
+
+const mediationBusy = ref(false)
+const draft = ref('')
+const sending = ref(false)
+
+const me = computed(() => useAuthStore().user?.username)
+// Seul le médiateur en charge écrit dans la conversation (l'API refuse les autres)
+const canWrite = computed(
+  () => props.trade?.mediationState === 'taken' && props.trade.mediatorName === me.value,
+)
+
+/** Prise en charge ou remise dans la file : l'échange est ensuite relu par la page */
+async function mediation(action: 'take' | 'release') {
+  if (!props.trade) return
+  mediationBusy.value = true
+  error.value = null
+  try {
+    await createFetchWrapper(useAuthStore()).post(
+      `${import.meta.env.VITE_API_URL}/trades/${props.trade.id}/mediation/${action}`,
+    )
+    emit('changed')
+  } catch (err) {
+    error.value = getErrorMessage(err)
+  } finally {
+    mediationBusy.value = false
+  }
+}
+
+async function sendMessage() {
+  const content = draft.value.trim()
+  if (!props.trade || !content) return
+  sending.value = true
+  error.value = null
+  try {
+    await createFetchWrapper(useAuthStore()).post(
+      `${import.meta.env.VITE_API_URL}/trade_messages`,
+      { trade: props.trade['@id'], content },
+    )
+    draft.value = ''
+    await load()
+  } catch (err) {
+    error.value = getErrorMessage(err)
+  } finally {
+    sending.value = false
   }
 }
 
@@ -149,6 +195,48 @@ defineExpose({ showModal: show })
             {{ euros(props.trade.balance.recipient) }} · écart
             {{ euros(props.trade.balance.difference) }}
           </p>
+          <p v-if="props.trade.status === 'completed'" class="small" data-test="collection-update">
+            Collection mise à jour : {{ props.trade.proposerName }}
+            {{ props.trade.proposerUpdatesCollection ? 'oui' : 'non' }} ·
+            {{ props.trade.recipientName }}
+            {{ props.trade.recipientUpdatesCollection ? 'oui' : 'non' }}
+          </p>
+          <div
+            v-if="props.trade.mediationState && props.trade.mediationState !== 'none'"
+            class="alert alert-warning d-flex flex-wrap align-items-center gap-2"
+            data-test="mediation"
+          >
+            <span>
+              Médiation {{ MEDIATION_LABELS[props.trade.mediationState].toLowerCase() }}
+              <template v-if="props.trade.mediationRequestedByName">
+                , demandée par {{ props.trade.mediationRequestedByName }}
+              </template>
+              <template v-if="props.trade.mediationRequestedAt">
+                le {{ formatDateTime(props.trade.mediationRequestedAt) }}
+              </template>
+              <template v-if="props.trade.mediatorName">
+                , prise en charge par {{ props.trade.mediatorName }}
+              </template>
+            </span>
+            <button
+              v-if="props.trade.mediationState === 'requested'"
+              type="button"
+              class="btn btn-sm btn-primary ms-auto"
+              :disabled="mediationBusy"
+              @click="mediation('take')"
+            >
+              Prendre en charge
+            </button>
+            <button
+              v-if="props.trade.mediationState === 'taken'"
+              type="button"
+              class="btn btn-sm btn-outline-secondary ms-auto"
+              :disabled="mediationBusy"
+              @click="mediation('release')"
+            >
+              Remettre dans la file
+            </button>
+          </div>
 
           <h6>Propositions</h6>
           <div v-for="[revision, lines] in revisions" :key="revision" class="mb-3">
@@ -199,6 +287,24 @@ defineExpose({ showModal: show })
               <div class="text-break" style="white-space: pre-wrap">{{ message.content }}</div>
             </li>
           </ul>
+
+          <form v-if="canWrite" class="mb-3" data-test="write" @submit.prevent="sendMessage">
+            <label for="trade_message" class="form-label">Écrire dans la conversation</label>
+            <textarea
+              id="trade_message"
+              class="form-control"
+              rows="2"
+              maxlength="1000"
+              v-model="draft"
+            ></textarea>
+            <button
+              type="submit"
+              class="btn btn-primary btn-sm mt-2"
+              :disabled="sending || !draft.trim()"
+            >
+              Envoyer
+            </button>
+          </form>
 
           <h6>Évaluations</h6>
           <p v-if="!loading && !ratings.length" class="text-muted"><em>Aucune évaluation</em></p>

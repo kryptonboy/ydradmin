@@ -6499,6 +6499,21 @@ export interface components {
             /** @default false */
             recipientConfirmed: boolean;
             /**
+             * @description Whether the proposer wants the exchange to update their collection when it completes (they may have done it by
+             *     hand already). Chosen when they confirm; true until then.
+             * @default true
+             */
+            proposerUpdatesCollection: boolean;
+            /** @default true */
+            recipientUpdatesCollection: boolean;
+            /**
+             * @description Mediation by the team: asked by one of the players (or both), then taken by a mediator. From the request on, the
+             *     exchange and its conversation are visible to the whole mediation team.
+             * @default none
+             * @enum {string}
+             */
+            readonly mediationState: "none" | "requested" | "taken";
+            /**
              * @description True when the exchange was completed with cards missing: what was not received did not change hands.
              * @default false
              */
@@ -6513,6 +6528,8 @@ export interface components {
             readonly recipientName?: string | null;
             /** @description The username of the player whose answer is awaited (while negotiating). */
             readonly turnName?: string | null;
+            readonly mediationRequestedByName?: string | null;
+            readonly mediatorName?: string | null;
             /**
              * @description What each side gives in the current proposal, in euros, and the difference (proposer minus recipient): an
              *     indication for the players, never a rule. A line without value counts for nothing.
@@ -6546,6 +6563,21 @@ export interface components {
             /** @default false */
             recipientConfirmed: boolean;
             /**
+             * @description Whether the proposer wants the exchange to update their collection when it completes (they may have done it by
+             *     hand already). Chosen when they confirm; true until then.
+             * @default true
+             */
+            proposerUpdatesCollection: boolean;
+            /** @default true */
+            recipientUpdatesCollection: boolean;
+            /**
+             * @description Mediation by the team: asked by one of the players (or both), then taken by a mediator. From the request on, the
+             *     exchange and its conversation are visible to the whole mediation team.
+             * @default none
+             * @enum {string}
+             */
+            readonly mediationState: "none" | "requested" | "taken";
+            /**
              * @description True when the exchange was completed with cards missing: what was not received did not change hands.
              * @default false
              */
@@ -6560,6 +6592,8 @@ export interface components {
             readonly recipientName?: string | null;
             /** @description The username of the player whose answer is awaited (while negotiating). */
             readonly turnName?: string | null;
+            readonly mediationRequestedByName?: string | null;
+            readonly mediatorName?: string | null;
             /**
              * @description What each side gives in the current proposal, in euros, and the difference (proposer minus recipient): an
              *     indication for the players, never a rule. A line without value counts for nothing.
@@ -18233,6 +18267,14 @@ export interface operations {
                 recipient?: string;
                 /** @description Trade recipient */
                 "recipient[]"?: string[];
+                /** @description Trade mediation */
+                mediation?: string;
+                /** @description Trade mediation */
+                "mediation[]"?: string[];
+                /** @description Trade mediator */
+                mediator?: string;
+                /** @description Trade mediator */
+                "mediator[]"?: string[];
                 /** @description Trade order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description Trade order[id] */

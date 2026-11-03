@@ -5,7 +5,7 @@ import { useListView } from '@/composables/useListView'
 import { formatDateTime } from '@/helpers/date'
 import { useTradesStore } from '@/stores'
 import type { Trade } from '@/types/models/Trade'
-import { TRADE_STATUS_LABELS } from '@/types/models/Trade'
+import { MEDIATION_LABELS, TRADE_STATUS_LABELS } from '@/types/models/Trade'
 import { ref } from 'vue'
 import TradeModal from './modals/TradeModal.vue'
 
@@ -32,6 +32,8 @@ const {
     status: null as string | null,
     proposer: null as string | null,
     recipient: null as string | null,
+    mediation: null as string | null,
+    mediator: null as string | null,
   }),
 })
 
@@ -46,6 +48,17 @@ const STATUS_CLASSES: Record<Trade['status'], string> = {
 /** Nombre de lignes de la proposition en cours */
 const currentLines = (trade: Trade) =>
   (trade.lines ?? []).filter((line) => line.revision === trade.revision).length
+
+/** Recharge la liste et l'échange ouvert (un filtre peut l'avoir fait sortir de la liste) */
+async function refresh() {
+  await reload()
+  if (!selected.value) return
+  try {
+    selected.value = await store.get(selected.value.id)
+  } catch {
+    // échange devenu illisible : on garde la dernière version connue
+  }
+}
 
 function openTrade(trade: Trade) {
   selected.value = trade
@@ -105,6 +118,25 @@ function openTrade(trade: Trade) {
           v-model="filters.recipient"
         />
       </div>
+      <div class="col-3">
+        <label for="trade_mediation" class="form-label">Médiation</label>
+        <select class="form-select" id="trade_mediation" v-model="filters.mediation">
+          <option :value="null">Tous</option>
+          <option v-for="(label, value) in MEDIATION_LABELS" :key="value" :value="value">
+            {{ label }}
+          </option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label for="trade_mediator" class="form-label">Médiateur</label>
+        <input
+          type="text"
+          class="form-control"
+          id="trade_mediator"
+          placeholder="Pseudo..."
+          v-model="filters.mediator"
+        />
+      </div>
       <div class="col-3 d-flex flex-column gap-2">
         <button class="btn btn-secondary w-100" @click="resetFilters">
           <font-awesome-icon :icon="['fa', 'clock-rotate-left']" />
@@ -125,6 +157,7 @@ function openTrade(trade: Trade) {
         <th scope="col">Destinataire</th>
         <th scope="col">Statut</th>
         <th scope="col">Au tour de</th>
+        <th scope="col">Médiation</th>
         <th scope="col">Cartes</th>
         <SortableHeader field="updatedAt" :sort="sort" @sort="setSort">Modifié le</SortableHeader>
         <th scope="col">Actions</th>
@@ -132,7 +165,7 @@ function openTrade(trade: Trade) {
     </thead>
     <tbody v-if="loading">
       <tr>
-        <td colspan="8" class="text-center align-middle">
+        <td colspan="9" class="text-center align-middle">
           <div class="spinner-border spinner-border-sm" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -151,6 +184,16 @@ function openTrade(trade: Trade) {
           <span v-if="trade.partial" class="badge bg-warning text-dark ms-1">Partiel</span>
         </td>
         <td>{{ trade.turnName ?? '—' }}</td>
+        <td>
+          <span
+            v-if="trade.mediationState && trade.mediationState !== 'none'"
+            class="badge"
+            :class="trade.mediationState === 'requested' ? 'bg-warning text-dark' : 'bg-info'"
+          >
+            {{ MEDIATION_LABELS[trade.mediationState] }}
+          </span>
+          <span v-if="trade.mediatorName" class="small ms-1">{{ trade.mediatorName }}</span>
+        </td>
         <td>{{ currentLines(trade) }}</td>
         <td>{{ formatDateTime(trade.updatedAt) }}</td>
         <td>
@@ -167,12 +210,12 @@ function openTrade(trade: Trade) {
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="8"><em>Aucun échange</em></td>
+        <td colspan="9"><em>Aucun échange</em></td>
       </tr>
     </tbody>
     <tfoot v-if="pagination.totalItems > 50">
       <tr>
-        <td colspan="8" class="text-center pt-3 pb-0">
+        <td colspan="9" class="text-center pt-3 pb-0">
           <AppPaginator
             :pagination="pagination"
             :current-page="currentPage"
@@ -182,5 +225,5 @@ function openTrade(trade: Trade) {
       </tr>
     </tfoot>
   </table>
-  <TradeModal ref="modalRef" :trade="selected" @cancelled="reload" />
+  <TradeModal ref="modalRef" :trade="selected" @changed="refresh" />
 </template>

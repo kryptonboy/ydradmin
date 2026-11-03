@@ -34,7 +34,7 @@ const schema = computed(() =>
       .min(3, '3 caractères minimum')
       .max(50, '50 caractères maximum'),
     email: yup.string().required('Email requis').email('Email invalide'),
-    role: yup.string().oneOf(['ROLE_USER', 'ROLE_ADMIN']).required(),
+    role: yup.string().oneOf(['ROLE_USER', 'ROLE_MEDIATOR', 'ROLE_ADMIN']).required(),
     plainPassword: isEdit.value
       ? yup
           .string()
@@ -90,7 +90,11 @@ defineExpose({ showModal: () => modal.value?.show() })
     :initial-values="{
       username: props.account?.username ?? '',
       email: props.account?.email ?? '',
-      role: props.account?.roles?.includes('ROLE_ADMIN') ? 'ROLE_ADMIN' : 'ROLE_USER',
+      role: props.account?.roles?.includes('ROLE_ADMIN')
+        ? 'ROLE_ADMIN'
+        : props.account?.roles?.includes('ROLE_MEDIATOR')
+          ? 'ROLE_MEDIATOR'
+          : 'ROLE_USER',
       banned: props.account?.banned ?? false,
       emailVerified: props.account?.emailVerified ?? true,
       plainPassword: '',
@@ -126,6 +130,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       <label class="form-label" for="accountModal-role">Rôle</label>
       <Field as="select" name="role" id="accountModal-role" class="form-select" :disabled="isSelf">
         <option value="ROLE_USER">Utilisateur</option>
+        <option value="ROLE_MEDIATOR">Médiateur</option>
         <option value="ROLE_ADMIN">Administrateur</option>
       </Field>
       <div v-if="isSelf" class="form-text">Tu ne peux pas modifier ton propre rôle.</div>

@@ -44,6 +44,9 @@ const banError = ref<string | null>(null)
 const { removeError, remove } = useRemoveAction(store, reload)
 
 const isAdmin = (account: Account) => !!account.roles?.includes('ROLE_ADMIN')
+const isMediator = (account: Account) => !!account.roles?.includes('ROLE_MEDIATOR')
+const roleLabel = (account: Account) =>
+  isAdmin(account) ? 'Administrateur' : isMediator(account) ? 'Médiateur' : 'Utilisateur'
 // L'API refuse qu'un administrateur supprime son propre compte
 const isSelf = (account: Account) => account.id === auth.user?.id
 
@@ -183,8 +186,17 @@ function openModal(account: Account | null = null) {
         <td>{{ account.username }}</td>
         <td>{{ account.email }}</td>
         <td>
-          <span class="badge" :class="isAdmin(account) ? 'bg-danger' : 'bg-secondary'">
-            {{ isAdmin(account) ? 'Administrateur' : 'Utilisateur' }}
+          <span
+            class="badge"
+            :class="
+              isAdmin(account)
+                ? 'bg-danger'
+                : isMediator(account)
+                  ? 'bg-warning text-dark'
+                  : 'bg-secondary'
+            "
+          >
+            {{ roleLabel(account) }}
           </span>
         </td>
         <td>{{ account.commentsCount ?? 0 }}</td>
