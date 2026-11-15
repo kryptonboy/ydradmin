@@ -80,6 +80,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/actualities/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Actuality resource.
+         * @description Retrieves a Actuality resource.
+         */
+        get: operations["api_actualitiesby-slug_slug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/actualities/{id}": {
         parameters: {
             query?: never;
@@ -230,6 +250,26 @@ export interface paths {
          * @description Creates a Anime resource.
          */
         post: operations["api_animes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/animes/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Anime resource.
+         * @description Retrieves a Anime resource.
+         */
+        get: operations["api_animesby-slug_slug_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -496,6 +536,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/cards/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Card resource.
+         * @description Retrieves a Card resource.
+         */
+        get: operations["api_cardsby-slug_slug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/cards/{id}": {
         parameters: {
             query?: never;
@@ -574,6 +634,78 @@ export interface paths {
          * @description Updates the CardGroup resource.
          */
         patch: operations["api_card_groups_id_patch"];
+        trace?: never;
+    };
+    "/api/card_prices": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of CardPrice resources.
+         * @description Retrieves the collection of CardPrice resources.
+         */
+        get: operations["api_card_prices_get_collection"];
+        put?: never;
+        /**
+         * Creates a CardPrice resource.
+         * @description Creates a CardPrice resource.
+         */
+        post: operations["api_card_prices_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/card_prices/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a CardPrice resource.
+         * @description Retrieves a CardPrice resource.
+         */
+        get: operations["api_card_prices_id_get"];
+        put?: never;
+        post?: never;
+        /**
+         * Removes the CardPrice resource.
+         * @description Removes the CardPrice resource.
+         */
+        delete: operations["api_card_prices_id_delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Updates the CardPrice resource.
+         * @description Updates the CardPrice resource.
+         */
+        patch: operations["api_card_prices_id_patch"];
+        trace?: never;
+    };
+    "/api/card_price_histories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves the collection of CardPriceHistory resources.
+         * @description Retrieves the collection of CardPriceHistory resources.
+         */
+        get: operations["api_card_price_histories_get_collection"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/card_sub_types": {
@@ -928,6 +1060,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/characters/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Character resource.
+         * @description Retrieves a Character resource.
+         */
+        get: operations["api_charactersby-slug_slug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/characters/{id}": {
         parameters: {
             query?: never;
@@ -1078,6 +1230,26 @@ export interface paths {
          * @description Creates a Deck resource.
          */
         post: operations["api_decks_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/decks/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Deck resource.
+         * @description Retrieves a Deck resource.
+         */
+        get: operations["api_decksby-slug_slug_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1294,6 +1466,26 @@ export interface paths {
          * @description Creates a Extension resource.
          */
         post: operations["api_extensions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/extensions/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Extension resource.
+         * @description Retrieves a Extension resource.
+         */
+        get: operations["api_extensionsby-slug_slug_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1574,6 +1766,26 @@ export interface paths {
          * @description Creates a Manga resource.
          */
         post: operations["api_mangas_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/mangas/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Manga resource.
+         * @description Retrieves a Manga resource.
+         */
+        get: operations["api_mangasby-slug_slug_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1936,6 +2148,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/movies/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Movie resource.
+         * @description Retrieves a Movie resource.
+         */
+        get: operations["api_moviesby-slug_slug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/movies/{id}": {
         parameters: {
             query?: never;
@@ -2164,6 +2396,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/rulings/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Ruling resource.
+         * @description Retrieves a Ruling resource.
+         */
+        get: operations["api_rulingsby-slug_slug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/rulings/{id}": {
         parameters: {
             query?: never;
@@ -2314,6 +2566,26 @@ export interface paths {
          * @description Creates a Tag resource.
          */
         post: operations["api_tags_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/tags/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a Tag resource.
+         * @description Retrieves a Tag resource.
+         */
+        get: operations["api_tagsby-slug_slug_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -2546,6 +2818,26 @@ export interface paths {
          * @description Creates a VideoGame resource.
          */
         post: operations["api_video_games_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/video_games/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a VideoGame resource.
+         * @description Retrieves a VideoGame resource.
+         */
+        get: operations["api_video_gamesby-slug_slug_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -2794,6 +3086,8 @@ export interface components {
             rulings?: components["schemas"]["Ruling.jsonld-abstract_card.read_entity.read"][];
             tags?: components["schemas"]["Tag.jsonld-abstract_card.read_entity.read"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
@@ -2808,38 +3102,56 @@ export interface components {
             monsterSubType?: components["schemas"]["MonsterSubType.jsonld-card.read_entity.read"] | null;
             monsterType?: components["schemas"]["MonsterType.jsonld-card.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-chapter_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-episode_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.jsonld-ruling.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-abstract_card.read_entity.read": {
             name?: string;
@@ -2857,6 +3169,8 @@ export interface components {
             rulings?: components["schemas"]["Ruling.multipart-abstract_card.read_entity.read"][];
             tags?: components["schemas"]["Tag.multipart-abstract_card.read_entity.read"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-card.read_entity.read": {
             name?: string;
@@ -2871,38 +3185,56 @@ export interface components {
             monsterSubType?: components["schemas"]["MonsterSubType.multipart-card.read_entity.read"] | null;
             monsterType?: components["schemas"]["MonsterType.multipart-card.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-chapter_character.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-deck.read_entity.read": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-episode_character.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AbstractCard.multipart-ruling.read_entity.read_label": {
             name?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Actuality-actuality.write": {
             title: string;
@@ -2970,6 +3302,8 @@ export interface components {
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.jsonld-actuality.list_actuality.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -2989,9 +3323,13 @@ export interface components {
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.jsonld-actuality.list_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Actuality.jsonld-actuality_comment.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Actuality.multipart-actuality.list_actuality.read_entity.read": {
             title: string;
@@ -3009,6 +3347,8 @@ export interface components {
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.multipart-actuality.list_actuality.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3028,9 +3368,13 @@ export interface components {
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.multipart-actuality.list_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Actuality.multipart-actuality_comment.read_entity.read": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ActualityCategory-actuality_category.write": {
             label: string;
@@ -3046,11 +3390,15 @@ export interface components {
             label: string;
             slug?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ActualityCategory.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             label: string;
             slug?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ActualityCategory.jsonld-actuality_category.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             label: string;
@@ -3058,16 +3406,22 @@ export interface components {
             /** @default true */
             active: boolean;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ActualityCategory.multipart-actuality.list_actuality.read_entity.read": {
             label: string;
             slug?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ActualityCategory.multipart-actuality.list_entity.read": {
             label: string;
             slug?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ActualityCategory.multipart-actuality_category.read_entity.read": {
             label: string;
@@ -3075,6 +3429,8 @@ export interface components {
             /** @default true */
             active: boolean;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /**
          * @description A comment left on an actuality: the text, the author's username (the user account itself is never exposed), and a
@@ -3108,6 +3464,8 @@ export interface components {
         "ActualityComment.jsonld-actuality_comment.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             actuality: components["schemas"]["Actuality.jsonld-actuality_comment.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly actualityTitle?: string;
             /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content: string;
@@ -3125,6 +3483,8 @@ export interface components {
         "ActualityComment.jsonld-actuality_comment.read_entity.read_validation.Default_create": components["schemas"]["HydraItemBaseSchema"] & {
             actuality: components["schemas"]["Actuality.jsonld-actuality_comment.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly actualityTitle?: string;
             /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content: string;
@@ -3142,6 +3502,8 @@ export interface components {
         "ActualityComment.multipart-actuality_comment.read_entity.read": {
             actuality: components["schemas"]["Actuality.multipart-actuality_comment.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly actualityTitle?: string;
             /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content: string;
@@ -3159,6 +3521,8 @@ export interface components {
         "ActualityComment.multipart-actuality_comment.read_entity.read_validation.Default_create": {
             actuality: components["schemas"]["Actuality.multipart-actuality_comment.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly actualityTitle?: string;
             /** @description Plain text, not HTML: the client must escape it (and may replace the smiley codes by their image). */
             content: string;
@@ -3211,6 +3575,8 @@ export interface components {
             arcs?: components["schemas"]["Arc.jsonld-anime.read_anime.detail_entity.read_label"][];
             seasons?: components["schemas"]["Season.jsonld-anime.read_anime.detail_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3229,22 +3595,32 @@ export interface components {
             arcs?: components["schemas"]["Arc.jsonld-anime.read_entity.read_label"][];
             seasons?: components["schemas"]["Season.jsonld-anime.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.jsonld-arc.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.jsonld-episode.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.jsonld-season.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.multipart-anime.read_anime.detail_entity.read_label": {
             name: string;
@@ -3261,6 +3637,8 @@ export interface components {
             arcs?: components["schemas"]["Arc.multipart-anime.read_anime.detail_entity.read_label"][];
             seasons?: components["schemas"]["Season.multipart-anime.read_anime.detail_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3279,22 +3657,32 @@ export interface components {
             arcs?: components["schemas"]["Arc.multipart-anime.read_entity.read_label"][];
             seasons?: components["schemas"]["Season.multipart-anime.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.multipart-arc.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.multipart-episode.list_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Anime.multipart-season.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc-arc.write": {
             name: string;
@@ -3319,10 +3707,14 @@ export interface components {
         "Arc.jsonld-anime.read_anime.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.jsonld-anime.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.jsonld-arc.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3331,30 +3723,44 @@ export interface components {
             position?: number | null;
             anime: components["schemas"]["Anime.jsonld-arc.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.jsonld-arc_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.jsonld-arc_season.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.jsonld-episode.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-anime.read_anime.detail_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-anime.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-arc.read_entity.read_label": {
             name: string;
@@ -3363,22 +3769,32 @@ export interface components {
             position?: number | null;
             anime: components["schemas"]["Anime.multipart-arc.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-arc_character.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-arc_season.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-episode.list_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Arc.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in an arc of an anime. */
         "ArcCharacter-arc_character.write": {
@@ -3411,12 +3827,16 @@ export interface components {
             arc: components["schemas"]["Arc.jsonld-arc_character.read_entity.read_label"];
             character: components["schemas"]["Character.jsonld-arc_character.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in an arc of an anime. */
         "ArcCharacter.multipart-arc_character.read_entity.read_label": {
             arc: components["schemas"]["Arc.multipart-arc_character.read_entity.read_label"];
             character: components["schemas"]["Character.multipart-arc_character.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ArcSeason-arc_season.write": {
             /**
@@ -3446,23 +3866,35 @@ export interface components {
             arc: components["schemas"]["Arc.jsonld-arc_season.read_entity.read_label"];
             season: components["schemas"]["Season.jsonld-arc_season.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ArcSeason.jsonld-episode.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ArcSeason.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ArcSeason.multipart-arc_season.read_entity.read_label": {
             arc: components["schemas"]["Arc.multipart-arc_season.read_entity.read_label"];
             season: components["schemas"]["Season.multipart-arc_season.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ArcSeason.multipart-episode.list_entity.read_label": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ArcSeason.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AstrologicalSign-astrological_sign.write": {
             name: string;
@@ -3497,14 +3929,20 @@ export interface components {
             endMonth?: number;
             endDay?: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AstrologicalSign.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AstrologicalSign.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AstrologicalSign.multipart-astrological_sign.read_entity.read_label": {
             name: string;
@@ -3515,14 +3953,20 @@ export interface components {
             endMonth?: number;
             endDay?: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AstrologicalSign.multipart-character.read_character.detail_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "AstrologicalSign.multipart-character.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card-card.write": {
             name: string;
@@ -3576,6 +4020,7 @@ export interface components {
         };
         "Card.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            slug?: string;
             description?: string | null;
             reference: string;
             code?: string | null;
@@ -3587,6 +4032,18 @@ export interface components {
             extension: components["schemas"]["Extension.jsonld-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.jsonld-card.read_entity.read"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Card.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Card.jsonld-card_price_history.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3595,9 +4052,13 @@ export interface components {
             image?: components["schemas"]["MediaObject.jsonld-collection.read_entity.read"] | null;
             extension: components["schemas"]["Extension.jsonld-collection.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3606,9 +4067,12 @@ export interface components {
             image?: components["schemas"]["MediaObject.jsonld-trade.read_collection.read_entity.read"] | null;
             extension: components["schemas"]["Extension.jsonld-trade.read_collection.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.multipart-card.read_entity.read": {
             name: string;
+            slug?: string;
             description?: string | null;
             reference: string;
             code?: string | null;
@@ -3620,6 +4084,18 @@ export interface components {
             extension: components["schemas"]["Extension.multipart-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.multipart-card.read_entity.read"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Card.multipart-card_price.read_entity.read": {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Card.multipart-card_price_history.read_entity.read": {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.multipart-collection.read_entity.read": {
             name: string;
@@ -3628,9 +4104,13 @@ export interface components {
             image?: components["schemas"]["MediaObject.multipart-collection.read_entity.read"] | null;
             extension: components["schemas"]["Extension.multipart-collection.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.multipart-deck.read_entity.read": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Card.multipart-trade.read_collection.read_entity.read": {
             name: string;
@@ -3639,6 +4119,8 @@ export interface components {
             image?: components["schemas"]["MediaObject.multipart-trade.read_collection.read_entity.read"] | null;
             extension: components["schemas"]["Extension.multipart-trade.read_collection.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup-card_group.write": {
             name: string;
@@ -3649,34 +4131,160 @@ export interface components {
         "CardGroup.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.jsonld-card_group.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.multipart-card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.multipart-card_group.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardGroup.multipart-restriction.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        /**
+         * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
+         *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         */
+        "CardPrice-card_price.write": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            card: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            rarity: string;
+            /**
+             * @description In euros, two decimals.
+             * @default 0
+             */
+            amount: number;
+        };
+        /**
+         * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
+         *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         */
+        "CardPrice-card_price.write.jsonMergePatch": {
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            card?: string;
+            /**
+             * Format: iri-reference
+             * @example https://example.com/
+             */
+            rarity?: string;
+            /**
+             * @description In euros, two decimals.
+             * @default 0
+             */
+            amount: number;
+        };
+        /**
+         * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
+         *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         */
+        "CardPrice.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            card: components["schemas"]["Card.jsonld-card_price.read_entity.read"];
+            rarity: components["schemas"]["Rarity.jsonld-card_price.read_entity.read"];
+            /**
+             * @description In euros, two decimals.
+             * @default 0
+             */
+            amount: number;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        /**
+         * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
+         *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         */
+        "CardPrice.multipart-card_price.read_entity.read": {
+            card: components["schemas"]["Card.multipart-card_price.read_entity.read"];
+            rarity: components["schemas"]["Rarity.multipart-card_price.read_entity.read"];
+            /**
+             * @description In euros, two decimals.
+             * @default 0
+             */
+            amount: number;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        /**
+         * @description One point of the price curve of a print in a rarity: the amount (euros) from the date it was recorded. A point is
+         *     written every time a reference price is created or its amount changes (CardPriceHistoryRecorder), never edited, so
+         *     the evolution can be drawn: GET /api/card_price_histories?card=&rarity=&order[recordedAt]=asc.
+         */
+        "CardPriceHistory.jsonld-card_price_history.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            card?: components["schemas"]["Card.jsonld-card_price_history.read_entity.read"];
+            rarity?: components["schemas"]["Rarity.jsonld-card_price_history.read_entity.read"];
+            /** @default 0 */
+            amount: number;
+            /** Format: date-time */
+            readonly recordedAt?: string;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        /**
+         * @description One point of the price curve of a print in a rarity: the amount (euros) from the date it was recorded. A point is
+         *     written every time a reference price is created or its amount changes (CardPriceHistoryRecorder), never edited, so
+         *     the evolution can be drawn: GET /api/card_price_histories?card=&rarity=&order[recordedAt]=asc.
+         */
+        "CardPriceHistory.multipart-card_price_history.read_entity.read": {
+            card?: components["schemas"]["Card.multipart-card_price_history.read_entity.read"];
+            rarity?: components["schemas"]["Rarity.multipart-card_price_history.read_entity.read"];
+            /** @default 0 */
+            amount: number;
+            /** Format: date-time */
+            readonly recordedAt?: string;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardSubType-card_sub_type.write": {
             name: string;
@@ -3728,6 +4336,8 @@ export interface components {
             extraDeck: boolean;
             cardType: components["schemas"]["CardType.jsonld-abstract_card.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardSubType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3739,6 +4349,8 @@ export interface components {
             extraDeck: boolean;
             cardType: components["schemas"]["CardType.jsonld-card.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardSubType.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3752,6 +4364,8 @@ export interface components {
             position: number;
             cardType: components["schemas"]["CardType.jsonld-card_sub_type.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardSubType.multipart-abstract_card.read_entity.read": {
             name: string;
@@ -3763,6 +4377,8 @@ export interface components {
             extraDeck: boolean;
             cardType: components["schemas"]["CardType.multipart-abstract_card.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardSubType.multipart-card.read_entity.read": {
             name: string;
@@ -3774,6 +4390,8 @@ export interface components {
             extraDeck: boolean;
             cardType: components["schemas"]["CardType.multipart-card.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardSubType.multipart-card_sub_type.read_entity.read": {
             name: string;
@@ -3787,6 +4405,8 @@ export interface components {
             position: number;
             cardType: components["schemas"]["CardType.multipart-card_sub_type.read_entity.read"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType-card_type.write": {
             name: string;
@@ -3811,13 +4431,19 @@ export interface components {
         "CardType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.jsonld-card_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3825,17 +4451,25 @@ export interface components {
             /** @default 0 */
             position: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.multipart-card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.multipart-card_sub_type.read_entity.read": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "CardType.multipart-card_type.read_entity.read": {
             name: string;
@@ -3843,6 +4477,8 @@ export interface components {
             /** @default 0 */
             position: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter-chapter.write": {
             title: string;
@@ -3900,6 +4536,8 @@ export interface components {
             manga: components["schemas"]["Manga.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["ChapterCharacter.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3918,21 +4556,29 @@ export interface components {
             romanizedJapaneseTitle?: string | null;
             manga: components["schemas"]["Manga.jsonld-chapter.list_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.jsonld-chapter_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.jsonld-manga.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.jsonld-manga.read_manga.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             title: string;
@@ -3950,6 +4596,8 @@ export interface components {
             manga: components["schemas"]["Manga.multipart-chapter.list_chapter.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["ChapterCharacter.multipart-chapter.list_chapter.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3968,21 +4616,29 @@ export interface components {
             romanizedJapaneseTitle?: string | null;
             manga: components["schemas"]["Manga.multipart-chapter.list_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.multipart-chapter_character.read_appearance.read_entity.read_label": {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.multipart-manga.read_entity.read_label": {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Chapter.multipart-manga.read_manga.detail_entity.read_label": {
             title: string;
             chapterNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in a chapter, with the cards he or she uses in it. */
         "ChapterCharacter-chapter_character.write": {
@@ -4017,6 +4673,8 @@ export interface components {
         "ChapterCharacter.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             character: components["schemas"]["Character.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the chapter, each listed once. */
             cards?: components["schemas"]["AbstractCard.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label"][];
         };
@@ -4025,12 +4683,16 @@ export interface components {
             chapter: components["schemas"]["Chapter.jsonld-chapter_character.read_appearance.read_entity.read_label"];
             character: components["schemas"]["Character.jsonld-chapter_character.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the chapter, each listed once. */
             cards?: components["schemas"]["AbstractCard.jsonld-chapter_character.read_appearance.read_entity.read_label"][];
         };
         "ChapterCharacter.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             character: components["schemas"]["Character.multipart-chapter.list_chapter.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the chapter, each listed once. */
             cards?: components["schemas"]["AbstractCard.multipart-chapter.list_chapter.read_appearance.read_entity.read_label"][];
         };
@@ -4039,6 +4701,8 @@ export interface components {
             chapter: components["schemas"]["Chapter.multipart-chapter_character.read_appearance.read_entity.read_label"];
             character: components["schemas"]["Character.multipart-chapter_character.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the chapter, each listed once. */
             cards?: components["schemas"]["AbstractCard.multipart-chapter_character.read_appearance.read_entity.read_label"][];
         };
@@ -4113,18 +4777,24 @@ export interface components {
         "Character.jsonld-arc_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-chapter_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-chapter_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -4143,6 +4813,8 @@ export interface components {
             photo?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
             banner?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -4163,62 +4835,84 @@ export interface components {
             photo?: components["schemas"]["MediaObject.jsonld-character.read_entity.read_label"] | null;
             banner?: components["schemas"]["MediaObject.jsonld-character.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-episode_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-episode_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.jsonld-video_game_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-video_game_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-arc_character.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-chapter_character.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-character.read_character.detail_entity.read_label": {
             name: string;
@@ -4237,6 +4931,8 @@ export interface components {
             photo?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
             banner?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -4257,46 +4953,62 @@ export interface components {
             photo?: components["schemas"]["MediaObject.multipart-character.read_entity.read_label"] | null;
             banner?: components["schemas"]["MediaObject.multipart-character.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-episode_character.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-episode_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-manga_character.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-movie_character.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-movie_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Character.multipart-video_game_character.read_appearance.read_entity.read_label": {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-video_game_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /**
          * @description A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given
@@ -4454,6 +5166,13 @@ export interface components {
             updatedAt?: string;
             /** @description Read only: the username of the owner (the account itself is never exposed). */
             readonly author?: string | null;
+            /**
+             * @description The reference price of the print in this rarity (see CardPrice), or null when there is none or the copy is graded
+             *     (a graded copy is worth what its owner says).
+             */
+            readonly referenceValue?: number | null;
+            /** @description What one copy is worth in a trade: the value its owner set, otherwise the reference price. */
+            readonly effectiveTradeValue?: number | null;
         };
         /**
          * @description A line of the collection of a player: copies of one print of a card (its extension and its rarity) in a given
@@ -4507,6 +5226,13 @@ export interface components {
             updatedAt?: string;
             /** @description Read only: the username of the owner (the account itself is never exposed). */
             readonly author?: string | null;
+            /**
+             * @description The reference price of the print in this rarity (see CardPrice), or null when there is none or the copy is graded
+             *     (a graded copy is worth what its owner says).
+             */
+            readonly referenceValue?: number | null;
+            /** @description What one copy is worth in a trade: the value its owner set, otherwise the reference price. */
+            readonly effectiveTradeValue?: number | null;
         };
         /** @description Unprocessable entity */
         ConstraintViolation: {
@@ -4570,20 +5296,28 @@ export interface components {
             position: number;
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Country.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Country.multipart-country.read_entity.read": {
             code: string;
             position: number;
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Country.multipart-extension.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /**
          * @description A deck built by a player: a name, an optional game format and its cards by section (main, extra, side).
@@ -4781,6 +5515,11 @@ export interface components {
         "Deck.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             /** @default  */
             name: string;
+            /**
+             * @description Generated from the name, unique across all the decks (two players can name a deck the same: the second gets a
+             *     numeric suffix). Read only: it changes with the name, the old one is redirected (see SlugHistoryListener).
+             */
+            readonly slug?: string;
             description?: string | null;
             gameFormat?: components["schemas"]["GameFormat.jsonld-deck.read_entity.read"] | null;
             /**
@@ -4813,6 +5552,11 @@ export interface components {
         "Deck.multipart-deck.read_entity.read": {
             /** @default  */
             name: string;
+            /**
+             * @description Generated from the name, unique across all the decks (two players can name a deck the same: the second gets a
+             *     numeric suffix). Read only: it changes with the name, the old one is redirected (see SlugHistoryListener).
+             */
+            readonly slug?: string;
             description?: string | null;
             gameFormat?: components["schemas"]["GameFormat.multipart-deck.read_entity.read"] | null;
             /**
@@ -4970,6 +5714,8 @@ export interface components {
             romanizedJapaneseTitle?: string | null;
             arcSeason: components["schemas"]["ArcSeason.jsonld-episode.list_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The arc, season and anime of the episode, derived from its arc/season link. */
             readonly arc?: components["schemas"]["Arc.jsonld-episode.list_entity.read_label"] | null;
             readonly season?: components["schemas"]["Season.jsonld-episode.list_entity.read_label"] | null;
@@ -4990,6 +5736,8 @@ export interface components {
             arcSeason: components["schemas"]["ArcSeason.jsonld-episode.list_episode.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["EpisodeCharacter.jsonld-episode.list_episode.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
             /** @description The arc, season and anime of the episode, derived from its arc/season link. */
@@ -5001,6 +5749,8 @@ export interface components {
             episodeNumber?: number | null;
             title: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Episode.multipart-episode.list_entity.read_label": {
             episodeNumber?: number | null;
@@ -5016,6 +5766,8 @@ export interface components {
             romanizedJapaneseTitle?: string | null;
             arcSeason: components["schemas"]["ArcSeason.multipart-episode.list_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The arc, season and anime of the episode, derived from its arc/season link. */
             readonly arc?: components["schemas"]["Arc.multipart-episode.list_entity.read_label"] | null;
             readonly season?: components["schemas"]["Season.multipart-episode.list_entity.read_label"] | null;
@@ -5036,6 +5788,8 @@ export interface components {
             arcSeason: components["schemas"]["ArcSeason.multipart-episode.list_episode.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["EpisodeCharacter.multipart-episode.list_episode.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
             /** @description The arc, season and anime of the episode, derived from its arc/season link. */
@@ -5047,6 +5801,8 @@ export interface components {
             episodeNumber?: number | null;
             title: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in an episode, with the cards he or she uses in it. */
         "EpisodeCharacter-episode_character.write": {
@@ -5081,6 +5837,8 @@ export interface components {
         "EpisodeCharacter.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             character: components["schemas"]["Character.jsonld-episode.list_episode.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the episode, each listed once. */
             cards?: components["schemas"]["AbstractCard.jsonld-episode.list_episode.read_appearance.read_entity.read_label"][];
         };
@@ -5089,12 +5847,16 @@ export interface components {
             episode: components["schemas"]["Episode.jsonld-episode_character.read_appearance.read_entity.read_label"];
             character: components["schemas"]["Character.jsonld-episode_character.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the episode, each listed once. */
             cards?: components["schemas"]["AbstractCard.jsonld-episode_character.read_appearance.read_entity.read_label"][];
         };
         "EpisodeCharacter.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             character: components["schemas"]["Character.multipart-episode.list_episode.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the episode, each listed once. */
             cards?: components["schemas"]["AbstractCard.multipart-episode.list_episode.read_appearance.read_entity.read_label"][];
         };
@@ -5103,6 +5865,8 @@ export interface components {
             episode: components["schemas"]["Episode.multipart-episode_character.read_appearance.read_entity.read_label"];
             character: components["schemas"]["Character.multipart-episode_character.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the episode, each listed once. */
             cards?: components["schemas"]["AbstractCard.multipart-episode_character.read_appearance.read_entity.read_label"][];
         };
@@ -5187,13 +5951,18 @@ export interface components {
         };
         "Extension.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            slug?: string;
             reference: string;
             /** Format: date-time */
             releaseDate?: string | null;
@@ -5203,25 +5972,36 @@ export interface components {
             country: components["schemas"]["Country.jsonld-extension.read_entity.read"];
             gameFormats?: components["schemas"]["GameFormat.jsonld-extension.read_entity.read"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.jsonld-game_format.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             reference: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.multipart-card.read_entity.read": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.multipart-collection.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.multipart-extension.read_entity.read": {
             name: string;
+            slug?: string;
             reference: string;
             /** Format: date-time */
             releaseDate?: string | null;
@@ -5231,15 +6011,21 @@ export interface components {
             country: components["schemas"]["Country.multipart-extension.read_entity.read"];
             gameFormats?: components["schemas"]["GameFormat.multipart-extension.read_entity.read"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.multipart-game_format.read_entity.read_label": {
             name: string;
             reference: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Extension.multipart-trade.read_collection.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ExtensionType-extension_type.write": {
             name: string;
@@ -5254,23 +6040,31 @@ export interface components {
         "ExtensionType.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ExtensionType.jsonld-extension_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             /** @default 0 */
             position: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly extensionsCount?: number;
         };
         "ExtensionType.multipart-extension.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "ExtensionType.multipart-extension_type.read_entity.read": {
             name: string;
             /** @default 0 */
             position: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly extensionsCount?: number;
         };
         "GameFormat-game_format.write": {
@@ -5284,10 +6078,14 @@ export interface components {
         "GameFormat.jsonld-deck.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.jsonld-game_format.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -5296,18 +6094,26 @@ export interface components {
             /** @description Read only: the extensions are linked from Extension.gameFormats. */
             extensions?: components["schemas"]["Extension.jsonld-game_format.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.jsonld-restriction.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.multipart-deck.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.multipart-extension.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.multipart-game_format.read_entity.read_label": {
             name: string;
@@ -5316,10 +6122,14 @@ export interface components {
             /** @description Read only: the extensions are linked from Extension.gameFormats. */
             extensions?: components["schemas"]["Extension.multipart-game_format.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GameFormat.multipart-restriction.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Gender-gender.write": {
             name: string;
@@ -5330,28 +6140,40 @@ export interface components {
         "Gender.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Gender.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Gender.jsonld-gender.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             slug?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Gender.multipart-character.read_character.detail_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Gender.multipart-character.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Gender.multipart-gender.read_entity.read_label": {
             name: string;
             slug?: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
         "GradingCompany-grading_company.write": {
@@ -5367,33 +6189,45 @@ export interface components {
             /** @default  */
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
         "GradingCompany.jsonld-grading_company.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             /** @default  */
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GradingCompany.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             /** @default  */
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GradingCompany.multipart-collection.read_entity.read": {
             /** @default  */
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A company that grades cards (PSA, BGS, CGC...), managed by the administrators. */
         "GradingCompany.multipart-grading_company.read_entity.read": {
             /** @default  */
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "GradingCompany.multipart-trade.read_collection.read_entity.read": {
             /** @default  */
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         HydraCollectionBaseSchema: components["schemas"]["HydraCollectionBaseSchemaNoPagination"] & {
             /**
@@ -5476,10 +6310,14 @@ export interface components {
         "Manga.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.jsonld-chapter.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.jsonld-manga.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -5495,6 +6333,8 @@ export interface components {
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.jsonld-manga.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.jsonld-manga.read_manga.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -5510,20 +6350,28 @@ export interface components {
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.jsonld-manga.read_manga.detail_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
         "Manga.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.multipart-chapter.list_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.multipart-manga.read_entity.read_label": {
             name: string;
@@ -5539,6 +6387,8 @@ export interface components {
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.multipart-manga.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Manga.multipart-manga.read_manga.detail_entity.read_label": {
             name: string;
@@ -5554,12 +6404,16 @@ export interface components {
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.multipart-manga.read_manga.detail_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
         "Manga.multipart-manga_character.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character of a manga; the main characters come first. */
         "MangaCharacter-manga_character.write": {
@@ -5604,6 +6458,8 @@ export interface components {
             manga: components["schemas"]["Manga.jsonld-manga_character.read_entity.read_label"];
             character: components["schemas"]["Character.jsonld-manga_character.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character of a manga; the main characters come first. */
         "MangaCharacter.multipart-manga_character.read_entity.read_label": {
@@ -5614,62 +6470,92 @@ export interface components {
             manga: components["schemas"]["Manga.multipart-manga_character.read_entity.read_label"];
             character: components["schemas"]["Character.multipart-manga_character.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-astrological_sign.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-card_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-chapter_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-episode_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-media_object.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             filePath?: string | null;
@@ -5678,126 +6564,188 @@ export interface components {
             context: "actuality" | "astrological_sign" | "card" | "card_sub_type" | "card_type" | "character" | "extension" | "file_type" | "monster_attribute" | "movie" | "smiley" | "content_bloc_attachment" | "content_bloc_carousel_image" | "content_bloc_image" | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-monster_attribute.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-movie.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-smiley.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.jsonld-video_game_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-actuality.list_actuality.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-actuality.list_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-astrological_sign.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-card.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-card_sub_type.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-card_type.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-character.read_character.detail_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-character.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-collection.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-episode_character.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-extension.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-monster_attribute.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-movie.list_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-smiley.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-trade.read_collection.read_entity.read": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MediaObject.multipart-video_game_character.read_appearance.read_entity.read_label": {
             readonly contentUrl?: string | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterAttribute-monster_attribute.write": {
             name: string;
@@ -5818,28 +6766,40 @@ export interface components {
         "MonsterAttribute.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterAttribute.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterAttribute.jsonld-monster_attribute.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             icon?: components["schemas"]["MediaObject.jsonld-monster_attribute.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterAttribute.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterAttribute.multipart-card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterAttribute.multipart-monster_attribute.read_entity.read": {
             name: string;
             icon?: components["schemas"]["MediaObject.multipart-monster_attribute.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterEffect-monster_effect.write": {
             name: string;
@@ -5852,20 +6812,28 @@ export interface components {
         "MonsterEffect.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterEffect.jsonld-monster_effect.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             description: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterEffect.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterEffect.multipart-monster_effect.read_entity.read": {
             name: string;
             description: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterSubType-monster_sub_type.write": {
             name: string;
@@ -5876,26 +6844,38 @@ export interface components {
         "MonsterSubType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterSubType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterSubType.jsonld-monster_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterSubType.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterSubType.multipart-card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterSubType.multipart-monster_sub_type.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterType-monster_type.write": {
             name: string;
@@ -5906,26 +6886,38 @@ export interface components {
         "MonsterType.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterType.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterType.jsonld-monster_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterType.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterType.multipart-card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "MonsterType.multipart-monster_type.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Movie-movie.write": {
             title: string;
@@ -6008,6 +7000,8 @@ export interface components {
             coverImage?: components["schemas"]["MediaObject.jsonld-movie.list_entity.read_label"] | null;
             titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
@@ -6031,12 +7025,16 @@ export interface components {
             titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             characters?: components["schemas"]["MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
         "Movie.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Movie.multipart-movie.list_entity.read_label": {
             title: string;
@@ -6059,6 +7057,8 @@ export interface components {
             coverImage?: components["schemas"]["MediaObject.multipart-movie.list_entity.read_label"] | null;
             titleImage?: components["schemas"]["MediaObject.multipart-movie.list_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
             title: string;
@@ -6082,12 +7082,16 @@ export interface components {
             titleImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             characters?: components["schemas"]["MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
         "Movie.multipart-movie_character.read_appearance.read_entity.read_label": {
             title: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in a film, with the cards he or she uses in it. */
         "MovieCharacter-movie_character.write": {
@@ -6143,6 +7147,8 @@ export interface components {
             position: number;
             character: components["schemas"]["Character.jsonld-movie.list_movie.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the film, each listed once. */
             cards?: components["schemas"]["AbstractCard.jsonld-movie.list_movie.read_appearance.read_entity.read_label"][];
         };
@@ -6158,6 +7164,8 @@ export interface components {
             movie: components["schemas"]["Movie.jsonld-movie_character.read_appearance.read_entity.read_label"];
             character: components["schemas"]["Character.jsonld-movie_character.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the film, each listed once. */
             cards?: components["schemas"]["AbstractCard.jsonld-movie_character.read_appearance.read_entity.read_label"][];
         };
@@ -6171,6 +7179,8 @@ export interface components {
             position: number;
             character: components["schemas"]["Character.multipart-movie.list_movie.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the film, each listed once. */
             cards?: components["schemas"]["AbstractCard.multipart-movie.list_movie.read_appearance.read_entity.read_label"][];
         };
@@ -6186,6 +7196,8 @@ export interface components {
             movie: components["schemas"]["Movie.multipart-movie_character.read_appearance.read_entity.read_label"];
             character: components["schemas"]["Character.multipart-movie_character.read_appearance.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description The cards the character uses in the film, each listed once. */
             cards?: components["schemas"]["AbstractCard.multipart-movie_character.read_appearance.read_entity.read_label"][];
         };
@@ -6203,10 +7215,24 @@ export interface components {
         };
         "Rarity.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Rarity.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Rarity.jsonld-card_price_history.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.jsonld-rarity.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -6214,17 +7240,35 @@ export interface components {
             /** @default 0 */
             position: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.multipart-card.read_entity.read": {
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Rarity.multipart-card_price.read_entity.read": {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Rarity.multipart-card_price_history.read_entity.read": {
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.multipart-collection.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.multipart-rarity.read_entity.read": {
             name: string;
@@ -6232,10 +7276,14 @@ export interface components {
             /** @default 0 */
             position: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Rarity.multipart-trade.read_collection.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /**
          * @description Account creation by a visitor: a regular user (never an administrator), who can then log in on /api/login_check.
@@ -6292,6 +7340,8 @@ export interface components {
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Restriction.multipart-restriction.read_entity.read_label": {
             cardGroup: components["schemas"]["CardGroup.multipart-restriction.read_entity.read_label"];
@@ -6299,6 +7349,8 @@ export interface components {
             /** @description Copies allowed in a deck: 0 forbidden, 1 limited, 2 semi-limited. */
             limitNumber: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description An official ruling about the cards it applies to. */
         "Ruling-ruling.write": {
@@ -6317,6 +7369,8 @@ export interface components {
         "Ruling.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description An official ruling about the cards it applies to. */
         "Ruling.jsonld-ruling.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
@@ -6326,10 +7380,14 @@ export interface components {
             /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
             abstractCards?: components["schemas"]["AbstractCard.jsonld-ruling.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Ruling.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description An official ruling about the cards it applies to. */
         "Ruling.multipart-ruling.read_entity.read_label": {
@@ -6339,6 +7397,8 @@ export interface components {
             /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
             abstractCards?: components["schemas"]["AbstractCard.multipart-ruling.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season-season.write": {
             seasonNumber?: number | null;
@@ -6361,54 +7421,78 @@ export interface components {
         "Season.jsonld-anime.read_anime.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.jsonld-anime.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.jsonld-arc_season.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.jsonld-episode.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.jsonld-season.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             seasonNumber?: number | null;
             synopsis?: string | null;
             anime: components["schemas"]["Anime.jsonld-season.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.multipart-anime.read_anime.detail_entity.read_label": {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.multipart-anime.read_entity.read_label": {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.multipart-arc_season.read_entity.read_label": {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.multipart-episode.list_entity.read_label": {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
             seasonNumber?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Season.multipart-season.read_entity.read_label": {
             seasonNumber?: number | null;
             synopsis?: string | null;
             anime: components["schemas"]["Anime.multipart-season.read_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Smiley-smiley.write": {
             /** @description The text typed in a comment to get the image, e.g. ":)" or ":dragon:". */
@@ -6433,12 +7517,16 @@ export interface components {
             code: string;
             image?: components["schemas"]["MediaObject.jsonld-smiley.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Smiley.multipart-smiley.read_entity.read": {
             /** @description The text typed in a comment to get the image, e.g. ":)" or ":dragon:". */
             code: string;
             image?: components["schemas"]["MediaObject.multipart-smiley.read_entity.read"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Tag-tag.write": {
             name: string;
@@ -6455,24 +7543,34 @@ export interface components {
         "Tag.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Tag.jsonld-tag.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
+            slug?: string;
             description: string;
             /** @default true */
             visible: boolean;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Tag.multipart-abstract_card.read_entity.read": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "Tag.multipart-tag.read_entity.read": {
             name: string;
+            slug?: string;
             description: string;
             /** @default true */
             visible: boolean;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /**
          * @description An exchange of cards between two players: the proposer and the recipient each give some of their doubles. The
@@ -6638,6 +7736,8 @@ export interface components {
              */
             wishlistReduced: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description Read only: the username of the player who gives these copies. */
             readonly giverName?: string | null;
         };
@@ -6677,6 +7777,8 @@ export interface components {
              */
             wishlistReduced: number;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description Read only: the username of the player who gives these copies. */
             readonly giverName?: string | null;
         };
@@ -6703,6 +7805,8 @@ export interface components {
             readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly tradeId?: number | null;
             /** @description Read only: the username of the author. */
             readonly authorName?: string | null;
@@ -6717,6 +7821,8 @@ export interface components {
             readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly tradeId?: number | null;
             /** @description Read only: the username of the author. */
             readonly authorName?: string | null;
@@ -6748,6 +7854,8 @@ export interface components {
             readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly tradeId?: number | null;
             readonly raterName?: string | null;
             readonly ratedName?: string | null;
@@ -6764,6 +7872,8 @@ export interface components {
             readonly id?: number;
             /** Format: date-time */
             createdAt?: string;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             readonly tradeId?: number | null;
             readonly raterName?: string | null;
             readonly ratedName?: string | null;
@@ -6958,6 +8068,8 @@ export interface components {
             visible: boolean;
             videoGameSupport: components["schemas"]["VideoGameSupport.jsonld-video_game.list_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGame.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
@@ -6972,12 +8084,16 @@ export interface components {
             videoGameSupport: components["schemas"]["VideoGameSupport.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["VideoGameCharacter.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
         "VideoGame.jsonld-video_game_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGame.multipart-video_game.list_entity.read_label": {
             title: string;
@@ -6991,6 +8107,8 @@ export interface components {
             visible: boolean;
             videoGameSupport: components["schemas"]["VideoGameSupport.multipart-video_game.list_entity.read_label"];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGame.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
             title: string;
@@ -7005,12 +8123,16 @@ export interface components {
             videoGameSupport: components["schemas"]["VideoGameSupport.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["VideoGameCharacter.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"][];
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
         "VideoGame.multipart-video_game_character.read_appearance.read_entity.read_label": {
             title: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in a video game. */
         "VideoGameCharacter-video_game_character.write": {
@@ -7041,22 +8163,30 @@ export interface components {
         "VideoGameCharacter.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             character: components["schemas"]["Character.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in a video game. */
         "VideoGameCharacter.jsonld-video_game_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             videoGame: components["schemas"]["VideoGame.jsonld-video_game_character.read_appearance.read_entity.read_label"] | null;
             character: components["schemas"]["Character.jsonld-video_game_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGameCharacter.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
             character: components["schemas"]["Character.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description A character appearing in a video game. */
         "VideoGameCharacter.multipart-video_game_character.read_appearance.read_entity.read_label": {
             videoGame: components["schemas"]["VideoGame.multipart-video_game_character.read_appearance.read_entity.read_label"] | null;
             character: components["schemas"]["Character.multipart-video_game_character.read_appearance.read_entity.read_label"] | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description The platform a video game is released on. */
         "VideoGameSupport-video_game_support.write": {
@@ -7071,30 +8201,42 @@ export interface components {
         "VideoGameSupport.jsonld-video_game.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGameSupport.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description The platform a video game is released on. */
         "VideoGameSupport.jsonld-video_game_support.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             position?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGameSupport.multipart-video_game.list_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         "VideoGameSupport.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
             name: string;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /** @description The platform a video game is released on. */
         "VideoGameSupport.multipart-video_game_support.read_entity.read_label": {
             name: string;
             position?: number | null;
             readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
         };
         /**
          * @description A card a player is looking for: a print and a rarity, how many copies, and optionally the worst condition and the
@@ -7654,6 +8796,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_actualitiesby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Actuality identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Actuality resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Actuality.jsonld-actuality.list_actuality.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Actuality.multipart-actuality.list_actuality.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -8425,6 +9602,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_animesby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Anime identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Anime resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Anime.jsonld-anime.read_anime.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Anime.multipart-anime.read_anime.detail_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -9794,6 +11006,41 @@ export interface operations {
             };
         };
     };
+    "api_cardsby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Card identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Card resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Card.jsonld-card.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Card.multipart-card.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     api_cards_id_get: {
         parameters: {
             query?: never;
@@ -10190,6 +11437,342 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_card_prices_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description CardPrice card */
+                card?: string;
+                /** @description CardPrice card */
+                "card[]"?: string[];
+                /** @description CardPrice rarity */
+                rarity?: string;
+                /** @description CardPrice rarity */
+                "rarity[]"?: string[];
+                /** @description CardPrice extension */
+                extension?: string;
+                /** @description CardPrice extension */
+                "extension[]"?: string[];
+                /** @description CardPrice order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CardPrice order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description CardPrice order[amount] */
+                "order[amount]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CardPrice order[amount] */
+                "order[amount][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description CardPrice order[updatedAt] */
+                "order[updatedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CardPrice order[updatedAt] */
+                "order[updatedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CardPrice collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["CardPrice.jsonld-card_price.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["CardPrice.multipart-card_price.read_entity.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_card_prices_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The new CardPrice resource */
+        requestBody: {
+            content: {
+                "application/ld+json": components["schemas"]["CardPrice-card_price.write"];
+                "multipart/form-data": components["schemas"]["CardPrice-card_price.write"];
+            };
+        };
+        responses: {
+            /** @description CardPrice resource created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["CardPrice.jsonld-card_price.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["CardPrice.multipart-card_price.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_card_prices_id_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CardPrice identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CardPrice resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["CardPrice.jsonld-card_price.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["CardPrice.multipart-card_price.read_entity.read"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_card_prices_id_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CardPrice identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CardPrice resource deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    api_card_prices_id_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description CardPrice identifier */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /** @description The updated CardPrice resource */
+        requestBody: {
+            content: {
+                "application/merge-patch+json": components["schemas"]["CardPrice-card_price.write.jsonMergePatch"];
+            };
+        };
+        responses: {
+            /** @description CardPrice resource updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["CardPrice.jsonld-card_price.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["CardPrice.multipart-card_price.read_entity.read"];
+                };
+            };
+            /** @description Invalid input */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            /** @description An error occurred */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
+                    "application/problem+json": components["schemas"]["ConstraintViolation"];
+                    "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    api_card_price_histories_get_collection: {
+        parameters: {
+            query?: {
+                /** @description The collection page number */
+                page?: number;
+                /** @description CardPriceHistory card */
+                card?: string;
+                /** @description CardPriceHistory card */
+                "card[]"?: string[];
+                /** @description CardPriceHistory rarity */
+                rarity?: string;
+                /** @description CardPriceHistory rarity */
+                "rarity[]"?: string[];
+                /** @description CardPriceHistory order[id] */
+                "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CardPriceHistory order[id] */
+                "order[id][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description CardPriceHistory order[recordedAt] */
+                "order[recordedAt]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CardPriceHistory order[recordedAt] */
+                "order[recordedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description CardPriceHistory collection */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["HydraCollectionBaseSchema"] & {
+                        member: components["schemas"]["CardPriceHistory.jsonld-card_price_history.read_entity.read"][];
+                    };
+                    "multipart/form-data": components["schemas"]["CardPriceHistory.multipart-card_price_history.read_entity.read"][];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -11524,6 +13107,41 @@ export interface operations {
             };
         };
     };
+    "api_charactersby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Character identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Character resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Character.jsonld-character.read_character.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Character.multipart-character.read_character.detail_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     api_characters_id_get: {
         parameters: {
             query?: never;
@@ -12335,6 +13953,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_decksby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Deck identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deck resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Deck.jsonld-deck.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Deck.multipart-deck.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -13309,6 +14962,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_extensionsby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Extension identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Extension resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Extension.jsonld-extension.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Extension.multipart-extension.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -14602,6 +16290,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_mangasby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Manga identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Manga resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Manga.jsonld-manga.read_manga.detail_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Manga.multipart-manga.read_manga.detail_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -16262,6 +17985,41 @@ export interface operations {
             };
         };
     };
+    "api_moviesby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Movie identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Movie resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Movie.jsonld-movie.list_movie.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Movie.multipart-movie.list_movie.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     api_movies_id_get: {
         parameters: {
             query?: never;
@@ -17340,6 +19098,41 @@ export interface operations {
             };
         };
     };
+    "api_rulingsby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Ruling identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Ruling resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Ruling.jsonld-ruling.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["Ruling.multipart-ruling.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     api_rulings_id_get: {
         parameters: {
             query?: never;
@@ -18095,6 +19888,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_tagsby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Tag identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Tag resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Tag.jsonld-tag.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["Tag.multipart-tag.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -19084,6 +20912,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_video_gamesby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description VideoGame identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description VideoGame resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["VideoGame.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"];
+                    "multipart/form-data": components["schemas"]["VideoGame.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

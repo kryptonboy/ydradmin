@@ -166,7 +166,12 @@ function openModal(character: Character | null = null) {
             style="height: 3rem; width: 3rem; object-fit: cover"
           />
         </td>
-        <td>{{ character.name }}</td>
+        <td>
+          {{ character.name }}
+          <div v-if="character.slug" class="small text-muted font-monospace">
+            {{ character.slug }}
+          </div>
+        </td>
         <td>{{ character.gender.name }}</td>
         <td>{{ character.astrologicalSign?.name }}</td>
         <td>

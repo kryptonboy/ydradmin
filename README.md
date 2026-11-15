@@ -37,6 +37,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - **Icônes** : seules les icônes enregistrées dans `src/icons.ts` sont embarquées (bundle allégé). Toute nouvelle icône FontAwesome doit y être ajoutée.
 - **Routes** : chargées à la demande (`src/helpers/router.ts`). Une route inconnue affiche `NotFoundView`.
 - **Stores / listes / modales** : `createResourceStore` (stores CRUD), `useListView` + `SortableHeader` (listes), `FormModal` + `useSubmit` (formulaires en modale).
+- **Slug** : généré par l'API depuis le nom ou le titre (cartes, extensions, tags, actualités, animés, mangas, films, jeux vidéo, personnages, rulings, decks), affiché sous le nom dans les listes, en lecture seule : il ne figure dans aucun formulaire ni aucune écriture.
 
 ## Contenu éditorial (actualités)
 

@@ -6,6 +6,8 @@ export interface Card {
   '@id': string
   id: number
   name: string
+  /** Généré par l'API depuis le nom (lecture seule) */
+  slug?: string
   description?: string
   reference: string
   code?: string

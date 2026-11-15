@@ -385,7 +385,10 @@ filterCards()
         :class="getFullyQualifiedCssClass(card.abstractCard)"
       >
         <td>{{ card.id }}</td>
-        <td>{{ card.name }}</td>
+        <td>
+          {{ card.name }}
+          <div v-if="card.slug" class="small text-muted font-monospace">{{ card.slug }}</div>
+        </td>
         <td>{{ card.reference }}</td>
         <td>
           <CardProperties :abstract-card="card.abstractCard" />

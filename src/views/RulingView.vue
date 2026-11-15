@@ -127,7 +127,10 @@ function openModal(ruling: Ruling | null = null) {
     <tbody v-else-if="rulings.length">
       <tr v-for="ruling in rulings" :key="ruling.id">
         <td>{{ ruling.id }}</td>
-        <td>{{ ruling.name }}</td>
+        <td>
+          {{ ruling.name }}
+          <div v-if="ruling.slug" class="small text-muted font-monospace">{{ ruling.slug }}</div>
+        </td>
         <td class="text-truncate" style="max-width: 28rem">{{ ruling.ruling }}</td>
         <td>
           <span

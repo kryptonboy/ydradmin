@@ -149,7 +149,12 @@ function status(actuality: Actuality): Status {
     <tbody v-else-if="actualities.length">
       <tr v-for="actuality in actualities" :key="actuality.id">
         <td>{{ actuality.id }}</td>
-        <td>{{ actuality.title }}</td>
+        <td>
+          {{ actuality.title }}
+          <div v-if="actuality.slug" class="small text-muted font-monospace">
+            {{ actuality.slug }}
+          </div>
+        </td>
         <td>{{ actuality.actualityCategory?.label }}</td>
         <td>
           <span class="badge" :class="status(actuality).badge">{{ status(actuality).label }}</span>

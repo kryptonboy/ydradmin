@@ -181,7 +181,12 @@ filterExtensions()
     <tbody v-else-if="extensions.length">
       <tr v-for="extension in extensions" :key="extension.id">
         <td>{{ extension.id }}</td>
-        <td>{{ extension.name }}</td>
+        <td>
+          {{ extension.name }}
+          <div v-if="extension.slug" class="small text-muted font-monospace">
+            {{ extension.slug }}
+          </div>
+        </td>
         <td>{{ extension.reference }}</td>
         <td>{{ extension.cardsCount }}</td>
         <td>{{ formatDate(extension.releaseDate) }}</td>

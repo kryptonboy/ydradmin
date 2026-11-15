@@ -116,6 +116,14 @@ describe('DeckView', () => {
     expect(wrapper.text()).toContain('Main 5 · Extra 1 · Side 0')
   })
 
+  it('affiche le slug en lecture seule', async () => {
+    mockFetch({ '/decks': { member: [{ ...deck, slug: 'mon-deck-1' }], totalItems: 1 } })
+    const wrapper = mountComponent(DeckView)
+    await settle()
+
+    expect(wrapper.text()).toContain('mon-deck-1')
+  })
+
   it("masque un deck en n'envoyant que hidden", async () => {
     const fetchMock = mockFetch(routes)
     const wrapper = mountComponent(DeckView)

@@ -138,7 +138,10 @@ function openModal(anime: Anime | null = null) {
     <tbody v-else-if="items.length">
       <tr v-for="anime in items" :key="anime.id">
         <td>{{ anime.id }}</td>
-        <td>{{ anime.name }}</td>
+        <td>
+          {{ anime.name }}
+          <div v-if="anime.slug" class="small text-muted font-monospace">{{ anime.slug }}</div>
+        </td>
         <td>{{ anime.japaneseName }}</td>
         <td>{{ formatDate(anime.japanReleaseDate) }}</td>
         <td>

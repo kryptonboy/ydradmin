@@ -6,6 +6,8 @@ export interface Extension {
   '@id': string
   id: number
   name: string
+  /** Généré par l'API depuis le nom (lecture seule) */
+  slug?: string
   reference: string
   releaseDate?: string | null
   icon?: MediaLink | null

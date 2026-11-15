@@ -22,6 +22,8 @@ export interface Deck {
   '@id': string
   id: number
   name: string
+  /** Généré par l'API depuis le nom (lecture seule) */
+  slug?: string
   description?: string | null
   gameFormat?: NamedRef | null
   public: boolean

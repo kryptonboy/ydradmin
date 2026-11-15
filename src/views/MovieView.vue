@@ -130,7 +130,10 @@ const {
         <td>
           <MediaThumb :media="movie.coverImage" :alt="`Jaquette de ${movie.title}`" height="3rem" />
         </td>
-        <td>{{ movie.title }}</td>
+        <td>
+          {{ movie.title }}
+          <div v-if="movie.slug" class="small text-muted font-monospace">{{ movie.slug }}</div>
+        </td>
         <td>{{ formatDate(movie.japanReleaseDate) }}</td>
         <td>
           <span class="badge" :class="movie.visible ? 'text-bg-success' : 'text-bg-secondary'">

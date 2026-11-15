@@ -149,7 +149,10 @@ function openTagModal(tag: Tag | null = null) {
     <tbody v-else-if="tags.length">
       <tr v-for="tag in tags" :key="tag.id">
         <td>{{ tag.id }}</td>
-        <td>{{ tag.name }}</td>
+        <td>
+          {{ tag.name }}
+          <div v-if="tag.slug" class="small text-muted font-monospace">{{ tag.slug }}</div>
+        </td>
         <td>{{ tag.description }}</td>
         <td><BooleanToIcon :field="tag.visible" /></td>
         <td>

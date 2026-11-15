@@ -228,7 +228,10 @@ async function openPdf(deck: Deck, kind: PdfKind) {
     <tbody v-else-if="items.length">
       <tr v-for="deck in items" :key="deck.id" :class="{ 'table-secondary': deck.hidden }">
         <td>{{ deck.id }}</td>
-        <td>{{ deck.name }}</td>
+        <td>
+          {{ deck.name }}
+          <div v-if="deck.slug" class="small text-muted font-monospace">{{ deck.slug }}</div>
+        </td>
         <td>{{ deck.author }}</td>
         <td>{{ deck.gameFormat?.name ?? '—' }}</td>
         <td class="text-nowrap small">{{ sectionsSummary(deck) }}</td>

@@ -141,7 +141,10 @@ onMounted(async () => {
     <tbody v-else-if="games.length">
       <tr v-for="game in games" :key="game.id">
         <td>{{ game.id }}</td>
-        <td>{{ game.title }}</td>
+        <td>
+          {{ game.title }}
+          <div v-if="game.slug" class="small text-muted font-monospace">{{ game.slug }}</div>
+        </td>
         <td>{{ game.videoGameSupport.name }}</td>
         <td>
           <span class="badge" :class="game.visible ? 'text-bg-success' : 'text-bg-secondary'">
