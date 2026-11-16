@@ -20,6 +20,7 @@ export type MonsterSubTypeInput = Schemas['MonsterSubType-monster_sub_type.write
 export type MonsterTypeInput = Schemas['MonsterType-monster_type.write']
 export type RarityInput = Schemas['Rarity-rarity.write']
 export type GradingCompanyInput = Schemas['GradingCompany-grading_company.write']
+export type CardPriceInput = Schemas['CardPrice-card_price.write']
 export type TagInput = Schemas['Tag-tag.write']
 export type AbstractCardInput = Schemas['AbstractCard.AbstractCardInput']
 
@@ -42,6 +43,9 @@ export type ApiTrade = Schemas['Trade.jsonld-trade.read_collection.read_entity.r
 export type ApiTradeMessage = Schemas['TradeMessage.jsonld-trade_message.read_entity.read']
 export type ApiTradeRating = Schemas['TradeRating.jsonld-trade_rating.read_entity.read']
 export type ApiGradingCompany = Schemas['GradingCompany.jsonld-grading_company.read_entity.read']
+export type ApiCardPrice = Schemas['CardPrice.jsonld-card_price.read_entity.read']
+export type ApiCardPriceHistory =
+  Schemas['CardPriceHistory.jsonld-card_price_history.read_entity.read']
 export type ApiTag = Schemas['Tag.jsonld-tag.read_entity.read']
 export type ApiMediaObject = Schemas['MediaObject.jsonld-media_object.read_entity.read']
 

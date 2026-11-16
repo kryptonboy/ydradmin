@@ -41,6 +41,10 @@ export const router = createRouter({
     },
     { path: '/card_management/rarity', component: () => import('@/views/RarityView.vue') },
     {
+      path: '/card_management/card_price',
+      component: () => import('@/views/CardPriceView.vue'),
+    },
+    {
       path: '/card_management/grading_company',
       component: () => import('@/views/GradingCompanyView.vue'),
     },

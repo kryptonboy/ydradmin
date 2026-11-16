@@ -63,6 +63,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 ## Collection
 
 - Sociétés de gradation : page `/card_management/grading_company` (ressource `grading_companies`, lecture publique, écriture réservée aux administrateurs). Un nom unique de 100 caractères maximum, utilisé par les cartes gradées des collections des joueurs.
+- Prix de référence : page `/card_management/card_price` (ressources `card_prices` et `card_price_histories`, lecture publique, écriture réservée aux administrateurs). Un prix par impression et par rareté, en euros à deux décimales : la valeur d'un exemplaire non gradé dans les échanges quand le joueur n'a pas fixé la sienne. Filtres par carte, rareté et extension. En création, la rareté se choisit parmi celles de l'impression ; en édition, seul le montant change. L'API ajoute un point d'historique à chaque création ou changement de montant ; le bouton « Historique » les liste avec leur écart, à partir d'une date (`recordedAt[gte]`). L'import CSV (`POST /card_prices/import`) n'est pas encore branché : son contrat n'est pas dans l'OpenAPI.
 - Les collections, listes de souhaits et doubles sont gérés par les joueurs depuis le site public ; l'admin ne les consulte pas. Pour qu'une impression puisse y figurer (ou être importée en CSV), renseigner son `code` et ses raretés dans la modale de carte.
 
 ## Decks

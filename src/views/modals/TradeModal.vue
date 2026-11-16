@@ -2,6 +2,7 @@
 import { createFetchWrapper } from '@/helpers'
 import { getErrorMessage } from '@/helpers/api-error'
 import { formatDateTime } from '@/helpers/date'
+import { formatEuros as euros } from '@/helpers/money'
 import { useAuthStore } from '@/stores'
 import type { PaginatedApiResponse } from '@/types/Api'
 import type { Trade, TradeLine, TradeMessage, TradeRating } from '@/types/models/Trade'
@@ -39,9 +40,6 @@ const revisions = computed(() => {
   }
   return [...groups.entries()].sort(([a], [b]) => b - a)
 })
-
-const euros = (value: number | null | undefined) =>
-  value == null ? '—' : `${value.toFixed(2).replace('.', ',')} €`
 
 const conditionLabel = (line: TradeLine) =>
   line.gradingCompany
