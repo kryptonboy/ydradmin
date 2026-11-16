@@ -3306,6 +3306,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Actuality.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
@@ -3351,6 +3364,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Actuality.multipart-actuality.list_entity.read": {
             title: string;
@@ -3579,6 +3605,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Anime.jsonld-anime.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -3641,6 +3680,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Anime.multipart-anime.read_entity.read_label": {
             name: string;
@@ -4179,7 +4231,7 @@ export interface components {
         /**
          * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
          *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
-         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).
          */
         "CardPrice-card_price.write": {
             /**
@@ -4201,7 +4253,7 @@ export interface components {
         /**
          * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
          *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
-         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).
          */
         "CardPrice-card_price.write.jsonMergePatch": {
             /**
@@ -4223,7 +4275,7 @@ export interface components {
         /**
          * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
          *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
-         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).
          */
         "CardPrice.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             card: components["schemas"]["Card.jsonld-card_price.read_entity.read"];
@@ -4240,7 +4292,7 @@ export interface components {
         /**
          * @description The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value
          *     of a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).
-         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by the players.
+         *     Entered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).
          */
         "CardPrice.multipart-card_price.read_entity.read": {
             card: components["schemas"]["Card.multipart-card_price.read_entity.read"];
@@ -4540,6 +4592,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Chapter.jsonld-chapter.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
@@ -4600,6 +4665,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Chapter.multipart-chapter.list_entity.read_label": {
             title: string;
@@ -4817,6 +4895,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Character.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -4935,6 +5026,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Character.multipart-character.read_entity.read_label": {
             name: string;
@@ -5744,6 +5848,19 @@ export interface components {
             readonly arc?: components["schemas"]["Arc.jsonld-episode.list_episode.read_appearance.read_entity.read_label"] | null;
             readonly season?: components["schemas"]["Season.jsonld-episode.list_episode.read_appearance.read_entity.read_label"] | null;
             readonly anime?: components["schemas"]["Anime.jsonld-episode.list_episode.read_appearance.read_entity.read_label"] | null;
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Episode.jsonld-episode_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             episodeNumber?: number | null;
@@ -5796,6 +5913,19 @@ export interface components {
             readonly arc?: components["schemas"]["Arc.multipart-episode.list_episode.read_appearance.read_entity.read_label"] | null;
             readonly season?: components["schemas"]["Season.multipart-episode.list_episode.read_appearance.read_entity.read_label"] | null;
             readonly anime?: components["schemas"]["Anime.multipart-episode.list_episode.read_appearance.read_entity.read_label"] | null;
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Episode.multipart-episode_character.read_appearance.read_entity.read_label": {
             episodeNumber?: number | null;
@@ -5950,6 +6080,11 @@ export interface components {
             gameFormats?: string[];
         };
         "Extension.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            slug?: string;
+            reference: string;
+            /** Format: date-time */
+            releaseDate?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5989,6 +6124,11 @@ export interface components {
             readonly updatedAt?: string;
         };
         "Extension.multipart-card.read_entity.read": {
+            name: string;
+            slug?: string;
+            reference: string;
+            /** Format: date-time */
+            releaseDate?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -6354,6 +6494,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Manga.jsonld-manga_character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -6408,6 +6561,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Manga.multipart-manga_character.read_entity.read_label": {
             name: string;
@@ -6474,84 +6640,126 @@ export interface components {
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-actuality.list_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-astrological_sign.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-card_sub_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-card_type.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-chapter_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-character.read_character.detail_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-character.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-episode_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-extension.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
@@ -6562,186 +6770,279 @@ export interface components {
             fileSize?: number | null;
             /** @enum {string|null} */
             context: "actuality" | "astrological_sign" | "card" | "card_sub_type" | "card_type" | "character" | "extension" | "file_type" | "monster_attribute" | "movie" | "smiley" | "content_bloc_attachment" | "content_bloc_carousel_image" | "content_bloc_image" | null;
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-monster_attribute.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-movie.list_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-smiley.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-trade.read_collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.jsonld-video_game_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-actuality.list_actuality.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-actuality.list_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-astrological_sign.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-card.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-card_sub_type.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-card_type.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-character.read_character.detail_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-character.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-collection.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-episode_character.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-extension.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-monster_attribute.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-movie.list_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-smiley.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-trade.read_collection.read_entity.read": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "MediaObject.multipart-video_game_character.read_appearance.read_entity.read_label": {
+            /** @description Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept). */
+            readonly width?: number | null;
+            readonly height?: number | null;
             readonly contentUrl?: string | null;
             readonly id?: number;
             /** Format: date-time */
@@ -7029,6 +7330,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Movie.jsonld-movie_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
@@ -7086,6 +7400,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "Movie.multipart-movie_character.read_appearance.read_entity.read_label": {
             title: string;
@@ -7214,11 +7541,13 @@ export interface components {
             position: number;
         };
         "Rarity.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "Rarity.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7250,11 +7579,13 @@ export interface components {
             readonly updatedAt?: string;
         };
         "Rarity.multipart-card.read_entity.read": {
+            name: string;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "Rarity.multipart-card_price.read_entity.read": {
+            name: string;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -8088,6 +8419,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "VideoGame.jsonld-video_game_character.read_appearance.read_entity.read_label": components["schemas"]["HydraItemBaseSchema"] & {
             title: string;
@@ -8127,6 +8471,19 @@ export interface components {
             readonly updatedAt?: string;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
+            /** @description The media used by the blocks, by id. */
+            readonly media?: {
+                [key: string]: {
+                    id: number;
+                    /** @description Relative URL (/images/...), served by the API host. */
+                    contentUrl: string | null;
+                    context: string | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    width: number | null;
+                    /** @description Pixels, null when unknown or not an image. */
+                    height: number | null;
+                };
+            };
         };
         "VideoGame.multipart-video_game_character.read_appearance.read_entity.read_label": {
             title: string;
@@ -10821,6 +11178,14 @@ export interface operations {
                 pendulumDescription?: string;
                 /** @description Card pendulumDescription */
                 "pendulumDescription[]"?: string[];
+                /** @description Card extension */
+                extension?: string;
+                /** @description Card extension */
+                "extension[]"?: string[];
+                /** @description Card abstractCard */
+                abstractCard?: string;
+                /** @description Card abstractCard */
+                "abstractCard[]"?: string[];
                 /** @description Card abstractCard.cardSubType */
                 "abstractCard.cardSubType"?: string;
                 /** @description Card abstractCard.cardSubType */
@@ -11489,17 +11854,6 @@ export interface operations {
                     "multipart/form-data": components["schemas"]["CardPrice.multipart-card_price.read_entity.read"][];
                 };
             };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/ld+json": components["schemas"]["Error.jsonld"];
-                    "application/problem+json": components["schemas"]["Error"];
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
         };
     };
     api_card_prices_post: {
@@ -11582,17 +11936,6 @@ export interface operations {
                 content: {
                     "application/ld+json": components["schemas"]["CardPrice.jsonld-card_price.read_entity.read"];
                     "multipart/form-data": components["schemas"]["CardPrice.multipart-card_price.read_entity.read"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/ld+json": components["schemas"]["Error.jsonld"];
-                    "application/problem+json": components["schemas"]["Error"];
-                    "application/json": components["schemas"]["Error"];
                 };
             };
             /** @description Not found */
@@ -11737,6 +12080,18 @@ export interface operations {
                 rarity?: string;
                 /** @description CardPriceHistory rarity */
                 "rarity[]"?: string[];
+                /** @description CardPriceHistory recordedAt */
+                "recordedAt[gt]"?: string;
+                /** @description CardPriceHistory recordedAt */
+                "recordedAt[gte]"?: string;
+                /** @description CardPriceHistory recordedAt */
+                "recordedAt[lt]"?: string;
+                /** @description CardPriceHistory recordedAt */
+                "recordedAt[lte]"?: string;
+                /** @description CardPriceHistory recordedAt */
+                "recordedAt[ne]"?: string;
+                /** @description CardPriceHistory recordedAt */
+                "recordedAt[between]"?: string;
                 /** @description CardPriceHistory order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description CardPriceHistory order[id] */
@@ -11762,17 +12117,6 @@ export interface operations {
                         member: components["schemas"]["CardPriceHistory.jsonld-card_price_history.read_entity.read"][];
                     };
                     "multipart/form-data": components["schemas"]["CardPriceHistory.multipart-card_price_history.read_entity.read"][];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/ld+json": components["schemas"]["Error.jsonld"];
-                    "application/problem+json": components["schemas"]["Error"];
-                    "application/json": components["schemas"]["Error"];
                 };
             };
         };
@@ -13852,6 +14196,8 @@ export interface operations {
                 gameFormat?: string;
                 /** @description Deck gameFormat */
                 "gameFormat[]"?: string[];
+                /** @description Deck abstractCard */
+                abstractCard?: string;
                 /** @description Deck author */
                 author?: string;
                 /** @description Deck author */

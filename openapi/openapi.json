@@ -6181,6 +6181,60 @@
                         "explode": true
                     },
                     {
+                        "name": "extension",
+                        "in": "query",
+                        "description": "Card extension",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "extension[]",
+                        "in": "query",
+                        "description": "Card extension",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard",
+                        "in": "query",
+                        "description": "Card abstractCard",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard[]",
+                        "in": "query",
+                        "description": "Card abstractCard",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "abstractCard.cardSubType",
                         "in": "query",
                         "description": "Card abstractCard.cardSubType",
@@ -7986,27 +8040,6 @@
                                 }
                             }
                         }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error.jsonld"
-                                }
-                            },
-                            "application/problem+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            },
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        },
-                        "links": {}
                     }
                 },
                 "summary": "Retrieves the collection of CardPrice resources.",
@@ -8354,27 +8387,6 @@
                             }
                         }
                     },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error.jsonld"
-                                }
-                            },
-                            "application/problem+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            },
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        },
-                        "links": {}
-                    },
                     "404": {
                         "description": "Not found",
                         "content": {
@@ -8663,27 +8675,6 @@
                                 }
                             }
                         }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error.jsonld"
-                                }
-                            },
-                            "application/problem+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            },
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        },
-                        "links": {}
                     }
                 },
                 "summary": "Retrieves the collection of CardPriceHistory resources.",
@@ -8755,6 +8746,78 @@
                         },
                         "style": "deepObject",
                         "explode": true
+                    },
+                    {
+                        "name": "recordedAt[gt]",
+                        "in": "query",
+                        "description": "CardPriceHistory recordedAt",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "recordedAt[gte]",
+                        "in": "query",
+                        "description": "CardPriceHistory recordedAt",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "recordedAt[lt]",
+                        "in": "query",
+                        "description": "CardPriceHistory recordedAt",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "recordedAt[lte]",
+                        "in": "query",
+                        "description": "CardPriceHistory recordedAt",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "recordedAt[ne]",
+                        "in": "query",
+                        "description": "CardPriceHistory recordedAt",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
+                    },
+                    {
+                        "name": "recordedAt[between]",
+                        "in": "query",
+                        "description": "CardPriceHistory recordedAt",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": false
                     },
                     {
                         "name": "order[id]",
@@ -13770,6 +13833,18 @@
                             }
                         },
                         "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "abstractCard",
+                        "in": "query",
+                        "description": "Deck abstractCard",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
                         "explode": true
                     },
                     {
@@ -33561,6 +33636,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -33726,6 +33848,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -34448,6 +34617,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -34730,6 +34946,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -36724,7 +36987,7 @@
             },
             "CardPrice-card_price.write": {
                 "type": "object",
-                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by the players.",
+                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).",
                 "required": [
                     "card",
                     "rarity",
@@ -36752,7 +37015,7 @@
             },
             "CardPrice-card_price.write.jsonMergePatch": {
                 "type": "object",
-                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by the players.",
+                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).",
                 "properties": {
                     "card": {
                         "type": "string",
@@ -36811,11 +37074,11 @@
                         }
                     }
                 ],
-                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by the players."
+                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public)."
             },
             "CardPrice.multipart-card_price.read_entity.read": {
                 "type": "object",
-                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by the players.",
+                "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public).",
                 "required": [
                     "card",
                     "rarity",
@@ -37717,6 +37980,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -37971,6 +38281,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -38745,6 +39102,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -39350,6 +39754,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -41525,6 +41976,53 @@
                                         "type": "null"
                                     }
                                 ]
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         },
                         "required": [
@@ -41762,6 +42260,53 @@
                                 "type": "null"
                             }
                         ]
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 },
                 "required": [
@@ -42202,7 +42747,29 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "name",
+                            "reference"
+                        ],
                         "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "reference": {
+                                "maxLength": 15,
+                                "type": "string"
+                            },
+                            "releaseDate": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "date-time"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -42379,7 +42946,29 @@
             },
             "Extension.multipart-card.read_entity.read": {
                 "type": "object",
+                "required": [
+                    "name",
+                    "reference"
+                ],
                 "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "reference": {
+                        "maxLength": 15,
+                        "type": "string"
+                    },
+                    "releaseDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -43755,6 +44344,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -43976,6 +44612,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -44137,6 +44820,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44168,6 +44866,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44199,6 +44912,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44230,6 +44958,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44261,6 +45004,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44292,6 +45050,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44323,6 +45096,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44354,6 +45142,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44385,6 +45188,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44416,6 +45234,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44447,6 +45280,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44478,6 +45326,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44509,6 +45372,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44540,6 +45418,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44608,6 +45501,21 @@
                                     "null"
                                 ]
                             },
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44642,6 +45550,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44673,6 +45596,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44704,6 +45642,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44735,6 +45688,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44766,6 +45734,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44797,6 +45780,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44828,6 +45826,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44859,6 +45872,21 @@
                     {
                         "type": "object",
                         "properties": {
+                            "width": {
+                                "readOnly": true,
+                                "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
+                            "height": {
+                                "readOnly": true,
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ]
+                            },
                             "contentUrl": {
                                 "readOnly": true,
                                 "externalDocs": {
@@ -44885,6 +45913,21 @@
             "MediaObject.multipart-actuality.list_actuality.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -44909,6 +45952,21 @@
             "MediaObject.multipart-actuality.list_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -44933,6 +45991,21 @@
             "MediaObject.multipart-astrological_sign.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -44957,6 +46030,21 @@
             "MediaObject.multipart-card.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -44981,6 +46069,21 @@
             "MediaObject.multipart-card_sub_type.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45005,6 +46108,21 @@
             "MediaObject.multipart-card_type.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45029,6 +46147,21 @@
             "MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45053,6 +46186,21 @@
             "MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45077,6 +46225,21 @@
             "MediaObject.multipart-character.read_character.detail_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45101,6 +46264,21 @@
             "MediaObject.multipart-character.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45125,6 +46303,21 @@
             "MediaObject.multipart-collection.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45149,6 +46342,21 @@
             "MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45173,6 +46381,21 @@
             "MediaObject.multipart-episode_character.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45197,6 +46420,21 @@
             "MediaObject.multipart-extension.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45221,6 +46459,21 @@
             "MediaObject.multipart-monster_attribute.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45245,6 +46498,21 @@
             "MediaObject.multipart-movie.list_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45269,6 +46537,21 @@
             "MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45293,6 +46576,21 @@
             "MediaObject.multipart-movie_character.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45317,6 +46615,21 @@
             "MediaObject.multipart-smiley.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45341,6 +46654,21 @@
             "MediaObject.multipart-trade.read_collection.read_entity.read": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45365,6 +46693,21 @@
             "MediaObject.multipart-video_game.list_video_game.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -45389,6 +46732,21 @@
             "MediaObject.multipart-video_game_character.read_appearance.read_entity.read_label": {
                 "type": "object",
                 "properties": {
+                    "width": {
+                        "readOnly": true,
+                        "description": "Pixel size of an image (null for a file that is not an image, or an image uploaded before the size was kept).",
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "height": {
+                        "readOnly": true,
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "contentUrl": {
                         "readOnly": true,
                         "externalDocs": {
@@ -46449,6 +47807,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -46674,6 +48079,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -46994,7 +48446,14 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "name"
+                        ],
                         "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -47015,7 +48474,14 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "name"
+                        ],
                         "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -47147,7 +48613,14 @@
             },
             "Rarity.multipart-card.read_entity.read": {
                 "type": "object",
+                "required": [
+                    "name"
+                ],
                 "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -47161,7 +48634,14 @@
             },
             "Rarity.multipart-card_price.read_entity.read": {
                 "type": "object",
+                "required": [
+                    "name"
+                ],
                 "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -49454,6 +50934,53 @@
                                     "type": "object"
                                 },
                                 "description": "List of content blocks, see docs/content-blocks.md."
+                            },
+                            "media": {
+                                "type": "object",
+                                "readOnly": true,
+                                "description": "The media used by the blocks, by id.",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "contentUrl",
+                                        "context",
+                                        "width",
+                                        "height"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "contentUrl": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "Relative URL (/images/...), served by the API host."
+                                        },
+                                        "context": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "width": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        },
+                                        "height": {
+                                            "type": [
+                                                "integer",
+                                                "null"
+                                            ],
+                                            "description": "Pixels, null when unknown or not an image."
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -49577,6 +51104,53 @@
                             "type": "object"
                         },
                         "description": "List of content blocks, see docs/content-blocks.md."
+                    },
+                    "media": {
+                        "type": "object",
+                        "readOnly": true,
+                        "description": "The media used by the blocks, by id.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "contentUrl",
+                                "context",
+                                "width",
+                                "height"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "contentUrl": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Relative URL (/images/...), served by the API host."
+                                },
+                                "context": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "width": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                },
+                                "height": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "description": "Pixels, null when unknown or not an image."
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -50411,7 +51985,7 @@
         },
         {
             "name": "CardPrice",
-            "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by the players."
+            "description": "The reference price of a print in one of its rarities, in euros: the common base of the exchanges. It is the value\nof a copy that is not graded when its owner did not set their own (tradeValue of the line of the collection).\nEntered or imported (POST /api/card_prices/import) by the administrators, read by everybody (public)."
         },
         {
             "name": "CardPriceHistory",
