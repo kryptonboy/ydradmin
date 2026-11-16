@@ -1,10 +1,10 @@
 import type { NamedRef, Ref } from './Ref'
 
-/** Impression de carte embarquée dans un prix (l'API peut n'envoyer que l'IRI) */
+/** Impression de carte embarquée dans un prix */
 export type CardPriceCard = Ref & {
-  name?: string
-  reference?: string
-  extension?: NamedRef
+  name: string
+  reference: string
+  extension: NamedRef
 }
 
 /** Prix de référence d'une impression dans une rareté, en euros */
@@ -25,4 +25,15 @@ export interface CardPriceHistory {
   rarity?: NamedRef
   amount: number
   recordedAt?: string
+}
+
+/** Rapport de l'import CSV (aperçu ou enregistrement) */
+export interface CardPriceImportReport {
+  lines: number
+  created: number
+  updated: number
+  unchanged: number
+  /** Lignes ignorées ; `line` compte les lignes vides, l'en-tête est la ligne 0 */
+  errors: { line: number; message: string }[]
+  committed: boolean
 }

@@ -32,6 +32,7 @@ import type {
   ApiGradingCompany,
   ApiCardPrice,
   ApiCardPriceHistory,
+  ApiCardPriceImportReport,
   ApiRarity,
   ApiTrade,
   ApiTradeMessage,
@@ -70,7 +71,7 @@ import type { MonsterEffect } from './models/MonsterEffect'
 import type { MonsterSubType } from './models/MonsterSubType'
 import type { MonsterType } from './models/MonsterType'
 import type { GradingCompany } from './models/GradingCompany'
-import type { CardPrice, CardPriceHistory } from './models/CardPrice'
+import type { CardPrice, CardPriceHistory, CardPriceImportReport } from './models/CardPrice'
 import type { Rarity } from './models/Rarity'
 import type { Trade, TradeMessage, TradeRating } from './models/Trade'
 import type { Ruling } from './models/Ruling'
@@ -124,6 +125,7 @@ export type ModelChecks = [
   Assert<Conforms<GradingCompany, ApiGradingCompany>>,
   Assert<Conforms<CardPrice, ApiCardPrice>>,
   Assert<Conforms<CardPriceHistory, ApiCardPriceHistory>>,
+  Assert<Conforms<CardPriceImportReport, ApiCardPriceImportReport>>,
   Assert<Conforms<Ruling, ApiRuling>>,
   Assert<Conforms<Tag, ApiTag>>,
   Assert<Conforms<Deck, ApiDeck>>,

@@ -660,6 +660,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/card_prices/import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Import reference prices from CSV (upsert by print and rarity)
+         * @description Without "commit" (or false) the lines are only checked. A price that exists for the print and the rarity is updated, the others are created; each change of amount writes a history point. Administrators only.
+         */
+        post: operations["importCardPrices"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/card_prices/{id}": {
         parameters: {
             query?: never;
@@ -4088,11 +4108,17 @@ export interface components {
             readonly updatedAt?: string;
         };
         "Card.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            reference: string;
+            extension: components["schemas"]["Extension.jsonld-card_price.read_entity.read"];
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "Card.jsonld-card_price_history.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            reference: string;
+            extension: components["schemas"]["Extension.jsonld-card_price_history.read_entity.read"];
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -4140,11 +4166,17 @@ export interface components {
             readonly updatedAt?: string;
         };
         "Card.multipart-card_price.read_entity.read": {
+            name: string;
+            reference: string;
+            extension: components["schemas"]["Extension.multipart-card_price.read_entity.read"];
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
         };
         "Card.multipart-card_price_history.read_entity.read": {
+            name: string;
+            reference: string;
+            extension: components["schemas"]["Extension.multipart-card_price_history.read_entity.read"];
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -6089,6 +6121,18 @@ export interface components {
             /** Format: date-time */
             readonly updatedAt?: string;
         };
+        "Extension.jsonld-card_price.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Extension.jsonld-card_price_history.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
+            name: string;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
         "Extension.jsonld-collection.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
             readonly id?: number;
@@ -6129,6 +6173,18 @@ export interface components {
             reference: string;
             /** Format: date-time */
             releaseDate?: string | null;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Extension.multipart-card_price.read_entity.read": {
+            name: string;
+            readonly id?: number;
+            /** Format: date-time */
+            readonly updatedAt?: string;
+        };
+        "Extension.multipart-card_price_history.read_entity.read": {
+            name: string;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -8696,6 +8752,37 @@ export interface components {
             updatedAt?: string;
             /** @description Read only: the username of the owner (the account itself is never exposed). */
             readonly author?: string | null;
+        };
+        CardPriceImportRequest: {
+            /**
+             * @description CSV text (5000 lines at most): a header line, then one line per price. Separator ';' or ',' (the more frequent one in the header). Columns: reference (reference of the print, like LOB-FR001, required), rarity (name of the rarity, optional when the print has only one), price (euros, 0 to 100000, decimal comma accepted, required). A UTF-8 BOM is accepted.
+             * @example reference;rarity;price
+             *     LOB-FR001;Rare;4,50
+             *     LOB-FR002;;1.2
+             */
+            content: string;
+            /**
+             * @description false (default): preview only, nothing is saved. true: the valid lines are saved.
+             * @default false
+             */
+            commit: boolean;
+        };
+        CardPriceImportReport: {
+            /** @description Lines read (without the header). */
+            lines: number;
+            created: number;
+            /** @description Existing prices whose amount changes (one history point each). */
+            updated: number;
+            /** @description Existing prices with the same amount (nothing written). */
+            unchanged: number;
+            /** @description Wrong lines, skipped; the other lines are kept. */
+            errors: {
+                /** @description Position of the line in the file, empty lines included: the header is 0, the first price is 1. */
+                line: number;
+                message: string;
+            }[];
+            /** @description Whether the valid lines were saved. */
+            committed: boolean;
         };
         CardUsage: {
             /** @example /api/abstract_cards/10 */
@@ -11823,6 +11910,14 @@ export interface operations {
                 extension?: string;
                 /** @description CardPrice extension */
                 "extension[]"?: string[];
+                /** @description CardPrice card.reference */
+                "card.reference"?: string;
+                /** @description CardPrice card.reference */
+                "card.reference[]"?: string[];
+                /** @description CardPrice card.name */
+                "card.name"?: string;
+                /** @description CardPrice card.name */
+                "card.name[]"?: string[];
                 /** @description CardPrice order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description CardPrice order[id] */
@@ -11835,6 +11930,10 @@ export interface operations {
                 "order[updatedAt]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description CardPrice order[updatedAt] */
                 "order[updatedAt][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
+                /** @description CardPrice order[card.reference] */
+                "order[card.reference]"?: "asc" | "desc" | "ASC" | "DESC";
+                /** @description CardPrice order[card.reference] */
+                "order[card.reference][]"?: ("asc" | "desc" | "ASC" | "DESC")[];
             };
             header?: never;
             path?: never;
@@ -11913,6 +12012,51 @@ export interface operations {
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
                 };
+            };
+        };
+    };
+    importCardPrices: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CardPriceImportRequest"];
+            };
+        };
+        responses: {
+            /** @description Report of the import. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CardPriceImportReport"];
+                };
+            };
+            /** @description Not authenticated. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Administrators only. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Empty file, too many lines, or a required column is missing. */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

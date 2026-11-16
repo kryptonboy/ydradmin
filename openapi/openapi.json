@@ -8140,6 +8140,60 @@
                         "explode": true
                     },
                     {
+                        "name": "card.reference",
+                        "in": "query",
+                        "description": "CardPrice card.reference",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "card.reference[]",
+                        "in": "query",
+                        "description": "CardPrice card.reference",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "card.name",
+                        "in": "query",
+                        "description": "CardPrice card.name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "card.name[]",
+                        "in": "query",
+                        "description": "CardPrice card.name",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "order[id]",
                         "in": "query",
                         "description": "CardPrice order[id]",
@@ -8239,6 +8293,45 @@
                         "name": "order[updatedAt][]",
                         "in": "query",
                         "description": "CardPrice order[updatedAt]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "asc",
+                                    "desc",
+                                    "ASC",
+                                    "DESC"
+                                ]
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[card.reference]",
+                        "in": "query",
+                        "description": "CardPrice order[card.reference]",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc",
+                                "ASC",
+                                "DESC"
+                            ]
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "order[card.reference][]",
+                        "in": "query",
+                        "description": "CardPrice order[card.reference]",
                         "required": false,
                         "deprecated": false,
                         "schema": {
@@ -8358,6 +8451,47 @@
                         "multipart/form-data": {
                             "schema": {
                                 "$ref": "#/components/schemas/CardPrice-card_price.write"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
+        "/api/card_prices/import": {
+            "post": {
+                "operationId": "importCardPrices",
+                "tags": [
+                    "CardPrice"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Report of the import.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CardPriceImportReport"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Not authenticated."
+                    },
+                    "403": {
+                        "description": "Administrators only."
+                    },
+                    "422": {
+                        "description": "Empty file, too many lines, or a required column is missing."
+                    }
+                },
+                "summary": "Import reference prices from CSV (upsert by print and rarity)",
+                "description": "Without \"commit\" (or false) the lines are only checked. A price that exists for the print and the rarity is updated, the others are created; each change of amount writes a history point. Administrators only.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CardPriceImportRequest"
                             }
                         }
                     },
@@ -36384,7 +36518,23 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "name",
+                            "reference",
+                            "extension"
+                        ],
                         "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "reference": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "extension": {
+                                "$ref": "#/components/schemas/Extension.jsonld-card_price.read_entity.read"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -36405,7 +36555,23 @@
                     },
                     {
                         "type": "object",
+                        "required": [
+                            "name",
+                            "reference",
+                            "extension"
+                        ],
                         "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "reference": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "extension": {
+                                "$ref": "#/components/schemas/Extension.jsonld-card_price_history.read_entity.read"
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -36634,7 +36800,23 @@
             },
             "Card.multipart-card_price.read_entity.read": {
                 "type": "object",
+                "required": [
+                    "name",
+                    "reference",
+                    "extension"
+                ],
                 "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "reference": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "extension": {
+                        "$ref": "#/components/schemas/Extension.multipart-card_price.read_entity.read"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -36648,7 +36830,23 @@
             },
             "Card.multipart-card_price_history.read_entity.read": {
                 "type": "object",
+                "required": [
+                    "name",
+                    "reference",
+                    "extension"
+                ],
                 "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "reference": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "extension": {
+                        "$ref": "#/components/schemas/Extension.multipart-card_price_history.read_entity.read"
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -42783,6 +42981,62 @@
                     }
                 ]
             },
+            "Extension.jsonld-card_price.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
+            "Extension.jsonld-card_price_history.read_entity.read": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraItemBaseSchema"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "readOnly": true
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "readOnly": true
+                            }
+                        }
+                    }
+                ]
+            },
             "Extension.jsonld-collection.read_entity.read": {
                 "allOf": [
                     {
@@ -42968,6 +43222,48 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Extension.multipart-card_price.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                }
+            },
+            "Extension.multipart-card_price_history.read_entity.read": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "maxLength": 255,
+                        "type": "string"
                     },
                     "id": {
                         "type": "integer",
@@ -51873,6 +52169,77 @@
                             "string",
                             "null"
                         ]
+                    }
+                }
+            },
+            "CardPriceImportRequest": {
+                "type": "object",
+                "required": [
+                    "content"
+                ],
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "maxLength": 1000000,
+                        "description": "CSV text (5000 lines at most): a header line, then one line per price. Separator ';' or ',' (the more frequent one in the header). Columns: reference (reference of the print, like LOB-FR001, required), rarity (name of the rarity, optional when the print has only one), price (euros, 0 to 100000, decimal comma accepted, required). A UTF-8 BOM is accepted.",
+                        "example": "reference;rarity;price\nLOB-FR001;Rare;4,50\nLOB-FR002;;1.2"
+                    },
+                    "commit": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "false (default): preview only, nothing is saved. true: the valid lines are saved."
+                    }
+                }
+            },
+            "CardPriceImportReport": {
+                "type": "object",
+                "required": [
+                    "lines",
+                    "created",
+                    "updated",
+                    "unchanged",
+                    "errors",
+                    "committed"
+                ],
+                "properties": {
+                    "lines": {
+                        "type": "integer",
+                        "description": "Lines read (without the header)."
+                    },
+                    "created": {
+                        "type": "integer"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Existing prices whose amount changes (one history point each)."
+                    },
+                    "unchanged": {
+                        "type": "integer",
+                        "description": "Existing prices with the same amount (nothing written)."
+                    },
+                    "errors": {
+                        "type": "array",
+                        "description": "Wrong lines, skipped; the other lines are kept.",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "line",
+                                "message"
+                            ],
+                            "properties": {
+                                "line": {
+                                    "type": "integer",
+                                    "description": "Position of the line in the file, empty lines included: the header is 0, the first price is 1."
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "committed": {
+                        "type": "boolean",
+                        "description": "Whether the valid lines were saved."
                     }
                 }
             },

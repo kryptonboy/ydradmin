@@ -5,19 +5,18 @@ import { useListView } from '@/composables/useListView'
 import { useRemoveAction } from '@/composables/useRemoveAction'
 import { formatDateTime } from '@/helpers/date'
 import { formatEuros } from '@/helpers/money'
-import { useCardPricesStore, useCardsStore, useExtensionsStore, useRaritiesStore } from '@/stores'
+import { useCardPricesStore, useExtensionsStore, useRaritiesStore } from '@/stores'
 import type { Filters } from '@/types/Api'
-import type { Card } from '@/types/models/Card'
 import type { CardPrice } from '@/types/models/CardPrice'
 import type { Extension } from '@/types/models/Extension'
 import type { Rarity } from '@/types/models/Rarity'
 import { onMounted, ref } from 'vue'
 import CardPriceHistoryModal from './modals/CardPriceHistoryModal.vue'
+import CardPriceImportModal from './modals/CardPriceImportModal.vue'
 import CardPriceModal from './modals/CardPriceModal.vue'
 import { cardPriceLabel } from '@/helpers/card'
 
 const store = useCardPricesStore()
-const cardsStore = useCardsStore()
 const extensionsStore = useExtensionsStore()
 
 const priceModalRef = ref<InstanceType<typeof CardPriceModal> | null>(null)
@@ -25,28 +24,15 @@ const historyModalRef = ref<InstanceType<typeof CardPriceHistoryModal> | null>(n
 const selectedPrice = ref<CardPrice | null>(null)
 const historyPrice = ref<CardPrice | null>(null)
 
+const importModalRef = ref<InstanceType<typeof CardPriceImportModal> | null>(null)
+
 const rarities = ref<Rarity[]>([])
-const cards = ref<Card[]>([])
-const cardsLoading = ref(false)
 const extensions = ref<Extension[]>([])
 const extensionsLoading = ref(false)
 
 onMounted(async () => {
   rarities.value = await useRaritiesStore().fetchAll()
 })
-
-async function searchCards(query: string) {
-  if (!query) {
-    cards.value = []
-    return
-  }
-  cardsLoading.value = true
-  try {
-    cards.value = await cardsStore.autocomplete(query)
-  } finally {
-    cardsLoading.value = false
-  }
-}
 
 async function searchExtensions(query: string) {
   if (!query) {
@@ -62,14 +48,17 @@ async function searchExtensions(query: string) {
 }
 
 interface ListFilters {
-  card: Card[]
+  'card.name': string | null
+  'card.reference': string | null
   rarity: Rarity[]
   extension: Extension[]
 }
 
 function toQuery(filters: ListFilters): Filters {
   return {
-    card: filters.card.map((card) => card.id),
+    // Recherche partielle côté API ; un champ vidé ne filtre plus
+    'card.name': filters['card.name'] || null,
+    'card.reference': filters['card.reference'] || null,
     rarity: filters.rarity.map((rarity) => rarity.id),
     extension: filters.extension.map((extension) => extension.id),
   }
@@ -90,7 +79,12 @@ const {
   changePage,
 } = useListView(store, {
   sort: { sortBy: 'updatedAt', sortDir: 'desc' },
-  createFilters: (): ListFilters => ({ card: [], rarity: [], extension: [] }),
+  createFilters: (): ListFilters => ({
+    'card.name': null,
+    'card.reference': null,
+    rarity: [],
+    extension: [],
+  }),
   toQuery,
 })
 
@@ -126,6 +120,10 @@ function openHistory(price: CardPrice) {
           {{ nbFilters }}
         </span>
       </button>
+      <button class="btn btn-outline-primary me-md-2" @click="importModalRef?.showModal()">
+        <font-awesome-icon :icon="['fa', 'file-import']" />
+        Importer un CSV
+      </button>
       <button class="btn btn-primary" @click="openPriceModal()">
         <font-awesome-icon :icon="['fa', 'plus']" />
         Ajouter
@@ -135,20 +133,23 @@ function openHistory(price: CardPrice) {
   <div class="collapse bg-light p-2 my-2" id="filterCollapse">
     <div class="row">
       <div class="col-3">
-        <label for="cardPrice_card" class="form-label">Carte</label>
-        <multi-select
-          id="cardPrice_card"
-          v-model="filters.card"
-          :options="cards"
-          :multiple="true"
-          :searchable="true"
-          :internal-search="false"
-          :close-on-select="false"
-          :loading="cardsLoading"
-          label="name"
-          track-by="id"
-          placeholder="Rechercher une carte..."
-          @search-change="searchCards"
+        <label for="cardPrice_cardName" class="form-label">Nom de la carte</label>
+        <input
+          id="cardPrice_cardName"
+          v-model="filters['card.name']"
+          type="text"
+          class="form-control"
+          placeholder="Filtrer par nom..."
+        />
+      </div>
+      <div class="col-3">
+        <label for="cardPrice_cardReference" class="form-label">Référence</label>
+        <input
+          id="cardPrice_cardReference"
+          v-model="filters['card.reference']"
+          type="text"
+          class="form-control"
+          placeholder="Ex. LOB-FR001"
         />
       </div>
       <div class="col-3">
@@ -197,7 +198,7 @@ function openHistory(price: CardPrice) {
     <thead>
       <tr>
         <SortableHeader field="id" :sort="sort" @sort="setSort">#</SortableHeader>
-        <th scope="col">Carte</th>
+        <SortableHeader field="card.reference" :sort="sort" @sort="setSort">Carte</SortableHeader>
         <th scope="col">Rareté</th>
         <SortableHeader field="amount" :sort="sort" @sort="setSort">Prix</SortableHeader>
         <SortableHeader field="updatedAt" :sort="sort" @sort="setSort">Mis à jour</SortableHeader>
@@ -274,4 +275,5 @@ function openHistory(price: CardPrice) {
   </table>
   <CardPriceModal ref="priceModalRef" :card-price="selectedPrice ?? undefined" @saved="reload" />
   <CardPriceHistoryModal ref="historyModalRef" :card-price="historyPrice" />
+  <CardPriceImportModal ref="importModalRef" @imported="reload" />
 </template>

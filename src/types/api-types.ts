@@ -44,6 +44,8 @@ export type ApiTradeMessage = Schemas['TradeMessage.jsonld-trade_message.read_en
 export type ApiTradeRating = Schemas['TradeRating.jsonld-trade_rating.read_entity.read']
 export type ApiGradingCompany = Schemas['GradingCompany.jsonld-grading_company.read_entity.read']
 export type ApiCardPrice = Schemas['CardPrice.jsonld-card_price.read_entity.read']
+export type ApiCardPriceImportReport = Schemas['CardPriceImportReport']
+export type CardPriceImportInput = Schemas['CardPriceImportRequest']
 export type ApiCardPriceHistory =
   Schemas['CardPriceHistory.jsonld-card_price_history.read_entity.read']
 export type ApiTag = Schemas['Tag.jsonld-tag.read_entity.read']

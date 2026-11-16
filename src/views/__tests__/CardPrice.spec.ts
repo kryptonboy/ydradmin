@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import CardPriceView from '../CardPriceView.vue'
 import CardPriceHistoryModal from '../modals/CardPriceHistoryModal.vue'
+import CardPriceImportModal from '../modals/CardPriceImportModal.vue'
 import CardPriceModal from '../modals/CardPriceModal.vue'
 
 const mounted: VueWrapper[] = []
@@ -95,13 +96,24 @@ describe('CardPriceView', () => {
     expect(wrapper.text()).toContain('12,50 €')
   })
 
-  it("affiche l'IRI quand l'API n'envoie que la relation", async () => {
-    const bare = { ...price, card: { '@id': '/api/cards/10', id: 10 } }
-    mockFetch({ '/card_prices': { member: [bare], totalItems: 1 } })
+  it('filtre par nom et référence de carte (recherche partielle)', async () => {
+    const fetchMock = mockFetch({ '/card_prices': { member: [price], totalItems: 1 } })
     const wrapper = mountComponent(CardPriceView)
     await settle()
 
-    expect(wrapper.text()).toContain('/api/cards/10')
+    await wrapper.find('#cardPrice_cardName').setValue('Magicien')
+    await wrapper.find('#cardPrice_cardReference').setValue('LOB')
+    await wrapper
+      .findAll('button')
+      .find((b) => b.text() === 'Appliquer')!
+      .trigger('click')
+    await settle()
+
+    const last = urls(fetchMock)
+      .filter((url) => url.includes('/card_prices?'))
+      .at(-1)!
+    expect(last).toContain('card.name=Magicien')
+    expect(last).toContain('card.reference=LOB')
   })
 })
 
@@ -214,5 +226,72 @@ describe('CardPriceHistoryModal', () => {
     await settle()
 
     expect(urls(fetchMock).at(-1)).toContain('recordedAt[gte]=2026-10-01T00:00:00+00:00')
+  })
+})
+
+describe('CardPriceImportModal', () => {
+  const csv = 'reference;rarity;price\nLOB-FR001;Rare;4,50\nXXX;;1'
+  const report = (committed: boolean) => ({
+    lines: 2,
+    created: 1,
+    updated: 0,
+    unchanged: 0,
+    errors: [{ line: 2, message: 'Impression inconnue : XXX' }],
+    committed,
+  })
+
+  it('prévisualise puis enregistre les lignes valides en JSON', async () => {
+    let committed = false
+    const fn = vi.fn().mockImplementation((_url: string, init?: RequestInit) => {
+      committed = JSON.parse(String(init?.body)).commit
+      return Promise.resolve(new Response(JSON.stringify(report(committed)), { status: 200 }))
+    })
+    vi.stubGlobal('fetch', fn)
+    const wrapper = mountComponent(CardPriceImportModal)
+    await settle()
+
+    expect(wrapper.find('[data-test="commit"]').attributes('disabled')).toBeDefined()
+    await wrapper.find('#cardPriceImport_content').setValue(csv)
+    await wrapper.find('[data-test="preview"]').trigger('click')
+    await settle()
+
+    const [url, init] = fn.mock.calls[0]!
+    expect(String(url)).toMatch(/\/card_prices\/import$/)
+    expect(JSON.parse(init.body)).toEqual({ content: csv, commit: false })
+    expect(wrapper.find('[data-test="report"]').text()).toContain('Aperçu (rien enregistré)')
+    expect(wrapper.find('[data-test="errors"]').text()).toContain('Impression inconnue : XXX')
+
+    await wrapper.find('[data-test="commit"]').trigger('click')
+    await settle()
+
+    expect(JSON.parse(fn.mock.calls[1]![1].body)).toEqual({ content: csv, commit: true })
+    expect(wrapper.find('[data-test="report"]').text()).toContain('Import enregistré')
+    expect(wrapper.emitted('imported')).toHaveLength(1)
+  })
+
+  it("refait l'aperçu quand le contenu change et affiche les refus de l'API", async () => {
+    const fn = vi
+      .fn()
+      .mockResolvedValueOnce(new Response(JSON.stringify(report(false)), { status: 200 }))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ detail: 'Colonne manquante : price' }), { status: 422 }),
+      )
+    vi.stubGlobal('fetch', fn)
+    const wrapper = mountComponent(CardPriceImportModal)
+    await settle()
+
+    await wrapper.find('#cardPriceImport_content').setValue(csv)
+    await wrapper.find('[data-test="preview"]').trigger('click')
+    await settle()
+    await wrapper.find('#cardPriceImport_content').setValue('reference;rarity')
+    await settle()
+
+    expect(wrapper.find('[data-test="report"]').exists()).toBe(false)
+    expect(wrapper.find('[data-test="commit"]').attributes('disabled')).toBeDefined()
+
+    await wrapper.find('[data-test="preview"]').trigger('click')
+    await settle()
+
+    expect(wrapper.text()).toContain('Colonne manquante : price')
   })
 })
