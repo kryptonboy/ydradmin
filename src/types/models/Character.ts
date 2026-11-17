@@ -4,6 +4,9 @@ import type { NamedRef } from './Ref'
 export interface Character {
   /** Résumé pour les moteurs (320 car. max) ; absent des réponses tant qu'il est vide */
   metaDescription?: string | null
+  /** Textes alternatifs de la photo et de la bannière (255 car. max) */
+  photoAlt?: string | null
+  bannerAlt?: string | null
   '@id': string
   id: number
   name: string

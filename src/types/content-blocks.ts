@@ -26,6 +26,8 @@ export interface CarouselImage {
   image: number | null
   title?: string
   description?: string
+  /** Texte alternatif (500 car. max) ; vide : image décorative */
+  alt?: string
 }
 
 export interface CarouselBlock {

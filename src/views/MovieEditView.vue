@@ -6,9 +6,10 @@ import UsedCards from '@/components/content/UsedCards.vue'
 import FileUploader from '@/components/FileUploader.vue'
 import MediaThumb from '@/components/MediaThumb.vue'
 import { useBlockContent } from '@/composables/useBlockContent'
+import ImageAltField from '@/components/ImageAltField.vue'
 import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
 import { useSubmit } from '@/composables/useSubmit'
-import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
+import { imageAltRule, metaDescriptionRule, toMetaDescription, toNullableText } from '@/helpers/seo'
 import { getErrorMessage } from '@/helpers/api-error'
 import { fromDateInput, toDateInput } from '@/helpers/date'
 import { useMoviesStore } from '@/stores'
@@ -56,6 +57,8 @@ const schema = yup.object({
   visible: yup.boolean().default(true),
   coverImage: yup.string().nullable(),
   titleImage: yup.string().nullable(),
+  coverImageAlt: imageAltRule(),
+  titleImageAlt: imageAltRule(),
 })
 
 const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
@@ -72,6 +75,8 @@ const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
     visible: true,
     coverImage: '',
     titleImage: '',
+    coverImageAlt: '',
+    titleImageAlt: '',
   },
 })
 
@@ -120,6 +125,8 @@ async function load() {
         visible: data.visible,
         coverImage: '',
         titleImage: '',
+        coverImageAlt: data.coverImageAlt ?? '',
+        titleImageAlt: data.titleImageAlt ?? '',
       },
     })
     content.load(data.blocks, data.media)
@@ -150,6 +157,8 @@ const onSubmit = handleSubmit(async (values) => {
     title: values.title,
     synopsis: values.synopsis || null,
     metaDescription: toMetaDescription(values.metaDescription),
+    coverImageAlt: toNullableText(values.coverImageAlt),
+    titleImageAlt: toNullableText(values.titleImageAlt),
     japaneseName: values.japaneseName || null,
     romanizedJapaneseName: values.romanizedJapaneseName || null,
     usReleaseDate: fromDateInput(values.usReleaseDate),
@@ -321,6 +330,11 @@ watch(() => route.params.id, load, { immediate: true })
                 context="movie"
               />
               <div v-if="errors.coverImage" class="text-danger small">{{ errors.coverImage }}</div>
+              <ImageAltField
+                name="coverImageAlt"
+                id="movie-coverImageAlt"
+                :has-image="!!(coverIri || movie?.coverImage)"
+              />
             </div>
             <div class="col-md-6">
               <MediaThumb
@@ -336,6 +350,11 @@ watch(() => route.params.id, load, { immediate: true })
                 context="movie"
               />
               <div v-if="errors.titleImage" class="text-danger small">{{ errors.titleImage }}</div>
+              <ImageAltField
+                name="titleImageAlt"
+                id="movie-titleImageAlt"
+                :has-image="!!(titleIri || movie?.titleImage)"
+              />
             </div>
             <div class="col-12">
               <label class="form-label" for="movie-synopsis">Résumé court</label>

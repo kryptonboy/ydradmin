@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import ImageAltField from '@/components/ImageAltField.vue'
 import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
-import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
+import { imageAltRule, metaDescriptionRule, toMetaDescription, toNullableText } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import { createFetchWrapper } from '@/helpers'
 import { fromDateInput, toDateInput } from '@/helpers/date'
@@ -78,6 +79,8 @@ const schema = yup.object({
   eyeColor: yup.string().nullable(),
   birthDate: yup.string().nullable(),
   metaDescription: metaDescriptionRule(),
+  photoAlt: imageAltRule(),
+  bannerAlt: imageAltRule(),
 })
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
@@ -90,6 +93,8 @@ const onSubmit = async (values: Record<string, unknown>, { setErrors }: Submissi
     romanizedJapaneseName: form.romanizedJapaneseName || null,
     description: form.description || null,
     metaDescription: toMetaDescription(form.metaDescription),
+    photoAlt: toNullableText(form.photoAlt),
+    bannerAlt: toNullableText(form.bannerAlt),
     height: form.height || null,
     weight: form.weight || null,
     hairColor: form.hairColor || null,
@@ -145,6 +150,8 @@ defineExpose({ showModal: () => modal.value?.show() })
       romanizedJapaneseName: props.character?.romanizedJapaneseName ?? '',
       description: props.character?.description ?? '',
       metaDescription: props.character?.metaDescription ?? '',
+      photoAlt: props.character?.photoAlt ?? '',
+      bannerAlt: props.character?.bannerAlt ?? '',
       height: props.character?.height ?? '',
       weight: props.character?.weight ?? '',
       hairColor: props.character?.hairColor ?? '',
@@ -266,6 +273,11 @@ defineExpose({ showModal: () => modal.value?.show() })
       label="Photo"
       context="character"
     />
+    <ImageAltField
+      name="photoAlt"
+      id="characterModal-photoAlt"
+      :has-image="!!(photoId || currentPhoto)"
+    />
     <img
       v-if="currentBanner && !bannerId"
       :src="currentBanner"
@@ -279,6 +291,11 @@ defineExpose({ showModal: () => modal.value?.show() })
       v-model:uploading="isUploadingBanner"
       label="Bannière"
       context="character"
+    />
+    <ImageAltField
+      name="bannerAlt"
+      id="characterModal-bannerAlt"
+      :has-image="!!(bannerId || currentBanner)"
     />
     <div v-if="isEdit" class="mt-2">
       <strong class="d-block mb-1">Jeux vidéo</strong>

@@ -33710,6 +33710,14 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "imageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "commentable": {
                         "default": true,
                         "type": "boolean"
@@ -33775,6 +33783,14 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "imageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "commentable": {
                         "default": true,
@@ -33854,6 +33870,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "imageAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "commentable": {
@@ -33996,6 +34020,14 @@
                                     }
                                 ]
                             },
+                            "imageAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "commentable": {
                                 "default": true,
                                 "type": "boolean"
@@ -34089,6 +34121,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "imageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "commentable": {
@@ -34222,6 +34262,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "imageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "commentable": {
@@ -39200,6 +39248,14 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "banner": {
                         "type": [
                             "string",
@@ -39207,6 +39263,14 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "bannerAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "metaDescription": {
                         "maxLength": 320,
@@ -39307,6 +39371,14 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "banner": {
                         "type": [
                             "string",
@@ -39314,6 +39386,14 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "bannerAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "metaDescription": {
                         "maxLength": 320,
@@ -39387,6 +39467,14 @@
                                     }
                                 ]
                             },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -39426,6 +39514,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -39538,6 +39634,14 @@
                                     }
                                 ]
                             },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "banner": {
                                 "anyOf": [
                                     {
@@ -39546,6 +39650,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "bannerAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "metaDescription": {
@@ -39719,6 +39831,14 @@
                                     }
                                 ]
                             },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "banner": {
                                 "anyOf": [
                                     {
@@ -39727,6 +39847,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "bannerAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -39770,6 +39898,14 @@
                                     }
                                 ]
                             },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -39809,6 +39945,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -39880,6 +40024,14 @@
                                     }
                                 ]
                             },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -39919,6 +40071,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -39962,6 +40122,14 @@
                                     }
                                 ]
                             },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -40001,6 +40169,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "photoAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -40060,6 +40236,14 @@
                             }
                         ]
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -40092,6 +40276,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -40197,6 +40389,14 @@
                             }
                         ]
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "banner": {
                         "anyOf": [
                             {
@@ -40205,6 +40405,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "bannerAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "metaDescription": {
@@ -40371,6 +40579,14 @@
                             }
                         ]
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "banner": {
                         "anyOf": [
                             {
@@ -40379,6 +40595,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "bannerAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -40415,6 +40639,14 @@
                             }
                         ]
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -40447,6 +40679,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -40504,6 +40744,14 @@
                             }
                         ]
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -40536,6 +40784,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -40572,6 +40828,14 @@
                             }
                         ]
                     },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -40604,6 +40868,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "photoAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -48136,6 +48408,14 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "coverImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "titleImage": {
                         "type": [
                             "string",
@@ -48143,6 +48423,14 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "titleImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "metaDescription": {
                         "maxLength": 320,
@@ -48222,6 +48510,14 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "coverImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "titleImage": {
                         "type": [
                             "string",
@@ -48229,6 +48525,14 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "titleImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "metaDescription": {
                         "maxLength": 320,
@@ -48321,6 +48625,14 @@
                                     }
                                 ]
                             },
+                            "coverImageAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "titleImage": {
                                 "anyOf": [
                                     {
@@ -48329,6 +48641,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "titleImageAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -48419,6 +48739,14 @@
                                     }
                                 ]
                             },
+                            "coverImageAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "titleImage": {
                                 "anyOf": [
                                     {
@@ -48427,6 +48755,14 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "titleImageAlt": {
+                                "maxLength": 255,
+                                "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "characters": {
@@ -48607,6 +48943,14 @@
                             }
                         ]
                     },
+                    "coverImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "titleImage": {
                         "anyOf": [
                             {
@@ -48615,6 +48959,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "titleImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -48698,6 +49050,14 @@
                             }
                         ]
                     },
+                    "coverImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "titleImage": {
                         "anyOf": [
                             {
@@ -48706,6 +49066,14 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "titleImageAlt": {
+                        "maxLength": 255,
+                        "description": "Alternative text of the image for the screen readers; empty or null: the image is decorative.",
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "characters": {

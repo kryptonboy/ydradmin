@@ -5,6 +5,9 @@ import type { MediaLink } from './Ref'
 export interface Movie {
   /** Résumé pour les moteurs (320 car. max) ; absent des réponses tant qu'il est vide */
   metaDescription?: string | null
+  /** Textes alternatifs de la jaquette et de l'image du titre (255 car. max) */
+  coverImageAlt?: string | null
+  titleImageAlt?: string | null
   '@id': string
   id: number
   slug?: string

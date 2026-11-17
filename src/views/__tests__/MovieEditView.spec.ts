@@ -12,6 +12,8 @@ const movie = {
   title: 'Pyramid of Light',
   synopsis: 'Court',
   metaDescription: 'Résumé moteurs',
+  coverImage: { '@id': '/api/media_objects/1', id: 1, contentUrl: '/media/cover.jpg' },
+  coverImageAlt: 'Jaquette du film',
   visible: false,
   japanReleaseDate: '2004-09-04T00:00:00+00:00',
   blocks: [{ type: 'video', url: 'https://example.com/v' }],
@@ -190,5 +192,36 @@ describe('MovieEditView : description pour les moteurs', () => {
 
     const call = fetchMock.mock.calls.find(([, init]) => init?.method === 'PATCH')
     expect(JSON.parse(call![1].body).metaDescription).toBeNull()
+  })
+})
+
+describe('MovieEditView : textes alternatifs', () => {
+  it("charge l'alt de la jaquette et signale l'image de titre absente sans avertir", async () => {
+    mockApi()
+    const wrapper = await mountEdit()
+
+    expect((wrapper.find('#movie-coverImageAlt').element as HTMLInputElement).value).toBe(
+      'Jaquette du film',
+    )
+    // Pas d'image de titre : aucun avertissement
+    expect(wrapper.findAll('[data-test="alt-missing"]')).toHaveLength(0)
+
+    await wrapper.find('#movie-coverImageAlt').setValue('  ')
+    expect(wrapper.findAll('[data-test="alt-missing"]')).toHaveLength(1)
+  })
+
+  it('envoie les alt nettoyés, null quand ils sont vides', async () => {
+    const fetchMock = mockApi()
+    const wrapper = await mountEdit()
+
+    await wrapper.find('#movie-coverImageAlt').setValue('  Yugi et le Pharaon  ')
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    const body = JSON.parse(
+      fetchMock.mock.calls.find(([, init]) => init?.method === 'PATCH')![1].body,
+    )
+    expect(body.coverImageAlt).toBe('Yugi et le Pharaon')
+    expect(body.titleImageAlt).toBeNull()
   })
 })

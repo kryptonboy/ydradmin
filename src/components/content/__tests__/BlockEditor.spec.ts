@@ -2,7 +2,7 @@ import { mount, type VueWrapper } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import { afterEach, describe, expect, it } from 'vitest'
 import { defineComponent, h, provide, ref } from 'vue'
-import { createBlock } from '@/helpers/content-blocks'
+import { createBlock, toApiBlocks } from '@/helpers/content-blocks'
 import type { EditorBlock } from '@/types/content-blocks'
 import BlockEditor from '../BlockEditor.vue'
 import { blockErrorsKey } from '../injection'
@@ -37,6 +37,21 @@ afterEach(() => {
 })
 
 describe('BlockEditor', () => {
+  it("demande un texte alternatif pour chaque image du carrousel et l'envoie", async () => {
+    const carousel = createBlock('carousel') as EditorBlock & { images: { image: number | null }[] }
+    carousel.images[0]!.image = 7
+    const { wrapper, blocks } = mountEditor([carousel])
+
+    expect(wrapper.find('[data-test="alt-missing"]').exists()).toBe(true)
+    await wrapper.find(`#${carousel.uid}-alt-0`).setValue('Trois dragons blancs')
+
+    expect(wrapper.find('[data-test="alt-missing"]').exists()).toBe(false)
+    expect(toApiBlocks(blocks.value)[0]).toMatchObject({
+      type: 'carousel',
+      images: [{ image: 7, alt: 'Trois dragons blancs' }],
+    })
+  })
+
   it('signale une image sans texte alternatif, traitée comme décorative', async () => {
     const image = { ...createBlock('image'), image: 12 } as EditorBlock
     const { wrapper } = mountEditor([image])

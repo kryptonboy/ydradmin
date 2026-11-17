@@ -3289,6 +3289,8 @@ export interface components {
              * @example https://example.com/
              */
             image?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            imageAlt?: string | null;
             /** @default true */
             commentable: boolean;
             /** @default true */
@@ -3320,6 +3322,8 @@ export interface components {
              * @example https://example.com/
              */
             image?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            imageAlt?: string | null;
             /** @default true */
             commentable: boolean;
             /** @default true */
@@ -3348,6 +3352,8 @@ export interface components {
              */
             authorName?: string | null;
             image?: components["schemas"]["MediaObject.jsonld-actuality.list_actuality.read_entity.read"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            imageAlt?: string | null;
             /** @default true */
             commentable: boolean;
             /** @default true */
@@ -3388,6 +3394,8 @@ export interface components {
              */
             authorName?: string | null;
             image?: components["schemas"]["MediaObject.jsonld-actuality.list_entity.read"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            imageAlt?: string | null;
             /** @default true */
             commentable: boolean;
             /** @default true */
@@ -3417,6 +3425,8 @@ export interface components {
              */
             authorName?: string | null;
             image?: components["schemas"]["MediaObject.multipart-actuality.list_actuality.read_entity.read"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            imageAlt?: string | null;
             /** @default true */
             commentable: boolean;
             /** @default true */
@@ -3457,6 +3467,8 @@ export interface components {
              */
             authorName?: string | null;
             image?: components["schemas"]["MediaObject.multipart-actuality.list_entity.read"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            imageAlt?: string | null;
             /** @default true */
             commentable: boolean;
             /** @default true */
@@ -4908,11 +4920,15 @@ export interface components {
              * @example https://example.com/
              */
             photo?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             /**
              * Format: iri-reference
              * @example https://example.com/
              */
             banner?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            bannerAlt?: string | null;
             metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
@@ -4943,11 +4959,15 @@ export interface components {
              * @example https://example.com/
              */
             photo?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             /**
              * Format: iri-reference
              * @example https://example.com/
              */
             banner?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            bannerAlt?: string | null;
             metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
@@ -4962,6 +4982,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-chapter.list_chapter.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -4970,6 +4992,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-chapter_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -4989,7 +5013,11 @@ export interface components {
             /** Format: date-time */
             birthDate?: string | null;
             photo?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             banner?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            bannerAlt?: string | null;
             metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
@@ -5025,7 +5053,11 @@ export interface components {
             /** Format: date-time */
             birthDate?: string | null;
             photo?: components["schemas"]["MediaObject.jsonld-character.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             banner?: components["schemas"]["MediaObject.jsonld-character.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            bannerAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5034,6 +5066,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-episode.list_episode.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5042,6 +5076,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-episode_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5056,6 +5092,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5064,6 +5102,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-movie_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5072,6 +5112,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5080,6 +5122,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.jsonld-video_game_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5094,6 +5138,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-chapter.list_chapter.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5102,6 +5148,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-chapter_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5121,7 +5169,11 @@ export interface components {
             /** Format: date-time */
             birthDate?: string | null;
             photo?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             banner?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            bannerAlt?: string | null;
             metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
@@ -5157,7 +5209,11 @@ export interface components {
             /** Format: date-time */
             birthDate?: string | null;
             photo?: components["schemas"]["MediaObject.multipart-character.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             banner?: components["schemas"]["MediaObject.multipart-character.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            bannerAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5166,6 +5222,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-episode.list_episode.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5174,6 +5232,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-episode_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5188,6 +5248,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5196,6 +5258,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-movie_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5204,6 +5268,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5212,6 +5278,8 @@ export interface components {
             name: string;
             slug?: string;
             photo?: components["schemas"]["MediaObject.multipart-video_game_character.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            photoAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7376,11 +7444,15 @@ export interface components {
              * @example https://example.com/
              */
             coverImage?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            coverImageAlt?: string | null;
             /**
              * Format: iri-reference
              * @example https://example.com/
              */
             titleImage?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            titleImageAlt?: string | null;
             metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
@@ -7407,11 +7479,15 @@ export interface components {
              * @example https://example.com/
              */
             coverImage?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            coverImageAlt?: string | null;
             /**
              * Format: iri-reference
              * @example https://example.com/
              */
             titleImage?: string | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            titleImageAlt?: string | null;
             metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
@@ -7435,7 +7511,11 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             coverImage?: components["schemas"]["MediaObject.jsonld-movie.list_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            coverImageAlt?: string | null;
             titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            titleImageAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7459,7 +7539,11 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             coverImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            coverImageAlt?: string | null;
             titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            titleImageAlt?: string | null;
             characters?: components["schemas"]["MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label"][];
             metaDescription?: string | null;
             readonly id?: number;
@@ -7506,7 +7590,11 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             coverImage?: components["schemas"]["MediaObject.multipart-movie.list_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            coverImageAlt?: string | null;
             titleImage?: components["schemas"]["MediaObject.multipart-movie.list_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            titleImageAlt?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7530,7 +7618,11 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             coverImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            coverImageAlt?: string | null;
             titleImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
+            /** @description Alternative text of the image for the screen readers; empty or null: the image is decorative. */
+            titleImageAlt?: string | null;
             characters?: components["schemas"]["MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label"][];
             metaDescription?: string | null;
             readonly id?: number;

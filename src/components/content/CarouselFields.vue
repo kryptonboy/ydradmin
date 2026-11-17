@@ -8,7 +8,7 @@ defineProps<{ uid: string; hasError: (field: string) => boolean }>()
 const block = defineModel<CarouselBlock>({ required: true })
 
 function add() {
-  block.value.images.push({ image: null, title: '', description: '' })
+  block.value.images.push({ image: null, title: '', description: '', alt: '' })
 }
 
 function remove(index: number) {
@@ -74,6 +74,23 @@ function move(index: number, to: number) {
             v-model="item.description"
             class="form-control"
           />
+          <label class="form-label mt-2" :for="`${uid}-alt-${index}`">Texte alternatif</label>
+          <input
+            :id="`${uid}-alt-${index}`"
+            v-model="item.alt"
+            maxlength="500"
+            class="form-control"
+            :class="{ 'is-invalid': hasError(`images[${index}].alt`) }"
+          />
+          <!-- Titre et description sont affichés en légende : l'alt décrit l'image elle-même -->
+          <div
+            v-if="item.image && !item.alt?.trim()"
+            class="form-text text-warning-emphasis"
+            data-test="alt-missing"
+          >
+            Sans texte alternatif, l'image est traitée comme décorative. Ne répétez pas le titre,
+            déjà lu en légende.
+          </div>
         </div>
       </div>
     </div>

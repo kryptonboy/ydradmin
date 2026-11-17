@@ -17,7 +17,7 @@ export function createBlock(type: BlockType): EditorBlock {
     case 'image':
       return { uid, type, image: null, title: '', alt: '' }
     case 'carousel':
-      return { uid, type, images: [{ image: null, title: '', description: '' }] }
+      return { uid, type, images: [{ image: null, title: '', description: '', alt: '' }] }
     case 'attachment':
       return { uid, type, name: '', description: '', attachment: null }
     case 'list':

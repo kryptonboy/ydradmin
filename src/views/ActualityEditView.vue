@@ -3,9 +3,10 @@ import AppLink from '@/components/AppLink.vue'
 import BlockEditor from '@/components/content/BlockEditor.vue'
 import FileUploader from '@/components/FileUploader.vue'
 import { useBlockContent } from '@/composables/useBlockContent'
+import ImageAltField from '@/components/ImageAltField.vue'
 import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
 import { useSubmit } from '@/composables/useSubmit'
-import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
+import { imageAltRule, metaDescriptionRule, toMetaDescription, toNullableText } from '@/helpers/seo'
 import { getErrorMessage } from '@/helpers/api-error'
 import { fromDatetimeLocal, toDatetimeLocal } from '@/helpers/date'
 import { mediaUrl } from '@/helpers/media'
@@ -54,6 +55,7 @@ const schema = yup.object({
   title: yup.string().required('Titre requis'),
   headnote: yup.string().required('Chapô requis'),
   metaDescription: metaDescriptionRule(),
+  imageAlt: imageAltRule(),
   authorName: yup.string().nullable().max(120, '120 caractères maximum'),
   commentable: yup.boolean().default(true),
   visible: yup.boolean().default(true),
@@ -68,6 +70,7 @@ const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
     title: '',
     headnote: '',
     metaDescription: '',
+    imageAlt: '',
     authorName: '',
     commentable: true,
     visible: true,
@@ -108,6 +111,7 @@ async function load() {
         title: actuality.title,
         headnote: actuality.headnote,
         metaDescription: actuality.metaDescription ?? '',
+        imageAlt: actuality.imageAlt ?? '',
         authorName: actuality.authorName ?? '',
         commentable: actuality.commentable,
         visible: actuality.visible,
@@ -133,6 +137,7 @@ const onSubmit = handleSubmit(async (values) => {
     title: values.title,
     headnote: values.headnote,
     metaDescription: toMetaDescription(values.metaDescription),
+    imageAlt: toNullableText(values.imageAlt),
     authorName: values.authorName?.trim() || null,
     commentable: values.commentable,
     visible: values.visible,
@@ -297,6 +302,11 @@ watch(() => route.params.id, load, { immediate: true })
                 context="actuality"
               />
               <div v-if="errors.image" class="text-danger small">{{ errors.image }}</div>
+              <ImageAltField
+                name="imageAlt"
+                id="actuality-imageAlt"
+                :has-image="!!(imageIri || currentImageUrl)"
+              />
             </div>
             <div class="col-md-6">
               <label class="form-label" for="actuality-published-at">Date de publication</label>
