@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import { useAbstractCardsStore, useRulingsStore } from '@/stores'
 import type { RulingForm } from '@/types/forms/RulingForm'
@@ -29,14 +31,21 @@ const schema = yup.object({
   name: yup.string().required('Nom requis'),
   ruling: yup.string().required('Texte du ruling requis'),
   abstractCards: yup.array().of(yup.object({ id: yup.string().required() })),
+  metaDescription: metaDescriptionRule(),
 })
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
-  const form = values as { name: string; ruling: string; abstractCards?: NamedRef[] }
+  const form = values as {
+    name: string
+    ruling: string
+    abstractCards?: NamedRef[]
+    metaDescription?: string
+  }
   // La liste remplace l'existant : [] détache toutes les cartes
   const payload: RulingForm = {
     name: form.name,
     ruling: form.ruling,
+    metaDescription: toMetaDescription(form.metaDescription),
     abstractCards: (form.abstractCards ?? []).map((card) => card['@id']),
   }
   const saved = await submit(async () => {
@@ -78,6 +87,7 @@ defineExpose({ showModal: () => modal.value?.show() })
     :initial-values="{
       name: props.ruling?.name ?? '',
       ruling: props.ruling?.ruling ?? '',
+      metaDescription: props.ruling?.metaDescription ?? '',
       abstractCards: props.ruling?.abstractCards ?? [],
     }"
     :form-key="props.ruling?.id ?? 'new'"
@@ -116,5 +126,6 @@ defineExpose({ showModal: () => modal.value?.show() })
       </Field>
       <ErrorMessage name="abstractCards" class="text-danger small" />
     </div>
+    <MetaDescriptionField id="rulingModal-metaDescription" fallback="un texte générique" />
   </FormModal>
 </template>

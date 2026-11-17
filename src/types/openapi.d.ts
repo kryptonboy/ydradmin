@@ -152,6 +152,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/actuality_categories/by-slug/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieves a ActualityCategory resource.
+         * @description Retrieves a ActualityCategory resource.
+         */
+        get: operations["api_actuality_categoriesby-slug_slug_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/actuality_categories/{id}": {
         parameters: {
             query?: never;
@@ -3260,6 +3280,11 @@ export interface components {
             title: string;
             headnote: string;
             /**
+             * @description Name shown as the author of the article (byline, author of the structured data), written by the editors: it is
+             *     not a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.
+             */
+            authorName?: string | null;
+            /**
              * Format: iri-reference
              * @example https://example.com/
              */
@@ -3278,6 +3303,7 @@ export interface components {
              * @example https://example.com/
              */
             actualityCategory?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3285,6 +3311,11 @@ export interface components {
             title?: string;
             headnote?: string;
             /**
+             * @description Name shown as the author of the article (byline, author of the structured data), written by the editors: it is
+             *     not a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.
+             */
+            authorName?: string | null;
+            /**
              * Format: iri-reference
              * @example https://example.com/
              */
@@ -3303,6 +3334,7 @@ export interface components {
              * @example https://example.com/
              */
             actualityCategory?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3310,6 +3342,11 @@ export interface components {
             title: string;
             slug?: string;
             headnote: string;
+            /**
+             * @description Name shown as the author of the article (byline, author of the structured data), written by the editors: it is
+             *     not a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.
+             */
+            authorName?: string | null;
             image?: components["schemas"]["MediaObject.jsonld-actuality.list_actuality.read_entity.read"] | null;
             /** @default true */
             commentable: boolean;
@@ -3321,6 +3358,7 @@ export interface components {
              */
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.jsonld-actuality.list_actuality.read_entity.read"] | null;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -3344,6 +3382,11 @@ export interface components {
             title: string;
             slug?: string;
             headnote: string;
+            /**
+             * @description Name shown as the author of the article (byline, author of the structured data), written by the editors: it is
+             *     not a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.
+             */
+            authorName?: string | null;
             image?: components["schemas"]["MediaObject.jsonld-actuality.list_entity.read"] | null;
             /** @default true */
             commentable: boolean;
@@ -3368,6 +3411,11 @@ export interface components {
             title: string;
             slug?: string;
             headnote: string;
+            /**
+             * @description Name shown as the author of the article (byline, author of the structured data), written by the editors: it is
+             *     not a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.
+             */
+            authorName?: string | null;
             image?: components["schemas"]["MediaObject.multipart-actuality.list_actuality.read_entity.read"] | null;
             /** @default true */
             commentable: boolean;
@@ -3379,6 +3427,7 @@ export interface components {
              */
             publishedAt?: string | null;
             actualityCategory?: components["schemas"]["ActualityCategory.multipart-actuality.list_actuality.read_entity.read"] | null;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -3402,6 +3451,11 @@ export interface components {
             title: string;
             slug?: string;
             headnote: string;
+            /**
+             * @description Name shown as the author of the article (byline, author of the structured data), written by the editors: it is
+             *     not a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.
+             */
+            authorName?: string | null;
             image?: components["schemas"]["MediaObject.multipart-actuality.list_entity.read"] | null;
             /** @default true */
             commentable: boolean;
@@ -3426,11 +3480,13 @@ export interface components {
             label: string;
             /** @default true */
             active: boolean;
+            metaDescription?: string | null;
         };
         "ActualityCategory-actuality_category.write.jsonMergePatch": {
             label?: string;
             /** @default true */
             active: boolean;
+            metaDescription?: string | null;
         };
         "ActualityCategory.jsonld-actuality.list_actuality.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             label: string;
@@ -3451,6 +3507,7 @@ export interface components {
             slug?: string;
             /** @default true */
             active: boolean;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -3474,6 +3531,7 @@ export interface components {
             slug?: string;
             /** @default true */
             active: boolean;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -3589,6 +3647,7 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3603,6 +3662,7 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -3620,6 +3680,7 @@ export interface components {
             europeReleaseDate?: string | null;
             arcs?: components["schemas"]["Arc.jsonld-anime.read_anime.detail_entity.read_label"][];
             seasons?: components["schemas"]["Season.jsonld-anime.read_anime.detail_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -3695,6 +3756,7 @@ export interface components {
             europeReleaseDate?: string | null;
             arcs?: components["schemas"]["Arc.multipart-anime.read_anime.detail_entity.read_label"][];
             seasons?: components["schemas"]["Season.multipart-anime.read_anime.detail_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -4064,6 +4126,7 @@ export interface components {
              */
             extension: string;
             rarities?: string[];
+            metaDescription?: string | null;
         };
         "Card-card.write.jsonMergePatch": {
             name?: string;
@@ -4089,6 +4152,7 @@ export interface components {
              */
             extension?: string;
             rarities?: string[];
+            metaDescription?: string | null;
         };
         "Card.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -4103,6 +4167,7 @@ export interface components {
             abstractCard: components["schemas"]["AbstractCard.jsonld-card.read_entity.read"];
             extension: components["schemas"]["Extension.jsonld-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.jsonld-card.read_entity.read"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -4161,6 +4226,7 @@ export interface components {
             abstractCard: components["schemas"]["AbstractCard.multipart-card.read_entity.read"];
             extension: components["schemas"]["Extension.multipart-card.read_entity.read"];
             rarities?: components["schemas"]["Rarity.multipart-card.read_entity.read"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -4847,6 +4913,7 @@ export interface components {
              * @example https://example.com/
              */
             banner?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -4881,6 +4948,7 @@ export interface components {
              * @example https://example.com/
              */
             banner?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -4922,6 +4990,7 @@ export interface components {
             birthDate?: string | null;
             photo?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
             banner?: components["schemas"]["MediaObject.jsonld-character.read_character.detail_entity.read_label"] | null;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -5053,6 +5122,7 @@ export interface components {
             birthDate?: string | null;
             photo?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
             banner?: components["schemas"]["MediaObject.multipart-character.read_character.detail_entity.read_label"] | null;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -6087,6 +6157,7 @@ export interface components {
              */
             country: string;
             gameFormats?: string[];
+            metaDescription?: string | null;
         };
         "Extension-extension.write.jsonMergePatch": {
             name?: string;
@@ -6110,6 +6181,7 @@ export interface components {
              */
             country?: string;
             gameFormats?: string[];
+            metaDescription?: string | null;
         };
         "Extension.jsonld-card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -6150,6 +6222,7 @@ export interface components {
             extensionType: components["schemas"]["ExtensionType.jsonld-extension.read_entity.read"];
             country: components["schemas"]["Country.jsonld-extension.read_entity.read"];
             gameFormats?: components["schemas"]["GameFormat.jsonld-extension.read_entity.read"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -6206,6 +6279,7 @@ export interface components {
             extensionType: components["schemas"]["ExtensionType.multipart-extension.read_entity.read"];
             country: components["schemas"]["Country.multipart-extension.read_entity.read"];
             gameFormats?: components["schemas"]["GameFormat.multipart-extension.read_entity.read"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -6486,6 +6560,7 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -6500,6 +6575,7 @@ export interface components {
             japanReleaseDate?: string | null;
             /** Format: date-time */
             europeReleaseDate?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -6545,6 +6621,7 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.jsonld-manga.read_manga.detail_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -6612,6 +6689,7 @@ export interface components {
             /** Format: date-time */
             europeReleaseDate?: string | null;
             chapters?: components["schemas"]["Chapter.multipart-manga.read_manga.detail_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7303,6 +7381,7 @@ export interface components {
              * @example https://example.com/
              */
             titleImage?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -7333,6 +7412,7 @@ export interface components {
              * @example https://example.com/
              */
             titleImage?: string | null;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -7381,6 +7461,7 @@ export interface components {
             coverImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             titleImage?: components["schemas"]["MediaObject.jsonld-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             characters?: components["schemas"]["MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7451,6 +7532,7 @@ export interface components {
             coverImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             titleImage?: components["schemas"]["MediaObject.multipart-movie.list_movie.read_appearance.read_entity.read_label"] | null;
             characters?: components["schemas"]["MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7745,6 +7827,7 @@ export interface components {
             ruling: string;
             /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
             abstractCards?: string[];
+            metaDescription?: string | null;
         };
         /** @description An official ruling about the cards it applies to. */
         "Ruling-ruling.write.jsonMergePatch": {
@@ -7752,6 +7835,7 @@ export interface components {
             ruling?: string;
             /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
             abstractCards?: string[];
+            metaDescription?: string | null;
         };
         "Ruling.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -7766,6 +7850,7 @@ export interface components {
             ruling: string;
             /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
             abstractCards?: components["schemas"]["AbstractCard.jsonld-ruling.read_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7783,6 +7868,7 @@ export interface components {
             ruling: string;
             /** @description The cards the ruling applies to; the relation is owned by AbstractCard, adding and removing keep both sides in sync. */
             abstractCards?: components["schemas"]["AbstractCard.multipart-ruling.read_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7920,12 +8006,14 @@ export interface components {
             description: string;
             /** @default true */
             visible: boolean;
+            metaDescription?: string | null;
         };
         "Tag-tag.write.jsonMergePatch": {
             name?: string;
             description?: string;
             /** @default true */
             visible: boolean;
+            metaDescription?: string | null;
         };
         "Tag.jsonld-abstract_card.read_entity.read": components["schemas"]["HydraItemBaseSchema"] & {
             name: string;
@@ -7939,6 +8027,7 @@ export interface components {
             description: string;
             /** @default true */
             visible: boolean;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -7955,6 +8044,7 @@ export interface components {
             description: string;
             /** @default true */
             visible: boolean;
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -8423,6 +8513,7 @@ export interface components {
              * @example https://example.com/
              */
             videoGameSupport: string;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -8440,6 +8531,7 @@ export interface components {
              * @example https://example.com/
              */
             videoGameSupport?: string;
+            metaDescription?: string | null;
             /** @description List of content blocks, see docs/content-blocks.md. */
             blocks?: Record<string, never>[];
         };
@@ -8470,6 +8562,7 @@ export interface components {
             visible: boolean;
             videoGameSupport: components["schemas"]["VideoGameSupport.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["VideoGameCharacter.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -8522,6 +8615,7 @@ export interface components {
             visible: boolean;
             videoGameSupport: components["schemas"]["VideoGameSupport.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"];
             characters?: components["schemas"]["VideoGameCharacter.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"][];
+            metaDescription?: string | null;
             readonly id?: number;
             /** Format: date-time */
             readonly updatedAt?: string;
@@ -9439,6 +9533,10 @@ export interface operations {
                 label?: string;
                 /** @description ActualityCategory label */
                 "label[]"?: string[];
+                /** @description ActualityCategory slug */
+                slug?: string;
+                /** @description ActualityCategory slug */
+                "slug[]"?: string[];
                 /** @description ActualityCategory order[id] */
                 "order[id]"?: "asc" | "desc" | "ASC" | "DESC";
                 /** @description ActualityCategory order[id] */
@@ -9524,6 +9622,41 @@ export interface operations {
                     "application/ld+json": components["schemas"]["ConstraintViolation.jsonld"];
                     "application/problem+json": components["schemas"]["ConstraintViolation"];
                     "application/json": components["schemas"]["ConstraintViolation"];
+                };
+            };
+        };
+    };
+    "api_actuality_categoriesby-slug_slug_get": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ActualityCategory identifier */
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description ActualityCategory resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["ActualityCategory.jsonld-actuality_category.read_entity.read"];
+                    "multipart/form-data": components["schemas"]["ActualityCategory.multipart-actuality_category.read_entity.read"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/ld+json": components["schemas"]["Error.jsonld"];
+                    "application/problem+json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["Error"];
                 };
             };
         };

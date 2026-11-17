@@ -76,6 +76,7 @@ describe('RulingModal', () => {
       name: 'Chaîne de résolution',
       ruling: 'Texte du ruling',
       abstractCards: ['/api/abstract_cards/10', '/api/abstract_cards/11'],
+      metaDescription: null,
     })
   })
 

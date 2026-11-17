@@ -3,7 +3,9 @@ import AppLink from '@/components/AppLink.vue'
 import BlockEditor from '@/components/content/BlockEditor.vue'
 import CharacterLinks from '@/components/content/CharacterLinks.vue'
 import { useBlockContent } from '@/composables/useBlockContent'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
 import { useSubmit } from '@/composables/useSubmit'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { getErrorMessage } from '@/helpers/api-error'
 import { useVideoGamesStore, useVideoGameSupportsStore } from '@/stores'
 import type { VideoGameForm } from '@/types/forms/VideoGameForm'
@@ -36,6 +38,7 @@ const saving = ref(false)
 const schema = yup.object({
   title: yup.string().required('Titre requis'),
   summary: yup.string().nullable(),
+  metaDescription: metaDescriptionRule(),
   visible: yup.boolean().default(true),
   videoGameSupport: yup.string().required('Support requis'),
 })
@@ -45,6 +48,7 @@ const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
   initialValues: {
     title: '',
     summary: '',
+    metaDescription: '',
     visible: true,
     videoGameSupport: '',
   },
@@ -78,6 +82,7 @@ async function load() {
       values: {
         title: data.title,
         summary: data.summary ?? '',
+        metaDescription: data.metaDescription ?? '',
         visible: data.visible,
         videoGameSupport: data.videoGameSupport['@id'],
       },
@@ -108,6 +113,7 @@ const onSubmit = handleSubmit(async (values) => {
   const payload: VideoGameForm = {
     title: values.title,
     summary: values.summary || null,
+    metaDescription: toMetaDescription(values.metaDescription),
     visible: values.visible,
     videoGameSupport: values.videoGameSupport,
     blocks: content.toPayload(),
@@ -238,6 +244,7 @@ watch(() => route.params.id, load, { immediate: true })
               ></textarea>
               <div class="invalid-feedback">{{ errors.summary }}</div>
               <div class="form-text">
+                ${ind}<MetaDescriptionField id="game-metaDescription" fallback="le résumé court" />
                 Texte brut ; la présentation et le test sont dans le contenu ci-dessous.
               </div>
             </div>

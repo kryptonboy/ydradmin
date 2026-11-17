@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import type { SubmissionContext } from 'vee-validate'
 import { useExtensionsStore } from '@/stores'
@@ -50,6 +52,7 @@ const schema = yup.object({
   abstractCard: yup.object({ id: idSchema }).nullable().default(null),
   extension: yup.object({ id: idSchema }),
   rarities: yup.array().of(yup.object({ id: idSchema })),
+  metaDescription: metaDescriptionRule(),
 })
 
 async function fetchAbstractCards(query: string) {
@@ -92,6 +95,7 @@ function processValues(values: Card): CardForm {
     abstractCard: values.abstractCard['@id'],
     extension: values.extension['@id'],
     rarities: values.rarities.map((rarity) => rarity['@id']),
+    metaDescription: toMetaDescription(values.metaDescription),
   }
 }
 
@@ -164,6 +168,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       abstractCard: props.card?.abstractCard ?? undefined,
       extension: props.card?.extension ?? undefined,
       rarities: props.card?.rarities ?? [],
+      metaDescription: props.card?.metaDescription ?? '',
     }"
     :form-key="props.card?.id ?? 'new'"
     :submit-error="submitError"
@@ -204,6 +209,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       />
       <ErrorMessage name="description" class="text-danger small" />
     </div>
+    <MetaDescriptionField id="cardModal-metaDescription" fallback="la description de la carte" />
     <div class="mb-3">
       <label class="form-label" for="cardModal-bbCodeDescription">BBCode Description</label>
       <Field

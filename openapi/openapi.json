@@ -2001,6 +2001,33 @@
                         "explode": true
                     },
                     {
+                        "name": "slug",
+                        "in": "query",
+                        "description": "ActualityCategory slug",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "slug[]",
+                        "in": "query",
+                        "description": "ActualityCategory slug",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "deepObject",
+                        "explode": true
+                    },
+                    {
                         "name": "order[id]",
                         "in": "query",
                         "description": "ActualityCategory order[id]",
@@ -2185,6 +2212,68 @@
                     },
                     "required": true
                 }
+            }
+        },
+        "/api/actuality_categories/by-slug/{slug}": {
+            "get": {
+                "operationId": "api_actuality_categoriesby-slug_slug_get",
+                "tags": [
+                    "ActualityCategory"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ActualityCategory resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.jsonld-actuality_category.read_entity.read"
+                                }
+                            },
+                            "multipart/form-data": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActualityCategory.multipart-actuality_category.read_entity.read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Retrieves a ActualityCategory resource.",
+                "description": "Retrieves a ActualityCategory resource.",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "ActualityCategory identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple",
+                        "explode": false
+                    }
+                ]
             }
         },
         "/api/actuality_categories/{id}": {
@@ -33605,6 +33694,14 @@
                     "headnote": {
                         "type": "string"
                     },
+                    "authorName": {
+                        "maxLength": 120,
+                        "description": "Name shown as the author of the article (byline, author of the structured data), written by the editors: it is\nnot a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "image": {
                         "type": [
                             "string",
@@ -33636,6 +33733,13 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -33656,6 +33760,14 @@
                     "headnote": {
                         "type": "string"
                     },
+                    "authorName": {
+                        "maxLength": 120,
+                        "description": "Name shown as the author of the article (byline, author of the structured data), written by the editors: it is\nnot a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "image": {
                         "type": [
                             "string",
@@ -33687,6 +33799,13 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -33718,6 +33837,14 @@
                             },
                             "headnote": {
                                 "type": "string"
+                            },
+                            "authorName": {
+                                "maxLength": 120,
+                                "description": "Name shown as the author of the article (byline, author of the structured data), written by the editors: it is\nnot a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "image": {
                                 "anyOf": [
@@ -33753,6 +33880,13 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -33844,6 +33978,14 @@
                             "headnote": {
                                 "type": "string"
                             },
+                            "authorName": {
+                                "maxLength": 120,
+                                "description": "Name shown as the author of the article (byline, author of the structured data), written by the editors: it is\nnot a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "image": {
                                 "anyOf": [
                                     {
@@ -33931,6 +34073,14 @@
                     "headnote": {
                         "type": "string"
                     },
+                    "authorName": {
+                        "maxLength": 120,
+                        "description": "Name shown as the author of the article (byline, author of the structured data), written by the editors: it is\nnot a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "image": {
                         "anyOf": [
                             {
@@ -33965,6 +34115,13 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -34049,6 +34206,14 @@
                     "headnote": {
                         "type": "string"
                     },
+                    "authorName": {
+                        "maxLength": 120,
+                        "description": "Name shown as the author of the article (byline, author of the structured data), written by the editors: it is\nnot a link to a user account, nothing about the accounts is exposed. Null: the front shows the site itself.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "image": {
                         "anyOf": [
                             {
@@ -34123,6 +34288,13 @@
                     "active": {
                         "default": true,
                         "type": "boolean"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -34136,6 +34308,13 @@
                     "active": {
                         "default": true,
                         "type": "boolean"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -34223,6 +34402,13 @@
                                 "default": true,
                                 "type": "boolean"
                             },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -34300,6 +34486,13 @@
                     "active": {
                         "default": true,
                         "type": "boolean"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -34599,6 +34792,13 @@
                         ],
                         "format": "date-time"
                     },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "blocks": {
                         "type": "array",
                         "items": {
@@ -34655,6 +34855,13 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -34735,6 +34942,13 @@
                                 "items": {
                                     "$ref": "#/components/schemas/Season.jsonld-anime.read_anime.detail_entity.read_label"
                                 }
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "id": {
                                 "type": "integer",
@@ -35064,6 +35278,13 @@
                         "items": {
                             "$ref": "#/components/schemas/Season.multipart-anime.read_anime.detail_entity.read_label"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -36347,6 +36568,13 @@
                             "format": "iri-reference",
                             "example": "https://example.com/"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -36417,6 +36645,13 @@
                             "format": "iri-reference",
                             "example": "https://example.com/"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -36497,6 +36732,13 @@
                                 "items": {
                                     "$ref": "#/components/schemas/Rarity.jsonld-card.read_entity.read"
                                 }
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "id": {
                                 "type": "integer",
@@ -36786,6 +37028,13 @@
                         "items": {
                             "$ref": "#/components/schemas/Rarity.multipart-card.read_entity.read"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -38959,6 +39208,13 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "blocks": {
                         "type": "array",
                         "items": {
@@ -39058,6 +39314,13 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -39283,6 +39546,13 @@
                                     {
                                         "type": "null"
                                     }
+                                ]
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
                                 ]
                             },
                             "id": {
@@ -39935,6 +40205,13 @@
                             {
                                 "type": "null"
                             }
+                        ]
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
                     "id": {
@@ -42885,6 +43162,13 @@
                             "format": "iri-reference",
                             "example": "https://example.com/"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -42935,6 +43219,13 @@
                             "format": "iri-reference",
                             "example": "https://example.com/"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -43123,6 +43414,13 @@
                                 "items": {
                                     "$ref": "#/components/schemas/GameFormat.jsonld-extension.read_entity.read"
                                 }
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "id": {
                                 "type": "integer",
@@ -43350,6 +43648,13 @@
                         "items": {
                             "$ref": "#/components/schemas/GameFormat.multipart-extension.read_entity.read"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -44360,6 +44665,13 @@
                         ],
                         "format": "date-time"
                     },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "blocks": {
                         "type": "array",
                         "items": {
@@ -44416,6 +44728,13 @@
                             "null"
                         ],
                         "format": "date-time"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -44624,6 +44943,13 @@
                                 "items": {
                                     "$ref": "#/components/schemas/Chapter.jsonld-manga.read_manga.detail_entity.read_label"
                                 }
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "id": {
                                 "type": "integer",
@@ -44892,6 +45218,13 @@
                         "items": {
                             "$ref": "#/components/schemas/Chapter.multipart-manga.read_manga.detail_entity.read_label"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -47811,6 +48144,13 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "blocks": {
                         "type": "array",
                         "items": {
@@ -47889,6 +48229,13 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -48087,6 +48434,13 @@
                                 "items": {
                                     "$ref": "#/components/schemas/MovieCharacter.jsonld-movie.list_movie.read_appearance.read_entity.read_label"
                                 }
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "id": {
                                 "type": "integer",
@@ -48359,6 +48713,13 @@
                         "items": {
                             "$ref": "#/components/schemas/MovieCharacter.multipart-movie.list_movie.read_appearance.read_entity.read_label"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -49211,6 +49572,13 @@
                             "format": "iri-reference",
                             "example": "https://example.com/"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -49233,6 +49601,13 @@
                             "format": "iri-reference",
                             "example": "https://example.com/"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -49293,6 +49668,13 @@
                                     "$ref": "#/components/schemas/AbstractCard.jsonld-ruling.read_entity.read_label"
                                 }
                             },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -49352,6 +49734,13 @@
                         "items": {
                             "$ref": "#/components/schemas/AbstractCard.multipart-ruling.read_entity.read_label"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -49872,6 +50261,13 @@
                     "visible": {
                         "default": true,
                         "type": "boolean"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -49888,6 +50284,13 @@
                     "visible": {
                         "default": true,
                         "type": "boolean"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -49945,6 +50348,13 @@
                                 "default": true,
                                 "type": "boolean"
                             },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
                             "id": {
                                 "type": "integer",
                                 "readOnly": true
@@ -49999,6 +50409,13 @@
                     "visible": {
                         "default": true,
                         "type": "boolean"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",
@@ -51086,6 +51503,13 @@
                         "format": "iri-reference",
                         "example": "https://example.com/"
                     },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "blocks": {
                         "type": "array",
                         "items": {
@@ -51118,6 +51542,13 @@
                         "type": "string",
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "blocks": {
                         "type": "array",
@@ -51214,6 +51645,13 @@
                                 "items": {
                                     "$ref": "#/components/schemas/VideoGameCharacter.jsonld-video_game.list_video_game.read_appearance.read_entity.read_label"
                                 }
+                            },
+                            "metaDescription": {
+                                "maxLength": 320,
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
                             },
                             "id": {
                                 "type": "integer",
@@ -51384,6 +51822,13 @@
                         "items": {
                             "$ref": "#/components/schemas/VideoGameCharacter.multipart-video_game.list_video_game.read_appearance.read_entity.read_label"
                         }
+                    },
+                    "metaDescription": {
+                        "maxLength": 320,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
                     "id": {
                         "type": "integer",

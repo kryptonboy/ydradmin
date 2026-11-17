@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import { useTagsStore } from '@/stores'
 import type { Tag } from '@/types/models/Tag'
@@ -24,10 +26,14 @@ const schema = yup.object({
   name: yup.string().required('Nom requis'),
   description: yup.string().required('Description requise'),
   visible: yup.boolean().default(true),
+  metaDescription: metaDescriptionRule(),
 })
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
-  const form = values as unknown as Tag
+  const form = {
+    ...(values as unknown as Tag),
+    metaDescription: toMetaDescription(values.metaDescription),
+  }
   const saved = await submit(async () => {
     if (isEdit.value) {
       await store.update(props.tag.id, form)
@@ -54,6 +60,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       name: props.tag?.name ?? '',
       description: props.tag?.description ?? '',
       visible: props.tag?.visible ?? true,
+      metaDescription: props.tag?.metaDescription ?? '',
     }"
     :form-key="props.tag?.id ?? 'new'"
     :submit-error="submitError"
@@ -76,6 +83,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       />
       <ErrorMessage name="description" class="text-danger small" />
     </div>
+    <MetaDescriptionField id="tagModal-metaDescription" fallback="la description" />
     <div class="form-check">
       <Field
         name="visible"

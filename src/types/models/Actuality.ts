@@ -2,6 +2,10 @@ import type { Block, MediaMap } from '../content-blocks'
 import type { ActualityCategory } from './ActualityCategory'
 
 export interface Actuality {
+  /** Résumé pour les moteurs (320 car. max) ; absent des réponses tant qu'il est vide */
+  metaDescription?: string | null
+  /** Auteur affiché de l'article (120 car. max), saisi par la rédaction : pas un lien vers un compte */
+  authorName?: string | null
   '@id': string
   id: number
   title: string

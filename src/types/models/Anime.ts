@@ -2,6 +2,8 @@ import type { Block, MediaMap } from '../content-blocks'
 import type { NamedRef, SeasonRef } from './Ref'
 
 export interface Anime {
+  /** Résumé pour les moteurs (320 car. max) ; absent des réponses tant qu'il est vide */
+  metaDescription?: string | null
   '@id': string
   id: number
   name: string

@@ -11,6 +11,7 @@ const movie = {
   id: 6,
   title: 'Pyramid of Light',
   synopsis: 'Court',
+  metaDescription: 'Résumé moteurs',
   visible: false,
   japanReleaseDate: '2004-09-04T00:00:00+00:00',
   blocks: [{ type: 'video', url: 'https://example.com/v' }],
@@ -159,5 +160,35 @@ describe('MovieEditView', () => {
     const block = wrapper.find('.block-item')
     expect(block.classes()).toContain('border-danger')
     expect(block.text()).toContain('Adresse invalide')
+  })
+})
+
+describe('MovieEditView : description pour les moteurs', () => {
+  it('charge, compte et envoie metaDescription sans espaces de bord', async () => {
+    const fetchMock = mockApi()
+    const wrapper = await mountEdit()
+
+    const field = wrapper.find('#movie-metaDescription')
+    expect((field.element as HTMLTextAreaElement).value).toBe('Résumé moteurs')
+    expect(wrapper.find('[data-test="meta-count"]').text()).toBe('14 / 320')
+
+    await field.setValue('  Le film de Yugi  ')
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    const call = fetchMock.mock.calls.find(([, init]) => init?.method === 'PATCH')
+    expect(JSON.parse(call![1].body).metaDescription).toBe('Le film de Yugi')
+  })
+
+  it('envoie null quand le champ est vidé, pour revenir au texte de repli', async () => {
+    const fetchMock = mockApi()
+    const wrapper = await mountEdit()
+
+    await wrapper.find('#movie-metaDescription').setValue('   ')
+    await wrapper.find('form').trigger('submit')
+    await settle()
+
+    const call = fetchMock.mock.calls.find(([, init]) => init?.method === 'PATCH')
+    expect(JSON.parse(call![1].body).metaDescription).toBeNull()
   })
 })

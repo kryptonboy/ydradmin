@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import { fromDateInput, toDateInput } from '@/helpers/date'
 import { useAnimesStore } from '@/stores'
@@ -29,6 +31,7 @@ const schema = yup.object({
   usReleaseDate: yup.string().nullable(),
   japanReleaseDate: yup.string().nullable(),
   europeReleaseDate: yup.string().nullable(),
+  metaDescription: metaDescriptionRule(),
 })
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
@@ -38,6 +41,7 @@ const onSubmit = async (values: Record<string, unknown>, { setErrors }: Submissi
     japaneseName: form.japaneseName || null,
     romanizedJapaneseName: form.romanizedJapaneseName || null,
     synopsis: form.synopsis || null,
+    metaDescription: toMetaDescription(form.metaDescription),
     usReleaseDate: fromDateInput(form.usReleaseDate),
     japanReleaseDate: fromDateInput(form.japanReleaseDate),
     europeReleaseDate: fromDateInput(form.europeReleaseDate),
@@ -70,6 +74,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       japaneseName: props.anime?.japaneseName ?? '',
       romanizedJapaneseName: props.anime?.romanizedJapaneseName ?? '',
       synopsis: props.anime?.synopsis ?? '',
+      metaDescription: props.anime?.metaDescription ?? '',
       usReleaseDate: toDateInput(props.anime?.usReleaseDate),
       japanReleaseDate: toDateInput(props.anime?.japanReleaseDate),
       europeReleaseDate: toDateInput(props.anime?.europeReleaseDate),
@@ -104,6 +109,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       <Field name="synopsis" id="animeModal-synopsis" as="textarea" rows="4" class="form-control" />
       <ErrorMessage name="synopsis" class="text-danger small" />
     </div>
+    <MetaDescriptionField id="animeModal-metaDescription" fallback="le synopsis" />
     <div class="row">
       <div class="col-md-4 mb-3">
         <label class="form-label" for="animeModal-japanReleaseDate">Sortie au Japon</label>

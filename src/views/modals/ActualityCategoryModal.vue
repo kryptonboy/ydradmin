@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import { useActualityCategoriesStore } from '@/stores'
 import type { ActualityCategoryForm } from '@/types/forms/ActualityCategoryForm'
@@ -23,10 +25,14 @@ const isEdit = computed(() => !!props.category)
 const schema = yup.object({
   label: yup.string().required('Libellé requis'),
   active: yup.boolean().default(true),
+  metaDescription: metaDescriptionRule(),
 })
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
-  const form = values as unknown as ActualityCategoryForm
+  const form: ActualityCategoryForm = {
+    ...(values as unknown as ActualityCategoryForm),
+    metaDescription: toMetaDescription(values.metaDescription),
+  }
   const saved = await submit(async () => {
     if (isEdit.value) {
       await store.update(props.category.id, form)
@@ -53,6 +59,7 @@ defineExpose({ showModal: () => modal.value?.show() })
     :initial-values="{
       label: props.category?.label ?? '',
       active: props.category?.active ?? true,
+      metaDescription: props.category?.metaDescription ?? '',
     }"
     :form-key="props.category?.id ?? 'new'"
     :submit-error="submitError"
@@ -64,6 +71,10 @@ defineExpose({ showModal: () => modal.value?.show() })
       <Field name="label" id="actualityCategoryModal-label" type="text" class="form-control" />
       <ErrorMessage name="label" class="text-danger small" />
     </div>
+    <MetaDescriptionField
+      id="actualityCategoryModal-metaDescription"
+      fallback="un texte générique"
+    />
     <div class="form-check">
       <Field
         name="active"

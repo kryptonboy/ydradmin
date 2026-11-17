@@ -3,7 +3,9 @@ import AppLink from '@/components/AppLink.vue'
 import BlockEditor from '@/components/content/BlockEditor.vue'
 import FileUploader from '@/components/FileUploader.vue'
 import { useBlockContent } from '@/composables/useBlockContent'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
 import { useSubmit } from '@/composables/useSubmit'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { getErrorMessage } from '@/helpers/api-error'
 import { fromDatetimeLocal, toDatetimeLocal } from '@/helpers/date'
 import { mediaUrl } from '@/helpers/media'
@@ -51,6 +53,8 @@ const currentImageUrl = ref<string | null>(null)
 const schema = yup.object({
   title: yup.string().required('Titre requis'),
   headnote: yup.string().required('Chapô requis'),
+  metaDescription: metaDescriptionRule(),
+  authorName: yup.string().nullable().max(120, '120 caractères maximum'),
   commentable: yup.boolean().default(true),
   visible: yup.boolean().default(true),
   publishedAt: yup.string().nullable(),
@@ -63,6 +67,8 @@ const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
   initialValues: {
     title: '',
     headnote: '',
+    metaDescription: '',
+    authorName: '',
     commentable: true,
     visible: true,
     publishedAt: '',
@@ -73,6 +79,7 @@ const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
 
 const [title] = defineField('title')
 const [headnote] = defineField('headnote')
+const [authorName] = defineField('authorName')
 const [commentable] = defineField('commentable')
 const [visible] = defineField('visible')
 const [publishedAt] = defineField('publishedAt')
@@ -100,6 +107,8 @@ async function load() {
       values: {
         title: actuality.title,
         headnote: actuality.headnote,
+        metaDescription: actuality.metaDescription ?? '',
+        authorName: actuality.authorName ?? '',
         commentable: actuality.commentable,
         visible: actuality.visible,
         publishedAt: toDatetimeLocal(actuality.publishedAt),
@@ -123,6 +132,8 @@ const onSubmit = handleSubmit(async (values) => {
   const payload: ActualityForm = {
     title: values.title,
     headnote: values.headnote,
+    metaDescription: toMetaDescription(values.metaDescription),
+    authorName: values.authorName?.trim() || null,
     commentable: values.commentable,
     visible: values.visible,
     publishedAt: fromDatetimeLocal(values.publishedAt),
@@ -250,6 +261,25 @@ watch(() => route.params.id, load, { immediate: true })
                 :class="{ 'is-invalid': errors.headnote }"
               ></textarea>
               <div class="invalid-feedback">{{ errors.headnote }}</div>
+            </div>
+            <div class="col-12">
+              <MetaDescriptionField id="actuality-metaDescription" fallback="le chapô" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="actuality-authorName">Auteur affiché</label>
+              <input
+                id="actuality-authorName"
+                v-model="authorName"
+                type="text"
+                maxlength="120"
+                class="form-control"
+                :class="{ 'is-invalid': errors.authorName }"
+              />
+              <div class="invalid-feedback">{{ errors.authorName }}</div>
+              <div class="form-text">
+                Nom libre (120 caractères), sans lien avec un compte. Vide : le site est indiqué
+                comme auteur.
+              </div>
             </div>
             <div class="col-md-6">
               <img

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import MediaThumb from '@/components/MediaThumb.vue'
 import { useSubmit } from '@/composables/useSubmit'
 import {
@@ -47,6 +49,7 @@ const schema = yup.object({
   extensionType: yup.object({ id: yup.string().required() }).nullable().required(),
   country: yup.object({ id: yup.string().required() }).nullable().required(),
   gameFormats: yup.array().default([]),
+  metaDescription: metaDescriptionRule(),
 })
 
 function toForm(values: Extension): ExtensionForm {
@@ -59,6 +62,7 @@ function toForm(values: Extension): ExtensionForm {
     country: values.country['@id'],
     // La liste remplace l'existant : [] retire l'extension de tous les formats
     gameFormats: (values.gameFormats ?? []).map((format) => format['@id']),
+    metaDescription: toMetaDescription(values.metaDescription),
   }
 }
 
@@ -115,6 +119,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       extensionType: props.extension?.extensionType ?? null,
       country: props.extension?.country ?? null,
       gameFormats: props.extension?.gameFormats ?? [],
+      metaDescription: props.extension?.metaDescription ?? '',
     }"
     :form-key="props.extension?.id ?? 'new'"
     :submit-error="submitError"
@@ -197,5 +202,6 @@ defineExpose({ showModal: () => modal.value?.show() })
       label="Icône"
       context="extension"
     />
+    <MetaDescriptionField id="extensionModal-metaDescription" fallback="un texte générique" />
   </FormModal>
 </template>

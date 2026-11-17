@@ -6,7 +6,9 @@ import UsedCards from '@/components/content/UsedCards.vue'
 import FileUploader from '@/components/FileUploader.vue'
 import MediaThumb from '@/components/MediaThumb.vue'
 import { useBlockContent } from '@/composables/useBlockContent'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
 import { useSubmit } from '@/composables/useSubmit'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { getErrorMessage } from '@/helpers/api-error'
 import { fromDateInput, toDateInput } from '@/helpers/date'
 import { useMoviesStore } from '@/stores'
@@ -45,6 +47,7 @@ const isUploadingTitle = ref(false)
 const schema = yup.object({
   title: yup.string().required('Titre requis'),
   synopsis: yup.string().nullable(),
+  metaDescription: metaDescriptionRule(),
   japaneseName: yup.string().nullable(),
   romanizedJapaneseName: yup.string().nullable(),
   usReleaseDate: yup.string().nullable(),
@@ -60,6 +63,7 @@ const { defineField, errors, handleSubmit, resetForm, setErrors } = useForm({
   initialValues: {
     title: '',
     synopsis: '',
+    metaDescription: '',
     japaneseName: '',
     romanizedJapaneseName: '',
     usReleaseDate: '',
@@ -107,6 +111,7 @@ async function load() {
       values: {
         title: data.title,
         synopsis: data.synopsis ?? '',
+        metaDescription: data.metaDescription ?? '',
         japaneseName: data.japaneseName ?? '',
         romanizedJapaneseName: data.romanizedJapaneseName ?? '',
         usReleaseDate: toDateInput(data.usReleaseDate),
@@ -144,6 +149,7 @@ const onSubmit = handleSubmit(async (values) => {
   const payload: MovieForm = {
     title: values.title,
     synopsis: values.synopsis || null,
+    metaDescription: toMetaDescription(values.metaDescription),
     japaneseName: values.japaneseName || null,
     romanizedJapaneseName: values.romanizedJapaneseName || null,
     usReleaseDate: fromDateInput(values.usReleaseDate),
@@ -342,6 +348,7 @@ watch(() => route.params.id, load, { immediate: true })
               ></textarea>
               <div class="invalid-feedback">{{ errors.synopsis }}</div>
               <div class="form-text">
+                ${ind}<MetaDescriptionField id="movie-metaDescription" fallback="le résumé court" />
                 Texte brut ; le résumé complet est dans le contenu ci-dessous.
               </div>
             </div>

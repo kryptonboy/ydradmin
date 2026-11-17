@@ -38,6 +38,7 @@ npm run gen   # exporte le schéma OpenAPI depuis ../../newkryproject puis rég�
 - **Routes** : chargées à la demande (`src/helpers/router.ts`). Une route inconnue affiche `NotFoundView`.
 - **Stores / listes / modales** : `createResourceStore` (stores CRUD), `useListView` + `SortableHeader` (listes), `FormModal` + `useSubmit` (formulaires en modale).
 - **Slug** : généré par l'API depuis le nom ou le titre (cartes, extensions, tags, actualités, animés, mangas, films, jeux vidéo, personnages, rulings, decks), affiché sous le nom dans les listes, en lecture seule : il ne figure dans aucun formulaire ni aucune écriture.
+- **Description pour les moteurs** (`metaDescription`, 320 caractères au plus, facultative) : composant `MetaDescriptionField` (compteur, règle `metaDescriptionRule`) dans les formulaires des cartes, extensions, actualités, catégories d'actualités, animés, mangas, films, jeux vidéo, personnages, rulings et tags. Le texte est envoyé sans espaces de bord ; vide, il part à `null` (`toMetaDescription`) : la clé disparaît alors des réponses et le site public reprend un texte de repli (chapô, description, synopsis, résumé). Les actualités ont aussi un **auteur affiché** (`authorName`, 120 caractères, texte libre sans lien avec un compte).
 
 ## Contenu éditorial (actualités)
 

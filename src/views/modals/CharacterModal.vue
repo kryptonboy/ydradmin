@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import FileUploader from '@/components/FileUploader.vue'
 import FormModal from '@/components/FormModal.vue'
+import MetaDescriptionField from '@/components/MetaDescriptionField.vue'
+import { metaDescriptionRule, toMetaDescription } from '@/helpers/seo'
 import { useSubmit } from '@/composables/useSubmit'
 import { createFetchWrapper } from '@/helpers'
 import { fromDateInput, toDateInput } from '@/helpers/date'
@@ -75,6 +77,7 @@ const schema = yup.object({
   hairColor: yup.string().nullable(),
   eyeColor: yup.string().nullable(),
   birthDate: yup.string().nullable(),
+  metaDescription: metaDescriptionRule(),
 })
 
 const onSubmit = async (values: Record<string, unknown>, { setErrors }: SubmissionContext) => {
@@ -86,6 +89,7 @@ const onSubmit = async (values: Record<string, unknown>, { setErrors }: Submissi
     japaneseName: form.japaneseName || null,
     romanizedJapaneseName: form.romanizedJapaneseName || null,
     description: form.description || null,
+    metaDescription: toMetaDescription(form.metaDescription),
     height: form.height || null,
     weight: form.weight || null,
     hairColor: form.hairColor || null,
@@ -140,6 +144,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       japaneseName: props.character?.japaneseName ?? '',
       romanizedJapaneseName: props.character?.romanizedJapaneseName ?? '',
       description: props.character?.description ?? '',
+      metaDescription: props.character?.metaDescription ?? '',
       height: props.character?.height ?? '',
       weight: props.character?.weight ?? '',
       hairColor: props.character?.hairColor ?? '',
@@ -224,6 +229,7 @@ defineExpose({ showModal: () => modal.value?.show() })
       />
       <ErrorMessage name="description" class="text-danger small" />
     </div>
+    <MetaDescriptionField id="characterModal-metaDescription" fallback="la description" />
     <div class="row">
       <div class="col-6 col-md-3 mb-3">
         <label class="form-label" for="characterModal-height">Taille</label>

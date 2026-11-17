@@ -82,6 +82,7 @@ describe('AnimeModal', () => {
       usReleaseDate: null,
       japanReleaseDate: '2000-04-18T00:00:00+00:00',
       europeReleaseDate: null,
+      metaDescription: null,
     })
     expect(wrapper.emitted('saved')).toHaveLength(1)
   })
