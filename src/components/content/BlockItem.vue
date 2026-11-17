@@ -191,6 +191,16 @@ function confirmRemove() {
           <input :id="`${block.uid}-title`" v-model="block.title" class="form-control" />
           <label class="form-label mt-2" :for="`${block.uid}-alt`">Texte alternatif</label>
           <input :id="`${block.uid}-alt`" v-model="block.alt" class="form-control" />
+          <!-- Le site public lit l'alt tel quel ; vide, l'image est traitée comme décorative -->
+          <div
+            v-if="block.image && !block.alt?.trim()"
+            class="form-text text-warning-emphasis"
+            data-test="alt-missing"
+          >
+            Sans texte alternatif, l'image est traitée comme décorative. Décrivez-la si elle porte
+            une information (carte, visuel de set, tableau…).
+          </div>
+          <div v-else class="form-text">Décrit l'image pour les lecteurs d'écran.</div>
         </div>
       </div>
 

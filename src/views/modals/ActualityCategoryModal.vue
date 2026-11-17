@@ -85,6 +85,10 @@ defineExpose({ showModal: () => modal.value?.show() })
         :unchecked-value="false"
       />
       <label class="form-check-label" for="actualityCategoryActive">Active</label>
+      <div class="form-text">
+        Sur le site, la catégorie n'a sa page (et un lien) que si elle est active et compte au moins
+        un article publié.
+      </div>
     </div>
   </FormModal>
 </template>

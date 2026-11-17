@@ -37,6 +37,21 @@ afterEach(() => {
 })
 
 describe('BlockEditor', () => {
+  it('signale une image sans texte alternatif, traitée comme décorative', async () => {
+    const image = { ...createBlock('image'), image: 12 } as EditorBlock
+    const { wrapper } = mountEditor([image])
+
+    expect(wrapper.find('[data-test="alt-missing"]').exists()).toBe(true)
+
+    await wrapper.find(`#${image.uid}-alt`).setValue('Visuel du set')
+    expect(wrapper.find('[data-test="alt-missing"]').exists()).toBe(false)
+  })
+
+  it("ne signale rien tant qu'aucune image n'est choisie", () => {
+    const { wrapper } = mountEditor([createBlock('image')])
+    expect(wrapper.find('[data-test="alt-missing"]').exists()).toBe(false)
+  })
+
   it('propose les 13 types de blocs', () => {
     const { wrapper } = mountEditor([])
     expect(wrapper.findAll('.dropdown-item')).toHaveLength(13)
